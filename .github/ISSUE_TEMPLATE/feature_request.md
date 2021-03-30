@@ -1,21 +1,21 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
-labels: ''
+title: "[Client] 내용"
+labels: Client
 assignees: ''
 
 ---
 
 ### ISSUE
-* Group:  `client`, `server`
+* Group:  `client`
 * Type: `bug`, `feature`, `delete`
 * Detail: 
 
 ### TODO
- 1. [ ]  Job1
- 2. [ ]  Job2
- 3. [ ]  Job3
+ 1. [ ]  
+ 2. [ ]  
+ 3. [ ]  
 
 ### Estimated time
 ### `0.5h`
