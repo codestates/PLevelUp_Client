@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[Client] 내용"
+title: "[Client] "
 labels: Client
 assignees: ''
 
@@ -9,24 +9,14 @@ assignees: ''
 
 ### ISSUE
 * Group:  `client`
-* Type: `bug`, `feature`, `delete`
-* Detail: 
+* Type: `feature`
 
-### TODO
- 1. [ ]  
- 2. [ ]  
- 3. [ ]  
+### Detail
+1. 
+2. 
 
 ### Estimated time
-### `0.5h`
-### `1h`
-### `1.5h`
-### `2h`
-### `2.5h`
 ### `3h`
 
 ### Labels
-* Estimated time: `E: 1h`
-* Group : `client`, `server`
-* Sprint: `Sprint__NUMBER__`
-* Urgency: `High`, `Middle`, `Low`
+* Sprint: `Sprint__1__`
