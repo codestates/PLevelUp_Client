@@ -1,7 +1,11 @@
 import React from 'react';
 
-const LandingPage = () => {
-  return <div> 랜딩페이지 </div>;
+const LoginPage = () => {
+  return (
+    <div>
+      <h1> 로그인페이지 </h1>
+    </div>
+  );
 };
 
-export default LandingPage;
+export default LoginPage;

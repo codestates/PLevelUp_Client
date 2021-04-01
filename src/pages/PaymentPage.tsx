@@ -1,7 +1,7 @@
 import React from 'react';
 
-const LandingPage = () => {
-  return <div> 랜딩페이지 </div>;
+const PaymentPage = () => {
+  return <div> 결제페이지 </div>;
 };
 
-export default LandingPage;
+export default PaymentPage;

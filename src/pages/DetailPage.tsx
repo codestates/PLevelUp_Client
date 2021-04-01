@@ -1,11 +1,11 @@
 import React from 'react';
 
-const LandingPage = () => {
+const DetailPage = () => {
   return (
     <div>
-      <h1> 랜딩페이지 </h1>
+      <h1> 디테일페이지 </h1>
     </div>
   );
 };
 
-export default LandingPage;
+export default DetailPage;
