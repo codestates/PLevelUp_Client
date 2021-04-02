@@ -1,11 +1,12 @@
+import React from 'react';
+import styles from '../styles/pages/landing_page/LandingPage.module.scss';
 import CounterHooks from 'components/CounterHooks';
 import ReducerSample from 'components/ReducerSample';
 import CounterContainer from 'containers/CounterContainer';
-import React from 'react';
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <h1> 랜딩페이지 </h1>
       <p>hooks로 만든 Counter Sample </p>
       <CounterHooks />

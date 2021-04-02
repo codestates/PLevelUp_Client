@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/App.css';
+import './styles/App.scss';
 import { Route, Switch, Redirect, Router } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
@@ -13,15 +13,13 @@ import MyPage from 'pages/MyPage';
 function App() {
   return (
     <>
-      <header className="App-header">
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/list" component={ListPage} />
-        <Route exact path="/detail" component={DetailPage} />
-        <Route exact path="/payment" component={PaymentPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/mypage" component={MyPage} />
-      </header>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/list" component={ListPage} />
+      <Route exact path="/detail" component={DetailPage} />
+      <Route exact path="/payment" component={PaymentPage} />
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/register" component={RegisterPage} />
+      <Route exact path="/mypage" component={MyPage} />
     </>
   );
 }
