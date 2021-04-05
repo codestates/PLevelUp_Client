@@ -3,7 +3,7 @@ name: KPT
 about: Suggest an idea for this project
 title: "[KPT] 2주차 월요일"
 labels: retrospect
-assignees: Outwater, pioneerJ, napsztar
+assignees: napsztar, Outwater, pioneerJ
 
 ---
 
