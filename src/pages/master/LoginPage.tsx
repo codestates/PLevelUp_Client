@@ -1,3 +1,10 @@
+import AuthTemplate from '../../components/master/auth/AuthTemplate';
+import AuthForm from '../../components/master/auth/AuthForm';
+
 export default function MasterLoginPage() {
-  return <div>로그인</div>;
+  return (
+    <AuthTemplate>
+      <AuthForm />
+    </AuthTemplate>
+  );
 }
