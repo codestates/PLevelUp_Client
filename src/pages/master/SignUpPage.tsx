@@ -4,7 +4,7 @@ import AuthForm from '../../components/master/auth/AuthForm';
 export default function MasterSignUpPage() {
   return (
     <AuthTemplate>
-      <AuthForm />
+      <AuthForm formType="signUp" />
     </AuthTemplate>
   );
 }

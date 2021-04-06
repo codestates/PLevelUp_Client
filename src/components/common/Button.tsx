@@ -1,8 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import React, { Key, ReactNode } from 'react';
 
 type ButtonProps = {
+  fullWidth?: boolean;
+  cyan?: boolean;
   children?: ReactNode;
   key?: Key;
 };
@@ -22,6 +24,23 @@ const StyledButton = styled.button`
   &:hover {
     background: ${palette.gray[6]};
   }
+  ${(props: ButtonProps) =>
+    props.fullWidth &&
+    css`
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      width: 100%;
+      font-size: 1.125rem;
+    `}
+
+  ${(props: ButtonProps) =>
+    props.cyan &&
+    css`
+      background: ${palette.cyan[5]};
+      &:hover {
+        background: ${palette.cyan[4]};
+      }
+    `}
 `;
 
 export default function Button(props: ButtonProps) {
