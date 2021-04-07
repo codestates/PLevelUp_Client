@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import palette from '../../../lib/styles/palette';
 import Button from '../../common/Button';
+import { ChangeEvent, FormEvent } from 'react';
+import {
+  MasterSignUpReqType,
+  MasterLoginReqType,
+} from '../../../modules/master/auth';
 
 /**
  * 회원 가입 / 로그인 폼 보여주기
@@ -68,20 +73,36 @@ const formTypeMap: formTypeMapType = {
 
 type AuthFormProps = {
   formType: string;
+  form: MasterSignUpReqType | MasterLoginReqType;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 };
 
-export default function AuthForm({ formType }: AuthFormProps) {
-  const text = formTypeMap[formType];
+export default function AuthForm({
+  formType,
+  form,
+  onChange,
+  onSubmit,
+}: AuthFormProps) {
+  const formTypeText = formTypeMap[formType];
   return (
     <AuthFormBlock>
-      <h3>{text}</h3>
-      <form>
-        <StyledInput autoComplete="email" name="email" placeholder="이메일" />
+      <h3>{formTypeText}</h3>
+      <form onSubmit={onSubmit}>
+        <StyledInput
+          autoComplete="email"
+          name="email"
+          placeholder="이메일"
+          onChange={onChange}
+          value={form.email}
+        />
         {formType === 'signUp' && (
           <StyledInput
             autoComplete="username"
             name="username"
             placeholder="유저네임"
+            onChange={onChange}
+            value={form.username}
           />
         )}
         <StyledInput
@@ -89,6 +110,8 @@ export default function AuthForm({ formType }: AuthFormProps) {
           name="password"
           placeholder="비밀번호"
           type="password"
+          onChange={onChange}
+          value={form.password}
         />
         {formType === 'signUp' && (
           <StyledInput
@@ -96,10 +119,12 @@ export default function AuthForm({ formType }: AuthFormProps) {
             name="passwordConfirm"
             placeholder="비밀번호 확인"
             type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
           />
         )}
         <ButtonWithMarginTop cyan fullWidth>
-          {text}
+          {formTypeText}
         </ButtonWithMarginTop>
       </form>
       <footer>
