@@ -70,3 +70,6 @@ export const masterIsLogin = async () =>
   await api.get<MasterIsLoginResType>('/api/master/auth/is-login');
 
 export type MasterLogoutResType = {};
+
+export const masterLogout = async () =>
+  await api.post<MasterLogoutResType>('/api/master/auth/logout');

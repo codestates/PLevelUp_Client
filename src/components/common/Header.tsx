@@ -43,7 +43,7 @@ const UserInfo = styled.div`
   margin-right: 1rem;
 `;
 
-export default function Header({ user }: any) {
+export default function Header({ user, onLogout }: any) {
   console.log(user);
   return (
     <>
@@ -53,7 +53,7 @@ export default function Header({ user }: any) {
           {user ? (
             <div className="right">
               <UserInfo>{user.username}</UserInfo>
-              <Button>로그아웃</Button>
+              <Button onClick={onLogout}>로그아웃</Button>
             </div>
           ) : (
             <div className="right">
