@@ -1,15 +1,18 @@
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
-import React, { Key, ReactNode } from 'react';
+import React, { Key, MouseEventHandler, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 type ButtonProps = {
   fullWidth?: boolean;
   cyan?: boolean;
   children?: ReactNode;
   key?: Key;
+  to?: string;
+  onClick: (e: MouseEventHandler<HTMLButtonElement>) => void;
 };
 
-const StyledButton = styled.button`
+const buttonStyle = css`
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -24,6 +27,7 @@ const StyledButton = styled.button`
   &:hover {
     background: ${palette.gray[6]};
   }
+
   ${(props: ButtonProps) =>
     props.fullWidth &&
     css`
@@ -37,12 +41,26 @@ const StyledButton = styled.button`
     props.cyan &&
     css`
       background: ${palette.cyan[5]};
+
       &:hover {
         background: ${palette.cyan[4]};
       }
     `}
 `;
 
-export default function Button(props: ButtonProps) {
-  return <StyledButton {...props} />;
+const StyledButton = styled.button`
+  ${buttonStyle}
+`;
+
+const StyledLink = styled(Link)`
+  ${buttonStyle}
+`;
+
+export default function Button(props: any) {
+  return props.to ? (
+    // a 태그는 boolean 타입의 임의 props 를 허용하지 않기에 1과 0 으로 변환시켜 준다.
+    <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+  ) : (
+    <StyledButton {...props} />
+  );
 }

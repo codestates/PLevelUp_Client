@@ -11,8 +11,25 @@ import RegisterPage from 'pages/RegisterPage';
 import MyPage from 'pages/MyPage';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
+import { useDispatch } from 'react-redux';
+import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 
 function App() {
+  const dispatch = useDispatch();
+
+  function loadUser() {
+    try {
+      const user = localStorage.getItem('user');
+      if (!user) return; // 로그인 상태가 아니라면 아무것도 안 함
+
+      dispatch(masterTempSetUser(JSON.parse(user)));
+      dispatch(masterIsLoginThunk());
+    } catch (e) {
+      console.log('localStorage is not working');
+    }
+  }
+  loadUser();
+
   return (
     <>
       <Route exact path="/master/login" component={MasterLoginPage} />
