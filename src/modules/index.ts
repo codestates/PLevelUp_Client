@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import counter from './counter';
-import { masterAuth } from './master/auth';
+import { masterAuth, masterAuthAsync } from './master/auth';
 
 const rootReducer = combineReducers({
   counter,
   masterAuth,
+  masterAuthAsync,
 });
 
 export default rootReducer;
