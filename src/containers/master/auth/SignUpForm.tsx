@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeEvent, FormEvent, useEffect } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   masterChangeField,
   masterInitializeForm,
+  masterInitializeFormForError,
   masterSignUpThunk,
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
@@ -11,6 +12,7 @@ import { masterIsLoginThunk } from '../../../modules/master/user';
 import { withRouter } from 'react-router-dom';
 
 export default withRouter(function SignUpForm({ history }) {
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
   const {
     form,
@@ -46,7 +48,22 @@ export default withRouter(function SignUpForm({ history }) {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, username, password, passwordConfirm } = form;
+    if ([email, username, password, passwordConfirm].includes('')) {
+      setError('빈 칸을 모두 입력하세요.');
+      return;
+    }
     if (password !== passwordConfirm) {
+      setError('비밀번호가 일치하지 않습니다.');
+      dispatch(
+        masterChangeField({ form: 'signUp', key: 'password', value: '' }),
+      );
+      dispatch(
+        masterChangeField({
+          form: 'signUp',
+          key: 'passwordConfirm',
+          value: '',
+        }),
+      );
       return;
     }
     dispatch(masterSignUpThunk({ email, username, password, passwordConfirm }));
@@ -54,12 +71,25 @@ export default withRouter(function SignUpForm({ history }) {
 
   useEffect(() => {
     dispatch(masterInitializeForm('singUp'));
+    dispatch(masterInitializeFormForError(''));
   }, [dispatch]);
 
   useEffect(() => {
     if (authError) {
+      if (authError.response?.status === 409) {
+        setError('이미 존재하는 계정명입니다.');
+        dispatch(masterInitializeFormForError(''));
+        return;
+      }
+      // 기타 이유
+      setError('회원가입 실패');
+      dispatch(masterInitializeFormForError(''));
+      return;
+    }
+    if (userError) {
       console.log('오류 발생');
-      console.log(authError);
+      console.log(userError);
+      dispatch(masterInitializeFormForError(''));
       return;
     }
     if (auth) {
@@ -82,6 +112,7 @@ export default withRouter(function SignUpForm({ history }) {
         form={form}
         onChange={onChange}
         onSubmit={onSubmit}
+        error={error}
       />
     </>
   );

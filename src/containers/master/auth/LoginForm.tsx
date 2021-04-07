@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeEvent, FormEvent, useEffect } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   masterChangeField,
   masterInitializeForm,
+  masterInitializeFormForError,
   masterLoginThunk,
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
@@ -11,6 +12,7 @@ import { withRouter } from 'react-router-dom';
 import { masterIsLoginThunk } from '../../../modules/master/user';
 
 export default withRouter(function LoginForm({ history }) {
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
   const {
     form,
@@ -51,17 +53,26 @@ export default withRouter(function LoginForm({ history }) {
     dispatch(masterLoginThunk({ email, password }));
   };
 
-  // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
   useEffect(() => {
     dispatch(masterInitializeForm('login'));
+    dispatch(masterInitializeFormForError(''));
   }, [dispatch]);
 
   useEffect(() => {
     if (authError) {
       console.log('오류 발생');
       console.log(authError);
+      setError('로그인 실패');
+      dispatch(masterInitializeFormForError(''));
       return;
     }
+    if (userError) {
+      console.log('오류 발생');
+      console.log(userError);
+      dispatch(masterInitializeFormForError(''));
+      return;
+    }
+
     if (auth) {
       console.log('로그인 성공');
       console.log(auth);
@@ -81,6 +92,7 @@ export default withRouter(function LoginForm({ history }) {
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
+      error={error}
     />
   );
 });
