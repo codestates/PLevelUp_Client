@@ -4,9 +4,9 @@ import palette from '../../../lib/styles/palette';
 import Button from '../../common/Button';
 import { ChangeEvent, FormEvent } from 'react';
 import {
-  MasterSignUpReqType,
   MasterLoginReqType,
-} from '../../../modules/master/auth';
+  MasterSignUpReqType,
+} from '../../../api/master/auth';
 
 /**
  * 회원 가입 / 로그인 폼 보여주기
