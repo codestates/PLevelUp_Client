@@ -1,10 +1,10 @@
 import AuthTemplate from '../../components/master/auth/AuthTemplate';
-import AuthForm from '../../components/master/auth/AuthForm';
+import SignUpForm from '../../containers/master/auth/SignUpForm';
 
 export default function MasterSignUpPage() {
   return (
     <AuthTemplate>
-      <AuthForm formType="signUp" />
+      <SignUpForm />
     </AuthTemplate>
   );
 }
