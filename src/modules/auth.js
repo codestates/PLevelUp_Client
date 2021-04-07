@@ -58,13 +58,10 @@ export const login = createAction(LOGIN, ({ email, password }) => ({
 //   accessToken: string;
 // };
 // 사가 생성\
-console.log('llllhere');
 console.log(authAPI.signup);
 const signupSaga = createRequestSaga(SIGNUP, authAPI.signup);
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
-console.log(signupSaga);
 export function* authSaga() {
-  console.log('authSage() 안');
   yield takeLatest(SIGNUP, signupSaga);
   yield takeLatest(LOGIN, loginSaga);
 }

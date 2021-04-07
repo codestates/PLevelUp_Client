@@ -70,14 +70,15 @@ const SignUpFormContainer = ({ history }) => {
     if (user) {
       console.log('Check API 성공');
       console.log(user);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (user) {
       history.push('/'); // 홈화면으로이동
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
     }
   }, [history, user]);
+
   return (
     <SignUpForm
       onChange={onChange}
