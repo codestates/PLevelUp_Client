@@ -1,10 +1,18 @@
 import { combineReducers } from 'redux';
+import { all } from 'redux-saga/effects';
 import counter from './counter';
-
+import auth, { authSaga } from './auth.js';
+import loading from './loading.js';
+import user, { userSaga } from './user.js';
 const rootReducer = combineReducers({
   counter,
+  auth,
+  loading,
+  user,
 });
-
+export function* rootSaga(): Generator {
+  yield all([authSaga(), userSaga()]);
+}
 export default rootReducer;
 
 export type RootState = ReturnType<typeof rootReducer>;
