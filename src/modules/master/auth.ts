@@ -30,6 +30,9 @@ const [
   MASTER_SIGN_UP_FAILURE,
 ] = createRequestActionTypes('master-auth/MASTER_SIGN_UP');
 
+const MASTER_INITIALIZE_FORM_FOR_ERROR =
+  'master-auth/MASTER_INITIALIZE_FORM_FOR_ERROR';
+
 export const masterSignUpAsync = createAsyncAction(
   MASTER_SIGN_UP,
   MASTER_SIGN_UP_SUCCESS,
@@ -42,7 +45,16 @@ export const masterLoginAsync = createAsyncAction(
   MASTER_SIGN_UP_FAILURE,
 )<any, MasterLoginResType, AxiosError>();
 
-const asyncActions = { masterSignUpAsync, masterLoginAsync };
+export const masterInitializeFormForError = createAction(
+  MASTER_INITIALIZE_FORM_FOR_ERROR,
+)<string>();
+
+const asyncActions = {
+  masterSignUpAsync,
+  masterLoginAsync,
+  masterInitializeFormForError,
+};
+
 type AuthAsyncAction = ActionType<typeof asyncActions>;
 
 const MASTER_CHANGE_FIELD = 'master-auth/MASTER_CHANGE_FIELD';
@@ -117,6 +129,10 @@ export const masterAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
     [MASTER_SIGN_UP_FAILURE]: (state, action) => ({
       ...state,
       auth: asyncState.error(action.payload),
+    }),
+    [MASTER_INITIALIZE_FORM_FOR_ERROR]: (state, _) => ({
+      ...state,
+      auth: asyncState.initial(),
     }),
   },
 );
