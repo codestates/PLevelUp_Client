@@ -7,8 +7,10 @@ import {
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
 import AuthForm from '../../../components/master/auth/AuthForm';
+import { masterIsLoginThunk } from '../../../modules/master/user';
+import { withRouter } from 'react-router-dom';
 
-export default function SignUpForm() {
+export default withRouter(function SignUpForm({ history }) {
   const dispatch = useDispatch();
   const {
     form,
@@ -21,8 +23,15 @@ export default function SignUpForm() {
     loading: masterAuthAsync.auth.loading,
     error: masterAuthAsync.auth.error,
   }));
+  const { data: user, loading: userLoading, error: userError } = useSelector(
+    ({ masterUser }: RootState) => ({
+      data: masterUser.user?.data,
+      loading: masterUser.user?.loading,
+      error: masterUser.user?.error,
+    }),
+  );
 
-  const loading = authLoading;
+  const loading = authLoading || userLoading;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -56,14 +65,24 @@ export default function SignUpForm() {
     if (auth) {
       console.log('회원가입 성공');
       console.log(auth);
+      dispatch(masterIsLoginThunk());
     }
   }, [auth, authError]);
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+  }, [history, user]);
+
   return (
-    <AuthForm
-      formType="signUp"
-      form={form}
-      onChange={onChange}
-      onSubmit={onSubmit}
-    />
+    <>
+      {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
+      <AuthForm
+        formType="signUp"
+        form={form}
+        onChange={onChange}
+        onSubmit={onSubmit}
+      />
+    </>
   );
-}
+});
