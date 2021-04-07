@@ -25,14 +25,12 @@ export default withRouter(function LoginForm({ history }) {
     loading: masterAuthAsync.auth.loading,
     error: masterAuthAsync.auth.error,
   }));
-  const { data: user, loading: userLoading, error: userError } = useSelector(
-    ({ masterUser }: RootState) => ({
-      data: masterUser.user?.data,
-      loading: masterUser.user?.loading,
-      error: masterUser.user?.error,
-    }),
-  );
-  const loading = authLoading || userLoading;
+
+  const { data: user } = useSelector(({ masterUser }: RootState) => ({
+    data: masterUser.user?.data,
+  }));
+
+  const loading = authLoading;
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,12 +64,6 @@ export default withRouter(function LoginForm({ history }) {
       dispatch(masterInitializeFormForError(''));
       return;
     }
-    if (userError) {
-      console.log('오류 발생');
-      console.log(userError);
-      dispatch(masterInitializeFormForError(''));
-      return;
-    }
 
     if (auth) {
       console.log('로그인 성공');
@@ -85,7 +77,7 @@ export default withRouter(function LoginForm({ history }) {
     if (user) {
       history.push('/');
       try {
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('master', JSON.stringify(user));
       } catch (e) {
         console.log('localStorage is not working');
       }

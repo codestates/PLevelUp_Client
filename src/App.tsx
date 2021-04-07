@@ -19,8 +19,8 @@ function App() {
 
   function loadUser() {
     try {
-      const user = localStorage.getItem('user');
-      if (!user) return; // 로그인 상태가 아니라면 아무것도 안 함
+      const user = localStorage.getItem('master');
+      if (!user) return;
 
       dispatch(masterTempSetUser(JSON.parse(user)));
       dispatch(masterIsLoginThunk());
