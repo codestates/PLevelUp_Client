@@ -60,6 +60,13 @@ const ButtonWithMarginTop = styled(Button)`
   margin-top: 1rem;
 `;
 
+const ErrorMessage = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+`;
+
 type formTypeMapType = {
   [index: string]: string;
   login: string;
@@ -76,6 +83,7 @@ type AuthFormProps = {
   form: MasterSignUpReqType | MasterLoginReqType;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  error: string;
 };
 
 export default function AuthForm({
@@ -83,6 +91,7 @@ export default function AuthForm({
   form,
   onChange,
   onSubmit,
+  error,
 }: AuthFormProps) {
   const formTypeText = formTypeMap[formType];
   return (
@@ -123,6 +132,7 @@ export default function AuthForm({
             value={form.passwordConfirm}
           />
         )}
+        {(error !== '' || error) && <ErrorMessage>{error}</ErrorMessage>}
         <ButtonWithMarginTop cyan fullWidth>
           {formTypeText}
         </ButtonWithMarginTop>
