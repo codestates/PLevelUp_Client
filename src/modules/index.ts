@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
 import counter from './counter';
-import auth, { authSaga } from './auth.js';
+import auth, { authSaga } from './auth';
 import loading from './loading.js';
-import user, { userSaga } from './user.js';
+import user, { userSaga } from './user';
 const rootReducer = combineReducers({
+  user,
   counter,
   auth,
   loading,
-  user,
 });
 export function* rootSaga(): Generator {
   yield all([authSaga(), userSaga()]);

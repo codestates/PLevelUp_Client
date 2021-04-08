@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginFormContainer from '../containers/auth/LoginFormContainer.js';
+import LoginFormContainer from '../containers/auth/LoginFormContainer';
 import styles from '../styles/pages/login_page/LoginPage.module.scss';
 const LoginPage = () => {
   return (

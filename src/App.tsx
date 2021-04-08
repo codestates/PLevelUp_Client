@@ -6,7 +6,7 @@ import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
 import PaymentPage from 'pages/PaymentPage';
-import LoginPage from 'pages/LoginPage.js';
+import LoginPage from 'pages/LoginPage';
 import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
 import HeaderContainer from './containers/common/HeaderContainer';

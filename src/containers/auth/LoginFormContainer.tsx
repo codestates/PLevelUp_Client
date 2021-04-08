@@ -1,34 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import LoginForm from '../../components/auth/LoginForm.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeField, initializeForm, login } from '../../modules/auth';
 import { withRouter } from 'react-router-dom';
 import { check } from '../../modules/user';
-
-const LoginFormContainer = ({ history }) => {
-  // type LoginFormProps = {
-  //   onSubmit: (id: number) => void;
-  // };
-
-  // const LoginForm = () => {
-  //   const [value, setValue] = useState('');
-  //   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     setValue(e.target.value);
-  //   };
-  //   const onSubmit = (e: FormEvent) => {
-  //     e.preventDefault();
-  //     //   onInsert(value);
-  //     setValue('');
-  //   };
-  const [error, setError] = useState(null);
+import { RootState } from '../../modules/index';
+function LoginFormContainer({ history }: any) {
+  const [error, setError] = useState<null | string>(null);
   const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(({ auth, user }) => ({
-    form: auth.login,
-    auth: auth.auth,
-    authError: auth.authError,
-    user: user.user,
-  }));
-  const onChange = e => {
+  const { form, auth, authError, user } = useSelector(
+    ({ auth, user }: RootState) => ({
+      form: auth.login,
+      auth: auth.auth,
+      authError: auth.authError,
+      user: user.user,
+    }),
+  );
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     dispatch(
       changeField({
@@ -38,7 +26,7 @@ const LoginFormContainer = ({ history }) => {
       }),
     );
   };
-  const onSubmit = async e => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { email, password } = form;
     if (email === '') {
@@ -82,6 +70,20 @@ const LoginFormContainer = ({ history }) => {
       form={form}
     />
   );
-};
+}
 
 export default withRouter(LoginFormContainer);
+// type LoginFormProps = {
+//   onSubmit: (id: number) => void;
+// };
+
+// const LoginForm = () => {
+//   const [value, setValue] = useState('');
+//   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+//     setValue(e.target.value);
+//   };
+//   const onSubmit = (e: FormEvent) => {
+//     e.preventDefault();
+//     //   onInsert(value);
+//     setValue('');
+//   };

@@ -1,4 +1,4 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { takeLatest, call } from 'redux-saga/effects';
 import * as authAPI from '../lib/api/auth';
 import createRequestSaga, {
@@ -12,10 +12,16 @@ const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes(
 );
 const LOGOUT = 'user/LOGOUT';
 
-export const tempSetUser = createAction(TEMP_SET_USER, user => user);
+export const tempSetUser = createAction(TEMP_SET_USER)<detailUserState>();
 export const check = createAction(CHECK);
 export const logout = createAction(LOGOUT);
 
+const actions = {
+  tempSetUser,
+  check,
+  logout,
+};
+export type UserAction = ActionType<typeof actions>;
 const checkSaga = createRequestSaga(CHECK, authAPI.check);
 
 function checkFailureSaga() {
@@ -41,31 +47,38 @@ export function* userSaga() {
   yield takeLatest(LOGOUT, logoutSaga);
 }
 
-const initialState = {
+export type detailUserState = {
+  _id: number;
+  email: string;
+};
+export type UserState = {
+  user: null | detailUserState;
+  checkError: null | string;
+};
+const initialState: UserState = {
   user: null,
   checkError: null,
 };
 
-export default handleActions(
-  {
-    [TEMP_SET_USER]: (state, { payload: user }) => ({
-      ...state,
-      user,
-    }),
-    [CHECK_SUCCESS]: (state, { payload: user }) => ({
-      ...state,
-      user,
-      checkError: null,
-    }),
-    [CHECK_FAILURE]: (state, { payload: error }) => ({
-      ...state,
-      user: null,
-      checkError: error,
-    }),
-    [LOGOUT]: state => ({
-      ...state,
-      user: null,
-    }),
-  },
-  initialState,
-);
+const user = createReducer<UserState, UserAction>(initialState, {
+  [TEMP_SET_USER]: (state, { payload: user }) => ({
+    ...state,
+    user,
+  }),
+  [CHECK_SUCCESS]: (state, { payload: user }) => ({
+    ...state,
+    user,
+    checkError: null,
+  }),
+  [CHECK_FAILURE]: (state, { payload: error }) => ({
+    ...state,
+    user: null,
+    checkError: error,
+  }),
+  // [LOGOUT]: (state, _) => ({
+  //   ...state,
+  //   user: null,
+  // }),
+});
+
+export default user;
