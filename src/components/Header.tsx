@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import styles from '../styles/common/Header.module.scss';
 
-function Header() {
+export default function Header({ user, onLogout }: any) {
   const [isMypageOpen, setIsMypageOpen] = useState(false);
   const [isHeaderShow, setIsHeaderShow] = useState(true);
 
@@ -69,26 +69,51 @@ function Header() {
               <Link to="/introduce">프로그램 소개</Link>
             </li>
             <hr />
-            <li className={styles.pcVerIcon} onClick={handleMypageOpen}>
-              <FaUserCircle size="20" color="#c5c5c5" className={styles.icon} />
-              <div
-                className={
-                  isMypageOpen
-                    ? `${styles.mypageContainer}`
-                    : `${styles.mypageNone}`
-                }
-              >
-                <div className={styles.dropDown}>
-                  <Link to="/mypage">마이페이지</Link>
+            {user ? (
+              <li className={styles.pcVerIcon} onClick={handleMypageOpen}>
+                <FaUserCircle
+                  size="20"
+                  color="#c5c5c5"
+                  className={styles.icon}
+                />
+                <div
+                  className={
+                    isMypageOpen
+                      ? `${styles.mypageContainer}`
+                      : `${styles.mypageNone}`
+                  }
+                >
+                  <div className={styles.dropDown}>
+                    <Link to="/mypage">마이페이지</Link>
+                  </div>
+                  <div className={styles.dropDown} onClick={onLogout}>
+                    로그아웃
+                  </div>
                 </div>
-                <div className={styles.dropDown}>로그아웃</div>
-              </div>
-            </li>
+              </li>
+            ) : (
+              <li className={styles.pcVerIcon} onClick={handleMypageOpen}>
+                <FaUserCircle
+                  size="20"
+                  color="#c5c5c5"
+                  className={styles.icon}
+                />
+                <div
+                  className={
+                    isMypageOpen
+                      ? `${styles.mypageContainer}`
+                      : `${styles.mypageNone}`
+                  }
+                >
+                  <div className={styles.dropDown}>
+                    <Link to="/master/login">클럽장 로그인</Link>
+                  </div>
+                </div>
+              </li>
+            )}
           </ul>
         </div>
       </div>
     </header>
   );
 }
-
-export default Header;

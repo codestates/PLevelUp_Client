@@ -119,11 +119,6 @@ header {
       hr {
         display: none;
       }
-
-      //모바일 뷰에서만 보임 (반응형에서 속성주기)
-      .mypageContainerMobile {
-        display: none;
-      }
     }
   }
 
@@ -242,11 +237,6 @@ header {
       }
 
       hr {
-        display: none;
-      }
-
-      //모바일 뷰에서만 보임 (반응형에서 속성주기)
-      .mypageContainerMobile {
         display: none;
       }
     }

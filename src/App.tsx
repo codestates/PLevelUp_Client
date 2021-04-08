@@ -1,6 +1,7 @@
-import React from 'react';
 import './styles/App.scss';
 import { Route, Switch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 
 import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
@@ -12,11 +13,9 @@ import RegisterPage from 'pages/RegisterPage';
 import MyPage from 'pages/MyPage';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
-import ScrollToTop from 'containers/ScrollToTop';
+import ScrollToTop from 'containers/commom/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
-import { useDispatch } from 'react-redux';
-import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 
 function App() {
   const dispatch = useDispatch();
