@@ -106,6 +106,9 @@ export default function Header({ user, onLogout }: any) {
                   }
                 >
                   <div className={styles.dropDown}>
+                    <Link to="/login">일반 로그인</Link>
+                  </div>
+                  <div className={styles.dropDown}>
                     <Link to="/master/login">클럽장 로그인</Link>
                   </div>
                 </div>
