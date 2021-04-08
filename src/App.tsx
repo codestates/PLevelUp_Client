@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/App.scss';
-import { Route, Switch, Redirect, Router } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
@@ -13,8 +13,27 @@ import MyPage from 'pages/MyPage';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import ScrollToTop from 'containers/ScrollToTop';
+import MasterLoginPage from './pages/master/LoginPage';
+import MasterSignUpPage from './pages/master/SignUpPage';
+import { useDispatch } from 'react-redux';
+import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 
 function App() {
+  const dispatch = useDispatch();
+
+  function loadUser() {
+    try {
+      const user = localStorage.getItem('master');
+      if (!user) return;
+
+      dispatch(masterTempSetUser(JSON.parse(user)));
+      dispatch(masterIsLoginThunk());
+    } catch (e) {
+      console.log('localStorage is not working');
+    }
+  }
+  loadUser();
+
   return (
     <>
       <ScrollToTop />
@@ -28,6 +47,8 @@ function App() {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/introduce" component={IntronducePage} />
+        <Route exact path="/master/login" component={MasterLoginPage} />
+        <Route exact path="/master/sign-up" component={MasterSignUpPage} />
       </Switch>
       <Footer />
     </>
