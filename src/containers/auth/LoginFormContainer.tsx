@@ -1,21 +1,28 @@
 import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import LoginForm from '../../components/auth/LoginForm.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeField, initializeForm, login } from '../../modules/auth';
+
+import { changeField } from '../../modules/login/';
+// import { changeField, initializeForm, login } from '../../modules/auth';
 import { withRouter } from 'react-router-dom';
-import { check } from '../../modules/user';
+// import { check } from '../../modules/user';
 import { RootState } from '../../modules/index';
 function LoginFormContainer({ history }: any) {
   const [error, setError] = useState<null | string>(null);
   const dispatch = useDispatch();
-  const { form, auth, authError, user } = useSelector(
-    ({ auth, user }: RootState) => ({
-      form: auth.login,
-      auth: auth.auth,
-      authError: auth.authError,
-      user: user.user,
-    }),
-  );
+  const { form, auth, authError } = useSelector(({ auth }: RootState) => ({
+    form: auth.login,
+    auth: auth.auth,
+    authError: auth.authError,
+  }));
+  // const { form, auth, authError, user } = useSelector(
+  //   ({ auth, user }: RootState) => ({
+  //     form: auth.login,
+  //     auth: auth.auth,
+  //     authError: auth.authError,
+  //     user: user.user,
+  //   }),
+  // );
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     dispatch(
@@ -37,10 +44,10 @@ function LoginFormContainer({ history }: any) {
       setError('비밀번호를 입력해주세요.');
       return;
     }
-    dispatch(login({ email, password }));
+    // dispatch(login({ email, password }));
   };
   useEffect(() => {
-    dispatch(initializeForm('login'));
+    // dispatch(initializeForm('login'));
   }, [dispatch]);
   useEffect(() => {
     if (authError) {
@@ -49,19 +56,19 @@ function LoginFormContainer({ history }: any) {
     }
     if (auth) {
       console.log('로그인 성공');
-      dispatch(check());
+      // dispatch(check({}));
     }
   }, [auth, authError, dispatch]);
-  useEffect(() => {
-    if (user) {
-      history.push('/');
-      try {
-        localStorage.setItem('user', JSON.stringify(user));
-      } catch (err) {
-        console.log('localStorage is not working');
-      }
-    }
-  }, [user, history]);
+  // useEffect(() => {
+  //   if (user) {
+  //     history.push('/');
+  //     try {
+  //       localStorage.setItem('user', JSON.stringify(user));
+  //     } catch (err) {
+  //       console.log('localStorage is not working');
+  //     }
+  //   }
+  // }, [user, history]);
   return (
     <LoginForm
       onChange={onChange}

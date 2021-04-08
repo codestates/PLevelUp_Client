@@ -1,84 +1,86 @@
-import { createAction, createReducer, ActionType } from 'typesafe-actions';
-import { takeLatest, call } from 'redux-saga/effects';
-import * as authAPI from '../lib/api/auth';
-import createRequestSaga, {
-  createRequestActionTypes,
-} from '../lib/createRequestSaga';
+// import { createAction, createReducer, ActionType } from 'typesafe-actions';
+// import { takeLatest, call } from 'redux-saga/effects';
+// import * as authAPI from '../lib/api/auth';
+// import createRequestSaga, {
+//   createRequestActionTypes,
+// } from '../lib/createRequestSaga';
 
-const TEMP_SET_USER = 'user/TEMP_SET_USER'; // 새로고침 이후 임시 로그인 처리
-// 회원 정보 확인
-const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes(
-  'user/CHECK',
-);
-const LOGOUT = 'user/LOGOUT';
+// const TEMP_SET_USER = 'user/TEMP_SET_USER'; // 새로고침 이후 임시 로그인 처리
+// // 회원 정보 확인
+// const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = createRequestActionTypes(
+//   'user/CHECK',
+// );
+// const LOGOUT = 'user/LOGOUT';
 
-export const tempSetUser = createAction(TEMP_SET_USER)<detailUserState>();
-export const check = createAction(CHECK);
-export const logout = createAction(LOGOUT);
+// export type detailUserState = {
+//   _id: number;
+//   email: string;
+// };
+// export type UserState = {
+//   user: null | detailUserState;
+//   checkError: null | string;
+// };
 
-const actions = {
-  tempSetUser,
-  check,
-  logout,
-};
-export type UserAction = ActionType<typeof actions>;
-const checkSaga = createRequestSaga(CHECK, authAPI.check);
+// export const tempSetUser = createAction(TEMP_SET_USER)<detailUserState>();
+// export const check = createAction(CHECK)<detailUserState>();
+// export const logout = createAction(LOGOUT)();
 
-function checkFailureSaga() {
-  try {
-    localStorage.removeItem('user'); // localStorage 에서 user 제거하고
-  } catch (e) {
-    console.log('localStorage is not working');
-  }
-}
+// const actions = {
+//   tempSetUser,
+//   check,
+//   logout,
+// };
+// export type UserAction = ActionType<typeof actions>;
+// const checkSaga = createRequestSaga(CHECK, authAPI.check);
 
-function* logoutSaga() {
-  try {
-    yield call(authAPI.logout); // logout API 호출
-    localStorage.removeItem('user'); // localStorage 에서 user 제거
-  } catch (e) {
-    console.log(e);
-  }
-}
+// function checkFailureSaga() {
+//   try {
+//     localStorage.removeItem('user'); // localStorage 에서 user 제거하고
+//   } catch (e) {
+//     console.log('localStorage is not working');
+//   }
+// }
 
-export function* userSaga() {
-  yield takeLatest(CHECK, checkSaga);
-  yield takeLatest(CHECK_FAILURE, checkFailureSaga);
-  yield takeLatest(LOGOUT, logoutSaga);
-}
+// function* logoutSaga() {
+//   try {
+//     yield call(authAPI.logout); // logout API 호출
+//     localStorage.removeItem('user'); // localStorage 에서 user 제거
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
 
-export type detailUserState = {
-  _id: number;
-  email: string;
-};
-export type UserState = {
-  user: null | detailUserState;
-  checkError: null | string;
-};
-const initialState: UserState = {
-  user: null,
-  checkError: null,
-};
+// export function* userSaga() {
+//   yield takeLatest(CHECK, checkSaga);
+//   yield takeLatest(CHECK_FAILURE, checkFailureSaga);
+//   yield takeLatest(LOGOUT, logoutSaga);
+// }
 
-const user = createReducer<UserState, UserAction>(initialState, {
-  [TEMP_SET_USER]: (state, { payload: user }) => ({
-    ...state,
-    user,
-  }),
-  [CHECK_SUCCESS]: (state, { payload: user }) => ({
-    ...state,
-    user,
-    checkError: null,
-  }),
-  [CHECK_FAILURE]: (state, { payload: error }) => ({
-    ...state,
-    user: null,
-    checkError: error,
-  }),
-  // [LOGOUT]: (state, _) => ({
-  //   ...state,
-  //   user: null,
-  // }),
-});
+// const initialState: UserState = {
+//   user: null,
+//   checkError: null,
+// };
 
-export default user;
+// const user = createReducer<UserState, UserAction>(initialState, {
+//   [CHECK_SUCCESS]: (state, { payload: user }) => ({
+//     ...state,
+//     user,
+//     checkError: null,
+//   }),
+//   [CHECK_FAILURE]: (state, { payload: error }) => ({
+//     ...state,
+//     user: null,
+//     checkError: error,
+//   }),
+//   [TEMP_SET_USER]: (state, { payload: user }) => ({
+//     ...state,
+//     user,
+//   }),
+//   [LOGOUT]: (state, _) => ({
+//     ...state,
+//     user: null,
+//   }),
+// });
+
+// export default user;
+export default {};
