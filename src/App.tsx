@@ -14,17 +14,23 @@ import MasterSignUpPage from './pages/master/SignUpPage';
 import HeaderContainer from './containers/commom/HeaderContainer';
 import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
+import { mainIsLoginThunk, mainTempSetUser } from './modules/main/user';
 
 function App() {
   const dispatch = useDispatch();
 
   function loadUser() {
     try {
-      const user = localStorage.getItem('master');
-      if (!user) return;
-
-      dispatch(masterTempSetUser(JSON.parse(user)));
-      dispatch(masterIsLoginThunk());
+      const mainUser = localStorage.getItem('main');
+      const masterUser = localStorage.getItem('master');
+      if (!masterUser && !mainUser) return;
+      if (mainUser) {
+        dispatch(mainTempSetUser(JSON.parse(mainUser)));
+        dispatch(mainIsLoginThunk());
+      } else if (masterUser) {
+        dispatch(masterTempSetUser(JSON.parse(masterUser)));
+        dispatch(masterIsLoginThunk());
+      }
     } catch (e) {
       console.log('localStorage is not working');
     }
