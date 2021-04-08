@@ -69,6 +69,7 @@ export default withRouter(function LoginForm({ history }) {
       console.log('로그인 성공');
       console.log(auth);
       dispatch(masterIsLoginThunk());
+      dispatch(masterInitializeFormForError(''));
     }
   }, [auth, authError]);
 
