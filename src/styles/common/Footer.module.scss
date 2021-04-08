@@ -1,0 +1,36 @@
+.footer {
+  display: block;
+  width: 100%;
+  background-color: rgb(247, 247, 245);
+
+  .footerContainer {
+    display: block;
+    margin: 0 auto;
+    padding: 48px 0 48px;
+    max-width: 1140px;
+    background-color: #f7f7f5;
+
+    .companyName {
+      font-weight: bold;
+      font-size: 15px;
+      color: #4e4e4c;
+      margin-bottom: 8px;
+      line-height: 1.67;
+      letter-spacing: -0.1px;
+      color: rgba(42, 42, 44, 0.8);
+    }
+    .companyAddress {
+      font-size: 13px;
+      line-height: 16px;
+      color: #6e6e6c;
+      margin-bottom: 6px;
+      letter-spacing: -0.1px;
+    }
+    .notice {
+      font-size: 13px;
+      line-height: 16px;
+      color: #6e6e6c;
+      letter-spacing: -0.1px;
+    }
+  }
+}
