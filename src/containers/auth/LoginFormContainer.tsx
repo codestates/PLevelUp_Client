@@ -1,38 +1,49 @@
-import React, { useState, useEffect, useRef, FormEvent } from 'react';
-import LoginForm from '../../components/auth/LoginForm.js';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { changeField, originalLogin } from '../../modules/login/';
-// import { changeField, initializeForm, login } from '../../modules/auth';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { withRouter } from 'react-router-dom';
-// import { check } from '../../modules/user';
-import { RootState } from '../../modules/index';
-function LoginFormContainer({ history }: any) {
-  const [error, setError] = useState<null | string>(null);
+import LoginForm from '../../components/auth/LoginForm.js';
+//* import about saga
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  mainChangeField,
+  mainInitializeForm,
+  mainInitializeFormForError,
+  mainLoginThunk,
+} from '../../modules/main/auth';
+import { mainIsLoginThunk } from '../../modules/main/user';
+import { RootState } from '../../modules';
+
+export default withRouter(function LoginFormContainer({ history }) {
+  const [error, setError] = useState('');
   const dispatch = useDispatch();
-  const { form, auth, authError } = useSelector(({ auth }: RootState) => ({
-    form: auth.login,
-    auth: auth.auth,
-    authError: auth.authError,
+  const {
+    form,
+    data: auth,
+    loading: authLoading,
+    error: authError,
+  } = useSelector(({ mainAuth, mainAuthAsync }: RootState) => ({
+    form: mainAuth.login,
+    data: mainAuthAsync.auth.data,
+    loading: mainAuthAsync.auth.loading,
+    error: mainAuthAsync.auth.error,
   }));
-  // const { form, auth, authError, user } = useSelector(
-  //   ({ auth, user }: RootState) => ({
-  //     form: auth.login,
-  //     auth: auth.auth,
-  //     authError: auth.authError,
-  //     user: user.user,
-  //   }),
-  // );
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+
+  const loading = authLoading;
+
+  const { data: user } = useSelector(({ mainUser }: RootState) => ({
+    data: mainUser.user?.data,
+  }));
+  //인풋 변경 이벤트 핸들러
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
     dispatch(
-      changeField({
+      mainChangeField({
         form: 'login',
         key: name,
-        value,
+        value: value,
       }),
     );
   };
+  // 폼 제출 이벤트 핸들러
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { email, password } = form;
@@ -44,32 +55,44 @@ function LoginFormContainer({ history }: any) {
       setError('비밀번호를 입력해주세요.');
       return;
     }
-    console.log('0: btn click');
-    dispatch(originalLogin.request({ email, password }));
+    dispatch(mainLoginThunk({ email, password }));
   };
+
+  //제출 시 인풋 폼 초기화
   useEffect(() => {
-    // dispatch(initializeForm('login'));
+    dispatch(mainInitializeForm('login'));
+    dispatch(mainInitializeFormForError(''));
   }, [dispatch]);
+
+  // 로그인으로 auth인증 성공 시 isLogin으로 로그인유저정보 받기
   useEffect(() => {
     if (authError) {
-      console.log('오류발생!');
-      console.log(authError.toString());
+      console.log('오류 발생');
+      console.log(authError);
+      setError('로그인 실패');
+      dispatch(mainInitializeFormForError(''));
+      return;
     }
+
     if (auth) {
       console.log('로그인 성공');
-      // dispatch(check({}));
+      console.log(auth);
+      dispatch(mainIsLoginThunk());
+      dispatch(mainInitializeFormForError(''));
     }
-  }, [auth, authError, dispatch]);
-  // useEffect(() => {
-  //   if (user) {
-  //     history.push('/');
-  //     try {
-  //       localStorage.setItem('user', JSON.stringify(user));
-  //     } catch (err) {
-  //       console.log('localStorage is not working');
-  //     }
-  //   }
-  // }, [user, history]);
+  }, [auth, authError]);
+
+  // isLogin으로 로그인 유저정보 받아올 경우 로컬스토리지에 해당 유저정보 저장
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+      try {
+        localStorage.setItem('main', JSON.stringify(user));
+      } catch (e) {
+        console.log('localStorage is not working');
+      }
+    }
+  }, [history, user]);
   return (
     <LoginForm
       onChange={onChange}
@@ -78,20 +101,4 @@ function LoginFormContainer({ history }: any) {
       form={form}
     />
   );
-}
-
-export default withRouter(LoginFormContainer);
-// type LoginFormProps = {
-//   onSubmit: (id: number) => void;
-// };
-
-// const LoginForm = () => {
-//   const [value, setValue] = useState('');
-//   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-//     setValue(e.target.value);
-//   };
-//   const onSubmit = (e: FormEvent) => {
-//     e.preventDefault();
-//     //   onInsert(value);
-//     setValue('');
-//   };
+});
