@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
+
+//* Import_package_about_saga
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer, { rootSaga } from './modules';
+import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import { tempSetUser, check } from 'modules/user';
+import rootReducer, { rootSaga } from './modules';
 
-// const sagaMiddleware = createSagaMiddleware();
+// import { tempSetUser, check } from 'modules/user';
+//* set saga-middle-ware & create_store
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
-  composeWithDevTools(),
-  // composeWithDevTools(applyMiddleware(sagaMiddleware)),
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
 // function loadUser() {
@@ -29,7 +31,7 @@ const store = createStore(
 //     console.log('localStorage is not working');
 //   }
 // }
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 // loadUser();
 
 ReactDOM.render(

@@ -1,5 +1,5 @@
 import { ActionType } from 'typesafe-actions';
-import { changeField } from './actions';
+import { changeField, originalLogin } from './actions';
 
 export type SignUpType = {
   [index: string]: string;
@@ -29,5 +29,6 @@ export type AuthState = {
 
 const actions = {
   changeField,
+  originalLogin,
 };
 export type AuthAction = ActionType<typeof actions>;

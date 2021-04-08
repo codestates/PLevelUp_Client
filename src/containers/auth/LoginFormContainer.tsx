@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, FormEvent } from 'react';
 import LoginForm from '../../components/auth/LoginForm.js';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { changeField } from '../../modules/login/';
+import { changeField, originalLogin } from '../../modules/login/';
 // import { changeField, initializeForm, login } from '../../modules/auth';
 import { withRouter } from 'react-router-dom';
 // import { check } from '../../modules/user';
@@ -44,7 +44,8 @@ function LoginFormContainer({ history }: any) {
       setError('비밀번호를 입력해주세요.');
       return;
     }
-    // dispatch(login({ email, password }));
+    console.log('0: btn click');
+    dispatch(originalLogin.request({ email, password }));
   };
   useEffect(() => {
     // dispatch(initializeForm('login'));
