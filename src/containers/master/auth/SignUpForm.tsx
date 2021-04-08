@@ -86,16 +86,11 @@ export default withRouter(function SignUpForm({ history }) {
       dispatch(masterInitializeFormForError(''));
       return;
     }
-    if (userError) {
-      console.log('오류 발생');
-      console.log(userError);
-      dispatch(masterInitializeFormForError(''));
-      return;
-    }
     if (auth) {
       console.log('회원가입 성공');
       console.log(auth);
       dispatch(masterIsLoginThunk());
+      dispatch(masterInitializeFormForError(''));
     }
   }, [auth, authError]);
   useEffect(() => {
