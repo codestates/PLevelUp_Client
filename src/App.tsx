@@ -1,16 +1,17 @@
 import React from 'react';
 import './styles/App.scss';
-import { Route } from 'react-router-dom';
+import { Route ,Switch} from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
 import PaymentPage from 'pages/PaymentPage';
 import LoginPage from 'pages/LoginPage';
-import RegisterPage from 'pages/RegisterPage';
+import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
+import HeaderContainer from './containers/common/HeaderContainer';
 import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 
@@ -32,15 +33,18 @@ function App() {
 
   return (
     <>
+     <HeaderContainer />
+     <Switch>
       <Route exact path="/master/login" component={MasterLoginPage} />
       <Route exact path="/master/sign-up" component={MasterSignUpPage} />
       <Route exact path="/list" component={ListPage} />
       <Route exact path="/detail" component={DetailPage} />
       <Route exact path="/payment" component={PaymentPage} />
       <Route exact path="/login" component={LoginPage} />
-      <Route exact path="/register" component={RegisterPage} />
+      <Route exact path="/register" component={SignUpPage} />
       <Route exact path="/mypage" component={MyPage} />
       <Route exact path="/" component={LandingPage} />
+      </Switch>
     </>
   );
 }

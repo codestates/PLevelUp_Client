@@ -4,6 +4,7 @@ import { masterAuth, masterAuthAsync } from './master/auth';
 import masterUser from './master/user';
 
 const rootReducer = combineReducers({
+  // user,
   counter,
   masterAuth,
   masterAuthAsync,
