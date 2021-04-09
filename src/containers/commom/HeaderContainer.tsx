@@ -1,4 +1,4 @@
-import Header from '../../components/Header';
+import Header from '../../components/common/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { masterLogoutThunk } from '../../modules/master/user';

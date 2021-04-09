@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
-import styles from '../styles/common/Header.module.scss';
+import styles from '../../styles/common/Header.module.scss';
 
 export default function Header({ user, onLogout }: any) {
   const [isMypageOpen, setIsMypageOpen] = useState(false);
