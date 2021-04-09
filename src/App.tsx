@@ -38,7 +38,8 @@ function App() {
       <ScrollToTop />
       <Header />
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/master/login" component={MasterLoginPage} />
+        <Route exact path="/master/sign-up" component={MasterSignUpPage} />
         <Route exact path="/list" component={ListPage} />
         <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/payment" component={PaymentPage} />
@@ -46,8 +47,7 @@ function App() {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/introduce" component={IntronducePage} />
-        <Route exact path="/master/login" component={MasterLoginPage} />
-        <Route exact path="/master/sign-up" component={MasterSignUpPage} />
+        <Route exact path="/" component={LandingPage} />
       </Switch>
       <Footer />
     </>
