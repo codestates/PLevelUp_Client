@@ -2,6 +2,7 @@ import './styles/App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
+import { mainIsLoginThunk, mainTempSetUser } from './modules/main/user';
 
 import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
@@ -9,7 +10,7 @@ import DetailPage from 'pages/DetailPage';
 import IntronducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import LoginPage from 'pages/LoginPage';
-import RegisterPage from 'pages/RegisterPage';
+import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
 import Footer from 'components/common/Footer';
 import Header from 'components/common/Header';
@@ -22,11 +23,16 @@ function App() {
 
   function loadUser() {
     try {
-      const user = localStorage.getItem('master');
-      if (!user) return;
-
-      dispatch(masterTempSetUser(JSON.parse(user)));
-      dispatch(masterIsLoginThunk());
+      const mainUser = localStorage.getItem('main');
+      const masterUser = localStorage.getItem('master');
+      if (!masterUser && !mainUser) return;
+      if (mainUser) {
+        dispatch(mainTempSetUser(JSON.parse(mainUser)));
+        dispatch(mainIsLoginThunk());
+      } else if (masterUser) {
+        dispatch(masterTempSetUser(JSON.parse(masterUser)));
+        dispatch(masterIsLoginThunk());
+      }
     } catch (e) {
       console.log('localStorage is not working');
     }
@@ -43,10 +49,10 @@ function App() {
         <Route exact path="/list" component={ListPage} />
         <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/payment" component={PaymentPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/introduce" component={IntronducePage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/signup" component={SignUpPage} />
+        <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/" component={LandingPage} />
       </Switch>
       <Footer />
