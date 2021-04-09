@@ -7,17 +7,22 @@ import reportWebVitals from './reportWebVitals';
 
 //* Import_package_about_saga
 import { Provider } from 'react-redux';
-import { applyMiddleware,createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import rootReducer from './modules';
+import ScrollToTop from 'containers/commom/ScrollToTop';
 import ReduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(ReduxThunk)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(ReduxThunk)),
+);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <ScrollToTop />
         <App />
       </BrowserRouter>
     </Provider>
