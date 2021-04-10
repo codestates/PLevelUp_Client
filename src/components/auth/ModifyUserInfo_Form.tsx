@@ -1,4 +1,3 @@
-// import styles from '../styles/pages/myPage/My_modify.module.scss';
 import React from 'react';
 import styles from '../../styles/pages/myPage/My_modify.module.scss';
 import classNames from 'classnames/bind';

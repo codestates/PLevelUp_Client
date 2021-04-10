@@ -7,7 +7,6 @@ $imsi-border: 1px solid rgb(123, 123, 123);
 
     margin-top: 61px;
     padding-bottom: 32px;
-    // border: $imsi-border;
 
     .modifyInfo_header {
        
@@ -16,7 +15,6 @@ $imsi-border: 1px solid rgb(123, 123, 123);
         border-top-color: rgb(225, 225, 225);
         border-right-color: rgb(225, 225, 225);
         border-left-color: rgb(225, 225, 225);
-        // box-shadow: rgb(0, 0, 0 / 5%) 0px 3px 6px 0px inset;
         padding: 20px 0px;
         text-align: center;
         font-family: $font-stack;
@@ -48,7 +46,7 @@ $imsi-border: 1px solid rgb(123, 123, 123);
             font-size: 18px;
             float: right;
             display: flex;
-            // border: $imsi-border;
+
             .modifyInfo_body_header_profile {
                 border: $imsi-border;
                
@@ -60,6 +58,7 @@ $imsi-border: 1px solid rgb(123, 123, 123);
         }
             .modifyInfo_body_body {
                 border: $imsi-border;
+                margin-top: 64px;
 
                 .modify_form {
                     border: $imsi-border;

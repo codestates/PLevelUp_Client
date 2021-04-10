@@ -6,10 +6,9 @@ $imsi-border: 1px solid #2C2C2A;
 .myPage {
     position: relative; 
     margin: 0px auto;
-    // width: 100%;
+
     min-width: 100%;
-    // display: flex;
-    // border: $imsi-border;
+
 
     .mypage_userInfo_area {
         max-width: 1140px;
@@ -20,7 +19,7 @@ $imsi-border: 1px solid #2C2C2A;
         font-family: $font-stack;
         height: 287.44px;
         position: relative;
-        // border: $imsi-border;
+   
         z-index: 0;
         padding: 0 16px;
 
@@ -43,7 +42,7 @@ $imsi-border: 1px solid #2C2C2A;
                         vertical-align: middle;
                         font-size: 9em;
                         max-width: 100%;
-                        // max-height: 90%;
+                   
                       }
 
                     }
@@ -52,11 +51,10 @@ $imsi-border: 1px solid #2C2C2A;
 
                     
                     .profile_modify_btn{
-                        /* justify_content: center; */
-                        // align-items: center;
+              
                          padding: 0px 20px 0px 10px;
 
-                        // vertical-align: center;
+                 
                         .modify_btn {
                             font-family: spoqa han sans neo,'sans-serif';
                             font-size: 16px;
@@ -68,7 +66,7 @@ $imsi-border: 1px solid #2C2C2A;
                   }
 
                 .userInfo_fast_info {
-                    // border: $imsi-border;
+               
                    align-items:baseline;
                     height: 100%;
 
@@ -79,12 +77,12 @@ $imsi-border: 1px solid #2C2C2A;
                       }
                   
                     .fast_info_bottom{
-                        // border: $imsi-border;
+                   
                         margin: 24px 0px 0px -27px;
-                        // padding: 0px 0px 0px 0px;
+                  
                        display: flex;
                         justify-content: space-between;
-                        // align-items: left;
+              
                         width: 100%;
                         height: 100%;
 
@@ -154,13 +152,7 @@ $imsi-border: 1px solid #2C2C2A;
                     width: 100%;
                     height: 100%;
                     
-                    .link_img {
-                        /* display: inline-block;
-                        max-width: 385px;
-                        max-height: 80px;
-                        width: 100%;
-                        height: 100%; */
-                      }
+                   
                   }
 
                 
@@ -209,15 +201,9 @@ $imsi-border: 1px solid #2C2C2A;
         }
 
         .ifNotInvlovedClub {
-            /* position: absolute;
-            top: 50px; */
-            /* width: 20%; */
+    
           text-align: center;
-            /* display: flex;
-            flex-direction: column; */
-            // border: $imsi-border;
-           /* align-content: center;
-           justify-content: center; */
+     
         }
     }
 }
@@ -235,8 +221,7 @@ $imsi-border: 1px solid #2C2C2A;
       margin: 0px auto;
       width: 100%;
       max-width: 1140px;
-      // display: flex;
-      // border: $imsi-border;
+
 
       .mypage_userInfo_area {
         margin-top: 48px;
@@ -265,7 +250,6 @@ $imsi-border: 1px solid #2C2C2A;
     .userInfo_bottom {
       display: flex;
       width: 100%;
-      // padding: 0 10px;
       max-width: inherit;
   }
 
@@ -292,19 +276,7 @@ $imsi-border: 1px solid #2C2C2A;
       width: 80%;
     }
    }
-    // .mypage_userInfo_area {
-    //     max-width: 1140px;
-    //     width: 100%;
-    //     display: flex;
-    //     align-items: center;
-    //     margin: 61px auto 0px auto;
-    //     font-family: $font-stack;
-    //     height: 287.44px;
-    //     position: relative;
-    //     border: $imsi-border;
-    //     z-index: 0;
-    // }
-                        
+              
     }
                 
              

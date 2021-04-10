@@ -3,16 +3,16 @@ import styles from '../../styles/common/Footer.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-const FooterComponent = () => {
+export default function Footer() {
   return (
     <footer className={cx("footer")}>
       <div className={cx("footer_container")}>
         <div className={cx("container_flex")}>
           <div className={cx("container_list_top")}>
-            <div className={cx("container_list_top_menu")}> 자주 묻는 질문</div>
+            {/* <div className={cx("container_list_top_menu")}> 자주 묻는 질문</div>
             <div className={cx("container_list_top_menu")}>트레바리 채용 </div>
             <div className={cx("container_list_top_menu")}>블로그</div>
-            <div className={cx("container_list_top_menu")}>파트너 모집 </div>
+            <div className={cx("container_list_top_menu")}>파트너 모집 </div> */}
           </div>
 
           <div className={cx("container_list_bottom")}>
@@ -22,7 +22,7 @@ const FooterComponent = () => {
           </div>
           <div className={cx("container_list_support")}>
             <div className={cx("support_list_link")}>
-              <span className={cx("list_link_text")}>트레바리 운영정책</span>
+              <span className={cx("list_link_text")}>프레벨업 운영정책</span>
             </div>
             <div className={cx("support_list_link")}>
               <span className={cx("list_link_text")}>개인정보처리방침</span>
@@ -40,4 +40,4 @@ const FooterComponent = () => {
   );
 }
 
-export default FooterComponent;
+

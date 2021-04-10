@@ -1,26 +1,20 @@
 import React from 'react';
 
 import styles from '../styles/pages/myPage/My.module.scss';
-// import landingStyle from '../styles/pages/landing_page/LandingPage.module.scss';
-//import { PC } from '../components/common/Responsive';
 import classNames from 'classnames/bind';
-// import { MdAccountCircle } from "react-icons/md";
+
 import { BiDoorOpen } from "react-icons/bi";
 import { MdBuild } from "react-icons/md";
-// import Header from './HeaderCom';
-// import Footer from './Footer';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
-// const lcx = classNames.bind(landingStyle);
-const MyPage = () => {
+
+export default function MyPage() {
 
   return (
     <div>
       <body className="wrapper">
-
-        {/* <Header /> */}
         <div className={cx('myPage')}>
           <div className={cx('mypage_userInfo_area')}>
             <div className={cx('userInfo_info')}>
@@ -107,10 +101,8 @@ const MyPage = () => {
 
           </div>
         </div>
-        {/* <Footer /> */}
       </body>
     </div>
   );
 };
 
-export default MyPage;
