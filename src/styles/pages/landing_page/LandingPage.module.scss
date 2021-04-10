@@ -1,16 +1,171 @@
 @import '../../common/utils.scss';
 
-$white: #ffffff; //변수명사용
-$blue: #339af0;
+$font-stack:  spoqa han sans neo,'sans-serif';
 
 .wrapper {
-  text-align: center;
-  background-color: $gray;
-  min-height: 100vh;
+    
+   
+    /* margin: 8px; */
+  
+    /* --------------------------------------------------------------------------- */
+  }
+  
+
+  /* --------------------------------------------------------------------------- */
+  /* banner 영역 */
+  
+  .landing-banner{
+    width: 100%;
+    margin: 61px auto 40px;
+    height: 287.44px;
+    position: relative;
+  }
+  
+  .swipe-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+  }
+  
+  .swipe-list{
+  
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* display: flex; */
+    /* transition-property: transform; */
+    box-sizing: content-box;
+    overflow: hidden;
+    flex-shrink: 0;
+  
+  }
+  
+  .swipe-link-list{
+       /* position: relative; */
+       width: 100%;
+       height: 100%;
+       z-index: 1;
+       /* display: flex; */
+       /* transition-property: transform; */
+       box-sizing: content-box;
+       overflow: hidden;
+       flex-shrink: 0;
+  }
+  
+  .landing-banner-img {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    vertical-align: middle;
+    border-style: none;
+    font-family: spoqa han sans neo,'sans-serif';
+  }
+  
+  
+  /* --------------------------------------------------------------------------- */
+  /* body - curation 영역입니다*/
+  
+  .curation {
+  
+  }
+  
+  .curation_1 {
+  margin: 0px 0px 20px;
+  width: 100%;
+  height: auto;
+  padding: 0px 10px;
+  border: 1px solid black;
+  }
+  
+  .curation-title {
+  height: 80px;
+  padding: 20px 30px 36px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 8px 20px 20px;
+  background: white;
+  border: 1px solid black;
+  }
+  
+  .curation-body {
+  height: 340.641px;
+  width: 963px;
+  padding: 0 0 20px 0;
+  min-height: auto;
+  min-width: auto;
+  position: relative;
+  border: 1px solid black;
+  }
+  
+  .curation-body-swiper {
+  height: 320.641px;
+  padding: 0 20px 0 20px;
+  border: 1px solid black;
+  }
+  
+  .list-card{
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: $white;
-}
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid rgb(236, 236, 233);
+  overflow: hidden;
+  cursor: pointer;
+  
+  }
+  
+  .list-card-img{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  padding-bottom: 66.66%;
+  border: 1px solid black;
+  }
+  
+  .list-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 114px;
+  height: calc(100% - 112px);
+  padding: 12px 10px;
+  border: 1px solid black;
+  }
+  
+  .card-body-contents{
+  min-height: auto;
+  min-width: auto;
+  border: 1px solid black;
+  }
+  
+  .summary-title{
+  border: 1px solid black;
+  }
+  
+  .summary-summary{
+  border: 1px solid black;
+  
+  }
+  
+  .card-body-date{
+  
+  }
+  
+  /* --------------------------------------------------------------------------- */
+  @media (max-width: 769px) {
+
+    .wrapper {
+      width: 100%;
+    }
+  }
+  
