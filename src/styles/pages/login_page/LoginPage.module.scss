@@ -1,0 +1,79 @@
+@import '../../common/utils.scss';
+@import '../../common/basicMixin.scss';
+
+.loginWrapper {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 16px;
+  .loginContent {
+    margin: 0px auto;
+    max-width: 300px;
+    padding: 40px 0px;
+    text-align: center;
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 40px;
+    }
+    .googleBtn {
+      @include btn-default('secondary');
+      background-color: #da4453;
+      border: 0px;
+      font-size: 14px;
+      height: 48px;
+      margin-bottom: 8px;
+    }
+    .hr {
+      margin: 26px 0px;
+    }
+    .loginForm {
+      .loginInput {
+        @include form-control-default;
+        margin-bottom: 8px;
+      }
+      .loginBtn {
+        @include btn-default('primary');
+        font-size: 14px;
+        height: 48px;
+        width: 100%;
+      }
+      .errorMessage {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        text-align: center;
+        font-size: 0.875rem;
+        margin-top: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.15rem;
+      }
+      .registerWrapper {
+        margin: 16px 0px;
+        text-align: right;
+        user-select: auto;
+        .registerLink {
+          color: rgb(255, 102, 0);
+          text-decoration: underline;
+        }
+      }
+      .findInfoWrapper {
+        font-size: 14px;
+        margin: 16px 0px 8px;
+        text-align: center;
+
+        .findLink {
+          color: rgb(123, 123, 123);
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+    .noLoginLink {
+      color: rgb(123, 123, 123);
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 8px;
+      text-decoration: underline;
+    }
+  }
+}
