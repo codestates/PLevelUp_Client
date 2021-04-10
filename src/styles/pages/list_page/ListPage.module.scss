@@ -2,8 +2,9 @@
 
 $white: #ffffff; //변수명사용
 $blue: #339af0;
-
 .wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
   background-color: $mainColor; // utils에서 변수명 사용
   min-height: 100vh;
   display: flex;

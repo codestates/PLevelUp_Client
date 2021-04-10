@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/common/ClubCard.module.scss';
+import Tag from './Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 export default function ClubCard({ club, bookmark }: any) {
+  const [tagStatus, setTagStatus] = useState({
+    isNewClub: false, //* New type='new'
+    isFullClub: false, //TODO 마감
+    isMostFullClub: false, //* 마감임박 type='mostFull'
+  });
   function mapToDay(number: number) {
     const day = ['월', '화', '수', '목', '금', '토', '일'];
     return day[number - 1];
@@ -31,14 +37,8 @@ export default function ClubCard({ club, bookmark }: any) {
     id: 'WISH_CLUB',
     name: '내가찜한클럽',
   };
-  const tag = {
-    //* 트레바리에서는 hooks State로 관리
-    isNewClub: false, //* New
-    isMostFullClub: false, //* 마감임박
-    isFullClub: false, //* 마감
-    isOverDeadLineClub: false, //* 마감처리완료(블러)
-  };
-  const NeedRealclub = {
+  //* 참고용 더미데이터
+  const clubDummyData = {
     imageURL: club.coverUrl || '이미지주소',
     title: club.name || '스타트업DNA',
     desc: club.description || '스타트업에서 빠르게 성장하는 사람들의 비밀',
@@ -50,12 +50,37 @@ export default function ClubCard({ club, bookmark }: any) {
     <div className={styles.card}>
       <div className={styles.imgBox}>
         <div className={styles.stickers}>
-          <div className={styles.tag}>{club.tag}</div>
-          <div className={styles.bookmark}></div>
+          <div className={styles.tag}>
+            {tagStatus.isNewClub ? <Tag type="new">NEW</Tag> : null}
+            {tagStatus.isMostFullClub ? (
+              <Tag type="mostFull">마감임박</Tag>
+            ) : null}
+            {club.place === '온라인(Zoom)' ? (
+              <Tag type="online">온라인</Tag>
+            ) : null}
+          </div>
+          <div className={styles.bookmark}>
+            {bookmark ? (
+              <FaRegBookmark className={styles.icon} />
+            ) : (
+              <FaBookmark className={styles.icon} />
+            )}
+          </div>
         </div>
-        <div></div>
+        <img src={club.coverUrl} className={styles.image} />
       </div>
-      <div className={styles.contentBox}></div>
+      <div className={styles.contentBox}>
+        <div className={styles.infoBox}>
+          <div className={styles.info}>{club.leaderTitle}</div>
+          <div className={styles.title}>{club.name}</div>
+          <div className={styles.desc}>{club.description}</div>
+        </div>
+        <div className={styles.scheduleBox}>
+          {`${club.place} | 첫 모임일 ${club.openedAt}(${mapToDay(
+            club.dayOfSchedule,
+          )})`}
+        </div>
+      </div>
     </div>
   );
 }
