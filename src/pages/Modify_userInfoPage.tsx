@@ -5,7 +5,9 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-const MyPage_Modify = () => {
+//작업중인 마이페이지 > 프로필 편집 페이지 입니다. 
+
+export default function MyPage_Modify() {
 
     return (
         <div>
@@ -29,4 +31,3 @@ const MyPage_Modify = () => {
     );
 }
 
-export default MyPage_Modify;
