@@ -1,3 +1,36 @@
+$breakpoints: (
+  'x-small': (
+    max-width: 576px,
+    //576px 이하 -> 2개
+  ),
+  'small': (
+    max-width: 768px,
+    // 577-768px
+  ),
+  'medium': (
+    min-width: 769px,
+    // 769 - 992px
+  ),
+  'large': (
+    min-width: 993px,
+    // 993 -
+  ),
+) !default;
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
 @mixin btn-default($display) {
   @if $display == 'primary' {
     color: #fff;
@@ -30,7 +63,6 @@
     text-decoration: none;
   }
 }
-
 @mixin form-control-default {
   display: block;
   width: 100%;
@@ -48,20 +80,5 @@
     background-color: #fff;
     border-color: #ced4da;
     outline: 0;
-
-  }
-}
-
-@mixin responsive {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  width: 1140px;
-  margin: 0 auto;
-
-  @media (max-width: 1140px) {
-    width: 768px;
-  }
-  @media (max-width: 768px) {
-    width: 100%;
   }
 }

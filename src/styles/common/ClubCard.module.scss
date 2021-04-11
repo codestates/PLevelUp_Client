@@ -1,3 +1,4 @@
+@import './basicMixin.scss';
 .card {
   //* 일반 (mobile)
   position: relative;
@@ -16,12 +17,14 @@
   color: #212529;
   text-align: left;
   background-color: #fff;
-
   //* pc (min width: 769px)
-  min-width: 216px;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  @include respond-to('medium') {
+    min-width: 216px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background-color: blue; //* Responsive Test
+  }
   .imgBox {
     position: relative;
     width: 100%;
@@ -72,10 +75,12 @@
     min-height: 114px;
     height: calc(100% - 112px);
     padding: 12px 10px;
-    //* pc
-    // min-height: 176px;
-    height: calc(100% - 152px);
-    padding: 12px;
+    @include respond-to('medium') {
+      //* pc
+      min-height: 176px;
+      height: calc(100% - 152px);
+      padding: 12px;
+    }
     .infoBox {
       letter-spacing: -0.2px;
       overflow: hidden;
@@ -87,10 +92,11 @@
         font-weight: 500;
         line-height: 16px;
         color: rgb(110, 110, 108);
-        //* pc
-        margin: 0px 0px 4px;
-        font-size: 14px;
-        line-height: 18px;
+        @include respond-to('medium') {
+          margin: 0px 0px 4px;
+          font-size: 14px;
+          line-height: 18px;
+        }
       }
       .title {
         margin: 0px 0px 10px;
@@ -98,10 +104,11 @@
         font-size: 17px;
         line-height: 21px;
         color: rgb(44, 44, 42);
-        //* pc
-        margin: 0px 0px 8px;
-        font-size: 20px;
-        line-height: 26px;
+        @include respond-to('medium') {
+          margin: 0px 0px 8px;
+          font-size: 20px;
+          line-height: 26px;
+        }
       }
       .desc {
         margin: 0px 0px 20px;
@@ -110,10 +117,11 @@
         line-height: 18px;
         color: rgb(44, 44, 42);
         display: -webkit-box;
-        //*pc
-        margin: 0px 0px 18px;
-        font-size: 15px;
-        line-height: 22px;
+        @include respond-to('medium') {
+          margin: 0px 0px 18px;
+          font-size: 15px;
+          line-height: 22px;
+        }
       }
     }
     .scheduleBox {
@@ -122,10 +130,11 @@
       line-height: 15px;
       color: rgb(131, 131, 128);
       letter-spacing: -0.5px;
-      //* pc
-      font-size: 13px;
-      line-height: 16px;
-      letter-spacing: -0.2px;
+      @include respond-to('medium') {
+        font-size: 13px;
+        line-height: 16px;
+        letter-spacing: -0.2px;
+      }
     }
   }
 }
