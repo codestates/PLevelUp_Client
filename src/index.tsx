@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import rootReducer from './modules';
-import ScrollToTop from 'containers/commom/ScrollToTop';
+import ScrollToTop from 'containers/common/ScrollToTop';
 import ReduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 

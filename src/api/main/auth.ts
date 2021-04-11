@@ -47,7 +47,7 @@ export async function mainSignUp({
   password: string;
   passwordConfirm: string;
 }) {
-  const response = await api.post<MainLoginResType>(`/api/main/auth/sign-up`, {
+  const response = await api.post<MainLoginResType>(`/api/main/auth/signup`, {
     email,
     username,
     password,
@@ -61,7 +61,7 @@ export type MainIsLoginResType = {
 };
 
 export const mainIsLogin = async () =>
-  await api.get<MainIsLoginResType>('/api/main/auth/is-login');
+  await api.get<MainIsLoginResType>('/api/main/auth/islogin');
 
 export type MainLogoutResType = {};
 

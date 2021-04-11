@@ -3,7 +3,7 @@ import LoginForm from '../../containers/master/auth/LoginForm';
 
 export default function MasterLoginPage() {
   return (
-    <AuthTemplate>
+    <AuthTemplate type="login">
       <LoginForm />
     </AuthTemplate>
   );
