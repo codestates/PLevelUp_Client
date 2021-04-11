@@ -7,16 +7,16 @@ import {
 } from 'typesafe-actions';
 import createAsyncThunk, {
   createRequestActionTypes,
-} from '../../lib/createAsyncThuck';
+} from '../lib/createAsyncThunk';
 import {
   mainLogin,
   MainLoginReqType,
   MainLoginResType,
   mainSignUp,
   MainSignUpReqType,
-} from '../../api/main/auth';
+} from '../api/main/auth';
 import { AxiosError } from 'axios';
-import { asyncState, AsyncState } from '../../lib/reducerUtils';
+import { asyncState, AsyncState } from '../lib/reducerUtils';
 
 const [
   MAIN_LOGIN,
@@ -30,8 +30,7 @@ const [
   MAIN_SIGN_UP_FAILURE,
 ] = createRequestActionTypes('main-auth/MAIN_SIGN_UP');
 
-const MAIN_INITIALIZE_FORM_FOR_ERROR =
-  'main-auth/MAIN_INITIALIZE_FORM_FOR_ERROR';
+const MAIN_INITIALIZE_AUTH = 'main-auth/MAIN_INITIALIZE_AUTH';
 
 export const mainSignUpAsync = createAsyncAction(
   MAIN_SIGN_UP,
@@ -45,14 +44,14 @@ export const mainLoginAsync = createAsyncAction(
   MAIN_SIGN_UP_FAILURE,
 )<any, MainLoginResType, AxiosError>();
 
-export const mainInitializeFormForError = createAction(
-  MAIN_INITIALIZE_FORM_FOR_ERROR,
+export const mainInitializeAuth = createAction(
+  MAIN_INITIALIZE_AUTH,
 )<string>();
 
 const asyncActions = {
   mainSignUpAsync,
   mainLoginAsync,
-  mainInitializeFormForError,
+  mainInitializeAuth,
 };
 
 type AuthAsyncAction = ActionType<typeof asyncActions>;
@@ -128,7 +127,7 @@ export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
       ...state,
       auth: asyncState.error(action.payload),
     }),
-    [MAIN_INITIALIZE_FORM_FOR_ERROR]: (state, _) => ({
+    [MAIN_INITIALIZE_AUTH]: (state, _) => ({
       ...state,
       auth: asyncState.initial(),
     }),

@@ -51,7 +51,7 @@ export async function masterSignUp({
   passwordConfirm: string;
 }) {
   const response = await api.post<MasterLoginResType>(
-    `/api/master/auth/sign-up`,
+    `/api/master/auth/signup`,
     {
       email,
       username,
@@ -67,7 +67,7 @@ export type MasterIsLoginResType = {
 };
 
 export const masterIsLogin = async () =>
-  await api.get<MasterIsLoginResType>('/api/master/auth/is-login');
+  await api.get<MasterIsLoginResType>('/api/master/auth/islogin');
 
 export type MasterLogoutResType = {};
 

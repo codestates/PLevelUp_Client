@@ -1,18 +1,17 @@
-import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import { withRouter } from 'react-router-dom';
-import LoginForm from '../../components/auth/LoginForm.js';
-//* import about saga
 import { useDispatch, useSelector } from 'react-redux';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   mainChangeField,
   mainInitializeForm,
-  mainInitializeFormForError,
+  mainInitializeAuth,
   mainLoginThunk,
-} from '../../modules/main/auth';
-import { mainIsLoginThunk } from '../../modules/main/user';
+} from '../../modules/auth';
 import { RootState } from '../../modules';
+import { withRouter } from 'react-router-dom';
+import AuthForm from '../../components/auth/AuthForm';
+import { mainIsLoginThunk } from '../../modules/user';
 
-export default withRouter(function LoginFormContainer({ history }) {
+export default withRouter(function LoginForm({ history }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const {
@@ -27,12 +26,12 @@ export default withRouter(function LoginFormContainer({ history }) {
     error: mainAuthAsync.auth.error,
   }));
 
-  const loading = authLoading;
-
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
   }));
-  //인풋 변경 이벤트 핸들러
+  const loading = authLoading;
+
+  // 인풋 변경 이벤트 핸들러
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     dispatch(
@@ -43,7 +42,8 @@ export default withRouter(function LoginFormContainer({ history }) {
       }),
     );
   };
-  // 폼 제출 이벤트 핸들러
+
+  // 폼 등록 이벤트 핸들러
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const { email, password } = form;
@@ -57,32 +57,30 @@ export default withRouter(function LoginFormContainer({ history }) {
     }
     dispatch(mainLoginThunk({ email, password }));
   };
-
-  //제출 시 인풋 폼 초기화
+  // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
   useEffect(() => {
     dispatch(mainInitializeForm('login'));
-    dispatch(mainInitializeFormForError(''));
-  }, [dispatch]);
+    return () => {
+      dispatch(mainInitializeAuth(''));
+    };
+  }, []);
 
-  // 로그인으로 auth인증 성공 시 isLogin으로 로그인유저정보 받기
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
-      setError('로그인 실패');
-      dispatch(mainInitializeFormForError(''));
+      // console.log('오류 발생');
+      // console.log(authError);
+      setError('이메일 혹은 비밀번호가 일치하지 않습니다.');
       return;
     }
 
     if (auth) {
-      console.log('로그인 성공');
-      console.log(auth);
+      // console.log('로그인 성공');
+      // console.log(auth);
       dispatch(mainIsLoginThunk());
-      dispatch(mainInitializeFormForError(''));
     }
   }, [auth, authError]);
 
-  // isLogin으로 로그인 유저정보 받아올 경우 로컬스토리지에 해당 유저정보 저장
+  // user 값이 잘 설정되었는지 확인
   useEffect(() => {
     if (user) {
       history.push('/');
@@ -94,11 +92,12 @@ export default withRouter(function LoginFormContainer({ history }) {
     }
   }, [history, user]);
   return (
-    <LoginForm
+    <AuthForm
+      formType="login"
+      form={form}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
-      form={form}
     />
   );
 });
