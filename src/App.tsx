@@ -17,6 +17,7 @@ import Header from 'components/common/Header';
 import ScrollToTop from 'containers/common/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
+import HeaderContainer from './containers/common/HeaderContainer';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <Header />
+      <HeaderContainer />
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/signup" component={MasterSignUpPage} />
