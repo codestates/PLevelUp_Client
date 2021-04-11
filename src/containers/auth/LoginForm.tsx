@@ -67,15 +67,15 @@ export default withRouter(function LoginForm({ history }) {
 
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
-      setError('로그인 실패');
+      // console.log('오류 발생');
+      // console.log(authError);
+      setError('이메일 혹은 비밀번호가 일치하지 않습니다.');
       return;
     }
 
     if (auth) {
-      console.log('로그인 성공');
-      console.log(auth);
+      // console.log('로그인 성공');
+      // console.log(auth);
       dispatch(mainIsLoginThunk());
     }
   }, [auth, authError]);
