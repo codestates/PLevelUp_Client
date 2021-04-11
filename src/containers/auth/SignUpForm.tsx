@@ -93,8 +93,8 @@ export default withRouter(function SignUpForm({ history }) {
     }
 
     if (auth) {
-      console.log('회원가입 성공');
-      console.log(auth);
+      // console.log('회원가입 성공');
+      // console.log(auth);
       dispatch(mainIsLoginThunk());
     }
   }, [auth, authError]);
