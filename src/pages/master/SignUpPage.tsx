@@ -3,7 +3,7 @@ import SignUpForm from '../../containers/master/auth/SignUpForm';
 
 export default function MasterSignUpPage() {
   return (
-    <AuthTemplate>
+    <AuthTemplate type="signUp">
       <SignUpForm />
     </AuthTemplate>
   );

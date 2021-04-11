@@ -1,19 +1,17 @@
-import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
-import { withRouter } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../modules';
-import { mainIsLoginThunk } from '../../modules/main/user';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   mainChangeField,
   mainInitializeForm,
-  mainInitializeFormForError,
+  mainInitializeAuth,
   mainSignUpThunk,
-} from '../../modules/main/auth';
+} from '../../modules/auth';
+import { RootState } from '../../modules';
+import AuthForm from '../../components/auth/AuthForm';
+import { mainIsLoginThunk } from '../../modules/user';
+import { withRouter } from 'react-router-dom';
 
-import SignUpForm from '../../components/auth/SignUpForm.js';
-
-export default withRouter(function SignUpFormContainer({ history }) {
+export default withRouter(function SignUpForm({ history }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const {
@@ -34,7 +32,9 @@ export default withRouter(function SignUpFormContainer({ history }) {
       error: mainUser.user?.error,
     }),
   );
+
   const loading = authLoading || userLoading;
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     dispatch(
@@ -45,13 +45,18 @@ export default withRouter(function SignUpFormContainer({ history }) {
       }),
     );
   };
+
+  // 폼 등록 이벤트 핸들러
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, username, password, passwordConfirm } = form;
+
+    // 하나라도 비어 있다면
     if ([email, username, password, passwordConfirm].includes('')) {
       setError('빈 칸을 모두 입력하세요.');
       return;
     }
+    // 비밀번호가 일치하지 않는다면
     if (password !== passwordConfirm) {
       setError('비밀번호가 일치하지 않습니다.');
       dispatch(mainChangeField({ form: 'signUp', key: 'password', value: '' }));
@@ -67,30 +72,34 @@ export default withRouter(function SignUpFormContainer({ history }) {
     dispatch(mainSignUpThunk({ email, username, password, passwordConfirm }));
   };
 
+  // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
   useEffect(() => {
-    dispatch(mainInitializeForm('singUp'));
-    dispatch(mainInitializeFormForError(''));
+    dispatch(mainInitializeForm('signUp'));
+    return () => {
+      dispatch(mainInitializeAuth(''));
+    };
   }, [dispatch]);
 
   useEffect(() => {
     if (authError) {
+      // 계정명이 이미 존재할 때
       if (authError.response?.status === 409) {
         setError('이미 존재하는 계정명입니다.');
-        dispatch(mainInitializeFormForError(''));
         return;
       }
       // 기타 이유
       setError('회원가입 실패');
-      dispatch(mainInitializeFormForError(''));
       return;
     }
+
     if (auth) {
       console.log('회원가입 성공');
       console.log(auth);
       dispatch(mainIsLoginThunk());
-      dispatch(mainInitializeFormForError(''));
     }
   }, [auth, authError]);
+
+  // user 값이 잘 설정되었는지 확인
   useEffect(() => {
     if (user) {
       history.push('/');
@@ -105,11 +114,12 @@ export default withRouter(function SignUpFormContainer({ history }) {
   return (
     <>
       {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
-      <SignUpForm
+      <AuthForm
+        formType="signUp"
+        form={form}
         onChange={onChange}
         onSubmit={onSubmit}
         error={error}
-        form={form}
       />
     </>
   );
