@@ -14,7 +14,7 @@ import LoginPage from 'pages/LoginPage';
 import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
 import Footer from 'components/common/Footer';
-import Header from 'components/common/Header';
+import Header from 'containers/commom/HeaderContainer';
 import ScrollToTop from 'containers/commom/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
