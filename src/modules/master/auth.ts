@@ -30,7 +30,7 @@ const [
   MASTER_SIGN_UP_FAILURE,
 ] = createRequestActionTypes('master-auth/MASTER_SIGN_UP');
 
-const MASTER_INITIALIZE_AUTH = 'master-auth/MASTER_INITIALIZE_FORM_FOR_ERROR';
+const MASTER_INITIALIZE_AUTH = 'master-auth/MASTER_INITIALIZE_AUTH';
 
 export const masterSignUpAsync = createAsyncAction(
   MASTER_SIGN_UP,

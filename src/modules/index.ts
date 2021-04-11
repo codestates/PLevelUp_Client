@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { masterAuth, masterAuthAsync } from './master/auth';
 import masterUser from './master/user';
-import { mainAuth, mainAuthAsync } from './main/auth';
-import mainUser from './main/user';
+import { mainAuth, mainAuthAsync } from './auth';
+import mainUser from './user';
 
 const rootReducer = combineReducers({
   mainAuth,

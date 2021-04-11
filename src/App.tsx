@@ -2,7 +2,7 @@ import './styles/App.scss';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
-import { mainIsLoginThunk, mainTempSetUser } from './modules/main/user';
+import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
 import ModifyUserInfo from './pages/Modify_userInfoPage';
 import ListPage from 'pages/ListPage';
