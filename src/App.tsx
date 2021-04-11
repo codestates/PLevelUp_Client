@@ -4,10 +4,6 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
-<<<<<<< HEAD
-import LandingPage from './pages/LandingPage';
-=======
->>>>>>> 51d124d42aba4b731ac8728a59970f69aafe8fff
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
 import IntroducePage from 'pages/IntroducePage';
