@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   masterChangeField,
   masterInitializeForm,
-  masterInitializeFormForError,
+  masterInitializeAuth,
   masterLoginThunk,
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
@@ -53,15 +53,16 @@ export default withRouter(function LoginForm({ history }) {
 
   useEffect(() => {
     dispatch(masterInitializeForm('login'));
-    dispatch(masterInitializeFormForError(''));
-  }, [dispatch]);
+    return () => {
+      dispatch(masterInitializeAuth(''));
+    };
+  }, []);
 
   useEffect(() => {
     if (authError) {
       console.log('오류 발생');
       console.log(authError);
       setError('로그인 실패');
-      dispatch(masterInitializeFormForError(''));
       return;
     }
 
@@ -69,7 +70,6 @@ export default withRouter(function LoginForm({ history }) {
       console.log('로그인 성공');
       console.log(auth);
       dispatch(masterIsLoginThunk());
-      dispatch(masterInitializeFormForError(''));
     }
   }, [auth, authError]);
 

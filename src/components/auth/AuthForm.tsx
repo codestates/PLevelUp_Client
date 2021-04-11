@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { ChangeEvent, FormEvent } from 'react';
-import {
-  MasterLoginReqType,
-  MasterSignUpReqType,
-} from '../../../api/master/auth';
-import styles from '../../../styles/pages/login_page/LoginPage.module.scss';
+import { MasterLoginReqType, MasterSignUpReqType } from '../../api/master/auth';
+import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 
 type formTypeMapType = {
   [index: string]: string;
@@ -42,6 +39,7 @@ export default function AuthForm({
         onChange={onChange}
         value={form.email}
       />
+
       {formType === 'signUp' && (
         <input
           className={styles.loginInput}
@@ -74,10 +72,10 @@ export default function AuthForm({
       {formType === 'login' && (
         <>
           <div className={styles.registerWrapper}>
-            <div>클럽장 가입을 원하시나요?</div>
+            <div>아직 프레벨업 멤버가 아니신가요?</div>
             <div>
-              <Link className={styles.registerLink} to="/master/signup">
-                프레벨업 클럽장 가입하기
+              <Link className={styles.registerLink} to="/signup">
+                프레벨업 가입하기
               </Link>
             </div>
           </div>
@@ -92,10 +90,10 @@ export default function AuthForm({
       {formType === 'signUp' && (
         <>
           <div className={styles.registerWrapper}>
-            <div>클럽장 로그인을 원하시나요?</div>
+            <div>이미 프레벨업 멤버가 아니신가요?</div>
             <div>
-              <Link className={styles.registerLink} to="/master/login">
-                클럽장 로그인 하러가기
+              <Link className={styles.registerLink} to="/login">
+                프레벨업 로그인하러가기
               </Link>
             </div>
           </div>

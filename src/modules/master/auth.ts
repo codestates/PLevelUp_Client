@@ -7,7 +7,7 @@ import {
 } from 'typesafe-actions';
 import createAsyncThunk, {
   createRequestActionTypes,
-} from '../../lib/createAsyncThuck';
+} from '../../lib/createAsyncThunk';
 import {
   masterLogin,
   MasterLoginReqType,
@@ -30,8 +30,7 @@ const [
   MASTER_SIGN_UP_FAILURE,
 ] = createRequestActionTypes('master-auth/MASTER_SIGN_UP');
 
-const MASTER_INITIALIZE_FORM_FOR_ERROR =
-  'master-auth/MASTER_INITIALIZE_FORM_FOR_ERROR';
+const MASTER_INITIALIZE_AUTH = 'master-auth/MASTER_INITIALIZE_AUTH';
 
 export const masterSignUpAsync = createAsyncAction(
   MASTER_SIGN_UP,
@@ -42,17 +41,17 @@ export const masterSignUpAsync = createAsyncAction(
 export const masterLoginAsync = createAsyncAction(
   MASTER_LOGIN,
   MASTER_LOGIN_SUCCESS,
-  MASTER_SIGN_UP_FAILURE,
+  MASTER_LOGIN_FAILURE,
 )<any, MasterLoginResType, AxiosError>();
 
-export const masterInitializeFormForError = createAction(
-  MASTER_INITIALIZE_FORM_FOR_ERROR,
+export const masterInitializeAuth = createAction(
+  MASTER_INITIALIZE_AUTH,
 )<string>();
 
 const asyncActions = {
   masterSignUpAsync,
   masterLoginAsync,
-  masterInitializeFormForError,
+  masterInitializeAuth,
 };
 
 type AuthAsyncAction = ActionType<typeof asyncActions>;
@@ -130,7 +129,7 @@ export const masterAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
       ...state,
       auth: asyncState.error(action.payload),
     }),
-    [MASTER_INITIALIZE_FORM_FOR_ERROR]: (state, _) => ({
+    [MASTER_INITIALIZE_AUTH]: (state, _) => ({
       ...state,
       auth: asyncState.initial(),
     }),

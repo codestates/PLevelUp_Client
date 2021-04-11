@@ -5,15 +5,11 @@ import {
   createReducer,
 } from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import {
-  MainIsLoginResType,
-  mainIsLogin,
-  mainLogout,
-} from '../../api/main/auth';
-import { asyncState, AsyncState } from '../../lib/reducerUtils';
+import { MainIsLoginResType, mainIsLogin, mainLogout } from '../api/main/auth';
+import { asyncState, AsyncState } from '../lib/reducerUtils';
 import createAsyncThunk, {
   createRequestActionTypes,
-} from '../../lib/createAsyncThuck';
+} from '../lib/createAsyncThunk';
 
 const IsNotLogin = () => {
   try {

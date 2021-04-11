@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   masterChangeField,
   masterInitializeForm,
-  masterInitializeFormForError,
+  masterInitializeAuth,
   masterSignUpThunk,
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
@@ -70,27 +70,26 @@ export default withRouter(function SignUpForm({ history }) {
   };
 
   useEffect(() => {
-    dispatch(masterInitializeForm('singUp'));
-    dispatch(masterInitializeFormForError(''));
-  }, [dispatch]);
+    dispatch(masterInitializeForm('signUp'));
+    return () => {
+      dispatch(masterInitializeAuth(''));
+    };
+  }, []);
 
   useEffect(() => {
     if (authError) {
       if (authError.response?.status === 409) {
         setError('이미 존재하는 계정명입니다.');
-        dispatch(masterInitializeFormForError(''));
         return;
       }
       // 기타 이유
       setError('회원가입 실패');
-      dispatch(masterInitializeFormForError(''));
       return;
     }
     if (auth) {
       console.log('회원가입 성공');
       console.log(auth);
       dispatch(masterIsLoginThunk());
-      dispatch(masterInitializeFormForError(''));
     }
   }, [auth, authError]);
   useEffect(() => {
