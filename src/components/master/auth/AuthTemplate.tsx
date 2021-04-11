@@ -1,48 +1,18 @@
-import styled from 'styled-components';
-import {Link} from 'react-router-dom';
-import palette from '../../../lib/styles/palette'
+import Responsive from '../../common/Responsive';
+import styles from '../../../styles/pages/login_page/LoginPage.module.scss';
+import React from 'react';
 
-/**
- * 회원 가입 / 로그인 페이지의 레이아웃을 담당
- */
-const AuthTemplateBlock = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: ${palette.gray[2]};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-const WhiteBox = styled.div`
-  .logo-area {
-    display: block;
-    padding-bottom: 2rem;
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 2px;
-  }
-
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.025);
-  padding: 2rem;
-  width: 360px;
-  background: white;
-  border-radius: 2px;
-`;
-
-
-export default function AuthTemplate({ children }: any) {
+export default function AuthTemplate({ children, type }: any) {
   return (
-    <AuthTemplateBlock>
-    <WhiteBox>
-      <div className="logo-area">
-        <Link to='/'>P Level UP</Link>
+    <Responsive>
+      <div className={styles.loginWrapper}>
+        <div className={styles.loginContent}>
+          <div className={styles.title}>
+            {type === 'login' ? '로그인' : '회원가입'}
+          </div>
+          {children}
+        </div>
       </div>
-      {children}
-    </WhiteBox>
-  </AuthTemplateBlock>
+    </Responsive>
   );
 }

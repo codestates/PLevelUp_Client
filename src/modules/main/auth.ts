@@ -7,7 +7,7 @@ import {
 } from 'typesafe-actions';
 import createAsyncThunk, {
   createRequestActionTypes,
-} from '../../lib/createAsyncThuck';
+} from '../../lib/createAsyncThunk';
 import {
   mainLogin,
   MainLoginReqType,

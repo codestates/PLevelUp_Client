@@ -13,7 +13,7 @@ import {
 import { asyncState, AsyncState } from '../../lib/reducerUtils';
 import createAsyncThunk, {
   createRequestActionTypes,
-} from '../../lib/createAsyncThuck';
+} from '../../lib/createAsyncThunk';
 
 const IsNotLogin = () => {
   try {
