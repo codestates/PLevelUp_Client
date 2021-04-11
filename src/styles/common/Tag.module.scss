@@ -1,0 +1,27 @@
+@import './utils.scss';
+
+.tag {
+  color: white;
+  display: inline-block;
+  padding: 2px 5px 0px;
+  margin: 0px 3px 6px 0px;
+  border-radius: 2px;
+  letter-spacing: -0.2px;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.5715;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.new {
+  background-color: $yellow;
+}
+.mostFull {
+  background-color: $pink;
+}
+.online {
+  background-color: $green;
+}

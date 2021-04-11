@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
-import ModifyUserInfo from './pages/Modify_userInfoPage';
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
 import IntroducePage from 'pages/IntroducePage';
@@ -13,7 +12,6 @@ import LoginPage from 'pages/LoginPage';
 import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
 import Footer from 'components/common/Footer';
-import Header from 'components/common/Header';
 import ScrollToTop from 'containers/common/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
@@ -54,7 +52,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
-        <Route exact path="/" component={ModifyUserInfo} />
+        <Route exact path="/" component={LoginPage} /> {/* 임시 */}
       </Switch>
       <Footer />
     </>
