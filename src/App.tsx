@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/main/user';
 
-import ModifyUserInfo from './pages/Modify_userInfoPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
@@ -14,7 +14,7 @@ import LoginPage from 'pages/LoginPage';
 import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
 import Footer from 'components/common/Footer';
-import Header from 'components/common/Header';
+import Header from 'containers/commom/HeaderContainer';
 import ScrollToTop from 'containers/commom/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
@@ -45,7 +45,7 @@ function App() {
       <ScrollToTop />
       <Header />
       <Switch>
-        {/* <Route exact path="/master/login" component={MasterLoginPage} />
+        <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/sign-up" component={MasterSignUpPage} />
         <Route exact path="/list" component={ListPage} />
         <Route exact path="/detail" component={DetailPage} />
@@ -53,8 +53,9 @@ function App() {
         <Route exact path="/introduce" component={IntronducePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
-        <Route exact path="/mypage" component={MyPage} /> */}
-        <Route exact path="/" component={ModifyUserInfo} />
+        <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/update" component={ChangePasswordPage} />
+        <Route exact path="/" component={LandingPage} />
       </Switch>
       <Footer />
     </>
