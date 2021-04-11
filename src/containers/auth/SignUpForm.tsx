@@ -87,6 +87,11 @@ export default withRouter(function SignUpForm({ history }) {
         setError('이미 존재하는 계정명입니다.');
         return;
       }
+      if (authError.response?.status === 400) {
+        if (authError.response.data === '"password" length must be at least 6 characters long')
+        setError('비밀번호는 6자리 이상이어야 합니다.');
+        return;
+      }
       // 기타 이유
       setError('회원가입 실패');
       return;
