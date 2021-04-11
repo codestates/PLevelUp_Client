@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/main/user';
 
-import ModifyUserInfo from './pages/Modify_userInfoPage';
+
 import LandingPage from './pages/LandingPage';
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
@@ -45,7 +45,7 @@ function App() {
       <ScrollToTop />
       <Header />
       <Switch>
-        {/* <Route exact path="/master/login" component={MasterLoginPage} />
+        <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/sign-up" component={MasterSignUpPage} />
         <Route exact path="/list" component={ListPage} />
         <Route exact path="/detail" component={DetailPage} />
@@ -53,8 +53,8 @@ function App() {
         <Route exact path="/introduce" component={IntronducePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
-        <Route exact path="/mypage" component={MyPage} /> */}
-        <Route exact path="/" component={ModifyUserInfo} />
+        <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/" component={LandingPage} />
       </Switch>
       <Footer />
     </>
