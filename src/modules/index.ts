@@ -3,14 +3,14 @@ import { masterAuth, masterAuthAsync } from './master/auth';
 import masterUser from './master/user';
 import { mainAuth, mainAuthAsync } from './auth';
 import mainUser from './user';
+import { masterEdit, masterEditAsync } from './master/club/edit';
 
 const rootReducer = combineReducers({
-  mainAuth,
-  mainAuthAsync,
+  mainAuthAsync, mainAuth,
   mainUser,
-  masterAuth,
-  masterAuthAsync,
+  masterAuthAsync, masterAuth,
   masterUser,
+  masterEditAsync, masterEdit,
 });
 
 export default rootReducer;
