@@ -1,22 +1,28 @@
 import { Link } from 'react-router-dom';
 import React, { ChangeEvent, FormEvent } from 'react';
-import { MasterLoginReqType, MasterSignUpReqType } from '../../api/master/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
+import {
+  MainChangePasswordReqType,
+  MainLoginReqType,
+  MainSignUpReqType,
+} from 'api/main/auth';
 
 type formTypeMapType = {
   [index: string]: string;
   login: string;
   signUp: string;
+  changePassword: string;
 };
 
 const formTypeMap: formTypeMapType = {
   login: '로그인',
   signUp: '회원가입',
+  changePassword: '비밀번호 변경',
 };
 
 type AuthFormProps = {
   formType: string;
-  form: MasterSignUpReqType | MasterLoginReqType;
+  form: MainSignUpReqType | MainLoginReqType | MainChangePasswordReqType;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
@@ -57,6 +63,16 @@ export default function AuthForm({
         onChange={onChange}
         value={form.password}
       />
+      {formType === 'changePassword' && (
+        <input
+          className={styles.loginInput}
+          name="changePassword"
+          type="password"
+          placeholder="새 비밀번호"
+          onChange={onChange}
+          value={form.changePassword}
+        />
+      )}
       {formType === 'signUp' && (
         <input
           className={styles.loginInput}

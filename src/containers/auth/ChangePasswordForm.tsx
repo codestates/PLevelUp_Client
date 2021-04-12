@@ -1,18 +1,18 @@
-import { faRoad } from '@fortawesome/free-solid-svg-icons';
-import ChangePasswordForm from 'components/auth/ChangePasswordForm';
+//import ChangePasswordForm from 'components/auth/ChangePasswordForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import {
   mainChangeField,
   mainInitializeForm,
-  mainInitializeFormForError,
+  mainInitializeAuth,
   mainChangePasswordThunk,
-} from '../../modules/main/auth';
-import { mainIsLoginThunk } from '../../modules/main/user';
+} from '../../modules/auth';
+import { mainIsLoginThunk } from '../../modules/user';
 import { RootState } from '../../modules';
+import AuthForm from '../../components/auth/AuthForm';
 
-export default withRouter(function ChangePassword({ history }) {
+export default withRouter(function ChangePasswordForm({ history }) {
   const [error, setError] = useState<string>('');
   const dispatch = useDispatch();
   const {
@@ -26,15 +26,11 @@ export default withRouter(function ChangePassword({ history }) {
     loading: mainAuthAsync.auth.loading,
     error: mainAuthAsync.auth.error,
   }));
-  const { data: user, loading: userLoading, error: userError } = useSelector(
-    ({ mainUser }: RootState) => ({
-      data: mainUser.user?.data,
-      loading: mainUser.user?.loading,
-      error: mainUser.user?.error,
-    }),
-  );
+  const { data: user } = useSelector(({ mainUser }: RootState) => ({
+    data: mainUser.user?.data,
+  }));
 
-  const loading = authLoading || userLoading;
+  const loading = authLoading;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -81,33 +77,31 @@ export default withRouter(function ChangePassword({ history }) {
     );
   };
 
+  // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
   useEffect(() => {
     dispatch(mainInitializeForm('changePassword'));
-    dispatch(mainInitializeFormForError(''));
-  }, [dispatch]);
+    return () => {
+      dispatch(mainInitializeAuth(''));
+    };
+  }, []);
 
   useEffect(() => {
     if (authError) {
-      if (authError.response?.status === 401) {
-        setError('존재하지 않는 회원입니다.');
-        dispatch(mainInitializeFormForError(''));
-        return;
-      }
-      setError('비밀번호 변경에 실패했습니다');
-      dispatch(mainInitializeFormForError(''));
+      console.log('오류 발생');
+      console.log(authError);
+      setError('비밀번호 변경 실패');
       return;
     }
     if (auth) {
       console.log('변경 성공');
       console.log(auth);
       dispatch(mainIsLoginThunk());
-      dispatch(mainInitializeFormForError(''));
     }
   }, [auth, authError]);
 
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/mypage');
       try {
         localStorage.setItem('main', JSON.stringify(user));
       } catch (e) {
@@ -119,11 +113,12 @@ export default withRouter(function ChangePassword({ history }) {
   return (
     <>
       {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
-      <ChangePasswordForm
+      <AuthForm
+        formType="changePassword"
+        form={form}
         onChange={onChange}
         onSubmit={onSubmit}
         error={error}
-        form={form}
       />
     </>
   );
