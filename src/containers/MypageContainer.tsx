@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { RootState } from '../modules';
 import { masterLogoutThunk } from '../modules/master/user';
-import { mainLogoutThunk } from '../modules/main/user';
-import MyPage from 'pages/MyPage';
+import { mainLogoutThunk } from '../modules/user';
+import MypageForm from 'components/MypageForm';
 import { withRouter } from 'react-router';
 
 export default withRouter(function MypageContainer() {
@@ -17,15 +17,5 @@ export default withRouter(function MypageContainer() {
     dispatch(mainLogoutThunk());
   };
 
-  useEffect(() => {
-    if (user) {
-      try {
-        localStorage.setItem('master', JSON.stringify(user));
-      } catch (e) {
-        console.log('localStorage is not working');
-      }
-    }
-  }, [history, user]);
-
-  return <MyPage />;
+  return <MypageForm user={user} onLogout={onLogout} />;
 });

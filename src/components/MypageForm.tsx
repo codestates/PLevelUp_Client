@@ -1,14 +1,12 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../styles/pages/my_page/Mypage.module.scss';
-
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FaUserCircle } from 'react-icons/fa';
 
 export default function MyPage({ user, onLogout }: any) {
   console.log(user);
+  // const { username } = user;
   return (
     <div>
       <body className="wrapper">
@@ -18,15 +16,12 @@ export default function MyPage({ user, onLogout }: any) {
               <div className={styles.userInfo_top}>
                 <div className={styles.userInfo_profile}>
                   <div className={styles.profile_img}>
-                    <FontAwesomeIcon
-                      icon={faUserCircle}
-                      className={styles.img_pro}
-                    />
+                    <FaUserCircle className={styles.img_pro} />
                   </div>
                 </div>
                 <div className={styles.userInfo_fast_info}>
                   <div className={styles.fast_info_top}>
-                    <div className={styles.info_1_name}>{user}</div>
+                    {/* <div className={styles.info_1_name}>{username}님</div> ->  */}
                   </div>
                   <div className={styles.fast_info_bottom}>
                     <div className={styles.info_box}>
@@ -34,10 +29,7 @@ export default function MyPage({ user, onLogout }: any) {
                         <MdBuild className={styles.info_box_img} />
                       </div>
                       <div className={styles.info_box_list}>
-                        <button
-                          className={styles.modify_pass_btn}
-                          onClick={onLogout}
-                        >
+                        <button className={styles.modify_pass_btn}>
                           <Link to="/update">비밀번호 변경</Link>
                         </button>
                       </div>
@@ -47,7 +39,10 @@ export default function MyPage({ user, onLogout }: any) {
                         <BiDoorOpen className={styles.info_box_img} />
                       </div>
                       <div className={styles.info_box_list_btn}>
-                        <button className={styles.modify_logout_btn}>
+                        <button
+                          className={styles.modify_logout_btn}
+                          onClick={onLogout}
+                        >
                           로그아웃
                         </button>
                       </div>

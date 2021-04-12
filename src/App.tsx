@@ -54,7 +54,7 @@ function App() {
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/update" component={ChangePasswordPage} />
-        <Route exact path="/" component={LoginPage} /> {/* 임시 */}
+        <Route exact path="/" component={ListPage} /> {/* 임시 */}
       </Switch>
       <Footer />
     </>
