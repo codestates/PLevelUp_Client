@@ -1,21 +1,29 @@
 $breakpoints: (
   'x-small': (
-    max-width: 576px,
+    max-width: 575px,
     //576px 이하 -> 2개
   ),
   'small': (
     max-width: 768px,
-    // 577-768px
+    // 0-768px
   ),
-  'medium': (
-    min-width: 769px,
-    // 769 - 992px
-  ),
+  // 769 - 992px
+  'medium':
+    (
+      min-width: 769px,
+    )
+    and
+    (
+      max-width: 992px,
+    ),
   'large': (
     min-width: 993px,
-    // 993 -
+  ),
+  'not-mobile': (
+    min-width: 769px,
   ),
 ) !default;
+
 @mixin respond-to($breakpoint) {
   // If the key exists in the map
   @if map-has-key($breakpoints, $breakpoint) {
@@ -80,8 +88,5 @@ $breakpoints: (
     background-color: #fff;
     border-color: #ced4da;
     outline: 0;
-  }
-  .sample {
-    color: red;
   }
 }

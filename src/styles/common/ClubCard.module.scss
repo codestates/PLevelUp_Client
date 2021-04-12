@@ -18,7 +18,7 @@
   text-align: left;
   background-color: #fff;
   //* pc (min width: 769px)
-  @include respond-to('medium') {
+  @include respond-to('not-mobile') {
     min-width: 216px;
     width: 100%;
     height: auto;
@@ -75,7 +75,7 @@
     min-height: 114px;
     height: calc(100% - 112px);
     padding: 12px 10px;
-    @include respond-to('medium') {
+    @include respond-to('not-mobile') {
       //* pc
       min-height: 176px;
       height: calc(100% - 152px);
@@ -92,7 +92,7 @@
         font-weight: 500;
         line-height: 16px;
         color: rgb(110, 110, 108);
-        @include respond-to('medium') {
+        @include respond-to('not-mobile') {
           margin: 0px 0px 4px;
           font-size: 14px;
           line-height: 18px;
@@ -104,7 +104,7 @@
         font-size: 17px;
         line-height: 21px;
         color: rgb(44, 44, 42);
-        @include respond-to('medium') {
+        @include respond-to('not-mobile') {
           margin: 0px 0px 8px;
           font-size: 20px;
           line-height: 26px;
@@ -117,7 +117,7 @@
         line-height: 18px;
         color: rgb(44, 44, 42);
         display: -webkit-box;
-        @include respond-to('medium') {
+        @include respond-to('not-mobile') {
           margin: 0px 0px 18px;
           font-size: 15px;
           line-height: 22px;
@@ -130,7 +130,7 @@
       line-height: 15px;
       color: rgb(131, 131, 128);
       letter-spacing: -0.5px;
-      @include respond-to('medium') {
+      @include respond-to('not-mobile') {
         font-size: 13px;
         line-height: 16px;
         letter-spacing: -0.2px;
