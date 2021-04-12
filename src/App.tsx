@@ -17,6 +17,7 @@ import ScrollToTop from 'containers/common/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
 import HeaderContainer from './containers/common/HeaderContainer';
+import ClubEditPage from './pages/master/ClubEditPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/update" component={ChangePasswordPage} />
+        <Route exact path="/master/edit" component={ClubEditPage} />
         <Route exact path="/" component={ListPage} /> {/* 임시 */}
       </Switch>
       <Footer />

@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import React, { ChangeEvent, FormEvent } from 'react';
-import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import {
-  MainChangePasswordReqType,
   MainLoginReqType,
   MainSignUpReqType,
-} from 'api/main/auth';
-
+  MainChangePasswordReqType,
+} from '../../api/main/auth';
+import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 type formTypeMapType = {
   [index: string]: string;
   login: string;
