@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { ChangeEvent, FormEvent } from 'react';
-import { MasterLoginReqType, MasterSignUpReqType } from '../../api/master/auth';
+import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 
 type formTypeMapType = {
@@ -16,7 +16,7 @@ const formTypeMap: formTypeMapType = {
 
 type AuthFormProps = {
   formType: string;
-  form: MasterSignUpReqType | MasterLoginReqType;
+  form: MainSignUpReqType | MainLoginReqType;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
