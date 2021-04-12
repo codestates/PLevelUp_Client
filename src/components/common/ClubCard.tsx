@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../styles/common/ClubCard.module.scss';
 import Tag from './Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
@@ -48,39 +49,41 @@ export default function ClubCard({ club, bookmark }: any) {
   };
   return (
     <div className={styles.card}>
-      <div className={styles.imgBox}>
-        <div className={styles.stickers}>
-          <div className={styles.tag}>
-            {tagStatus.isNewClub ? <Tag type="new">NEW</Tag> : null}
-            {tagStatus.isMostFullClub ? (
-              <Tag type="mostFull">마감임박</Tag>
-            ) : null}
-            {club.place === '온라인(Zoom)' ? (
-              <Tag type="online">온라인</Tag>
-            ) : null}
+      <Link className={styles.link} to="/detail">
+        <div className={styles.imgBox}>
+          <div className={styles.stickers}>
+            <div className={styles.tag}>
+              {tagStatus.isNewClub ? <Tag type="new">NEW</Tag> : null}
+              {tagStatus.isMostFullClub ? (
+                <Tag type="mostFull">마감임박</Tag>
+              ) : null}
+              {club.place === '온라인(Zoom)' ? (
+                <Tag type="online">온라인</Tag>
+              ) : null}
+            </div>
+            <div className={styles.bookmark}>
+              {bookmark ? (
+                <FaRegBookmark className={styles.icon} />
+              ) : (
+                <FaBookmark className={styles.icon} />
+              )}
+            </div>
           </div>
-          <div className={styles.bookmark}>
-            {bookmark ? (
-              <FaRegBookmark className={styles.icon} />
-            ) : (
-              <FaBookmark className={styles.icon} />
-            )}
+          <img src={club.coverUrl} className={styles.image} />
+        </div>
+        <div className={styles.contentBox}>
+          <div className={styles.infoBox}>
+            <div className={styles.info}>{club.leaderTitle}</div>
+            <div className={styles.title}>{club.name}</div>
+            <div className={styles.desc}>{club.description}</div>
+          </div>
+          <div className={styles.scheduleBox}>
+            {`${club.option} | 첫 모임일 ${club.openedAt}(${mapToDay(
+              club.dayOfSchedule,
+            )})`}
           </div>
         </div>
-        <img src={club.coverUrl} className={styles.image} />
-      </div>
-      <div className={styles.contentBox}>
-        <div className={styles.infoBox}>
-          <div className={styles.info}>{club.leaderTitle}</div>
-          <div className={styles.title}>{club.name}</div>
-          <div className={styles.desc}>{club.description}</div>
-        </div>
-        <div className={styles.scheduleBox}>
-          {`${club.place} | 첫 모임일 ${club.openedAt}(${mapToDay(
-            club.dayOfSchedule,
-          )})`}
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }
