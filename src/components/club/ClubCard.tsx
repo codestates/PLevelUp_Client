@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/common/ClubCard.module.scss';
-import Tag from './Tag';
+import Tag from '../common/Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 export default function ClubCard({ club, bookmark }: any) {
   const [tagStatus, setTagStatus] = useState({
