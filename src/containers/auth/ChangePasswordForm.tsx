@@ -45,36 +45,12 @@ export default withRouter(function ChangePasswordForm({ history }) {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { email, password, changePassword, passwordConfirm } = form;
-    if ([email, password, changePassword, passwordConfirm].includes('')) {
-      setError('빈 칸을 모두 입력하세요.');
+    const { email, password, changePassword } = form;
+    if (!email || !password || !changePassword) {
+      setError('빈칸을 모두 입력해주세요.');
       return;
     }
-    if (changePassword !== passwordConfirm) {
-      setError('비밀번호가 일치하지 않습니다.');
-      dispatch(
-        mainChangeField({
-          form: 'changePassword',
-          key: 'changePassword',
-          value: '',
-        }),
-      );
-      dispatch(
-        mainChangeField({
-          form: 'changePassword',
-          key: 'changePassword',
-          value: '',
-        }),
-      );
-      return;
-    }
-    dispatch(
-      mainChangePasswordThunk({
-        email,
-        password,
-        changePassword,
-      }),
-    );
+    dispatch(mainChangePasswordThunk({ email, password, changePassword }));
   };
 
   // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
@@ -87,14 +63,14 @@ export default withRouter(function ChangePasswordForm({ history }) {
 
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
+      // console.log('오류 발생');
+      // console.log(authError);
       setError('비밀번호 변경 실패');
       return;
     }
     if (auth) {
-      console.log('변경 성공');
-      console.log(auth);
+      // console.log('변경 성공');
+      // console.log(auth);
       dispatch(mainIsLoginThunk());
     }
   }, [auth, authError]);
