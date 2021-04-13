@@ -29,8 +29,7 @@ export default function Viewer({ club, error, loading }: ViewerType) {
         return (
           <div className={styles.masterReadWrapper}>
             해당 클럽을 작성한 클럽장이 아닙니다.
-            <br />
-            본인이 작성한 클럽만 확인해주세요.
+            <br /> 본인이 작성한 클럽만 확인해주세요.
           </div>
         );
       }
@@ -68,7 +67,8 @@ export default function Viewer({ club, error, loading }: ViewerType) {
             <b>{master.username}</b>
           </span>
           <span>
-            {updatedAt ? `수정시간 : ${updatedAt}` : `등록시간: ${createdAt}`}
+            {`등록: ${createdAt}`}
+            {updatedAt !== null ?? `, 최종 업데이트 : ${updatedAt}`}
           </span>
         </div>
         <div>{place}</div>

@@ -1,11 +1,5 @@
-import HeaderContainer from '../../containers/common/HeaderContainer';
-import List from '../../components/master/club/list/List';
+import ListContainer from '../../containers/master/club/list/ListContainer';
 
 export default function ClubListPage() {
-  return (
-    <>
-      <HeaderContainer />
-      <List />
-    </>
-  );
+  return <ListContainer />;
 }
