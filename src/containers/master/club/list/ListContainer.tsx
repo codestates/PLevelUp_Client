@@ -18,10 +18,11 @@ export default withRouter(function ListContainer({ location, match }) {
   );
 
   useEffect(() => {
-    const { page } = qs.parse(location.search, {
+    let { page } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    dispatch(masterListThunk({ page }));
+    page = page || '';
+    dispatch(masterListThunk({ page: page.toString() }));
   }, [dispatch, location.search]);
   return (
     <List

@@ -90,11 +90,11 @@ export const masterClubRead = async (id: number) => {
   return response.data;
 };
 
-export type MasterClubListResType = [MasterClubReadResType];
+export type MasterClubListResType = MasterClubReadResType[];
 
 export type MasterClubListReqType = {
-  [index: string]: string | ParsedQs | string[] | ParsedQs[] | undefined;
-  page: string | ParsedQs | string[] | ParsedQs[] | undefined;
+  [index: string]: string;
+  page: string;
 };
 
 export async function masterClubList({ page }: MasterClubListReqType) {
