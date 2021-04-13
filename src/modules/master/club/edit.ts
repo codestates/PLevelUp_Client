@@ -115,10 +115,10 @@ export const masterEditAsync = createReducer<EditAsyncState, EditAsyncAction>(
 );
 
 export const masterEdit = createReducer<EditState, EditAction>(initialState, {
-  [MASTER_EDIT_CHANGE_FIELD]: (state, { payload: { key, value } }) => ({
-    ...state,
-    [key]: value,
-  }),
+  [MASTER_EDIT_CHANGE_FIELD]: (state, { payload: { key, value } }) =>
+    produce(state, draft => {
+      draft['club'][key] = value;
+    }),
   [MASTER_EDIT_INITIALIZE]: _ => initialState, // initialState를 넣으면 초기 상태로 바뀜
   // 수정시
   [MASTER_EDIT_SET_ORIGINAL_CLUB]: (state, { payload: club }) =>

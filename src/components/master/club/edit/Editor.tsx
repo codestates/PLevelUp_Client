@@ -5,7 +5,7 @@ import 'quill/dist/quill.bubble.css';
 import styles from '../../../../styles/pages/master/edit_page/EditPage.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { MasterClubEditResType } from '../../../../api/master/club';
+import { MasterClubEditReqType } from '../../../../api/master/club';
 // children을 Type으로 빼고 ReactNode 타입지정은 귀찮으니 any로..
 const EditorBlock = ({ children }: any) => (
   <div className={styles.editBlock}>{children}</div>
@@ -43,7 +43,7 @@ function createQuill(
 }
 
 type EditorType = {
-  club: MasterClubEditResType | null;
+  club: MasterClubEditReqType;
   onChangeField: (key: string, value: string | number | Date) => void;
 };
 
@@ -95,21 +95,21 @@ export default function Editor({ club, onChangeField }: EditorType) {
           className={styles.titleInput}
           placeholder="제목을 입력하세요."
           onChange={onChange}
-          value={club?.title || ''}
+          value={club.title}
           name="title"
         />
         <input
           className={styles.etcInput}
           placeholder="장소를 입력하세요."
           onChange={onChange}
-          value={club?.place || ''}
+          value={club.place}
           name="place"
         />
         <input
           className={styles.etcInput}
           placeholder="금액을 입력하세요."
           onChange={onChange}
-          value={club?.price || 0}
+          value={club.price}
           type="number"
           step="1000"
           min="0"
@@ -143,14 +143,14 @@ export default function Editor({ club, onChangeField }: EditorType) {
           className={styles.etcInput}
           placeholder="요일을 입력하세요."
           onChange={onChange}
-          value={club?.day || ''}
+          value={club.day}
           name="day"
         />
         <input
           className={styles.etcInput}
           placeholder="최대 인원을 입력하세요."
           onChange={onChange}
-          value={club?.limitUserNumber || 0}
+          value={club.limitUserNumber}
           type="number"
           step="1"
           min="0"
