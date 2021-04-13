@@ -11,6 +11,7 @@ import { AxiosError } from 'axios';
 import {
   MasterClubEditReqType,
   MasterClubEditResType,
+  masterClubUpdate,
   masterClubWrite,
 } from '../../../api/master/club';
 import { AsyncState, asyncState } from '../../../lib/reducerUtils';
@@ -23,16 +24,28 @@ const [
   MASTER_CLUB_WRITE_FAILURE,
 ] = createRequestActionTypes('master-edit/MASTER_CLUB_WRITE'); // 클럽 작성
 
+const [
+  MASTER_CLUB_UPDATE,
+  MASTER_CLUB_UPDATE_SUCCESS,
+  MASTER_CLUB_UPDATE_FAILURE,
+] = createRequestActionTypes('master-edit/MASTER_CLUB_UPDATE'); // 클럽 수정
+
 // async 생성 함수
 export const masterClubWriteAsync = createAsyncAction(
   MASTER_CLUB_WRITE,
   MASTER_CLUB_WRITE_SUCCESS,
   MASTER_CLUB_WRITE_FAILURE,
 )<any, MasterClubEditResType, AxiosError>();
+export const masterClubUpdateAsync = createAsyncAction(
+  MASTER_CLUB_UPDATE,
+  MASTER_CLUB_UPDATE_SUCCESS,
+  MASTER_CLUB_UPDATE_FAILURE,
+)<any, MasterClubEditResType, AxiosError>();
 
 // async 액션
 const asyncActions = {
   masterClubWriteAsync,
+  masterClubUpdateAsync,
 };
 type EditAsyncAction = ActionType<typeof asyncActions>;
 
@@ -41,6 +54,10 @@ const MASTER_EDIT_INITIALIZE = 'master-edit/MASTER_EDIT_INITIALIZE'; // 모든 �
 const MASTER_EDIT_CHANGE_FIELD = 'master-edit/MASTER_EDIT_CHANGE_FIELD';
 const MASTER_EDIT_SET_ORIGINAL_CLUB =
   'master-edit/MASTER_EDIT_SET_ORIGINAL_CLUB';
+
+const MASTER_CLUB_UNLOAD_EDIT = 'master-edit/MASTER_CLUB_UNLOAD_EDIT';
+
+export const masterClubUnloadEdit = createAction(MASTER_CLUB_UNLOAD_EDIT)();
 
 // 액션 생성 함수
 type ChangeFieldProps = {
@@ -111,6 +128,15 @@ export const masterEditAsync = createReducer<EditAsyncState, EditAsyncAction>(
       ...state,
       club: asyncState.error(action.payload),
     }),
+    [MASTER_CLUB_UPDATE_SUCCESS]: (state, action) => ({
+      ...state,
+      club: asyncState.success(action.payload),
+    }),
+    [MASTER_CLUB_UPDATE_FAILURE]: (state, action) => ({
+      ...state,
+      club: asyncState.error(action.payload),
+    }),
+    [MASTER_CLUB_UNLOAD_EDIT]: _ => asyncInitialState,
   },
 );
 
@@ -123,6 +149,7 @@ export const masterEdit = createReducer<EditState, EditAction>(initialState, {
   // 수정시
   [MASTER_EDIT_SET_ORIGINAL_CLUB]: (state, { payload: club }) =>
     produce(state, draft => {
+      draft['club']['id'] = club.id;
       draft['club']['title'] = club.title;
       draft['club']['summary'] = club.summary;
       draft['club']['place'] = club.place;
@@ -139,4 +166,9 @@ export const masterEdit = createReducer<EditState, EditAction>(initialState, {
 export const masterClubWriteThunk = createAsyncThunk(
   masterClubWriteAsync,
   masterClubWrite,
+);
+
+export const masterClubUpdateThunk = createAsyncThunk(
+  masterClubUpdateAsync,
+  masterClubUpdate,
 );
