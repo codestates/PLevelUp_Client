@@ -32,21 +32,9 @@ type ListType = {
   clubs: MasterClubListResType | null;
   error: AxiosError | null;
   loading: boolean;
-  isMasterLogged: boolean;
 };
 
-export default function List({
-  clubs,
-  loading,
-  error,
-  isMasterLogged,
-}: ListType) {
-  if (!isMasterLogged)
-    return (
-      <div className={styles.masterListWrapper}>
-        클럽장만 볼 수 있는 페이지 입니다.
-      </div>
-    );
+export default function List({ clubs, loading, error }: ListType) {
   if (error)
     return (
       <div className={styles.masterListWrapper}>
@@ -57,11 +45,9 @@ export default function List({
   return (
     <div className={styles.masterListWrapper}>
       <div className={styles.writeListButtonWrapper}>
-        {isMasterLogged && (
-          <Link to="/master/edit">
-            <button>새 글 작성하기</button>
-          </Link>
-        )}
+        <Link to="/master/edit">
+          <button>새 글 작성하기</button>
+        </Link>
       </div>
       <div>
         {/* 로딩 중이 아니고, clubs가 존재할 때만 보여 줌 */}

@@ -24,12 +24,8 @@ export default withRouter(function ListContainer({ location, match }) {
     page = page || '';
     dispatch(masterListThunk({ page: page.toString() }));
   }, [dispatch, location.search]);
-  return (
-    <List
-      loading={loading}
-      error={error}
-      clubs={clubs}
-      isMasterLogged={!!master}
-    />
-  );
+
+  if (!master) return <div>클럽장만 볼 수 있는 페이지 입니다.</div>;
+
+  return <List loading={loading} error={error} clubs={clubs} />;
 });
