@@ -3,13 +3,17 @@
 $font-stack: spoqa han sans neo, 'sans-serif';
 $imsi-border: 1px solid #2c2c2a;
 
-.myPage {
+a {
+  text-decoration: none;
+}
+
+.mypage {
   position: relative;
   margin: 0px auto;
 
   min-width: 100%;
 
-  .mypage_userInfo_area {
+  .userWrapper {
     max-width: 1140px;
     width: 100%;
     display: flex;
@@ -22,49 +26,38 @@ $imsi-border: 1px solid #2c2c2a;
     z-index: 0;
     padding: 0 16px;
 
-    .userInfo_info {
-      .userInfo_top {
+    .userInfo {
+      .userInfoTop {
         display: flex;
 
-        .userInfo_profile {
+        .profile {
           display: flex;
           flex-direction: column;
           align-items: center;
 
-          .profile_img {
+          .profileImg {
             margin: 0 auto;
 
-            .img_pro {
+            .imgPro {
               margin: -20px 20px 15px 0px;
               vertical-align: middle;
               font-size: 9em;
               max-width: 100%;
             }
           }
-
-          .profile_modify_btn {
-            padding: 0px 20px 0px 10px;
-
-            .modify_btn {
-              font-family: spoqa han sans neo, 'sans-serif';
-              font-size: 16px;
-              background: transparent;
-              border: none;
-            }
-          }
         }
 
-        .userInfo_fast_info {
+        .userfastInfo {
           align-items: baseline;
           height: 100%;
 
-          .info_1_name {
+          .userName {
             font-family: spoqa han sans neo, 'sans-serif';
             font-size: 1.1em;
             font-weight: bold;
           }
 
-          .fast_info_bottom {
+          .fastInfoBottom {
             margin: 24px 0px 0px -27px;
 
             display: flex;
@@ -73,24 +66,24 @@ $imsi-border: 1px solid #2c2c2a;
             width: 100%;
             height: 100%;
 
-            .info_box {
+            .infoBox {
               padding: 0px auto;
               display: block;
               width: 100%;
               align-items: center;
 
-              .info_box_img {
+              .infoBoxImg {
                 font-size: 26px;
               }
 
-              .info_box_list {
+              .infoBoxList {
                 position: relative;
                 display: flex;
                 justify-content: center;
                 height: 32px;
                 width: 100px;
 
-                .modify_logout_btn {
+                .changePasswordBtn {
                   font-family: spoqa han sans neo, 'sans-serif';
                   font-size: 14px;
                   background: transparent;
@@ -98,7 +91,7 @@ $imsi-border: 1px solid #2c2c2a;
                 }
               }
 
-              .info_box_list_btn {
+              .infoBoxListBtn {
                 padding-left: 5px;
                 position: relative;
                 display: flex;
@@ -106,7 +99,7 @@ $imsi-border: 1px solid #2c2c2a;
                 height: 32px;
                 width: 100px;
 
-                .modify_pass_btn {
+                .logOutBtn {
                   font-family: spoqa han sans neo, 'sans-serif';
                   font-size: 14px;
                   background: transparent;
@@ -117,13 +110,13 @@ $imsi-border: 1px solid #2c2c2a;
           }
         }
       }
-      .userInfo_bottom {
+      .userInfoBottom {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
         width: 100%;
 
-        .link_banner {
+        .banner {
           border: $imsi-border;
           display: inline-block;
           max-width: 385px;
@@ -135,31 +128,31 @@ $imsi-border: 1px solid #2c2c2a;
     }
   }
 
-  .mypage_record_area {
+  .recordAreaWrapper {
     max-width: 1140px;
     align-items: center;
     margin: 0px auto 61px auto;
     // border: $imsi-border;
     font-family: spoqa han sans neo, 'sans-serif';
     padding: 0 16px;
-    .record_area {
+    .recordArea {
       display: flex;
       justify-content: center;
       width: 100%;
 
-      .record_area_ul {
+      .areaName {
         /* justify-content: center; */
         margin: 0px auto;
         width: 100%;
         display: flex;
         padding-left: 0px;
 
-        .record_area_ul_li {
+        .areaList {
           /* display: inline-block; */
           list-style-type: none;
           width: 40%;
 
-          .record_title {
+          .recordTitle {
             height: auto;
             padding: 15px 0px 17px !important;
             text-align: center;
@@ -185,14 +178,14 @@ $imsi-border: 1px solid #2c2c2a;
     width: 100%;
     max-width: 1140px;
 
-    .mypage_userInfo_area {
+    .userWrapper {
       margin-top: 48px;
       display: flex;
       justify-content: center;
       border-bottom: $imsi-border;
     }
 
-    .img_pro {
+    .imgPro {
       margin: 10px 10px 5px 0px;
       vertical-align: middle;
       font-size: auto;
@@ -201,36 +194,36 @@ $imsi-border: 1px solid #2c2c2a;
       display: flex;
     }
 
-    .userInfo_top {
+    .userInfoTop {
       display: flex;
       width: 100%;
     }
 
-    .userInfo_bottom {
+    .userInfoBottom {
       display: flex;
       width: 100%;
       max-width: inherit;
     }
 
-    .info_1_name {
+    .userName {
       font-family: spoqa han sans neo, 'sans-serif';
       font-size: 18px;
     }
 
-    .modify_logout_btn {
+    .changePasswordBtn {
       font-size: 12px;
     }
 
-    .modify_pass_btn {
+    .logOutBtn {
       font-size: 12px;
     }
 
-    .fast_info_bottom {
+    .fastInfoBottom {
       width: 100%;
       margin: 18px 0px 14px -10px;
     }
 
-    .info_box {
+    .infoBox {
       width: 80%;
     }
   }
