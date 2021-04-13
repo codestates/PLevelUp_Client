@@ -1,7 +1,18 @@
-import createAsyncThunk, { createRequestActionTypes } from '../../../lib/createAsyncThunk';
-import { ActionType, createAction, createAsyncAction, createReducer } from 'typesafe-actions';
+import createAsyncThunk, {
+  createRequestActionTypes,
+} from '../../../lib/createAsyncThunk';
+import {
+  ActionType,
+  createAction,
+  createAsyncAction,
+  createReducer,
+} from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import { MasterClubEditReqType, MasterClubEditResType, masterClubWrite } from '../../../api/master/club';
+import {
+  MasterClubEditReqType,
+  MasterClubEditResType,
+  masterClubWrite,
+} from '../../../api/master/club';
 import { AsyncState, asyncState } from '../../../lib/reducerUtils';
 
 // async 액션 타입
@@ -10,7 +21,6 @@ const [
   MASTER_CLUB_WRITE_SUCCESS,
   MASTER_CLUB_WRITE_FAILURE,
 ] = createRequestActionTypes('master-edit/MASTER_CLUB_WRITE'); // 클럽 작성
-
 
 // async 생성 함수
 export const masterClubWriteAsync = createAsyncAction(
@@ -57,9 +67,13 @@ const asyncInitialState: EditAsyncState = {
 //   [index: string]: string | number | Date;
 // };
 
-type EditState = MasterClubEditReqType;
+type EditState = {
+  club: MasterClubEditReqType;
+};
 
 const initialState: EditState = {
+  club: {
+    id: null,
     title: '',
     summary: '',
     place: '',
@@ -70,6 +84,7 @@ const initialState: EditState = {
     endDate: new Date(),
     day: '',
     limitUserNumber: 1,
+  },
 };
 
 export const masterEditAsync = createReducer<EditAsyncState, EditAsyncAction>(
@@ -90,16 +105,16 @@ export const masterEditAsync = createReducer<EditAsyncState, EditAsyncAction>(
   },
 );
 
-export const masterEdit = createReducer<EditState, EditAction>(
-  initialState,
-  {
-  [MASTER_EDIT_CHANGE_FIELD]: (state, { payload: { key, value } }) =>
-    ({
+export const masterEdit = createReducer<EditState, EditAction>(initialState, {
+    [MASTER_EDIT_CHANGE_FIELD]: (state, { payload: { key, value } }) => ({
       ...state,
       [key]: value,
     }),
-  [MASTER_EDIT_INITIALIZE]: _ => initialState, // initialState를 넣으면 초기 상태로 바뀜
+    [MASTER_EDIT_INITIALIZE]: _ => initialState, // initialState를 넣으면 초기 상태로 바뀜
   },
 );
 
-export const masterClubWriteThunk = createAsyncThunk(masterClubWriteAsync, masterClubWrite);
+export const masterClubWriteThunk = createAsyncThunk(
+  masterClubWriteAsync,
+  masterClubWrite,
+);

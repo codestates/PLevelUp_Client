@@ -1,8 +1,9 @@
-import qs, { ParsedQs } from 'qs';
+import qs from 'qs';
 import api from '../index';
 
 export type MasterClubEditReqType = {
-  [index: string]: string | number | Date;
+  [index: string]: string | number | Date | null;
+  id: number | null;
   title: string;
   summary: string;
   price: number;
