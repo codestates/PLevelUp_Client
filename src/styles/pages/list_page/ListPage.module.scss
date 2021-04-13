@@ -1,57 +1,17 @@
-@import '../../../common/utils.scss';
-@import '../../../common/basicMixin.scss';
+@import '../../common/utils.scss';
 
-.masterListWrapper {
-  margin-top: 60px;
-  margin-left: 3rem;
-  margin-right: 3rem;
+$white: #ffffff; //변수명사용
+$blue: #339af0;
 
-  .writeListButtonWrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 3rem;
-  }
-
-  .listItemBlock {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    /* 맨 위 포스트는 padding-top 없음 */
-
-    &:first-child {
-      padding-top: 0;
-    }
-
-    & + & {
-      border-top: 1px solid lightgray;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 0;
-      margin-top: 0;
-
-      &:hover {
-        color: dimgray;
-      }
-    }
-
-    p {
-      margin-top: 2rem;
-    }
-  }
-
-  .subInfo {
-    margin-top: 1rem;
-    color: gray
-  }
-;
-
-  /* span 사이에 가운뎃점 문자 보여 주기 */
-
-  span + span:before {
-    color: darkgray;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    content: '\B7'; /* 가운뎃점 문자 */
-  }
+.wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: $mainColor; // utils에서 변수명 사용
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: $blue;
 }
