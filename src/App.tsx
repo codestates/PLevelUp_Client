@@ -55,11 +55,7 @@ function App() {
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/master/edit" component={ClubEditPage} />
-        <Route
-          exact
-          path="/master/:masterId/:clubId"
-          component={ClubReadPage}
-        />
+        <Route exact path="/master/:clubId" component={ClubReadPage} />
         <Route exact path="/" component={LoginPage} /> {/* 임시 */}
       </Switch>
       <Footer />
