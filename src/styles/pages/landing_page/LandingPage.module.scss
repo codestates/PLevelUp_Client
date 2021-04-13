@@ -1,16 +1,29 @@
 @import '../../common/utils.scss';
-
+@import '../../common//basicMixin.scss';
 $white: #ffffff; //변수명사용
 $blue: #339af0;
 
 .wrapper {
   text-align: center;
-  background-color: $gray;
+  background-color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: $white;
+  color: black;
+  .banner {
+    height: auto;
+    overflow: unset;
+    max-width: 1140px;
+    width: 100%;
+    margin: 61px auto 40px;
+    @include respond-to('not-mobile') {
+      height: 264px;
+      width: 100%;
+      overflow: hidden;
+      margin: 0 0 46px 0;
+    }
+  }
 }
