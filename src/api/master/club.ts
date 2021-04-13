@@ -137,3 +137,6 @@ export const masterClubUpdate = async ({
   );
   return response.data;
 };
+
+export const masterClubRemove = (id: number) =>
+  api.delete(`/api/master/club/${id}`);
