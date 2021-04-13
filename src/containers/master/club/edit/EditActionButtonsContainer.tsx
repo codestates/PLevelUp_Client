@@ -21,38 +21,38 @@ export default withRouter(function EditActionButtonsContainer({ history }) {
     data: club,
     loading,
     error,
-  } = useSelector(
-    ({ masterEdit, masterEditAsync }: RootState) => ({
-      title: masterEdit.title,
-      summary: masterEdit.summary,
-      place: masterEdit.place,
-      price: masterEdit.price,
-      description: masterEdit.description,
-      topic: masterEdit.topic,
-      startDate: masterEdit.startDate,
-      endDate: masterEdit.endDate,
-      day: masterEdit.day,
-      limitUserNumber: masterEdit.limitUserNumber,
-      data: masterEditAsync.club.data,
-      loading: masterEditAsync.club.loading,
-      error: masterEditAsync.club.error,
-    }),
-  );
+  } = useSelector(({ masterEdit, masterEditAsync }: RootState) => ({
+    title: masterEdit.title,
+    summary: masterEdit.summary,
+    place: masterEdit.place,
+    price: masterEdit.price,
+    description: masterEdit.description,
+    topic: masterEdit.topic,
+    startDate: masterEdit.startDate,
+    endDate: masterEdit.endDate,
+    day: masterEdit.day,
+    limitUserNumber: masterEdit.limitUserNumber,
+    data: masterEditAsync.club.data,
+    loading: masterEditAsync.club.loading,
+    error: masterEditAsync.club.error,
+  }));
 
   // 포스트 등록
   const onConfirm = () => {
-    dispatch(masterClubWriteThunk({
-      title,
-      summary,
-      place,
-      price,
-      description,
-      topic,
-      startDate,
-      endDate,
-      day,
-      limitUserNumber,
-    }));
+    dispatch(
+      masterClubWriteThunk({
+        title,
+        summary,
+        place,
+        price,
+        description,
+        topic,
+        startDate,
+        endDate,
+        day,
+        limitUserNumber,
+      }),
+    );
   };
 
   // 취소
@@ -63,12 +63,17 @@ export default withRouter(function EditActionButtonsContainer({ history }) {
   // 성공 혹은 실패 시 할 작업
   useEffect(() => {
     if (club) {
-      const { id, MasterId } = club;
-      history.push(`/${MasterId}/${id}`);
+      const { id } = club;
+      console.log('등록 성공');
+      history.push(`/master/${id}`);
     }
-    if (error) {
-      console.log(error);
-    }
+    // if (error) {
+    //   if (error.response?.status === 400) {
+    //     console.log(error.response.data);
+    //   } else {
+    //     console.log(error);
+    //   }
+    // }
   }, [history, club, error]);
 
   return (
