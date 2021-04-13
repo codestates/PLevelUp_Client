@@ -60,10 +60,13 @@ export type MainIsLoginResType = {
   email: string;
 };
 
-export const mainIsLogin = async () =>
-  await api.get<MainIsLoginResType>('/api/main/auth/islogin');
-
+export const mainIsLogin = async () => {
+  const response = await api.get<MainIsLoginResType>('/api/main/auth/islogin');
+  return response.data;
+}
 export type MainLogoutResType = {};
 
-export const mainLogout = async () =>
-  await api.post<MainLogoutResType>('/api/main/auth/logout');
+export const mainLogout = async () => {
+  const response = await api.post<MainLogoutResType>('/api/main/auth/logout');
+  return response.data;
+}
