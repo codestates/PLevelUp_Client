@@ -7,24 +7,25 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { MasterClubEditResType } from '../../../../api/master/club';
 // children을 Type으로 빼고 ReactNode 타입지정은 귀찮으니 any로..
-const EditorBlock = ({ children }: any) =>
-  <div className={styles.editBlock}>
-    {children}
-  </div>;
+const EditorBlock = ({ children }: any) => (
+  <div className={styles.editBlock}>{children}</div>
+);
 
 type InputType = {
   placeholder: string;
   value: string | number | undefined;
   name: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
-const QuillWrapper = ({ children }: any) =>
-  <div className={styles.quillWrapper}>
-    {children}
-  </div>;
+const QuillWrapper = ({ children }: any) => (
+  <div className={styles.quillWrapper}>{children}</div>
+);
 
-function createQuill(element: React.MutableRefObject<any>, placeholderString: string) {
+function createQuill(
+  element: React.MutableRefObject<any>,
+  placeholderString: string,
+) {
   return new Quill(element.current, {
     theme: 'bubble',
     placeholder: placeholderString,
@@ -42,7 +43,7 @@ function createQuill(element: React.MutableRefObject<any>, placeholderString: st
 }
 
 type EditorType = {
-  club: MasterClubEditResType | null
+  club: MasterClubEditResType | null;
   onChangeField: (key: string, value: string | number | Date) => void;
 };
 
@@ -64,11 +65,19 @@ export default function Editor({ club, onChangeField }: EditorType) {
     });
   };
 
-
   useEffect(() => {
-    summaryQuillInstance.current = createQuill(summaryQuillElement, '요약을 입력하세요.');
-    descriptionQuillInstance.current = createQuill(descriptionQuillElement, '설명을 입력하세요.');
-    topicQuillInstance.current = createQuill(topicQuillElement, '주제를 입력하세요.');
+    summaryQuillInstance.current = createQuill(
+      summaryQuillElement,
+      '요약을 입력하세요.',
+    );
+    descriptionQuillInstance.current = createQuill(
+      descriptionQuillElement,
+      '설명을 입력하세요.',
+    );
+    topicQuillInstance.current = createQuill(
+      topicQuillElement,
+      '주제를 입력하세요.',
+    );
 
     quillChange('summary', summaryQuillInstance.current);
     quillChange('description', descriptionQuillInstance.current);
@@ -82,33 +91,71 @@ export default function Editor({ club, onChangeField }: EditorType) {
   return (
     <div className={styles.masterEditWrapper}>
       <EditorBlock>
-        <input className={styles.titleInput} placeholder='제목을 입력하세요.' onChange={onChange} value={club?.title}
-               name='title' />
-        <input className={styles.etcInput} placeholder='장소를 입력하세요.' onChange={onChange} value={club?.place}
-               name='place' />
-        <input className={styles.etcInput} placeholder='금액을 입력하세요.' onChange={onChange} value={club?.price}
-               type='number' step='1000' min='0' name='price' />
+        <input
+          className={styles.titleInput}
+          placeholder="제목을 입력하세요."
+          onChange={onChange}
+          value={club?.title || ''}
+          name="title"
+        />
+        <input
+          className={styles.etcInput}
+          placeholder="장소를 입력하세요."
+          onChange={onChange}
+          value={club?.place || ''}
+          name="place"
+        />
+        <input
+          className={styles.etcInput}
+          placeholder="금액을 입력하세요."
+          onChange={onChange}
+          value={club?.price || 0}
+          type="number"
+          step="1000"
+          min="0"
+          name="price"
+        />
         <span>시작일: </span>
         <span>
-            <DatePicker selected={startDate} onChange={(date: Date) => {
+          <DatePicker
+            selected={startDate}
+            onChange={(date: Date) => {
               setStartDate(date);
               if (date) {
                 onChangeField('startDate', date);
               }
-            }} />
-          </span>
+            }}
+          />
+        </span>
         <span>종료일: </span>
         <span style={{ marginLeft: '10px' }}>
-            <DatePicker selected={endDate} onChange={(date: Date) => {
+          <DatePicker
+            selected={endDate}
+            onChange={(date: Date) => {
               setEndDate(date);
               if (date) {
                 onChangeField('endDate', date);
               }
-            }} />
-          </span>
-        <input className={styles.etcInput} placeholder='요일을 입력하세요.' onChange={onChange} value={club?.day} name='day' />
-        <input className={styles.etcInput} placeholder='최대 인원을 입력하세요.' onChange={onChange} value={club?.limitUserNumber}
-               type='number' step='1' min='0' name='limitUserNumber' />
+            }}
+          />
+        </span>
+        <input
+          className={styles.etcInput}
+          placeholder="요일을 입력하세요."
+          onChange={onChange}
+          value={club?.day || ''}
+          name="day"
+        />
+        <input
+          className={styles.etcInput}
+          placeholder="최대 인원을 입력하세요."
+          onChange={onChange}
+          value={club?.limitUserNumber || 0}
+          type="number"
+          step="1"
+          min="0"
+          name="limitUserNumber"
+        />
         <QuillWrapper>
           <div ref={summaryQuillElement} />
         </QuillWrapper>
