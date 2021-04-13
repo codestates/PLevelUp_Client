@@ -18,6 +18,7 @@ import MasterSignUpPage from './pages/master/SignUpPage';
 import HeaderContainer from './containers/common/HeaderContainer';
 import ClubEditPage from './pages/master/ClubEditPage';
 import ClubReadPage from './pages/master/ClubReadPage';
+import ClubListPage from './pages/master/ClubListPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/master/edit" component={ClubEditPage} />
         <Route exact path="/master/:clubId" component={ClubReadPage} />
+        <Route exact path={['/master/']} component={ClubListPage} />
         <Route exact path="/" component={LoginPage} /> {/* 임시 */}
       </Switch>
       <Footer />
