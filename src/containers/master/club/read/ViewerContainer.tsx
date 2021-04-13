@@ -7,8 +7,10 @@ import {
 } from '../../../../modules/master/club/read';
 import { RootState } from '../../../../modules';
 import Viewer from '../../../../components/master/club/read/Viewer';
+import ReadActionButtons from '../../../../components/master/club/read/ReadActionButtons';
+import { masterEditSetOriginalClub } from '../../../../modules/master/club/edit';
 
-export default withRouter(function ViewerContainer({ match }) {
+export default withRouter(function ViewerContainer({ match, history }) {
   // 처음 마운트 될 떄 포스트 읽기 API 요청
   const { clubId } = match.params;
   const dispatch = useDispatch();
@@ -28,5 +30,12 @@ export default withRouter(function ViewerContainer({ match }) {
     };
   }, [dispatch, clubId]);
 
-  return <Viewer club={club} loading={loading} error={error} />;
+  return (
+    <Viewer
+      club={club}
+      loading={loading}
+      error={error}
+      actionButtons={<ReadActionButtons />}
+    />
+  );
 });

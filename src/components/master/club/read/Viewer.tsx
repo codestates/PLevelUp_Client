@@ -6,9 +6,15 @@ type ViewerType = {
   club: MasterClubReadResType | null;
   error: AxiosError | null;
   loading: boolean;
+  actionButtons: JSX.Element;
 };
 
-export default function Viewer({ club, error, loading }: ViewerType) {
+export default function Viewer({
+  club,
+  error,
+  loading,
+  actionButtons,
+}: ViewerType) {
   // 에러 발생 시
   if (error) {
     if (error.response) {
@@ -90,6 +96,7 @@ export default function Viewer({ club, error, loading }: ViewerType) {
         className={styles.readContent}
         dangerouslySetInnerHTML={{ __html: description }}
       />
+      {actionButtons}
     </div>
   );
 }

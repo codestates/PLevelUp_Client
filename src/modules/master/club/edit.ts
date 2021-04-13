@@ -14,6 +14,7 @@ import {
   masterClubWrite,
 } from '../../../api/master/club';
 import { AsyncState, asyncState } from '../../../lib/reducerUtils';
+import produce from 'immer';
 
 // async 액션 타입
 const [
@@ -38,6 +39,8 @@ type EditAsyncAction = ActionType<typeof asyncActions>;
 // 액션 타입
 const MASTER_EDIT_INITIALIZE = 'master-edit/MASTER_EDIT_INITIALIZE'; // 모든 내용 초기화
 const MASTER_EDIT_CHANGE_FIELD = 'master-edit/MASTER_EDIT_CHANGE_FIELD';
+const MASTER_EDIT_SET_ORIGINAL_CLUB =
+  'master-edit/MASTER_EDIT_SET_ORIGINAL_CLUB';
 
 // 액션 생성 함수
 type ChangeFieldProps = {
@@ -46,12 +49,18 @@ type ChangeFieldProps = {
 };
 
 export const masterEditInitialize = createAction(MASTER_EDIT_INITIALIZE)();
-export const masterEditChangeField = createAction(MASTER_EDIT_CHANGE_FIELD)<ChangeFieldProps>();
+export const masterEditChangeField = createAction(
+  MASTER_EDIT_CHANGE_FIELD,
+)<ChangeFieldProps>();
+export const masterEditSetOriginalClub = createAction(
+  MASTER_EDIT_SET_ORIGINAL_CLUB,
+)<MasterClubEditResType>();
 
 // 액션
 const actions = {
   masterEditInitialize,
   masterEditChangeField,
+  masterEditSetOriginalClub,
 };
 type EditAction = ActionType<typeof actions>;
 
@@ -106,13 +115,26 @@ export const masterEditAsync = createReducer<EditAsyncState, EditAsyncAction>(
 );
 
 export const masterEdit = createReducer<EditState, EditAction>(initialState, {
-    [MASTER_EDIT_CHANGE_FIELD]: (state, { payload: { key, value } }) => ({
-      ...state,
-      [key]: value,
+  [MASTER_EDIT_CHANGE_FIELD]: (state, { payload: { key, value } }) => ({
+    ...state,
+    [key]: value,
+  }),
+  [MASTER_EDIT_INITIALIZE]: _ => initialState, // initialState를 넣으면 초기 상태로 바뀜
+  // 수정시
+  [MASTER_EDIT_SET_ORIGINAL_CLUB]: (state, { payload: club }) =>
+    produce(state, draft => {
+      draft['club']['title'] = club.title;
+      draft['club']['summary'] = club.summary;
+      draft['club']['place'] = club.place;
+      draft['club']['price'] = club.price;
+      draft['club']['description'] = club.description;
+      draft['club']['topic'] = club.topic;
+      draft['club']['startDate'] = club.startDate;
+      draft['club']['endDate'] = club.endDate;
+      draft['club']['day'] = club.day;
+      draft['club']['limitUserNumber'] = club.limitUserNumber;
     }),
-    [MASTER_EDIT_INITIALIZE]: _ => initialState, // initialState를 넣으면 초기 상태로 바뀜
-  },
-);
+});
 
 export const masterClubWriteThunk = createAsyncThunk(
   masterClubWriteAsync,
