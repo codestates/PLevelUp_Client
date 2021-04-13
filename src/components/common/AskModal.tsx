@@ -11,24 +11,26 @@ type AskModalType = {
 };
 
 export default function AskModal({
-  visible,
-  title,
-  description,
-  confirmText = '확인',
-  cancelText = '취소',
-  onConfirm,
-  onCancel,
-}: AskModalType) {
+                                   visible,
+                                   title,
+                                   description,
+                                   confirmText = '확인',
+                                   cancelText = '취소',
+                                   onConfirm,
+                                   onCancel,
+                                 }: AskModalType) {
   if (!visible) return null;
 
   return (
-    <div className={styles.fullscreen}>
-      <div className={styles.modalWrapper}>
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <div className="buttons">
-          <button onClick={onCancel}>{cancelText}</button>
-          <button onClick={onConfirm}>{confirmText}</button>
+    <div className={styles.modalWrapper}>
+      <div className={styles.fullscreen}>
+        <div className={styles.askModalWrapper}>
+          <h2>{title}</h2>
+          <p>{description}</p>
+          <div className="buttons">
+            <button onClick={onCancel}>{cancelText}</button>
+            <button onClick={onConfirm}>{confirmText}</button>
+          </div>
         </div>
       </div>
     </div>
