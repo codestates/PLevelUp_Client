@@ -1,3 +1,4 @@
+import qs, { ParsedQs } from 'qs';
 import api from '../index';
 
 export type MasterClubEditReqType = {
@@ -88,3 +89,18 @@ export const masterClubRead = async (id: number) => {
   );
   return response.data;
 };
+
+export type MasterClubListResType = [MasterClubReadResType];
+
+export type MasterClubListReqType = {
+  [index: string]: string | ParsedQs | string[] | ParsedQs[] | undefined;
+  page: string | ParsedQs | string[] | ParsedQs[] | undefined;
+};
+
+export async function masterClubList({ page }: MasterClubListReqType) {
+  const queryString = qs.stringify({ page });
+  const response = await api.get<MasterClubListResType>(
+    `/api/master/club?${queryString}`,
+  );
+  return response.data;
+}
