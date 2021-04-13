@@ -9,6 +9,7 @@ import { RootState } from '../../../../modules';
 import Viewer from '../../../../components/master/club/read/Viewer';
 import ReadActionButtons from '../../../../components/master/club/read/ReadActionButtons';
 import { masterEditSetOriginalClub } from '../../../../modules/master/club/edit';
+import { masterClubRemove } from '../../../../api/master/club';
 
 export default withRouter(function ViewerContainer({ match, history }) {
   // 처음 마운트 될 떄 포스트 읽기 API 요청
@@ -38,6 +39,15 @@ export default withRouter(function ViewerContainer({ match, history }) {
     }
   };
 
+  const onRemove = async () => {
+    try {
+      await masterClubRemove(clubId);
+      history.push('/master'); // 홈으로 이동
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const isMyClub = (master && master._id) === (club && club.Master.id);
 
   if (!isMyClub) return <div>본인이 작성한 Club만 볼 수 있습니다.</div>;
@@ -47,7 +57,9 @@ export default withRouter(function ViewerContainer({ match, history }) {
       club={club}
       loading={loading}
       error={error}
-      actionButtons={<ReadActionButtons onUpdate={onUpdate} />}
+      actionButtons={
+        <ReadActionButtons onUpdate={onUpdate} onRemove={onRemove} />
+      }
     />
   );
 });
