@@ -5,6 +5,7 @@ import { mainAuth, mainAuthAsync } from './auth';
 import mainUser from './user';
 import { masterEdit, masterEditAsync } from './master/club/edit';
 import { masterReadAsync } from './master/club/read';
+import masterListAsync from './master/club/list';
 
 const rootReducer = combineReducers({
   mainAuthAsync,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   masterEditAsync,
   masterEdit,
   masterReadAsync,
+  masterListAsync,
 });
 
 export default rootReducer;
