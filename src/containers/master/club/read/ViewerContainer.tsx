@@ -14,11 +14,12 @@ export default withRouter(function ViewerContainer({ match, history }) {
   // 처음 마운트 될 떄 포스트 읽기 API 요청
   const { clubId } = match.params;
   const dispatch = useDispatch();
-  const { data: club, error, loading } = useSelector(
-    ({ masterReadAsync }: RootState) => ({
+  const { data: club, error, loading, master } = useSelector(
+    ({ masterReadAsync, masterUser }: RootState) => ({
       data: masterReadAsync.club.data,
       error: masterReadAsync.club.error,
       loading: masterReadAsync.club.loading,
+      master: masterUser.user?.data,
     }),
   );
 
@@ -30,12 +31,23 @@ export default withRouter(function ViewerContainer({ match, history }) {
     };
   }, [dispatch, clubId]);
 
+  const onUpdate = () => {
+    if (club) {
+      dispatch(masterEditSetOriginalClub(club));
+      history.push('/master/edit');
+    }
+  };
+
+  const isMyClub = (master && master._id) === (club && club.Master.id);
+
+  if (!isMyClub) return <div>본인이 작성한 Club만 볼 수 있습니다.</div>;
+
   return (
     <Viewer
       club={club}
       loading={loading}
       error={error}
-      actionButtons={<ReadActionButtons />}
+      actionButtons={<ReadActionButtons onUpdate={onUpdate} />}
     />
   );
 });
