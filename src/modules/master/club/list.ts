@@ -47,7 +47,6 @@ export const masterListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       clubs: asyncState.load(),
     }),
     [MASTER_CLUB_LIST_SUCCESS]: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         clubs: asyncState.success(action.payload.data),

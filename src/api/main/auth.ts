@@ -70,3 +70,38 @@ export const mainLogout = async () => {
   const response = await api.post<MainLogoutResType>('/api/main/auth/logout');
   return response.data;
 }
+
+export type MainChangePasswordReqType = {
+  [index: string]: string;
+  email: string;
+  password: string;
+  changePassword: string;
+};
+
+export type MainChangePasswordResType = {
+  id: number;
+  email: string;
+  username: string;
+  paasword: string;
+  createAd: Date;
+  updatedAt: Date;
+};
+
+export async function mainChangePassword({
+  email,
+  password,
+  changePassword,
+}: {
+  email: string;
+  password: string;
+  changePassword: string;
+}) {
+  const response = await api.post<MainChangePasswordResType>(
+    `/api/main/auth/update`,
+    {
+      email,
+      password,
+    },
+  );
+  return response.data;
+}
