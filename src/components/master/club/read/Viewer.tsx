@@ -25,6 +25,15 @@ export default function Viewer({ club, error, loading }: ViewerType) {
           <div className={styles.masterReadWrapper}>잘못된 요청 입니다.</div>
         );
       }
+      if (error.response.status === 403) {
+        return (
+          <div className={styles.masterReadWrapper}>
+            해당 클럽을 작성한 클럽장이 아닙니다.
+            <br />
+            본인이 작성한 클럽만 확인해주세요.
+          </div>
+        );
+      }
     }
     return <div className={styles.masterReadWrapper}>오류 발생.</div>;
   }
