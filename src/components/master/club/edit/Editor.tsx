@@ -54,8 +54,8 @@ export default function Editor({ club, onChangeField }: EditorType) {
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const topicQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
   const topicQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
-  const [startDate, setStartDate] = useState<any>();
-  const [endDate, setEndDate] = useState<any>();
+  const [startDate, setStartDate] = useState<Date>();
+  const [endDate, setEndDate] = useState<Date>();
 
   const quillChange = (key: string, quill: Quill) => {
     quill.on('text-change', (delta, oldDelta, source) => {
@@ -83,6 +83,25 @@ export default function Editor({ club, onChangeField }: EditorType) {
     quillChange('description', descriptionQuillInstance.current);
     quillChange('topic', topicQuillInstance.current);
   }, [onChangeField]);
+
+  // 수정 시 기존 데이터를 화면에 출력해준다.
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    if (
+      club &&
+      summaryQuillInstance.current &&
+      descriptionQuillInstance.current &&
+      topicQuillInstance.current
+    ) {
+      summaryQuillInstance.current.root.innerHTML = club.summary;
+      descriptionQuillInstance.current.root.innerHTML = club.description;
+      topicQuillInstance.current.root.innerHTML = club.topic;
+    }
+    setStartDate(new Date(club.startDate.toString()));
+    setEndDate(new Date(club.endDate.toString()));
+  }, [club]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChangeField(e.target.name, e.target.value);

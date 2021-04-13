@@ -106,3 +106,34 @@ export async function masterClubList({ page }: MasterClubListReqType) {
   );
   return response;
 }
+
+export const masterClubUpdate = async ({
+  id,
+  title,
+  summary,
+  price,
+  place,
+  description,
+  topic,
+  startDate,
+  endDate,
+  day,
+  limitUserNumber,
+}: MasterClubEditReqType) => {
+  const response = await api.patch<MasterClubEditResType>(
+    `/api/master/club/${id}`,
+    {
+      title,
+      summary,
+      price,
+      place,
+      description,
+      topic,
+      startDate,
+      endDate,
+      day,
+      limitUserNumber,
+    },
+  );
+  return response.data;
+};
