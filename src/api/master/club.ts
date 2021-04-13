@@ -97,10 +97,11 @@ export type MasterClubListReqType = {
   page: string;
 };
 
+// list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
 export async function masterClubList({ page }: MasterClubListReqType) {
   const queryString = qs.stringify({ page });
   const response = await api.get<MasterClubListResType>(
     `/api/master/club?${queryString}`,
   );
-  return response.data;
+  return response;
 }
