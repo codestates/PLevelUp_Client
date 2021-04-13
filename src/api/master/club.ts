@@ -81,5 +81,10 @@ export type MasterClubReadResType = {
   MasterId: number;
   Master: MasterClubReadMasterType;
 };
-export const masterClubRead = (id: number) =>
-  api.get<MasterClubReadResType>(`/api/master/club/${id}`);
+
+export const masterClubRead = async (id: number) => {
+  const response = await api.get<MasterClubReadResType>(
+    `/api/master/club/${id}`,
+  );
+  return response.data;
+};

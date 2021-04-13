@@ -65,9 +65,7 @@ export const masterReadAsync = createReducer<ReadAsyncState, ReadAsyncAction>(
       ...state,
       club: asyncState.error(action.payload),
     }),
-    [MASTER_CLUB_UNLOAD_READ]: (_, __) => ({
-      club: asyncState.initial(),
-    }),
+    [MASTER_CLUB_UNLOAD_READ]: () => asyncInitialState,
   },
 );
 
