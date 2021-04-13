@@ -5,6 +5,7 @@ import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
 import LandingPage from 'pages/LandingPage';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 import ListPage from 'pages/ListPage';
 import DetailPage from 'pages/DetailPage';
 import IntroducePage from 'pages/IntroducePage';
@@ -54,6 +55,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/update" component={ChangePasswordPage} />
         <Route exact path="/master/edit" component={ClubEditPage} />
         <Route exact path="/" component={LandingPage} /> {/* 임시 */}
       </Switch>
