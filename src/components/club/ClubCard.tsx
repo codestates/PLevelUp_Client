@@ -27,8 +27,7 @@ export default function ClubCard({ club, bookmark }: any) {
     openedAt:
       '4/17' ||
       'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-    option: '온라인',
-    place: '온라인(Zoom)',
+    place: '온라인',
     price: 310000,
     weekOfSchedule: 3,
     wishedCount: 3,
@@ -57,9 +56,7 @@ export default function ClubCard({ club, bookmark }: any) {
               {tagStatus.isMostFullClub ? (
                 <Tag type="mostFull">마감임박</Tag>
               ) : null}
-              {club.place === '온라인(Zoom)' ? (
-                <Tag type="online">온라인</Tag>
-              ) : null}
+              {club.place === '온라인' ? <Tag type="online">온라인</Tag> : null}
             </div>
             <div className={styles.bookmark}>
               {bookmark ? (
@@ -78,7 +75,7 @@ export default function ClubCard({ club, bookmark }: any) {
             <div className={styles.desc}>{club.description}</div>
           </div>
           <div className={styles.scheduleBox}>
-            {`${club.option} | 첫 모임일 ${club.openedAt}(${mapToDay(
+            {`${club.place} | 첫 모임일 ${club.openedAt}(${mapToDay(
               club.dayOfSchedule,
             )})`}
           </div>
