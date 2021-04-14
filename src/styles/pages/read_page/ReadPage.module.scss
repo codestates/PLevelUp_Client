@@ -1,0 +1,38 @@
+@import '../../common/utils.scss';
+@import '../../common/basicMixin.scss';
+
+.readWrapper {
+  margin-top: 60px;
+
+  .readHead {
+    border-bottom: 1px solid gray;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 3rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+  }
+
+  .subInfo {
+    margin-top: 1rem;
+    color: gray
+  }
+;
+
+  /* span 사이에 가운뎃점 문자 보여 주기 */
+
+  span + span:before {
+    color: darkgray;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    content: '\B7'; /* 가운뎃점 문자 */
+  }
+}
+
+.readContent {
+  font-size: 1.3125rem;
+  color: dimgray;
+}
