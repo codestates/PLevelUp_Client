@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/common/ClubCard.module.scss';
 import Tag from '../common/Tag';
@@ -25,10 +25,12 @@ export default function ClubCard({ club, bookmark }: any) {
     memberCount: 1,
     name: '스타트업 DNA',
     openedAt:
+      '02' ||
       '4/17' ||
       'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
+    closedAt: '05',
     option: '온라인',
-    place: '온라인(Zoom)',
+    place: '온라인',
     price: 310000,
     weekOfSchedule: 3,
     wishedCount: 3,
@@ -38,6 +40,22 @@ export default function ClubCard({ club, bookmark }: any) {
     id: 'WISH_CLUB',
     name: '내가찜한클럽',
   };
+  //ToDO : 동적렌더링 이후 날짜 올바르게 계산하여 작동하도록 함
+  useEffect(() => {
+    console.log(club.closedAt - club.openedAt);
+    if (club.closedAt - club.openedAt < 5) {
+      setTagStatus({
+        ...tagStatus,
+        isMostFullClub: true,
+      });
+    }
+    if (13 - club.openedAt < 7) {
+      setTagStatus({
+        ...tagStatus,
+        isNewClub: true,
+      });
+    }
+  }, []);
   //* 참고용 더미데이터
   const clubDummyData = {
     imageURL: club.coverUrl || '이미지주소',
@@ -57,9 +75,7 @@ export default function ClubCard({ club, bookmark }: any) {
               {tagStatus.isMostFullClub ? (
                 <Tag type="mostFull">마감임박</Tag>
               ) : null}
-              {club.place === '온라인(Zoom)' ? (
-                <Tag type="online">온라인</Tag>
-              ) : null}
+              {club.place === '온라인' ? <Tag type="online">온라인</Tag> : null}
             </div>
             <div className={styles.bookmark}>
               {bookmark ? (
@@ -78,7 +94,7 @@ export default function ClubCard({ club, bookmark }: any) {
             <div className={styles.desc}>{club.description}</div>
           </div>
           <div className={styles.scheduleBox}>
-            {`${club.option} | 첫 모임일 ${club.openedAt}(${mapToDay(
+            {`${club.place} | 첫 모임일 ${club.openedAt}(${mapToDay(
               club.dayOfSchedule,
             )})`}
           </div>
