@@ -18,6 +18,8 @@ import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
 import HeaderContainer from './containers/common/HeaderContainer';
 import ClubEditPage from './pages/master/ClubEditPage';
+import ClubReadPage from './pages/master/ClubReadPage';
+import ClubListPage from './pages/master/ClubListPage';
 
 function App() {
   const dispatch = useDispatch();
