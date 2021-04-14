@@ -1,112 +1,74 @@
-/* footer 영역입니다. */
-
-$font-stack:  spoqa han sans neo,'sans-serif';
- 
+@import './basicMixin.scss';
 .footer {
-  
-   display: block;
+  display: block;
   margin: 0px;
   background: #f7f7f5;
   width: 100%;
-  height: 100%;
-  padding: 56px 0px 52px;
-  border: 0.5px dotted black;
-  
+  padding: 35px 0px;
 
-      .footer_container {
-      padding: 27px 20px;
+  .footerContainer {
+    padding: 27px 20px;
+    max-width: 1140px;
+    margin: 0 auto;
+
+    .flexContainer {
+      display: flex;
+      flex-direction: column;
       max-width: 1140px;
-      margin: 0 auto;
-      
-      }
-  
-        .container_flex {
-          display : flex;
-        // height: 203px;
+      width: 100%;
+      margin: 0px auto;
+
+      @include respond-to('small') {
+        display: flex;
         flex-direction: column;
-        max-width: 1140px;
         width: 100%;
-        margin: 0px auto;
+      }
+
+      .infoBox {
+        margin-left: 40px;
+        box-sizing: border-box;
+
+        @include respond-to('small') {
+          font-size: 8px;
+          width: 100%;
+          margin: 0px;
         }
-  
-          .container_list_top {
-            height: 34px;
-          font-size : 15px;
-          color: #2C2C2A;
-          justify-content:space-between;
-         
-          font-family: $font-stack;
+
+        .name {
+          font-weight: bold;
+          font-size: 16px;
+          margin-bottom: 15px;
+          color: rgba(42, 42, 44, 0.8);
+        }
+
+        .place {
+          font-size: 11px;
+          margin: 0px 0px 10px;
+          color: #6e6e6c;
+        }
+      }
+
+      .listContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 31%;
+        margin: 30px 0 0 38px;
+
+        @include respond-to('small') {
           display: flex;
-          width: 60%;
-  
-          }
-  
-            .container_list_top_menu {
-              cursor: pointer;
-              font-size: 13px;
-              color: rgba(42,42,44,0.8);
-              margin-bottom: 15px;
-            }
-  
-                .container_list_bottom {
-                  margin: 54px 0px 0px;
-                // height: 115px;
-                margin: 54px 0 0;
-                font-family: $font-stack;
-                box-sizing: border-box;
-                }
-  
-                .container_list_bottom_comName {
-                  font-weight: bold;
-                  font-size : 15px;
-                margin-bottom : 8px;
-                color: rgba(42,42,44,0.8);
-                }
-  
-                .container_list_bottom_comInfo {
-                  font-size : 11px;
-                margin : 0px 0px 10px;
-                color: #6E6E6C;
-                }
-  
-                .container_list_support {
-                  display: flex;
-                  justify-content: space-between;
-                  width: 40%;
-                  margin: 16px 0 0 0;
-                }
-  
-                .support_list_link {
-                  margin-bottom: 15px;
-                  cursor: pointer;
-                }
-                
-                .list_link_text {
-                  margin-bottom: 15px;
-                  cursor: pointer;
-                font-size: 12px;
-                color: #4E4E4C;
-                
-                }
+          justify-content: space-between;
+          max-width: 320px;
+          width: 100%;
+          margin: 16px 0 0 0;
+        }
 
-};
-
-
-
-  @media (max-width: 769px) {
-
-    .container_list_top {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: inherit;
+        .list {
+          cursor: pointer;
+          font-size: 12px;
+          color: #4e4e4c;
+        }
+      }
     }
-
-    .container_list_support {
-      display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: inherit;
-    }
-
-  };
-
- 
+  }
+}
