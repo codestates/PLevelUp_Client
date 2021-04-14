@@ -5,7 +5,7 @@ import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
 import ListPage from 'pages/ListPage';
-import DetailPage from 'pages/DetailPage';
+import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import LoginPage from 'pages/LoginPage';
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <>
-      <ScrollToTop />
+     <ScrollToTop />
       <HeaderContainer />
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
@@ -62,7 +62,7 @@ function App() {
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
-        <Route exact path="/" component={ClubListPage} /> {/* 임시 */}
+        <Route exact path="/" component={DetailPage} /> {/* 임시 */}
       </Switch>
       <Footer />
     </>
