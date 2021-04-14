@@ -29,7 +29,6 @@ export default function ClubCard({ club, bookmark }: any) {
       '4/17' ||
       'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
     closedAt: '05',
-    option: '온라인',
     place: '온라인',
     price: 310000,
     weekOfSchedule: 3,
