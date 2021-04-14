@@ -6,9 +6,11 @@ import mainUser from './user';
 import { masterEdit, masterEditAsync } from './master/club/edit';
 import { masterReadAsync } from './master/club/read';
 import masterListAsync from './master/club/list';
+import { mainReadAsync } from './club/read';
 
 const rootReducer = combineReducers({
   mainAuthAsync,
+  mainReadAsync,
   mainAuth,
   mainUser,
   masterAuthAsync,
