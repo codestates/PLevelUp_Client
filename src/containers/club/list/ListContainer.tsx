@@ -17,11 +17,7 @@ export default withRouter(function ListContainer({ location, match }) {
   );
 
   useEffect(() => {
-    let { page } = qs.parse(location.search, {
-      ignoreQueryPrefix: true,
-    });
-    page = page || '';
-    dispatch(mainListThunk({ page: page.toString() }));
+    dispatch(mainListThunk({ page: 1 }));
   }, [dispatch, location.search]);
 
   return <List loading={loading} error={error} clubs={clubs} />;

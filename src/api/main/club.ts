@@ -33,8 +33,8 @@ export const mainClubRead = async (id: number) => {
 export type MainClubListResType = MainClubReadResType[];
 
 export type MainClubListReqType = {
-  [index: string]: string;
-  page: string;
+  [index: string]: number;
+  page: number;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
