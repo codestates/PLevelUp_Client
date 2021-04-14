@@ -1,5 +1,5 @@
-import MypageForm from '../components/user/MypageForm';
+import MypageContainer from '../containers/user/MypageContainer';
 
 export default function MyPage() {
-  return <MypageForm />;
+  return <MypageContainer />;
 }
