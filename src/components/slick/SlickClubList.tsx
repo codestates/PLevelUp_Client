@@ -14,8 +14,8 @@ function SampleNextArrow(props: any) {
       style={{
         ...style,
         display: 'block',
-        background: 'white',
-        right: '-35px',
+        background: 'darkgray',
+        right: '-3%',
       }}
       onClick={onClick}
     />
@@ -25,12 +25,9 @@ function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={className}
+      className={`${className} ${styles.arrow}`}
       style={{
         ...style,
-        display: 'block',
-        background: 'white',
-        left: '-35px',
       }}
       onClick={onClick}
     />
@@ -72,6 +69,8 @@ export default function SlickClubList({ data, name }: any) {
       {
         breakpoint: 400,
         settings: {
+          arrows: false,
+          dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
         },
@@ -81,7 +80,7 @@ export default function SlickClubList({ data, name }: any) {
   return (
     <div className={styles.container}>
       <h2>{name} </h2>
-      <Slider {...settings}>
+      <Slider {...settings} className={styles.slick}>
         {data.map((club: any) => {
           return <ClubCard club={club} type="banner" />;
         })}
