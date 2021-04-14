@@ -1,4 +1,5 @@
 @import './basicMixin.scss';
+
 .card {
   //* 일반 (mobile)
   position: relative;
@@ -141,4 +142,7 @@
       }
     }
   }
+}
+.banner {
+  margin-right: 15px;
 }
