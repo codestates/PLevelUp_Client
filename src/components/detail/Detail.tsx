@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import styles from '../../styles/pages/Detail_page/DetailPage.module.scss';
-import { Mobile, PC } from "../../mediaQuery"
+import { Mobile, PC } from "../../mediaQuery";
 
 
 
@@ -158,12 +158,6 @@ export default function DetailPage() {
                         <div className={styles.infoContainer}>
                             <div className={styles.infoWrap}>
                                 <div className={styles.infoContents}>
-
-                                    <div className={styles.infoMainTitle}>
-                                        {/* 임시 더미 데이터 작성했습니다. */}
-                                            제목입니다
-                                        </div>
-
                                     <div className={styles.infoMainContents}>
                                         <div className={styles.infoMainContainer}>
                                             {/* 클럽장이 직접 쓴 글들이 한 줄씩 나열되는 영역입니다. */}
