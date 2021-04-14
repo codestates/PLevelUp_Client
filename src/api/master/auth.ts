@@ -66,10 +66,15 @@ export type MasterIsLoginResType = {
   email: string;
 };
 
-export const masterIsLogin = async () =>
-  await api.get<MasterIsLoginResType>('/api/master/auth/islogin');
-
+export const masterIsLogin = async () => {
+  const response = await api.get<MasterIsLoginResType>(
+    '/api/master/auth/islogin',
+  );
+  return response.data;
+};
 export type MasterLogoutResType = {};
 
-export const masterLogout = async () =>
-  await api.post<MasterLogoutResType>('/api/master/auth/logout');
+export const masterLogout = async () => {
+  const response = await api.post<MasterLogoutResType>('/api/master/auth/logout');
+  return response.data;
+}
