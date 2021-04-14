@@ -4,9 +4,8 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
-import ChangePasswordPage from './pages/ChangePasswordPage';
 import ListPage from 'pages/ListPage';
-import DetailPage from 'pages/DetailPage';
+import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import LoginPage from 'pages/LoginPage';
@@ -17,7 +16,11 @@ import ScrollToTop from 'containers/common/ScrollToTop';
 import MasterLoginPage from './pages/master/LoginPage';
 import MasterSignUpPage from './pages/master/SignUpPage';
 import HeaderContainer from './containers/common/HeaderContainer';
-import ClubEditPage from './pages/master/ClubEditPage';
+import MasterClubEditPage from './pages/master/ClubEditPage';
+import MasterClubReadPage from './pages/master/ClubReadPage';
+import MasterClubListPage from './pages/master/ClubListPage';
+import ClubReadPage from './pages/ClubReadPage';
+import ClubListPage from './pages/ClubListPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,21 +45,24 @@ function App() {
 
   return (
     <>
-      <ScrollToTop />
+     <ScrollToTop />
       <HeaderContainer />
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/signup" component={MasterSignUpPage} />
         <Route exact path="/list" component={ListPage} />
         <Route exact path="/detail" component={DetailPage} />
+        <Route exact path="/club/:clubId" component={ClubReadPage} />
+        <Route exact path="/club" component={ClubListPage} />
         <Route exact path="/payment" component={PaymentPage} />
         <Route exact path="/introduce" component={IntroducePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
-        <Route exact path="/update" component={ChangePasswordPage} />
-        <Route exact path="/master/edit" component={ClubEditPage} />
-        <Route exact path="/" component={ListPage} /> {/* 임시 */}
+        <Route exact path="/master/edit" component={MasterClubEditPage} />
+        <Route exact path="/master/:clubId" component={MasterClubReadPage} />
+        <Route exact path={['/master/']} component={MasterClubListPage} />
+        <Route exact path="/" component={DetailPage} /> {/* 임시 */}
       </Switch>
       <Footer />
     </>
