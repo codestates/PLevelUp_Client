@@ -13,23 +13,22 @@ $font-stack:  spoqa han sans neo,'sans-serif';
   border: 0.5px dotted black;
   
 
-      .footer_container {
+      .footerContainer {
       padding: 27px 20px;
       max-width: 1140px;
       margin: 0 auto;
       
       }
   
-        .container_flex {
+        .containerFlex {
           display : flex;
-        // height: 203px;
         flex-direction: column;
         max-width: 1140px;
         width: 100%;
         margin: 0px auto;
         }
   
-          .container_list_top {
+          .containerListTop {
             height: 34px;
           font-size : 15px;
           color: #2C2C2A;
@@ -41,14 +40,9 @@ $font-stack:  spoqa han sans neo,'sans-serif';
   
           }
   
-            .container_list_top_menu {
-              cursor: pointer;
-              font-size: 13px;
-              color: rgba(42,42,44,0.8);
-              margin-bottom: 15px;
-            }
+
   
-                .container_list_bottom {
+                .containerListBottom {
                   margin: 54px 0px 0px;
                 // height: 115px;
                 margin: 54px 0 0;
@@ -56,32 +50,32 @@ $font-stack:  spoqa han sans neo,'sans-serif';
                 box-sizing: border-box;
                 }
   
-                .container_list_bottom_comName {
+                .containerListBottomComName {
                   font-weight: bold;
                   font-size : 15px;
                 margin-bottom : 8px;
                 color: rgba(42,42,44,0.8);
                 }
   
-                .container_list_bottom_comInfo {
+                .containerListBottomComInfo {
                   font-size : 11px;
                 margin : 0px 0px 10px;
                 color: #6E6E6C;
                 }
   
-                .container_list_support {
+                .containerListSupport {
                   display: flex;
                   justify-content: space-between;
                   width: 40%;
                   margin: 16px 0 0 0;
                 }
   
-                .support_list_link {
+                .supportListLink {
                   margin-bottom: 15px;
                   cursor: pointer;
                 }
                 
-                .list_link_text {
+                .listLinkText {
                   margin-bottom: 15px;
                   cursor: pointer;
                 font-size: 12px;
@@ -95,16 +89,16 @@ $font-stack:  spoqa han sans neo,'sans-serif';
 
   @media (max-width: 769px) {
 
-    .container_list_top {
+    .containerListTop {
       display: grid;
       grid-template-columns: 1fr 1fr;
       width: inherit;
     }
 
-    .container_list_support {
+    .containerListSupport {
       display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: inherit;
+      grid-template-columns: 1fr 1fr;
+      width: inherit;
     }
 
   };
