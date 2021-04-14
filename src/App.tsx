@@ -6,7 +6,7 @@ import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
 import ChangePasswordPage from './pages/ChangePasswordPage';
 import ListPage from 'pages/ListPage';
-import DetailPage from 'pages/DetailPage';
+import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import LoginPage from 'pages/LoginPage';
@@ -56,7 +56,7 @@ function App() {
         <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/update" component={ChangePasswordPage} />
         <Route exact path="/master/edit" component={ClubEditPage} />
-        <Route exact path="/" component={ListPage} /> {/* 임시 */}
+        <Route exact path="/" component={DetailPage} /> {/* 임시로 '/'로 해놓았습니다.*/}
       </Switch>
       <Footer />
     </>
