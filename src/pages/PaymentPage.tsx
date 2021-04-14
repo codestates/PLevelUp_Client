@@ -1,7 +1,5 @@
-import React from 'react';
+import PaymentTemplate from '../components/payment/PaymentTemplate';
 
-const PaymentPage = () => {
-  return <div> 결제페이지 </div>;
-};
-
-export default PaymentPage;
+export default function PaymentPage() {
+  return <PaymentTemplate />;
+}

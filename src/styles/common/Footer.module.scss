@@ -1,106 +1,75 @@
-/* footer 영역입니다. */
+@import './basicMixin.scss';
 
-$font-stack:  spoqa han sans neo,'sans-serif';
- 
 .footer {
-  
-   display: block;
+  display: block;
   margin: 0px;
   background: #f7f7f5;
   width: 100%;
-  height: 100%;
-  padding: 56px 0px 52px;
-  border: 0.5px dotted black;
-  
+  padding: 35px 0px;
 
-      .footerContainer {
-      padding: 27px 20px;
+  .footerContainer {
+    padding: 27px 20px;
+    max-width: 1140px;
+    margin: 0 auto;
+
+    .flexContainer {
+      display: flex;
+      flex-direction: column;
       max-width: 1140px;
-      margin: 0 auto;
-      
-      }
-  
-        .containerFlex {
-          display : flex;
+      width: 100%;
+      margin: 0px auto;
+
+      @include respond-to('small') {
+        display: flex;
         flex-direction: column;
-        max-width: 1140px;
         width: 100%;
-        margin: 0px auto;
+      }
+
+      .infoBox {
+        margin-left: 40px;
+        box-sizing: border-box;
+
+        @include respond-to('small') {
+          font-size: 8px;
+          width: 100%;
+          margin: 0px;
         }
-  
-          .containerListTop {
-            height: 34px;
-          font-size : 15px;
-          color: #2C2C2A;
-          justify-content:space-between;
-         
-          font-family: $font-stack;
+
+        .name {
+          font-weight: bold;
+          font-size: 16px;
+          margin-bottom: 15px;
+          color: rgba(42, 42, 44, 0.8);
+        }
+
+        .place {
+          font-size: 11px;
+          margin: 0px 0px 10px;
+          color: #6e6e6c;
+        }
+      }
+
+      .listContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 31%;
+        margin: 30px 0 0 38px;
+
+        @include respond-to('small') {
           display: flex;
-          width: 60%;
-  
-          }
-  
+          justify-content: space-between;
+          max-width: 320px;
+          width: 100%;
+          margin: 16px 0 0 0;
+        }
 
-  
-                .containerListBottom {
-                  margin: 54px 0px 0px;
-                // height: 115px;
-                margin: 54px 0 0;
-                font-family: $font-stack;
-                box-sizing: border-box;
-                }
-  
-                .containerListBottomComName {
-                  font-weight: bold;
-                  font-size : 15px;
-                margin-bottom : 8px;
-                color: rgba(42,42,44,0.8);
-                }
-  
-                .containerListBottomComInfo {
-                  font-size : 11px;
-                margin : 0px 0px 10px;
-                color: #6E6E6C;
-                }
-  
-                .containerListSupport {
-                  display: flex;
-                  justify-content: space-between;
-                  width: 40%;
-                  margin: 16px 0 0 0;
-                }
-  
-                .supportListLink {
-                  margin-bottom: 15px;
-                  cursor: pointer;
-                }
-                
-                .listLinkText {
-                  margin-bottom: 15px;
-                  cursor: pointer;
-                font-size: 12px;
-                color: #4E4E4C;
-                
-                }
-
-};
-
-
-
-  @media (max-width: 769px) {
-
-    .containerListTop {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: inherit;
+        .list {
+          cursor: pointer;
+          font-size: 12px;
+          color: #4e4e4c;
+        }
+      }
     }
-
-    .containerListSupport {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: inherit;
-    }
-
-  };
-
- 
+  }
+}
