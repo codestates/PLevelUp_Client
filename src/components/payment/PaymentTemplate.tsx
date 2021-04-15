@@ -4,7 +4,7 @@ import { IoIosCheckbox } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';
 
-export default function PaymentTemplate() {
+export default function PaymentTemplate({ club, onPay }: any) {
   return (
     <div>
       <div className={styles.desktopContainer}>
@@ -23,7 +23,7 @@ export default function PaymentTemplate() {
                     </div>
                   </div>
                   <div className={styles.compactClub}>
-                    <div className={styles.badge}>신청하신 클럽</div>
+                    <div className={styles.badge}>{club.title}</div>
                     <div className={styles.clubName}> 취향의 자립(props)</div>
                     <div className={styles.clubTime}>
                       <span className={styles.calendar}>
@@ -121,7 +121,7 @@ export default function PaymentTemplate() {
                         <div className={styles.formCheck}>
                           <input
                             type="radio"
-                            value="cash"
+                            value="vbank"
                             name="selectMethod"
                           ></input>
                           계좌이체 (가상계좌)
@@ -145,7 +145,11 @@ export default function PaymentTemplate() {
                       </div>
                     </div>
                     <div className={styles.btnContainer}>
-                      <button type="button" className={styles.paymentBtn}>
+                      <button
+                        type="button"
+                        className={styles.paymentBtn}
+                        onClick={onPay}
+                      >
                         <div>(props)원 결제하기</div>
                       </button>
                     </div>
@@ -284,7 +288,7 @@ export default function PaymentTemplate() {
                       <div className={styles.formCheck}>
                         <input
                           type="radio"
-                          value="cash"
+                          value="vbank"
                           name="selectMethod"
                         ></input>
                         계좌이체 (가상계좌)
