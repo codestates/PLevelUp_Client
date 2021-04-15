@@ -43,3 +43,20 @@ $blue: #339af0;
   }
 
 }
+
+.loading {
+  text-align: center;
+  img {
+    width: 200px;
+  }
+}
+.goToTop {
+  text-align: center;
+  margin-top:5px;
+  margin-bottom: 5px;
+  svg {
+    &:hover {
+      cursor:pointer;
+    }
+  }
+}
