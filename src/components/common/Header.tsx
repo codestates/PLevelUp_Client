@@ -69,6 +69,7 @@ export default function Header({ user, onLogout }: any) {
               <Link to="/introduce">프로그램 소개</Link>
             </li>
             <hr />
+            {user && <div>{user.username} </div>}
             {user ? (
               <li className={styles.pcVerIcon} onClick={handleMypageOpen}>
                 <FaUserCircle
