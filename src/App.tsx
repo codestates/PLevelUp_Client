@@ -57,7 +57,7 @@ function App() {
         <Route exact path="/introduce" component={IntroducePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
-        <Route exact path="/MyPage" component={MyPage} />
+        <Route exact path="/mypage" component={MyPage} />
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
