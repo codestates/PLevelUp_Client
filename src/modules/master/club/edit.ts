@@ -62,7 +62,7 @@ export const masterClubUnloadEdit = createAction(MASTER_CLUB_UNLOAD_EDIT)();
 // 액션 생성 함수
 type ChangeFieldProps = {
   key: string;
-  value: string | Date | number;
+  value: string | Date | number | File;
 };
 
 export const masterEditInitialize = createAction(MASTER_EDIT_INITIALIZE)();
@@ -110,6 +110,8 @@ const initialState: EditState = {
     endDate: new Date(),
     day: '',
     limitUserNumber: 1,
+    coverImg: null,
+    coverUrl: null,
   },
 };
 
@@ -160,6 +162,10 @@ export const masterEdit = createReducer<EditState, EditAction>(initialState, {
       draft['club']['endDate'] = club.endDate;
       draft['club']['day'] = club.day;
       draft['club']['limitUserNumber'] = club.limitUserNumber;
+      if (club.coverImg) {
+        draft['club']['coverImg'] = club.coverImg;
+      }
+      draft['club']['coverUrl'] = club.coverUrl;
     }),
 });
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/common/ClubCard.module.scss';
 import { Link } from 'react-router-dom';
-import Tag from '../common/Tag';
+import Tag from './Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import { MainClubReadResType } from '../../api/main/club';
 
 type ClubCardPropsType = {
   club: MainClubReadResType;
-  bookmark: any;
+  bookmark: any | null; // null은 master에서 사용
 };
 
 export default function ClubCard({ club, bookmark }: ClubCardPropsType) {

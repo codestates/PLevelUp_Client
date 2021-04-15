@@ -46,6 +46,7 @@ export default function Viewer({ club, error, loading }: ViewerType) {
     day,
     limitUserNumber,
     Master: master,
+    coverUrl,
     createdAt,
     updatedAt,
   } = club;
@@ -53,6 +54,7 @@ export default function Viewer({ club, error, loading }: ViewerType) {
   return (
     <div className={styles.readWrapper}>
       <div className={styles.readHead}>
+        <img src={coverUrl} width={400} height={300} alt="coverUrl" />
         <h1>{title}</h1>
         <div className={styles.subInfo}>
           <span>

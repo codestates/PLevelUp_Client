@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SlickBanner from '../../components/slick/SlickBanner';
+import SlickBanner from '../../components/landing/SlickBanner';
 
 export default function SlickBannerContainer() {
   const [banner, setBanner] = useState([

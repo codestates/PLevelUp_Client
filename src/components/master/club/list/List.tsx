@@ -11,9 +11,10 @@ type ListItemType = {
 };
 
 const ListItem = ({ club }: ListItemType) => {
-  const { title, id, createdAt, summary, Master: master } = club;
+  const { title, id, createdAt, coverUrl,summary, Master: master } = club;
   return (
     <div className={styles.listItemBlock}>
+      <img src={coverUrl} alt="coverUrl" width={400} height={300} />
       <h2>
         <Link to={`/master/${id}`}>{title}</Link>
       </h2>

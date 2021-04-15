@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from '../../styles/pages/my_page/Mypage.module.scss';
+import styles from '../../styles/pages/my_page/MyPage.module.scss';
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
@@ -10,7 +10,7 @@ export default function MyPageForm({ user, onLogout }: any) {
   return (
     <>
       <div className="wrapper">
-        <div className={styles.mypage}>
+        <div className={styles.MyPage}>
           <div className={styles.userWrapper}>
             <div className={styles.userInfo}>
               <div className={styles.userInfoTop}>

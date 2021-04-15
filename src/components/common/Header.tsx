@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import styles from '../../styles/common/Header.module.scss';
 
+// TODO: 민정 any 대신 타입 지정 할 것, 메인 유저 마스터 유저 구분하여 다른 헤더로 구성할 것
 export default function Header({ user, onLogout }: any) {
-  const [isMypageOpen, setIsMypageOpen] = useState(false);
+  const [isMyPageOpen, setIsMyPageOpen] = useState(false);
   const [isHeaderShow, setIsHeaderShow] = useState(true);
 
-  const handleMypageOpen = () => {
-    setIsMypageOpen(!isMypageOpen);
+  const handleMyPageOpen = () => {
+    setIsMyPageOpen(!isMyPageOpen);
   };
 
   const handleScroll = () => {
@@ -62,16 +63,15 @@ export default function Header({ user, onLogout }: any) {
           </div>
           <ul className={styles.menuList}>
             <li>
-              <Link to="/list">모든 클럽 보기</Link>
+              <Link to="/club">모든 클럽 보기</Link>
             </li>
             <hr />
             <li>
               <Link to="/introduce">프로그램 소개</Link>
             </li>
             <hr />
-            {user && <div>{user.username} </div>}
             {user ? (
-              <li className={styles.pcVerIcon} onClick={handleMypageOpen}>
+              <li className={styles.pcVerIcon} onClick={handleMyPageOpen}>
                 <FaUserCircle
                   size="20"
                   color="#c5c5c5"
@@ -79,9 +79,9 @@ export default function Header({ user, onLogout }: any) {
                 />
                 <div
                   className={
-                    isMypageOpen
-                      ? `${styles.mypageContainer}`
-                      : `${styles.mypageNone}`
+                    isMyPageOpen
+                      ? `${styles.MyPageContainer}`
+                      : `${styles.MyPageNone}`
                   }
                 >
                   <div className={styles.dropDown}>
@@ -93,7 +93,7 @@ export default function Header({ user, onLogout }: any) {
                 </div>
               </li>
             ) : (
-              <li className={styles.pcVerIcon} onClick={handleMypageOpen}>
+              <li className={styles.pcVerIcon} onClick={handleMyPageOpen}>
                 <FaUserCircle
                   size="20"
                   color="#c5c5c5"
@@ -101,9 +101,9 @@ export default function Header({ user, onLogout }: any) {
                 />
                 <div
                   className={
-                    isMypageOpen
-                      ? `${styles.mypageContainer}`
-                      : `${styles.mypageNone}`
+                    isMyPageOpen
+                      ? `${styles.MyPageContainer}`
+                      : `${styles.MyPageNone}`
                   }
                 >
                   <div className={styles.dropDown}>
