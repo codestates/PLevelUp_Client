@@ -64,6 +64,7 @@ export async function masterSignUp({
 export type MasterIsLoginResType = {
   _id: number;
   email: string;
+  username: string;
 };
 
 export const masterIsLogin = async () => {
@@ -75,6 +76,8 @@ export const masterIsLogin = async () => {
 export type MasterLogoutResType = {};
 
 export const masterLogout = async () => {
-  const response = await api.post<MasterLogoutResType>('/api/master/auth/logout');
+  const response = await api.post<MasterLogoutResType>(
+    '/api/master/auth/logout',
+  );
   return response.data;
-}
+};
