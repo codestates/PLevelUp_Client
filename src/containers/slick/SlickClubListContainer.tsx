@@ -1,125 +1,72 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../modules';
+import { mainListThunk } from '../../modules/club/list';
 import SlickClubList from '../../components/slick/SlickClubList';
+import { MainClubListResType } from 'api/main/club';
 
 export default function SlickClubListContainer() {
-  const [curations, setCurations] = useState([
+  const dispatch = useDispatch();
+  const { clubs, error, loading } = useSelector(
+    ({ mainListAsync }: RootState) => ({
+      clubs: mainListAsync.clubs.data,
+      error: mainListAsync.clubs.error,
+      loading: mainListAsync.clubs.loading,
+    }),
+  );
+  useEffect(() => {
+    dispatch(mainListThunk({ page: 1 }));
+    console.log(curations);
+    setCurations(
+      curations.map(
+        (curation: { clubs: MainClubListResType | null; name: string }) => {
+          return {
+            ...curation,
+            clubs: clubs || [],
+          };
+        },
+      ),
+    );
+  }, [dispatch]);
+
+  //ToDO 2개가 독립적으로 왜 안되는 지 모르겠다..
+  // useEffect(() => {
+  //   dispatch(mainListThunk({ page: 1 }));
+  //   setCurations(
+  //     curations.map(
+  //       (curation: { clubs: MainClubListResType | null; name: string }) => {
+  //         console.log(curations);
+  //         return curation.name === '4명이서 만나요'
+  //           ? {
+  //               ...curation,
+  //               clubs: clubs,
+  //             }
+  //           : curation;
+  //       },
+  //     ),
+  //   );
+  // }, [dispatch]);
+  const [curations, setCurations] = useState<any>([
     {
-      clubs: [
-        {
-          description: '스타트업에서 빠르게 성장하는 사람들의 비밀',
-          coverUrl:
-            'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-          dayOfSchedule: 6,
-          // leaderTitle: '와디즈 CSO 황인범 님의' || null,
-          maxMemberCount: 20,
-          memberCount: 1,
-          name: '스타트업 DNA',
-          openedAt:
-            '4/17' ||
-            'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-          place: '온라인',
-          price: 310000,
-        },
-        {
-          description: '22스타트업에서 빠르게 성장하는 사람들의 비밀',
-          coverUrl:
-            'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-          dayOfSchedule: 6,
-          leaderTitle: '와디즈 CSO 황인범 님의',
-          maxMemberCount: 20,
-          memberCount: 1,
-          name: '스타트업 DNA',
-          openedAt:
-            '4/17' ||
-            'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-          place: '온라인',
-          price: 310000,
-        },
-        {
-          description: '33스타트업에서 빠르게 성장하는 사람들의 비밀',
-          coverUrl:
-            'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-          dayOfSchedule: 6,
-          leaderTitle: '와디즈 CSO 황인범 님의',
-          maxMemberCount: 20,
-          memberCount: 1,
-          name: '스타트업 DNA',
-          openedAt:
-            '4/17' ||
-            'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-          place: '온라인',
-          price: 310000,
-          weekOfSchedule: 3,
-          wishedCount: 3,
-        },
-      ],
+      clubs: [],
       name: '온라인에서 만나요',
     },
     {
-      clubs: [
-        {
-          description: '스타트업에서 빠르게 성장하는 사람들의 비밀',
-          coverUrl:
-            'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-          dayOfSchedule: 6,
-          leaderTitle: '와디즈 CSO 황인범 님의',
-          maxMemberCount: 20,
-          memberCount: 1,
-          name: '스타트업 DNA',
-          openedAt:
-            '4/17' ||
-            'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-          option: '온라인',
-          place: '온라인(Zoom)',
-          price: 310000,
-          weekOfSchedule: 3,
-          wishedCount: 3,
-        },
-        {
-          description: '22스타트업에서 빠르게 성장하는 사람들의 비밀',
-          coverUrl:
-            'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-          dayOfSchedule: 6,
-          leaderTitle: '와디즈 CSO 황인범 님의',
-          maxMemberCount: 20,
-          memberCount: 1,
-          name: '스타트업 DNA',
-          openedAt:
-            '4/17' ||
-            'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-          option: '온라인',
-          place: '온라인(Zoom)',
-          price: 310000,
-          weekOfSchedule: 3,
-          wishedCount: 3,
-        },
-        {
-          description: '33스타트업에서 빠르게 성장하는 사람들의 비밀',
-          coverUrl:
-            'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-          dayOfSchedule: 6,
-          leaderTitle: '와디즈 CSO 황인범 님의',
-          maxMemberCount: 20,
-          memberCount: 1,
-          name: '스타트업 DNA',
-          openedAt:
-            '4/17' ||
-            'Fri Mar 12 2021 02:00:00 GMT+0000 (Coordinated Universal Time)',
-          option: '온라인',
-          place: '온라인(Zoom)',
-          price: 310000,
-          weekOfSchedule: 3,
-          wishedCount: 3,
-        },
-      ],
+      clubs: [],
       name: '4명이서 만나요',
     },
   ]);
   return (
     <>
-      {curations.map(curation => {
-        return <SlickClubList data={curation.clubs} name={curation.name} />;
-      })}
+      {loading ? (
+        <div>로딩중</div>
+      ) : (
+        curations?.map(
+          (curation: { clubs: MainClubListResType | null; name: string }) => {
+            return <SlickClubList data={curation.clubs} name={curation.name} />;
+          },
+        )
+      )}
     </>
   );
 }
