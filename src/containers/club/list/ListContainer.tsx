@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import qs from 'qs';
 import { withRouter } from 'react-router-dom';
 import { RootState } from '../../../modules';
 import List from '../../../components/club/list/List';
@@ -16,9 +15,16 @@ export default withRouter(function ListContainer({ location, match }) {
     }),
   );
 
+  const bookmark = null;
   useEffect(() => {
     dispatch(mainListThunk({ page: 1 }));
   }, [dispatch, location.search]);
 
-  return <List loading={loading} error={error} clubs={clubs} />;
+  useEffect(() => {
+    dispatch(mainListThunk({ page: 1 }));
+  }, [dispatch, location.search]);
+
+  return (
+    <List loading={loading} error={error} clubs={clubs} bookmark={bookmark} />
+  );
 });

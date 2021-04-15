@@ -1,5 +1,5 @@
 @import '../../common/utils.scss';
-@import '../../common//basicMixin.scss';
+@import '../../common/basicMixin.scss';
 
 .container {
   margin: 0 auto;
@@ -14,6 +14,7 @@
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
+
     .img {
       vertical-align: middle;
       border-style: none;

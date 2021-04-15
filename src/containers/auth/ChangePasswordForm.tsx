@@ -77,7 +77,7 @@ export default withRouter(function ChangePasswordForm({ history }) {
 
   useEffect(() => {
     if (user) {
-      history.push('/mypage');
+      history.push('/MyPage');
       try {
         localStorage.setItem('main', JSON.stringify(user));
       } catch (e) {

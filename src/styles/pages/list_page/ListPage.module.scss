@@ -1,5 +1,5 @@
 @import '../../common/utils.scss';
-@import '../../common//basicMixin.scss';
+@import '../../common/basicMixin.scss';
 $white: #ffffff; //변수명사용
 $blue: #339af0;
 
@@ -14,4 +14,32 @@ $blue: #339af0;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: $blue;
+
+  h1 {
+    margin-top:60px;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; //가로 전체넓이를 다 쓰도록
+    grid-template-rows: auto; // 높이는 자동으로
+    grid-gap: 10px; // 그리드 사이 간격
+
+    @include respond-to('large') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include respond-to('medium') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include respond-to('small') {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include respond-to('x-small') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
 }

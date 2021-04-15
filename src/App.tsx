@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
-import ListPage from 'pages/ListPage';
 import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
@@ -51,7 +50,6 @@ function App() {
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/signup" component={MasterSignUpPage} />
-        <Route exact path="/list" component={ListPage} />
         <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/club/:clubId" component={ClubReadPage} />
         <Route exact path="/club" component={ClubListPage} />
@@ -59,7 +57,7 @@ function App() {
         <Route exact path="/introduce" component={IntroducePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
-        <Route exact path="/mypage" component={MyPage} />
+        <Route exact path="/MyPage" component={MyPage} />
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
