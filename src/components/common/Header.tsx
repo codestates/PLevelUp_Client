@@ -85,7 +85,7 @@ export default function Header({ user, onLogout }: any) {
                   }
                 >
                   <div className={styles.dropDown}>
-                    <Link to="/MyPage">마이페이지</Link>
+                    <Link to="/mypage">마이페이지</Link>
                   </div>
                   <div className={styles.dropDown} onClick={onLogout}>
                     로그아웃
