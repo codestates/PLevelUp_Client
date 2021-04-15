@@ -58,7 +58,7 @@ export default function SlickBanner({ data }: any) {
       <Slider {...settings} className={styles.slider}>
         {data.map((banner: any) => {
           return (
-            <div className={styles.imgBox}>
+            <div className={styles.imgBox} key={banner.id}>
               <Link to="/list">
                 <img className={styles.img} src={banner.url} />
               </Link>

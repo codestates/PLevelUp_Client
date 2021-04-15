@@ -21,6 +21,7 @@ import MasterClubReadPage from './pages/master/ClubReadPage';
 import MasterClubListPage from './pages/master/ClubListPage';
 import ClubReadPage from './pages/ClubReadPage';
 import ClubListPage from './pages/ClubListPage';
+import LandingPage from 'pages/LandingPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ function App() {
 
   return (
     <>
-     <ScrollToTop />
+      <ScrollToTop />
       <HeaderContainer />
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
@@ -62,7 +63,7 @@ function App() {
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
-        <Route exact path="/" component={DetailPage} /> {/* 임시 */}
+        <Route exact path="/" component={LandingPage} /> {/* 임시 */}
       </Switch>
       <Footer />
     </>

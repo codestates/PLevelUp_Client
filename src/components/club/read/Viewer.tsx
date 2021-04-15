@@ -67,6 +67,10 @@ export default function Viewer({ club, error, loading }: ViewerType) {
         <div>{price}</div>
         <div>{day}</div>
         <div>{startDate}</div>
+        {console.log(
+          (new Date(endDate).getTime() - new Date(startDate).getTime()) /
+            (1000 * 60 * 60 * 24),
+        )}
         <div>{endDate}</div>
         <div>{limitUserNumber}</div>
       </div>

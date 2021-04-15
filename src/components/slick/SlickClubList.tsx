@@ -14,8 +14,8 @@ function SampleNextArrow(props: any) {
       style={{
         ...style,
         display: 'block',
-        background: 'darkgray',
-        right: '-3%',
+        background: '#ffd7d2',
+        right: '-35px',
       }}
       onClick={onClick}
     />
@@ -25,16 +25,19 @@ function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={`${className} ${styles.arrow}`}
+      className={className}
       style={{
         ...style,
+        display: 'block',
+        background: '#ffd7d2',
+        left: '-35px',
       }}
       onClick={onClick}
     />
   );
 }
 
-export default function SlickClubList({ data, name }: any) {
+export default function SlickClubList({ data, name, bookmark }: any) {
   const settings = {
     dots: false,
     infinite: true,
@@ -60,7 +63,7 @@ export default function SlickClubList({ data, name }: any) {
         breakpoint: 769,
         settings: {
           arrows: false,
-          dots: true,
+          dots: false,
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
@@ -69,8 +72,6 @@ export default function SlickClubList({ data, name }: any) {
       {
         breakpoint: 400,
         settings: {
-          arrows: false,
-          dots: false,
           slidesToShow: 1,
           slidesToScroll: 1,
         },
@@ -80,15 +81,9 @@ export default function SlickClubList({ data, name }: any) {
   return (
     <div className={styles.container}>
       <h2>{name} </h2>
-      <Slider {...settings} className={styles.slick}>
+      <Slider {...settings}>
         {data.map((club: any) => {
-          return <ClubCard club={club} type="banner" />;
-        })}
-        {data.map((club: any) => {
-          return <ClubCard club={club} type="banner" />;
-        })}
-        {data.map((club: any) => {
-          return <ClubCard club={club} type="banner" />;
+          return <ClubCard club={club} key={club.id} bookmark={bookmark} />;
         })}
       </Slider>
     </div>
