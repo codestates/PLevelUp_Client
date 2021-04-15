@@ -58,18 +58,19 @@ export async function mainSignUp({
 export type MainIsLoginResType = {
   _id: number;
   email: string;
+  username: string;
 };
 
 export const mainIsLogin = async () => {
   const response = await api.get<MainIsLoginResType>('/api/main/auth/islogin');
   return response.data;
-}
+};
 export type MainLogoutResType = {};
 
 export const mainLogout = async () => {
   const response = await api.post<MainLogoutResType>('/api/main/auth/logout');
   return response.data;
-}
+};
 
 export type MainChangePasswordReqType = {
   [index: string]: string;
