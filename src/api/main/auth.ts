@@ -83,7 +83,7 @@ export type MainChangePasswordResType = {
   id: number;
   email: string;
   username: string;
-  paasword: string;
+  password: string;
   createAd: Date;
   updatedAt: Date;
 };
