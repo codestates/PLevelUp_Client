@@ -4,13 +4,26 @@ import { Link } from 'react-router-dom';
 import Tag from '../common/Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import { MainClubReadResType } from '../../api/main/club';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../modules';
+import { withRouter } from 'react-router-dom';
+import {
+  bookmarkThunk,
+  // cancelBookmarkThunk,
+} from '../../modules/club/list'; //TODO
 
 type ClubCardPropsType = {
   club: MainClubReadResType;
-  bookmark: any;
 };
 
-export default function ClubCard({ club, bookmark }: ClubCardPropsType) {
+export default function ClubCard({ club }: ClubCardPropsType) {
+  const dispatch = useDispatch();
+  const { data: user } = useSelector(({ mainUser }: RootState) => ({
+    data: mainUser.user?.data,
+  }));
+  const isBookmark = club.Bookmarkers.find(
+    (el: { id: number }) => el.id === user?._id,
+  );
   const [tagStatus, setTagStatus] = useState({
     isNewClub: false, //* New type='new'
     isFullClub: false, //TODO 마감
@@ -34,7 +47,26 @@ export default function ClubCard({ club, bookmark }: ClubCardPropsType) {
       'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
   };
 
+  const onBookmark = () => {
+    if (!user?._id) {
+      // history.push('/login');
+      return alert('로그인이 필요해요'); //TODO: withRouter, history.push('/login')
+    }
+    // dispatch() //액션
+    dispatch(bookmarkThunk(club.id)); //TODO
+  };
+  const onCancelBookmark = () => {
+    if (!user?._id) {
+      return alert('로그인이 필요해요'); //TODO: withRouter, history.push('/login')
+    }
+    // dispatch() //액션
+    // dispatch(cancelBookmarkThunk({ club.id })); //TODO
+  };
   useEffect(() => {
+    console.log(club.id);
+    console.log(user?._id);
+    console.log(club.Bookmarkers);
+    console.log(isBookmark);
     if (dayToClose < 5) {
       setTagStatus({
         ...tagStatus,
@@ -77,10 +109,13 @@ export default function ClubCard({ club, bookmark }: ClubCardPropsType) {
               {club.place === '온라인' ? <Tag type="online">온라인</Tag> : null}
             </div>
             <div className={styles.bookmark}>
-              {bookmark ? (
-                <FaBookmark className={styles.icon} />
+              {isBookmark ? (
+                <FaBookmark className={styles.icon} onClick={onBookmark} />
               ) : (
-                <FaRegBookmark className={styles.icon} />
+                <FaRegBookmark
+                  className={styles.icon}
+                  onClick={onCancelBookmark}
+                />
               )}
             </div>
           </div>
@@ -101,6 +136,11 @@ export default function ClubCard({ club, bookmark }: ClubCardPropsType) {
           </div>
         </div>
       </Link>
+      {isBookmark ? (
+        <FaBookmark className={styles.icon} onClick={onBookmark} />
+      ) : (
+        <FaRegBookmark className={styles.icon} onClick={onBookmark} />
+      )}
     </div>
   );
 }

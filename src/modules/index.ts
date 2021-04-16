@@ -8,6 +8,7 @@ import { masterReadAsync } from './master/club/read';
 import masterListAsync from './master/club/list';
 import { mainReadAsync } from './club/read';
 import mainListAsync from './club/list';
+// import BookmarkReducer from './club/list'
 
 const rootReducer = combineReducers({
   mainAuthAsync,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   masterEdit,
   masterReadAsync,
   masterListAsync,
+  // BookmarkReducer,
 });
 
 export default rootReducer;

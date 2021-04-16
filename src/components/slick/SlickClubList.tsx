@@ -83,7 +83,7 @@ export default function SlickClubList({ data, name, bookmark }: any) {
       <h2>{name} </h2>
       <Slider {...settings}>
         {data.map((club: any) => {
-          return <ClubCard club={club} key={club.id} bookmark={bookmark} />;
+          return <ClubCard club={club} key={club.id} />;
         })}
       </Slider>
     </div>

@@ -8,15 +8,9 @@ type ClubListPropsType = {
   clubs: MainClubListResType | null;
   error: AxiosError | null;
   loading: boolean;
-  bookmark: any;
 };
 
-export default function ClubList({
-  loading,
-  error,
-  clubs,
-  bookmark,
-}: ClubListPropsType) {
+export default function ClubList({ loading, error, clubs }: ClubListPropsType) {
   if (error) {
     return (
       <div>
@@ -32,7 +26,7 @@ export default function ClubList({
       ) : (
         <div className={styles.container}>
           {clubs?.map(club => {
-            return <ClubCard club={club} key={club.id} bookmark={bookmark} />;
+            return <ClubCard club={club} key={club.id} />;
           })}
         </div>
       )}

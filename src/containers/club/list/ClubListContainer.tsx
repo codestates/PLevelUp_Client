@@ -15,17 +15,8 @@ export default withRouter(function ListContainer({ location }) {
       loading: mainListAsync.clubs.loading,
     }),
   );
-  const bookmark = null;
   useEffect(() => {
     dispatch(mainListThunk({ page: 1 }));
   }, [dispatch, location.search]);
-
-  return (
-    <ClubList
-      loading={loading}
-      error={error}
-      clubs={clubs}
-      bookmark={bookmark}
-    />
-  );
+  return <ClubList loading={loading} error={error} clubs={clubs} />;
 });
