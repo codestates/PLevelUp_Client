@@ -1,7 +1,12 @@
 import createAsyncThunk, {
   createRequestActionTypes,
 } from '../../lib/createAsyncThunk';
-import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions';
+import {
+  ActionType,
+  createAction,
+  createAsyncAction,
+  createReducer,
+} from 'typesafe-actions';
 import { AxiosError } from 'axios';
 import { AsyncState, asyncState } from '../../lib/reducerUtils';
 import {
@@ -30,7 +35,10 @@ const [
   CANCEL_BOOKMARK_CLUB,
   CANCEL_BOOKMARK_CLUB_SUCCESS,
   CANCEL_BOOKMARK_CLUB_FAILURE,
-] = createRequestActionTypes('main-bookmark/CANCEL_BOOKMARK_CLUB'); // 북마크 추가하기
+] = createRequestActionTypes('main-bookmark/CANCEL_BOOKMARK_CLUB'); // 북마크 취소하기
+
+// 액션 타입
+const MAIN_CLUB_UNLOAD_LIST = 'main-list/MAIN_CLUB_UNLOAD_LIST';
 
 // async 생성 함수
 export const mainClubListAsync = createAsyncAction(
@@ -51,11 +59,15 @@ export const cancelBookmarkAsync = createAsyncAction(
   CANCEL_BOOKMARK_CLUB_FAILURE,
 )<any, BookmarkResType, AxiosError>(); //TODO payload type , response type
 
+// 액션 생성함수
+export const mainClubUnloadList = createAction(MAIN_CLUB_UNLOAD_LIST);
+
 // async 액션
 const asyncActions = {
   mainClubListAsync,
   bookmarkAsync,
   cancelBookmarkAsync,
+  mainClubUnloadList,
 };
 type ListAsyncAction = ActionType<typeof asyncActions>;
 
@@ -76,20 +88,18 @@ export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       ...state,
       clubs: asyncState.load(),
     }),
-    [MAIN_CLUB_LIST_SUCCESS]: (state, action) => {
-      console.log(action.payload);
-      return {
-        ...state,
-        clubs: asyncState.success(action.payload.data),
-        lastPage: parseInt(action.payload.headers['last-page'], 10), // 문자열을 숫자로 변환
-      };
-    },
+    [MAIN_CLUB_LIST_SUCCESS]: (state, action) => ({
+      ...state,
+      clubs: asyncState.success(action.payload.data),
+      lastPage: parseInt(action.payload.headers['last-page'], 10), // 문자열을 숫자로 변환
+    }),
     [MAIN_CLUB_LIST_FAILURE]: (state, action) => ({
       ...state,
       clubs: asyncState.error(action.payload),
     }),
     [BOOKMARK_CLUB]: (state, action) => {
-      console.log(state); //초기state값 확인
+      //TODO: console과 주석은 리뷰시 도움이 조금이라도 되시라고 상세히 남겼습니다. 추후 필요한 부분만 남길예정
+      console.log(state); //초기 state값은 리스트로 받아온 clubs가 들어와있는 상태
       return {
         ...state,
         clubs: asyncState.load(state.clubs.data), //Bookmark 액션의 초기 상태는 club_list가 실행된 상태의 클럽들이다.
@@ -120,10 +130,9 @@ export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       };
     },
     [CANCEL_BOOKMARK_CLUB]: (state, action) => {
-      console.log(state); //초기state값 확인
       return {
         ...state,
-        clubs: asyncState.load(state.clubs.data), //Bookmark 액션의 초기 상태는 club_list가 실행된 상태의 클럽들이다.
+        clubs: asyncState.load(state.clubs.data),
       };
     },
     [CANCEL_BOOKMARK_CLUB_SUCCESS]: (state, action) => {
@@ -149,6 +158,7 @@ export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
         clubs: asyncState.error(action.payload),
       };
     },
+    [MAIN_CLUB_UNLOAD_LIST]: () => asyncInitialState,
   },
 );
 

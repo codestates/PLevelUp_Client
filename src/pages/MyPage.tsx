@@ -1,5 +1,5 @@
-import MypageContainer from '../containers/user/MypageContainer';
+import MyPageContainer from '../containers/user/MyPageContainer';
 
 export default function MyPage() {
-  return <MypageContainer />;
+  return <MyPageContainer />;
 }

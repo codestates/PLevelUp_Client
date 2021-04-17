@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/common/ClubCard.module.scss';
-import { Link } from 'react-router-dom';
-import Tag from '../common/Tag';
+import Tag from './Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import { MainClubReadResType } from '../../api/main/club';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
-import { bookmarkThunk, cancelBookmarkThunk } from '../../modules/club/list'; //TODO
+import { bookmarkThunk, cancelBookmarkThunk } from '../../modules/club/list';
 
-type ClubCardPropsType = {
-  club: MainClubReadResType;
-};
+// type ClubCardPropsType = {
+//   club: MainClubReadResType;
+// };
 
 export default withRouter(function ClubCard({ club, history, location }: any) {
+  //withRouter 사용시 type any필요로 함
   const dispatch = useDispatch();
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,

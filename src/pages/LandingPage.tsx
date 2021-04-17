@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../styles/pages/landing_page/LandingPage.module.scss';
-import SlickBannerContainer from '../containers/slick/SlickBannerContainer';
-import SlickClubListContainer from '../containers/slick/SlickClubListContainer';
+import SlickBannerContainer from '../containers/landing/SlickBannerContainer';
+import SlickClubCardContainer from '../containers/landing/SlickClubCardContainer';
 const LandingPage = () => {
   return (
     <div className={styles.wrapper}>
       <SlickBannerContainer />
-      <SlickClubListContainer />
+      <SlickClubCardContainer />
     </div>
   );
 };

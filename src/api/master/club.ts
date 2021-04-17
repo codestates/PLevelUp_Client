@@ -2,7 +2,7 @@ import qs from 'qs';
 import api from '../index';
 
 export type MasterClubEditReqType = {
-  [index: string]: string | number | Date | null;
+  [index: string]: string | number | Date | null | File;
   id: number | null;
   title: string;
   summary: string;
@@ -14,6 +14,8 @@ export type MasterClubEditReqType = {
   endDate: Date;
   day: string;
   limitUserNumber: number;
+  coverImg: File | null;
+  coverUrl: string | null;
 };
 
 export type MasterClubEditResType = {
@@ -31,6 +33,8 @@ export type MasterClubEditResType = {
   createdAt: Date;
   updatedAt?: Date | null;
   MasterId: number;
+  coverImg?: File | null;
+  coverUrl: string | null;
 };
 
 export async function masterClubWrite({
@@ -44,7 +48,17 @@ export async function masterClubWrite({
   endDate,
   day,
   limitUserNumber,
+  coverImg,
 }: MasterClubEditReqType) {
+  const form = new FormData();
+  form.append('img', coverImg!!);
+  const imgResponse = await api.post<{ url: string }>(`/api/master/img`, form, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  const coverUrl = imgResponse.data.url;
+
   const response = await api.post<MasterClubEditResType>(`/api/master/club`, {
     title,
     summary,
@@ -56,6 +70,7 @@ export async function masterClubWrite({
     endDate,
     day,
     limitUserNumber,
+    coverUrl,
   });
   return response.data;
 }
@@ -82,6 +97,7 @@ export type MasterClubReadResType = {
   updatedAt?: Date | null;
   MasterId: number;
   Master: MasterClubReadMasterType;
+  coverUrl: string;
 };
 
 export const masterClubRead = async (id: number) => {
@@ -119,7 +135,25 @@ export const masterClubUpdate = async ({
   endDate,
   day,
   limitUserNumber,
+  coverImg,
+  coverUrl,
 }: MasterClubEditReqType) => {
+  let updateCoverUrl = coverUrl;
+  if (coverImg) {
+    const form = new FormData();
+    form.append('img', coverImg!!);
+    const imgResponse = await api.post<{ url: string }>(
+      `/api/master/img`,
+      form,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
+    updateCoverUrl = imgResponse.data.url;
+  }
+
   const response = await api.patch<MasterClubEditResType>(
     `/api/master/club/${id}`,
     {
@@ -133,6 +167,7 @@ export const masterClubUpdate = async ({
       endDate,
       day,
       limitUserNumber,
+      coverUrl: updateCoverUrl,
     },
   );
   return response.data;

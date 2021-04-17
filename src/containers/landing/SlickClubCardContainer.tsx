@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { mainListThunk } from '../../modules/club/list';
-import SlickClubList from '../../components/slick/SlickClubList';
+import SlickClubCard from '../../components/landing/SlickClubCard';
 import { MainClubListResType } from 'api/main/club';
 
-export default function SlickClubListContainer() {
+export default function SlickClubCardContainer() {
   const dispatch = useDispatch();
   const { clubs, error, loading } = useSelector(
     ({ mainListAsync }: RootState) => ({
@@ -45,7 +45,7 @@ export default function SlickClubListContainer() {
       ) : (
         curations?.map(
           (curation: { clubs: MainClubListResType | null; name: string }) => {
-            return <SlickClubList data={curation.clubs} name={curation.name} />;
+            return <SlickClubCard data={curation.clubs} name={curation.name} />;
           },
         )
       )}

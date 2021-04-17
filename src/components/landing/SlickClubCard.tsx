@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ClubCard from '../club/ClubCard';
-import styles from '../../styles/pages/landing_page/SlickClubList.module.scss';
-import { Link } from 'react-router-dom';
+import ClubCard from '../common/ClubCard';
+import styles from '../../styles/pages/landing_page/SlickClubCard.module.scss';
 
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
