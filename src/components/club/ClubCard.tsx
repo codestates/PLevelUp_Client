@@ -13,22 +13,29 @@ type ClubCardPropsType = {
   club: MainClubReadResType;
 };
 
-export default function ClubCard({ club }: ClubCardPropsType) {
+export default withRouter(function ClubCard({ club, history, location }: any) {
   const dispatch = useDispatch();
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
   }));
-  const onBookmark = () => {
+
+  const onClickCard = (e: any) => {
+    history.push(`/club/${club.id}`);
+  };
+  const onBookmark = (e: any) => {
     if (!user?._id) {
-      // history.push('/login');
-      return alert('로그인이 필요해요'); //TODO: withRouter, history.push('/login')
+      e.stopPropagation(); //상위이벤트 제어
+      history.push('/login');
     }
+    e.stopPropagation(); //상위이벤트 제어
     dispatch(bookmarkThunk(club.id)); //TODO
   };
-  const onCancelBookmark = () => {
+  const onCancelBookmark = (e: any) => {
     if (!user?._id) {
-      return alert('로그인이 필요해요'); //TODO: withRouter, history.push('/login')
+      e.stopPropagation(); //상위이벤트 제어
+      history.push('/login');
     }
+    e.stopPropagation(); //상위이벤트 제어
     dispatch(cancelBookmarkThunk(club.id)); //TODO
   };
 
@@ -40,10 +47,10 @@ export default function ClubCard({ club }: ClubCardPropsType) {
     isFullClub: false, //TODO 마감
     isMostFullClub: false, //* 마감임박 type='mostFull'
   });
-  function mapToDay(number: string) {
-    const day = ['월', '화', '수', '목', '금', '토', '일'];
-    return day[Number(number) - 1];
-  }
+  // function mapToDay(number: string) {
+  //   const day = ['월', '화', '수', '목', '금', '토', '일'];
+  //   return day[Number(number) - 1];
+  // }
   const dayToClose =
     (new Date(club.endDate).getTime() - new Date().getTime()) /
     (1000 * 60 * 60 * 24);
@@ -83,57 +90,47 @@ export default function ClubCard({ club }: ClubCardPropsType) {
   }, []);
 
   return (
-    <div className={styles.card}>
-      <Link className={styles.link} to={`/club/${club.id}`}>
-        <div className={styles.imgBox}>
-          {tagStatus.isFullClub ? (
-            <>
-              <div className={styles.closeBackground}></div>
-              <div className={styles.close}>마 감</div>
-            </>
-          ) : null}
-          <div className={styles.stickers}>
-            <div className={styles.tag}>
-              {tagStatus.isNewClub ? <Tag type="new">NEW</Tag> : null}
-              {tagStatus.isMostFullClub ? (
-                <Tag type="mostFull">마감임박</Tag>
-              ) : null}
-              {tagStatus.isFullClub ? <Tag type="full">마감</Tag> : null}
-              {club.place === '온라인' ? <Tag type="online">온라인</Tag> : null}
-            </div>
-            <div className={styles.bookmark}>
-              {isBookmark ? (
-                <FaBookmark
-                  className={styles.icon}
-                  onClick={onCancelBookmark}
-                />
-              ) : (
-                <FaRegBookmark className={styles.icon} onClick={onBookmark} />
-              )}
-            </div>
+    <div className={styles.card} onClick={onClickCard}>
+      <div className={styles.imgBox}>
+        {tagStatus.isFullClub ? (
+          <>
+            <div className={styles.closeBackground}></div>
+            <div className={styles.close}>마 감</div>
+          </>
+        ) : null}
+        <div className={styles.stickers}>
+          <div className={styles.tag}>
+            {tagStatus.isNewClub ? <Tag type="new">NEW</Tag> : null}
+            {tagStatus.isMostFullClub ? (
+              <Tag type="mostFull">마감임박</Tag>
+            ) : null}
+            {tagStatus.isFullClub ? <Tag type="full">마감</Tag> : null}
+            {club.place === '온라인' ? <Tag type="online">온라인</Tag> : null}
           </div>
-          <img
-            src={club.coverUrl || defaultData.coverUrl}
-            className={styles.image}
-          />
-        </div>
-        <div className={styles.contentBox}>
-          <div className={styles.infoBox}>
-            {/* //TODO 클럽장 info advance로 */}
-            {/* <div className={styles.info}>{club.leaderTitle}</div> */}
-            <div className={styles.title}>{club.title}</div>
-            <div className={styles.desc}>{club.summary}</div>
-          </div>
-          <div className={styles.scheduleBox}>
-            {`${club.place} | 첫 모임일 ${createDate}(${mapToDay(club.day)})`}
+          <div className={styles.bookmark}>
+            {isBookmark ? (
+              <FaBookmark className={styles.icon} onClick={onCancelBookmark} />
+            ) : (
+              <FaRegBookmark className={styles.icon} onClick={onBookmark} />
+            )}
           </div>
         </div>
-      </Link>
-      {isBookmark ? (
-        <FaBookmark className={styles.icon} onClick={onCancelBookmark} />
-      ) : (
-        <FaRegBookmark className={styles.icon} onClick={onBookmark} />
-      )}
+        <img
+          src={club.coverUrl || defaultData.coverUrl}
+          className={styles.image}
+        />
+      </div>
+      <div className={styles.contentBox}>
+        <div className={styles.infoBox}>
+          {/* //TODO 클럽장 info advance로 */}
+          {/* <div className={styles.info}>{club.leaderTitle}</div> */}
+          <div className={styles.title}>{club.title}</div>
+          <div className={styles.desc}>{club.summary}</div>
+        </div>
+        <div className={styles.scheduleBox}>
+          {`${club.place} | 첫 모임일 ${createDate}(${club.day})`}
+        </div>
+      </div>
     </div>
   );
-}
+});

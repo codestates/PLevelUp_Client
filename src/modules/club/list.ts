@@ -81,7 +81,7 @@ export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       return {
         ...state,
         clubs: asyncState.success(action.payload.data),
-        lastPage: parseInt(action.payload.headers['last-page'], 10), // 문자열을 숫자로 변환 // 뭐하는 부분인지 질 이해가 안가긴함..help
+        lastPage: parseInt(action.payload.headers['last-page'], 10), // 문자열을 숫자로 변환
       };
     },
     [MAIN_CLUB_LIST_FAILURE]: (state, action) => ({

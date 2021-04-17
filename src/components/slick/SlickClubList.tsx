@@ -37,7 +37,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-export default function SlickClubList({ data, name, bookmark }: any) {
+export default function SlickClubList({ data, name }: any) {
   const settings = {
     dots: false,
     infinite: true,
