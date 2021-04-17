@@ -15,7 +15,7 @@ import {
 //   club: MainClubReadResType;
 // };
 //TODO: 클럽카드 변경이 계속 많아서 container / component 구분을 못했는데 , 오늘 새벽코드정리하면서  분리하겠습니다.
-export default withRouter(function ClubCard({ club, history, location }: any) {
+export default withRouter(function ClubCard({ club, history }: any) {
   //withRouter 사용시 type any필요로 함
   const dispatch = useDispatch();
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
@@ -31,7 +31,7 @@ export default withRouter(function ClubCard({ club, history, location }: any) {
       history.push('/login');
     }
     e.stopPropagation(); //상위이벤트 제어
-    dispatch(addBookmarkThunk(club.id)); //TODO
+    dispatch(addBookmarkThunk(club.id));
   };
   const onCancelBookmark = (e: any) => {
     if (!user?._id) {
@@ -39,7 +39,7 @@ export default withRouter(function ClubCard({ club, history, location }: any) {
       history.push('/login');
     }
     e.stopPropagation(); //상위이벤트 제어
-    dispatch(removeBookmarkThunk(club.id)); //TODO
+    dispatch(removeBookmarkThunk(club.id));
   };
 
   const [isbookmarked, setIsbookmarked] = useState(false);

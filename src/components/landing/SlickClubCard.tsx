@@ -3,7 +3,9 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ClubCard from '../common/ClubCard';
-import styles from '../../styles/pages/landing_page/SlickClubCard.module.scss';
+import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
+import { MainClubListResType, MainClubReadResType } from 'api/main/club';
+import { Link } from 'react-router-dom';
 
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
@@ -36,7 +38,13 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-export default function SlickClubList({ data, name }: any) {
+export default function SlickClubList({
+  data,
+  name,
+}: {
+  data: MainClubListResType;
+  name: string;
+}) {
   const settings = {
     dots: false,
     infinite: true,
@@ -79,10 +87,19 @@ export default function SlickClubList({ data, name }: any) {
   };
   return (
     <div className={styles.container}>
-      <h2>{name} </h2>
+      <div className={styles.listHeader}>
+        <div className={styles.title}>{name} </div>
+        <Link to="/club" className={styles.link}>
+          <div className={styles.headerBtn}>전체보기</div>
+        </Link>
+      </div>
       <Slider {...settings}>
-        {data.map((club: any) => {
-          return <ClubCard club={club} key={club.id} />;
+        {data.map((club: MainClubReadResType) => {
+          return (
+            <div className={styles.cardContainer}>
+              <ClubCard club={club} key={club.id} />
+            </div>
+          );
         })}
       </Slider>
     </div>
