@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
-import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import LoginPage from 'pages/LoginPage';
@@ -50,7 +49,6 @@ function App() {
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/signup" component={MasterSignUpPage} />
-        <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/club/:clubId" component={ClubReadPage} />
         <Route exact path="/club" component={ClubListPage} />
         <Route exact path="/payment" component={PaymentPage} />
