@@ -4,10 +4,15 @@ import createAsyncThunk, {
 import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions';
 import { AxiosError } from 'axios';
 import { AsyncState, asyncState } from '../../lib/reducerUtils';
-import { mainClubList, MainClubListResType } from '../../api/main/club';
-import { bookmarkAPI } from '../../api/main/club';
+import {
+  mainClubList,
+  MainClubListResType,
+  MainClubReadResType,
+  BookmarkResType,
+} from '../../api/main/club';
+import { bookmarkAPI, cancelBookmarkAPI } from '../../api/main/club';
 import produce from 'immer';
-import { FaRoad } from 'react-icons/fa';
+
 // async 액션 타입
 const [
   MAIN_CLUB_LIST,
@@ -21,6 +26,12 @@ const [
   BOOKMARK_CLUB_FAILURE,
 ] = createRequestActionTypes('main-bookmark/BOOKMARK_CLUB'); // 북마크 추가하기
 
+const [
+  CANCEL_BOOKMARK_CLUB,
+  CANCEL_BOOKMARK_CLUB_SUCCESS,
+  CANCEL_BOOKMARK_CLUB_FAILURE,
+] = createRequestActionTypes('main-bookmark/CANCEL_BOOKMARK_CLUB'); // 북마크 추가하기
+
 // async 생성 함수
 export const mainClubListAsync = createAsyncAction(
   MAIN_CLUB_LIST,
@@ -32,12 +43,19 @@ export const bookmarkAsync = createAsyncAction(
   BOOKMARK_CLUB,
   BOOKMARK_CLUB_SUCCESS,
   BOOKMARK_CLUB_FAILURE,
-)<any, any, AxiosError>(); //TODO payload type , response type
+)<any, BookmarkResType, AxiosError>(); //TODO payload type , response type
+
+export const cancelBookmarkAsync = createAsyncAction(
+  CANCEL_BOOKMARK_CLUB,
+  CANCEL_BOOKMARK_CLUB_SUCCESS,
+  CANCEL_BOOKMARK_CLUB_FAILURE,
+)<any, BookmarkResType, AxiosError>(); //TODO payload type , response type
 
 // async 액션
 const asyncActions = {
   mainClubListAsync,
   bookmarkAsync,
+  cancelBookmarkAsync,
 };
 type ListAsyncAction = ActionType<typeof asyncActions>;
 
@@ -51,7 +69,7 @@ const asyncInitialState: ListAsyncState = {
   lastPage: 1,
 };
 
-export const mainListAsync = createReducer<any, ListAsyncAction>( //! ListAsyncState 에서 produce 사용이되질않아 일단 any로 바꾸어봄
+export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
   asyncInitialState,
   {
     [MAIN_CLUB_LIST]: state => ({
@@ -60,7 +78,6 @@ export const mainListAsync = createReducer<any, ListAsyncAction>( //! ListAsyncS
     }),
     [MAIN_CLUB_LIST_SUCCESS]: (state, action) => {
       console.log(action.payload);
-      console.log(state);
       return {
         ...state,
         clubs: asyncState.success(action.payload.data),
@@ -72,41 +89,28 @@ export const mainListAsync = createReducer<any, ListAsyncAction>( //! ListAsyncS
       clubs: asyncState.error(action.payload),
     }),
     [BOOKMARK_CLUB]: (state, action) => {
-      console.log(state);
+      console.log(state); //초기state값 확인
       return {
         ...state,
-        clubs: asyncState.load(state.clubs.data),
+        clubs: asyncState.load(state.clubs.data), //Bookmark 액션의 초기 상태는 club_list가 실행된 상태의 클럽들이다.
       };
     },
     [BOOKMARK_CLUB_SUCCESS]: (state, action) => {
-      // produce(state, (draft: any) => {
-      //TODO 시작값을 지금현재의 clubs로 하고 싶다.
-      console.log(state.clubs.data);
-      // console.log(action.payload);
-      state.clubs.data.map((club: any) => {
+      // produce(state, (draft: any) => { //불변성 편하게 하기 위헤 immer/produce 사용 but return오류발생
+      console.log(state.clubs.data); // 클럽배열들
+      console.log(action.payload); // 북마크 response : {UserId :1 , ClubId: 99}
+      state.clubs.data?.map((club: any) => {
         if (club.id === action.payload.ClubId) {
-          club.Bookmarkers.push({ id: action.payload.UserId });
-          console.log(club);
+          // 북마크한 클럽 찾아서
+          club.Bookmarkers.push({ id: action.payload.UserId }); // 해당 클럽에 북마커에 user추가
+          console.log(club); // 추가확인
         }
       });
-      console.log(state.clubs.data);
+      console.log(state.clubs.data); // 전체 클럽상태변경확인
       return {
         ...state,
-        clubs: asyncState.success(state.clubs.data),
+        clubs: asyncState.success(state.clubs.data), // 바뀐상태 넣어준다.
       };
-      // const club = draft.clubs.data.find(
-      //   (club: any) => club.id === action.payload.ClubId,
-      // );
-      // club.Bookmarkers.push({ id: action.payload.UserId });
-      // console.log(club);
-      // draft.clubs.loading = false;
-      // draft.clubs.error = null;
-      // draft.clubs = state;
-      // return {
-      //   ...state,
-      //   clubs: asyncState.success(club), // 바뀐 상태데이터
-      // };
-      // });
     },
     [BOOKMARK_CLUB_FAILURE]: (state, action) => {
       console.log(action.payload);
@@ -115,11 +119,44 @@ export const mainListAsync = createReducer<any, ListAsyncAction>( //! ListAsyncS
         clubs: asyncState.error(action.payload),
       };
     },
+    [CANCEL_BOOKMARK_CLUB]: (state, action) => {
+      console.log(state); //초기state값 확인
+      return {
+        ...state,
+        clubs: asyncState.load(state.clubs.data), //Bookmark 액션의 초기 상태는 club_list가 실행된 상태의 클럽들이다.
+      };
+    },
+    [CANCEL_BOOKMARK_CLUB_SUCCESS]: (state, action) => {
+      state.clubs.data?.map((club: any) => {
+        if (club.id === action.payload.ClubId) {
+          // 북마크한 클럽 찾아서
+          console.log(club.Bookmarkers); // 해당 클럽 북마크한 유저리스트
+          club.Bookmarkers = club.Bookmarkers.filter((el: any) => {
+            return el.id !== action.payload.UserId; // 요청유저는 북마크유저리스트에서 제외
+          }); // 해당 클럽에 북마커에 user추가
+          console.log(club.Bookmarkers); // 북마크한 유저리스트에서 제거 확인
+        }
+      });
+      return {
+        ...state,
+        clubs: asyncState.success(state.clubs.data), // 바뀐상태 넣어준다.
+      };
+    },
+    [CANCEL_BOOKMARK_CLUB_FAILURE]: (state, action) => {
+      console.log(action.payload); // 에러 확인
+      return {
+        ...state,
+        clubs: asyncState.error(action.payload),
+      };
+    },
   },
 );
 
-// bookmark를 여기다가 옮겨야겠구나 리스트상태를 바꿔주는 것이니
 export default mainListAsync;
 
 export const mainListThunk = createAsyncThunk(mainClubListAsync, mainClubList);
 export const bookmarkThunk = createAsyncThunk(bookmarkAsync, bookmarkAPI);
+export const cancelBookmarkThunk = createAsyncThunk(
+  cancelBookmarkAsync,
+  cancelBookmarkAPI,
+);

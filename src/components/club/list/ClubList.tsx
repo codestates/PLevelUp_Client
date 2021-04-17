@@ -22,7 +22,7 @@ export default function ClubList({ loading, error, clubs }: ClubListPropsType) {
   return (
     <>
       {loading ? (
-        <div>로딩중</div>
+        <div>로딩중</div> //TODO 프로그레스바 넣기
       ) : (
         <div className={styles.container}>
           {clubs?.map(club => {
