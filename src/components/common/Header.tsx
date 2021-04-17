@@ -118,6 +118,7 @@ export default function Header({ user, onLogout }: any) {
           </ul>
         </div>
       </div>
+      <div className={styles.spacer} />
     </header>
   );
 }

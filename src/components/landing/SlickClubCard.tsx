@@ -4,7 +4,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ClubCard from '../common/ClubCard';
 import styles from '../../styles/pages/landing_page/SlickClubCard.module.scss';
-import { Link } from 'react-router-dom';
 
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
@@ -37,7 +36,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-export default function SlickClubCard({ data, name, bookmark }: any) {
+export default function SlickClubList({ data, name }: any) {
   const settings = {
     dots: false,
     infinite: true,
@@ -83,7 +82,7 @@ export default function SlickClubCard({ data, name, bookmark }: any) {
       <h2>{name} </h2>
       <Slider {...settings}>
         {data.map((club: any) => {
-          return <ClubCard club={club} key={club.id} bookmark={bookmark} />;
+          return <ClubCard club={club} key={club.id} />;
         })}
       </Slider>
     </div>

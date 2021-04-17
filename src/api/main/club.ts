@@ -7,6 +7,22 @@ type MainClubReadMasterType = {
   username: string;
 };
 
+export type BookmarkJoinTableType = {
+  id: number;
+  Bookmark: {
+    createdAt: Date;
+    updatedAt: Date;
+    UserId: number;
+    ClubId: number;
+  };
+};
+export type BookmarkerType = {
+  id: number;
+  Bookmark: BookmarkJoinTableType;
+};
+
+type BookmarkersType = BookmarkerType[];
+
 export type MainClubReadResType = {
   id: number; //* 클럽 id
   title: string; //* '스타트업DNA'
@@ -24,6 +40,8 @@ export type MainClubReadResType = {
   MasterId: number; //* 클럽장 아이디
   Master: MainClubReadMasterType;
   coverUrl: string; //*'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
+  isBookmark: boolean;
+  Bookmarkers: BookmarkersType;
 };
 
 export const mainClubRead = async (id: number) => {
@@ -45,4 +63,25 @@ export async function mainClubList({ page }: MainClubListReqType) {
     `/api/main/club?${queryString}`,
   );
   return response;
+}
+
+export type BookmarkResType = {
+  ClubId: number;
+  UserId: number;
+};
+
+export async function addBookmarkAPI(clubId: number) {
+  const response = await api.post<BookmarkResType>(
+    `/api/main/club/bookmark/${clubId}`,
+  );
+  console.log('api/main/club.ts/bookmarkClubAPI response.data');
+  console.log(response.data);
+  return response.data;
+}
+
+export async function removeBookmarkAPI(clubId: number) {
+  const response = await api.delete<BookmarkResType>(
+    `/api/main/club/bookmark/${clubId}`,
+  );
+  return response.data;
 }
