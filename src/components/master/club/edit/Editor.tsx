@@ -52,8 +52,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
   const summaryQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const descriptionQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
-  const topicQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
-  const topicQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
 
@@ -74,14 +72,8 @@ export default function Editor({ club, onChangeField }: EditorType) {
       descriptionQuillElement,
       '설명을 입력하세요.',
     );
-    topicQuillInstance.current = createQuill(
-      topicQuillElement,
-      '주제를 입력하세요.',
-    );
-
     quillChange('summary', summaryQuillInstance.current);
     quillChange('description', descriptionQuillInstance.current);
-    quillChange('topic', topicQuillInstance.current);
   }, [onChangeField]);
 
   // 수정 시 기존 데이터를 화면에 출력해준다.
@@ -92,12 +84,10 @@ export default function Editor({ club, onChangeField }: EditorType) {
     if (
       club &&
       summaryQuillInstance.current &&
-      descriptionQuillInstance.current &&
-      topicQuillInstance.current
+      descriptionQuillInstance.current
     ) {
       summaryQuillInstance.current.root.innerHTML = club.summary;
       descriptionQuillInstance.current.root.innerHTML = club.description;
-      topicQuillInstance.current.root.innerHTML = club.topic;
     }
     setStartDate(new Date(club.startDate.toString()));
     setEndDate(new Date(club.endDate.toString()));
@@ -181,10 +171,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
         />
         <QuillWrapper>
           <div ref={summaryQuillElement} />
-        </QuillWrapper>
-        <hr />
-        <QuillWrapper>
-          <div ref={topicQuillElement} />
         </QuillWrapper>
         <hr />
         <QuillWrapper>

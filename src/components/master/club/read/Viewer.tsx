@@ -54,7 +54,6 @@ export default function Viewer({
     price,
     place,
     description,
-    topic,
     startDate,
     endDate,
     day,
@@ -92,10 +91,6 @@ export default function Viewer({
       <div
         className={styles.readContent}
         dangerouslySetInnerHTML={{ __html: summary }}
-      />
-      <div
-        className={styles.readContent}
-        dangerouslySetInnerHTML={{ __html: topic }}
       />
       <div
         className={styles.readContent}
