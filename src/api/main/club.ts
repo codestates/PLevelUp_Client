@@ -72,7 +72,7 @@ export type BookmarkResType = {
 
 export async function addBookmarkAPI(clubId: number) {
   const response = await api.post<BookmarkResType>(
-    `/api/main/club/bookmark/${clubId}`,
+    `/api/main/club/addbookmark/${clubId}`,
   );
   console.log('api/main/club.ts/bookmarkClubAPI response.data');
   console.log(response.data);
@@ -81,7 +81,7 @@ export async function addBookmarkAPI(clubId: number) {
 
 export async function removeBookmarkAPI(clubId: number) {
   const response = await api.delete<BookmarkResType>(
-    `/api/main/club/bookmark/${clubId}`,
+    `/api/main/club/removebookmark/${clubId}`,
   );
   return response.data;
 }

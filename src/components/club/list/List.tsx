@@ -4,7 +4,6 @@ import {
   MainClubReadResType,
 } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
-// import ClubCard from '../../common/ClubCard';
 import ClubCardContainer from '../../../containers/common/ClubCardContainer';
 
 type ListType = {

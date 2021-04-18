@@ -21,6 +21,11 @@ export default withRouter(function ClubCard({
   isBookmarked,
 }: any) {
   //withRouter 사용시 type any필요로 함
+  const [badgeStatus, setBadgeStatus] = useState({
+    isNewClub: false, //* New type='new'
+    isFullClub: false, //TODO 마감
+    isMostFullClub: false, //* 마감임박 type='mostFull'
+  });
 
   const dayToClose =
     (new Date(club.endDate).getTime() - new Date().getTime()) /
@@ -28,19 +33,9 @@ export default withRouter(function ClubCard({
   const dayFromCreate =
     (new Date().getTime() - new Date(club.startDate).getTime()) /
     (1000 * 60 * 60 * 24);
-  const createDate = `${new Date(club.startDate).getMonth()}/${new Date(
+  const createDate = `${new Date(club.startDate).getMonth() + 1}/${new Date(
     club.startDate,
   ).getDate()}`;
-  const defaultData = {
-    //* 추후 삭제
-    coverUrl:
-      'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-  };
-  const [badgeStatus, setBadgeStatus] = useState({
-    isNewClub: false, //* New type='new'
-    isFullClub: false, //TODO 마감
-    isMostFullClub: false, //* 마감임박 type='mostFull'
-  });
 
   useEffect(() => {
     if (dayToClose < 5) {
@@ -64,6 +59,12 @@ export default withRouter(function ClubCard({
       });
     }
   }, []);
+
+  const defaultData = {
+    //* 추후 삭제
+    coverUrl:
+      'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
+  };
 
   return (
     <div className={styles.card} onClick={onClickCard}>
