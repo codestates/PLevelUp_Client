@@ -8,6 +8,7 @@ import ListPage from 'pages/ListPage';
 import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
+import PaymentHistoryPage from 'pages/PaymentHistoryPage';
 import LoginPage from 'pages/LoginPage';
 import SignUpPage from 'pages/SignUpPage';
 import MyPage from 'pages/MyPage';
@@ -56,6 +57,7 @@ function App() {
         <Route exact path="/club/:clubId" component={ClubReadPage} />
         <Route exact path="/club" component={ClubListPage} />
         <Route exact path="/payment" component={PaymentPage} />
+        <Route exact path="/payment/history" component={PaymentHistoryPage} />
         <Route exact path="/introduce" component={IntroducePage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />

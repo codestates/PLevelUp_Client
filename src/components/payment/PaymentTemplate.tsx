@@ -1,10 +1,64 @@
+import api from '../../api';
 import styles from '../../styles/pages/payment_page/PaymentPage.module.scss';
 import { Tablet, Desktop } from '../../mediaQuery';
 import { IoIosCheckbox } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';
+import { IamportPaymentReqType } from '../../api/main/payment';
+import { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 
-export default function PaymentTemplate({ club, onPay }: any) {
+export default withRouter(function PaymentTemplate({
+  club,
+  user,
+  history,
+}: any) {
+  const { IMP } = window;
+  IMP?.init('imp67413694');
+  const onPay = () => {
+    const params: IamportPaymentReqType = {
+      pg: 'html5_inicis',
+      pay_method: 'card',
+      merchant_uid: club?.id,
+      name: club?.title,
+      amount: club?.price,
+      buyer_email: user?.email,
+      buyer_name: user?.username,
+      notice_url: '/payment',
+      m_redirect_url: '/payments/complete',
+      card_quota: [1, 2, 3, 4],
+    };
+
+    IMP?.request_pay(params, res => {
+      if (res.success) {
+        //고객이 결제 완료하면~우선 결제승인과 가상계좌발급된거임
+        api
+          .post(`api/main/payment/complete`, {
+            imp_uid: res.imp_uid, //아임포트 고유아이디
+            merchant_uid: res.merchant_uid, //해당 클럽 아이디
+          })
+          .then(res => {
+            if (res.data.status === 'paid') {
+              console.log('-------------222', res.data);
+              alert('결제가 완료되었습니다.');
+              history.push('/mypage');
+            }
+          })
+          .catch(err => console.log(err));
+      } else {
+        //고객이 결제 취소한거
+        alert('결제가 취소되었습니다.');
+      }
+    });
+  };
+
+  const [checked, setChecked] = useState(false);
+
+  const onChecked = () => {
+    setChecked(true);
+    console.log('check!!');
+  };
+
   return (
     <div>
       <div className={styles.desktopContainer}>
@@ -23,8 +77,8 @@ export default function PaymentTemplate({ club, onPay }: any) {
                     </div>
                   </div>
                   <div className={styles.compactClub}>
-                    <div className={styles.badge}>{club.title}</div>
-                    <div className={styles.clubName}> 취향의 자립(props)</div>
+                    <div className={styles.badge}>신청하신 클럽</div>
+                    <div className={styles.clubName}>{club.title}</div>
                     <div className={styles.clubTime}>
                       <span className={styles.calendar}>
                         <AiTwotoneCalendar color="#b6b6c0" size="17" />
@@ -36,7 +90,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                         <IoLocationSharp color="#b6b6c0" size="17" />
                       </div>
                       <div className={styles.location}>
-                        <div>강남 아지트 (props)</div>
+                        <div>{club.place}</div>
                         <div>
                           <a href="http://naver.me/GBIpMwcJ">
                             서울특별시 강남구 강남대로92길 19
@@ -52,7 +106,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                   </div>
                   <br />
                   <div className={styles.period}>
-                    멤버십 기간: 2021.05.21 ~ 2021. 09.20 (props)
+                    {`멤버십 기간: ${club.startDate} ~ ${club.endDate}`}
                   </div>
                   <div className={styles.benefitInfo}>
                     <div className={styles.benefitContainer}>
@@ -97,7 +151,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                   <div className={styles.priceWrapper}>
                     <div className={styles.priceContent}>
                       <span className={styles.category}>멤버십 비용</span>
-                      <div className={styles.price}>310,000원 (props)</div>
+                      <div className={styles.price}>{club.price}</div>
                     </div>
                   </div>
                   <div className={styles.middleLine}></div>
@@ -137,7 +191,11 @@ export default function PaymentTemplate({ club, onPay }: any) {
                     </div>
                     <div className={styles.policyContainer}>
                       <div className={styles.checkBox}>
-                        <IoIosCheckbox color="#e4e4e4" size="20" />
+                        <IoIosCheckbox
+                          color="#e4e4e4"
+                          size="20"
+                          onClick={onChecked}
+                        />
                       </div>
                       <div>
                         결제 진행시 프레벨업의 이용약관 및 개인정보 처리방침을
@@ -150,7 +208,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                         className={styles.paymentBtn}
                         onClick={onPay}
                       >
-                        <div>(props)원 결제하기</div>
+                        <div>{`${club.price}원 결제하기`}</div>
                       </button>
                     </div>
                   </div>
@@ -170,7 +228,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                   <div className={styles.compactClub}>
                     <div className={styles.left}>
                       <span className={styles.badge}>신청하신 클럽</span>
-                      <div className={styles.clubName}>결제 클럽 이름</div>
+                      <div className={styles.clubName}>{club.title}</div>
                     </div>
                     <div className={styles.right}>
                       <div className={styles.classImg}>
@@ -196,7 +254,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                         <IoLocationSharp color="#b6b6c0" size="17" />
                       </div>
                       <div className={styles.textBox}>
-                        <div>강남 아지트(props)</div>
+                        <div>{club.place}</div>
                         <div>
                           <a
                             href="http://naver.me/GBIpMwcJ"
@@ -264,7 +322,7 @@ export default function PaymentTemplate({ club, onPay }: any) {
                 <div className={styles.infoContainer}>
                   <div className={styles.priceInfo}>
                     <span className={styles.name}>멤버십 비용</span>
-                    <div className={styles.price}>310,000원(props)</div>
+                    <div className={styles.price}>{`${club.price}원`}</div>
                   </div>
                 </div>
                 <div className={styles.middleLine}></div>
@@ -324,4 +382,4 @@ export default function PaymentTemplate({ club, onPay }: any) {
       </div>
     </div>
   );
-}
+});
