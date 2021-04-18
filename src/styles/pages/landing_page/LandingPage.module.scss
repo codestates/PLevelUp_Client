@@ -1,7 +1,82 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
-$white: #ffffff; //변수명사용
-$blue: #339af0;
 
-.wrapper {
+.bannerContainer {
+  margin: 0 auto;
+  padding: 20px 30px;
+  width: 100%;
+  max-width: 1140px;
+
+  .imgBox {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+
+    .img {
+      vertical-align: middle;
+      border-style: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.container {
+  margin: 0px auto;
+  padding: 3%;
+  width: 100%;
+  max-width: 1140px;
+  -webkit-box-pack: justify;
+  .listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0px auto;
+    height: 50px;
+    padding: 10px 5px;
+
+    @include respond-to(not-mobile) {
+      height: 80px;
+      padding: 20px 5px;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 22px;
+      @include respond-to(not-mobile) {
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 24px;
+      }
+    }
+    .link {
+      margin: 0;
+      .headerBtn {
+        text-decoration: none;
+        font-weight: 400;
+        color: black;
+      }
+    }
+  }
+  .cardContainer {
+    padding: 0 3px;
+    @include respond-to(not-mobile) {
+      padding: 0 10px;
+    }
+  }
+}
+
+.cardBox {
+  margin: 0 16px;
+}
+.arrow {
+  display: block;
+  background: darkgray;
+  left: -3%;
 }

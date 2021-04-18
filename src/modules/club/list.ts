@@ -26,7 +26,9 @@ export const mainClubListAsync = createAsyncAction(
   MAIN_CLUB_LIST,
   MAIN_CLUB_LIST_SUCCESS,
   MAIN_CLUB_LIST_FAILURE,
-)<any, MainClubListResType[], AxiosError>();
+)<any, MainClubListResType, AxiosError>();
+
+// 액션 생성함수
 export const mainClubUnloadList = createAction(MAIN_CLUB_UNLOAD_LIST);
 
 // async 액션

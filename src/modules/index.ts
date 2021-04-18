@@ -12,6 +12,7 @@ import {
   mainChangePassword,
   mainChangePasswordAsync,
 } from './my-page/changePassword';
+import mainBookmarkAsync from './club/bookmark';
 
 const rootReducer = combineReducers({
   mainAuthAsync,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   mainListAsync,
   mainAuth,
   mainUser,
+  mainBookmarkAsync,
   masterAuthAsync,
   masterAuth,
   masterUser,
