@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ClubCard from '../common/ClubCard';
+import ClubCardContainer from '../../containers/common/ClubCardContainer';
 import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
 import { MainClubListResType, MainClubReadResType } from 'api/main/club';
 import { Link } from 'react-router-dom';
@@ -97,7 +97,7 @@ export default function SlickClubList({
         {data.map((club: MainClubReadResType) => {
           return (
             <div className={styles.cardContainer}>
-              <ClubCard club={club} key={club.id} />
+              <ClubCardContainer club={club} key={club.id} />
             </div>
           );
         })}
