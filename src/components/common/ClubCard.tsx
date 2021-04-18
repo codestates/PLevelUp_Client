@@ -11,79 +11,31 @@ import {
   removeBookmarkThunk,
 } from '../../modules/club/bookmark';
 
-// type ClubCardPropsType = {
-//   club: MainClubReadResType;
-// };
 //TODO: 클럽카드 변경이 계속 많아서 container / component 구분을 못했는데 , 오늘 새벽코드정리하면서  분리하겠습니다.
-export default withRouter(function ClubCard({ club, history, location }: any) {
+export default withRouter(function ClubCard({
+  club,
+  history,
+  onClickCard,
+  onAddBookmark,
+  onRemoveBookmark,
+  isBookmarked,
+}: any) {
   //withRouter 사용시 type any필요로 함
-  const dispatch = useDispatch();
-  const { data: user } = useSelector(({ mainUser }: RootState) => ({
-    data: mainUser.user?.data,
-  }));
-
-  const onClickCard = (e: any) => {
-    history.push(`/club/${club.id}`);
-  };
-  const onBookmark = (e: any) => {
-    if (!user?._id) {
-      e.stopPropagation(); //상위이벤트 제어
-      history.push('/login');
-    }
-    e.stopPropagation(); //상위이벤트 제어
-    dispatch(addBookmarkThunk(club.id)); //TODO
-  };
-  const onCancelBookmark = (e: any) => {
-    if (!user?._id) {
-      e.stopPropagation(); //상위이벤트 제어
-      history.push('/login');
-    }
-    e.stopPropagation(); //상위이벤트 제어
-    dispatch(removeBookmarkThunk(club.id)); //TODO
-  };
-
-  const [isbookmarked, setIsbookmarked] = useState(false);
-  const isDBBookmark = club.Bookmarkers.find(
-    (el: { id: number }) => el.id === user?._id,
-  );
-
-  useEffect(() => {
-    if (club.isBookmark) {
-      setIsbookmarked(true);
-    }
-    if (club.isBookmark === false) {
-      setIsbookmarked(false);
-    }
-  }, [club]);
-
-  useEffect(() => {
-    if (isDBBookmark) {
-      setIsbookmarked(true);
-    }
-  }, []);
   const [badgeStatus, setBadgeStatus] = useState({
     isNewClub: false, //* New type='new'
     isFullClub: false, //TODO 마감
     isMostFullClub: false, //* 마감임박 type='mostFull'
   });
-  // function mapToDay(number: string) {
-  //   const day = ['월', '화', '수', '목', '금', '토', '일'];
-  //   return day[Number(number) - 1];
-  // }
+
   const dayToClose =
     (new Date(club.endDate).getTime() - new Date().getTime()) /
     (1000 * 60 * 60 * 24);
   const dayFromCreate =
     (new Date().getTime() - new Date(club.startDate).getTime()) /
     (1000 * 60 * 60 * 24);
-  const createDate = `${new Date(club.startDate).getMonth()}/${new Date(
+  const createDate = `${new Date(club.startDate).getMonth() + 1}/${new Date(
     club.startDate,
   ).getDate()}`;
-  const defaultData = {
-    //* 추후 삭제
-    coverUrl:
-      'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-  };
 
   useEffect(() => {
     if (dayToClose < 5) {
@@ -108,6 +60,12 @@ export default withRouter(function ClubCard({ club, history, location }: any) {
     }
   }, []);
 
+  const defaultData = {
+    //* 추후 삭제
+    coverUrl:
+      'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
+  };
+
   return (
     <div className={styles.card} onClick={onClickCard}>
       <div className={styles.imgBox}>
@@ -129,10 +87,10 @@ export default withRouter(function ClubCard({ club, history, location }: any) {
             ) : null}
           </div>
           <div className={styles.bookmark}>
-            {isbookmarked ? (
-              <FaBookmark className={styles.icon} onClick={onCancelBookmark} />
+            {isBookmarked ? (
+              <FaBookmark className={styles.icon} onClick={onRemoveBookmark} />
             ) : (
-              <FaRegBookmark className={styles.icon} onClick={onBookmark} />
+              <FaRegBookmark className={styles.icon} onClick={onAddBookmark} />
             )}
           </div>
         </div>

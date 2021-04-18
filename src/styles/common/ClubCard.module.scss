@@ -11,15 +11,6 @@
   border: 1px solid #ecece9;
   overflow: hidden;
   cursor: pointer;
-  //Todo: 추후 body적용해야함
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #212529;
-  text-align: left;
-  background-color: #fff;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
   //* pc (min width: 769px)
   @include respond-to('not-mobile') {
@@ -27,11 +18,7 @@
     width: 100%;
     height: auto;
     border-radius: 8px;
-    background-color: #ffd7d2; //* Responsive Test
   }
-  // .link {
-  //   text-decoration: none;
-  //   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   .imgBox {
     position: relative;
     width: 100%;
@@ -168,8 +155,4 @@
       }
     }
   }
-}
-// }
-.banner {
-  margin-right: 15px;
 }
