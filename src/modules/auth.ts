@@ -14,9 +14,6 @@ import {
   MainLoginResType,
   mainSignUp,
   MainSignUpReqType,
-  mainChangePassword,
-  MainChangePasswordReqType,
-  MainChangePasswordResType,
 } from '../api/main/auth';
 import { AxiosError } from 'axios';
 import { asyncState, AsyncState } from '../lib/reducerUtils';
@@ -33,12 +30,6 @@ const [
   MAIN_SIGN_UP_FAILURE,
 ] = createRequestActionTypes('main-auth/MAIN_SIGN_UP');
 
-const [
-  MAIN_CHANGE_PASSWORD,
-  MAIN_CHANGE_PASSWORD_SUCCESS,
-  MAIN_CHANGE_PASSWORD_FAILURE,
-] = createRequestActionTypes('main-auth/MAIN_CHANGE_PASSWORD');
-
 const MAIN_INITIALIZE_AUTH = 'main-auth/MAIN_INITIALIZE_AUTH';
 
 export const mainSignUpAsync = createAsyncAction(
@@ -53,18 +44,11 @@ export const mainLoginAsync = createAsyncAction(
   MAIN_SIGN_UP_FAILURE,
 )<any, MainLoginResType, AxiosError>();
 
-export const mainChangePasswordAsync = createAsyncAction(
-  MAIN_CHANGE_PASSWORD,
-  MAIN_CHANGE_PASSWORD_SUCCESS,
-  MAIN_CHANGE_PASSWORD_FAILURE,
-)<any, MainChangePasswordResType, AxiosError>();
-
 export const mainInitializeAuth = createAction(MAIN_INITIALIZE_AUTH)<string>();
 
 const asyncActions = {
   mainSignUpAsync,
   mainLoginAsync,
-  mainChangePasswordAsync,
   mainInitializeAuth,
 };
 
@@ -97,13 +81,9 @@ const asyncInitialState: AuthAsyncState = {
 };
 
 type AuthState = {
-  [index: string]:
-    | MainSignUpReqType
-    | MainLoginReqType
-    | MainChangePasswordReqType;
+  [index: string]: MainSignUpReqType | MainLoginReqType;
   signUp: MainSignUpReqType;
   login: MainLoginReqType;
-  changePassword: MainChangePasswordReqType;
 };
 
 const initialState: AuthState = {
@@ -116,11 +96,6 @@ const initialState: AuthState = {
   login: {
     email: '',
     password: '',
-  },
-  changePassword: {
-    email: '',
-    password: '',
-    changePassword: '',
   },
 };
 export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
@@ -150,18 +125,6 @@ export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
       ...state,
       auth: asyncState.error(action.payload),
     }),
-    [MAIN_CHANGE_PASSWORD]: state => ({
-      ...state,
-      auth: asyncState.load(),
-    }),
-    [MAIN_CHANGE_PASSWORD_SUCCESS]: (state, action) => ({
-      ...state,
-      auth: asyncState.success(action.payload),
-    }),
-    [MAIN_CHANGE_PASSWORD_FAILURE]: (state, action) => ({
-      ...state,
-      auth: asyncState.error(action.payload),
-    }),
 
     [MAIN_INITIALIZE_AUTH]: (state, _) => ({
       ...state,
@@ -183,7 +146,3 @@ export const mainAuth = createReducer<AuthState, AuthAction>(initialState, {
 
 export const mainLoginThunk = createAsyncThunk(mainLoginAsync, mainLogin);
 export const mainSignUpThunk = createAsyncThunk(mainSignUpAsync, mainSignUp);
-export const mainChangePasswordThunk = createAsyncThunk(
-  mainChangePasswordAsync,
-  mainChangePassword,
-);

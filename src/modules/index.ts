@@ -8,6 +8,10 @@ import { masterReadAsync } from './master/club/read';
 import masterListAsync from './master/club/list';
 import { mainReadAsync } from './club/read';
 import mainListAsync from './club/list';
+import {
+  mainChangePassword,
+  mainChangePasswordAsync,
+} from './my-page/changePassword';
 import mainBookmarkAsync from './club/bookmark';
 
 const rootReducer = combineReducers({
@@ -24,6 +28,8 @@ const rootReducer = combineReducers({
   masterEdit,
   masterReadAsync,
   masterListAsync,
+  mainChangePasswordAsync,
+  mainChangePassword,
 });
 
 export default rootReducer;
