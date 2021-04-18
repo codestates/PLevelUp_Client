@@ -88,10 +88,7 @@ export default function Viewer({
           <img src={coverUrl} />
         </div>
       </div>
-      <div
-        className={styles.readContent}
-        dangerouslySetInnerHTML={{ __html: summary }}
-      />
+      <div>{summary}</div>
       <div
         className={styles.readContent}
         dangerouslySetInnerHTML={{ __html: description }}
