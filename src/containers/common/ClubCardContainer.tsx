@@ -18,7 +18,7 @@ export default withRouter(function ClubCardContainer({ club, history }: any) {
     history.push(`/club/${club.id}`);
   };
   const onAddBookmark = (e: any) => {
-    if (!user?._id) {
+    if (!user?.id) {
       e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
     }
@@ -26,7 +26,7 @@ export default withRouter(function ClubCardContainer({ club, history }: any) {
     dispatch(addBookmarkThunk(club.id));
   };
   const onRemoveBookmark = (e: any) => {
-    if (!user?._id) {
+    if (!user?.id) {
       e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
     }
@@ -36,7 +36,7 @@ export default withRouter(function ClubCardContainer({ club, history }: any) {
 
   const [isBookmarked, setIsBookmarked] = useState(false);
   const isDBBookmark = club.Bookmarkers.find(
-    (el: { id: number }) => el.id === user?._id,
+    (el: { id: number }) => el.id === user?.id,
   );
 
   useEffect(() => {

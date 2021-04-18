@@ -1,5 +1,19 @@
 import api from '../index';
 
+export async function mainLoginKakao() {
+  console.log('mainKakaoLogin API호출');
+  const response = await api.get(`/api/main/auth/login/kakao`, {});
+  console.log('mainKakaoLogin API', response);
+  return response.data;
+}
+
+export async function mainLoginGoogle() {
+  console.log('mainGoogleLogin API호출');
+  const response = await api.get(`/api/main/auth/login/google`, {});
+  console.log('mainGoogleLogin API', response);
+  return response.data;
+}
+
 export type MainLoginReqType = {
   [index: string]: string;
   email: string;
@@ -56,7 +70,7 @@ export async function mainSignUp({
 }
 
 export type MainIsLoginResType = {
-  _id: number;
+  id: number;
   email: string;
   username: string;
 };

@@ -1,10 +1,6 @@
 import React from 'react';
-import AuthTemplate from '../components/auth/AuthTemplate';
-import SignUpForm from '../containers/auth/SignUpForm';
+import SignUpConatiner from '../containers/auth/SignUpConatiner';
+
 export default function SignUpPage() {
-  return (
-    <AuthTemplate type="signUp">
-      <SignUpForm />
-    </AuthTemplate>
-  );
+  return <SignUpConatiner />;
 }
