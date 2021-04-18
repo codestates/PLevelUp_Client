@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import Tag from './Tag';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import { MainClubReadResType } from '../../api/main/club';
+import axios from 'axios';
 
 type ClubCardPropsType = {
   club: MainClubReadResType;
   bookmark: any | null; // null은 master에서 사용
+  // filter: any
 };
 
 export default function ClubCard({ club, bookmark }: ClubCardPropsType) {
@@ -35,6 +37,7 @@ export default function ClubCard({ club, bookmark }: ClubCardPropsType) {
   };
 
   useEffect(() => {
+
     if (dayToClose < 5) {
       setTagStatus({
         ...tagStatus,

@@ -46,3 +46,28 @@ export async function mainClubList({ page }: MainClubListReqType) {
   );
   return response;
 }
+
+// export async function placeClubList({ place }: MainClubListResType) {
+//   const queryString = qs.stringify({ place });
+//   const response = await api.get<MainClubListResType>(
+//     `club/list?placeFilter=${queryString}`);
+//   return response;
+// }
+
+// 밑처럼 시도하려고 함
+// const mainClubList = async ({ page }: MainClubListReqType) => {
+//   const queryString = qs.stringify({ page });
+//   const response = await api.get<MainClubListResType>(
+//     `/api/main/club?${queryString}`,
+//   );
+//   return response;
+// }
+
+// const placeClubList = async ({ place }: MainClubListReqType) => {
+//   const queryString = qs.stringify({ place });
+//   const response = await api.get<MainClubListResType>(
+//     `club/list?placeFilter=${queryString}`);
+//   return response;
+// }
+
+// export default { mainClubList, placeClubList };

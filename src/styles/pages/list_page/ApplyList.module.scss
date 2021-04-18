@@ -1,0 +1,191 @@
+
+@import '../../../styles/common/basicMixin.scss';
+$font: spoqa han sans neo,'sans-serif';
+
+.DropDownNone {
+    display: none;
+}
+
+ 
+
+
+.ApplyList {
+
+    font-family: $font;
+    @include respond-to('not-mobile') {
+        // position: relative;
+        display: block;
+        background: white;
+        border: 1px solid black;
+        margin-top: 64px;
+        top: 61px;
+        width: 100%;
+        z-index: 1030;
+        transition: top 1s ease 0s;
+    }
+
+    @include respond-to('small') {
+
+        
+    
+        margin-top: 40px;
+        padding: 1rem;
+        width: 100%;
+        overflow-x: auto;
+        margin: 0 auto;
+    }
+
+    .ApplyListContainer {
+
+        @include respond-to('not-mobile') {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 20px 30px 10px 15px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: inline-flex;
+        }
+
+        @include respond-to('small') {
+            width: 100%;
+            margin: 0 auto;
+        
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+        }
+       
+
+        .search {
+            font-family: $font;
+            border: 1px solid black;
+            height: 32px;
+            border-radius: 20px;
+            width: calc(100% - 28px);
+            padding: 2px 12px 8px 12px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            max-width: 250px;
+            margin-right: 16px;
+            border: solid 0.5px rgba(0,0,0,0.2);
+
+            .icon{
+                width: 16px;
+                height: 16px;
+                vertical-align: middle;
+                margin-right: 7px;
+                margin-bottom: 2px;
+            }
+
+            .searchInputForm {
+                display: inline-block;
+                width: 150px;
+
+                .searchInput {
+                    background-color: transparent;
+                    border: none;
+                    padding: 0px;
+                    line-height: 13px;
+                    font-size: 13px;
+                    width: 100%;
+
+                }
+            }
+
+        }
+
+        .filter {
+            @include respond-to('not-mobile') {
+                display: inline-flex;
+                font-size: 1.125rem;
+              
+                white-space: pre;
+                text-decoration: none;
+                color: inherit;
+                padding-bottom: 0.25rem;
+    
+                &:hover {
+                    color: #495057;
+                }
+    
+                &+& {
+                    margin-left: 1rem;
+                }
+    
+            }
+        
+        
+            @include respond-to('small') {
+                     display: flex;
+                    font-size: 1.125rem;
+              
+                    white-space: pre;
+                    text-decoration: none;
+                    color: inherit;
+                    padding-bottom: 0.25rem;
+        
+                    &:hover {
+                        color: #495057;
+                    }
+        
+                    &+& {
+                        margin-left: 1rem;
+                    }
+    
+                    width: 100%;
+                    overflow-x: auto;
+            }
+
+            .place{
+
+                .isDropDownPlaceOpen {
+                    display: block;
+                    position: relative;
+                    width: 128px;
+                    background-color: rgb(247, 247, 250);
+                    right: 0px;
+                    margin-top: 15px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: rgb(115, 115, 115);
+                    padding: 8px 16px;
+                   
+                        .dropDownPlace {
+                            padding: 8px 0px;
+                            
+                          }
+                  }
+            
+              }
+            
+              .day {
+                .isDropDownPlaceOpen {
+                    display: block;
+                    position: absolute;
+                    width: 128px;
+                    background-color: rgb(247, 247, 250);
+                    right: 0px;
+                    margin-top: 15px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: rgb(115, 115, 115);
+                    padding: 8px 16px;
+                .dropDownDay {
+                    padding: 8px 0px;
+                 
+                  }
+                }
+            }
+        }
+    }
+}
+
+
+    
