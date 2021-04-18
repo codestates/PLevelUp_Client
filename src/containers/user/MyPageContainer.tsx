@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { mainLogoutThunk } from '../../modules/user';
-import MypageForm from 'components/user/MypageForm';
+import MyPageForm from 'components/user/MyPageForm';
 import { withRouter } from 'react-router';
 
-export default withRouter(function MypageContainer() {
+export default withRouter(function MyPageContainer() {
   const dispatch = useDispatch();
-  //유저정보
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
   }));
@@ -21,5 +20,5 @@ export default withRouter(function MypageContainer() {
     dispatch(mainLogoutThunk());
   };
 
-  return <MypageForm user={user} onLogout={onLogout} />;
+  return <MyPageForm user={user} onLogout={onLogout} />;
 });

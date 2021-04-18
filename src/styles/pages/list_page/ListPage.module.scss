@@ -1,17 +1,73 @@
 @import '../../common/utils.scss';
-@import '../../common//basicMixin.scss';
-$white: #ffffff; //변수명사용
-$blue: #339af0;
+@import '../../common/basicMixin.scss';
 
 .wrapper {
   max-width: 1140px;
   margin: 0 auto;
-  background-color: $mainColor; // utils에서 변수명 사용
+  background-color: #fff; // utils에서 변수명 사용
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: $blue;
+
+  .title {
+    align-self: flex-start;
+    margin: 25px 10px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0px 20px;
+    @include respond-to(not-mobile) {
+      margin: 20px 30px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+  }
+  h1 {
+    margin-top: 60px;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; //가로 전체넓이를 다 쓰도록
+    grid-template-rows: auto; // 높이는 자동으로
+    row-gap: 20px; // 그리드 사이 간격
+    column-gap: 24px;
+
+    @include respond-to('large') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include respond-to('medium') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include respond-to('small') {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include respond-to('x-small') {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 8px;
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  img {
+    width: 200px;
+  }
+}
+.goToTop {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

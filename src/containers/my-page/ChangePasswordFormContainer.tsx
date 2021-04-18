@@ -1,18 +1,16 @@
-//import ChangePasswordForm from 'components/auth/ChangePasswordForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
-import {
-  mainChangeField,
-  mainInitializeForm,
-  mainInitializeAuth,
-  mainChangePasswordThunk,
-} from '../../modules/auth';
 import { mainIsLoginThunk } from '../../modules/user';
 import { RootState } from '../../modules';
-import AuthForm from '../../components/auth/AuthForm';
+import {
+  mainChangePasswordThunk,
+  mainMyPageUnloadChangePassword,
+  myPageChangeField,
+} from '../../modules/my-page/changePassword';
+import ChangePasswordForm from '../../components/my-page/ChangePasswordForm';
 
-export default withRouter(function ChangePasswordForm({ history }) {
+export default withRouter(function ChangePasswordFormContainer({ history }) {
   const [error, setError] = useState<string>('');
   const dispatch = useDispatch();
   const {
@@ -20,12 +18,14 @@ export default withRouter(function ChangePasswordForm({ history }) {
     data: auth,
     loading: authLoading,
     error: authError,
-  } = useSelector(({ mainAuth, mainAuthAsync }: RootState) => ({
-    form: mainAuth.changePassword,
-    data: mainAuthAsync.auth.data,
-    loading: mainAuthAsync.auth.loading,
-    error: mainAuthAsync.auth.error,
-  }));
+  } = useSelector(
+    ({ mainChangePassword, mainChangePasswordAsync }: RootState) => ({
+      form: mainChangePassword,
+      data: mainChangePasswordAsync.data,
+      loading: mainChangePasswordAsync.loading,
+      error: mainChangePasswordAsync.error,
+    }),
+  );
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
   }));
@@ -35,8 +35,7 @@ export default withRouter(function ChangePasswordForm({ history }) {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     dispatch(
-      mainChangeField({
-        form: 'changePassword',
+      myPageChangeField({
         key: name,
         value: value,
       }),
@@ -45,38 +44,41 @@ export default withRouter(function ChangePasswordForm({ history }) {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { email, password, changePassword } = form;
-    if (!email || !password || !changePassword) {
+    const { password, changePassword, changePasswordConfirm } = form;
+    if (!password || !changePassword || !changePasswordConfirm) {
       setError('빈칸을 모두 입력해주세요.');
       return;
     }
-    dispatch(mainChangePasswordThunk({ email, password, changePassword }));
+    if (changePassword !== changePasswordConfirm) {
+      setError('새 비밀번호와 새 비밀번호 확인이 다릅니다.');
+      return;
+    }
+    dispatch(
+      mainChangePasswordThunk({
+        password,
+        changePassword,
+        changePasswordConfirm,
+      }),
+    );
   };
-
-  // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
-  useEffect(() => {
-    dispatch(mainInitializeForm('changePassword'));
-    return () => {
-      dispatch(mainInitializeAuth(''));
-    };
-  }, []);
 
   useEffect(() => {
     if (authError) {
-      // console.log('오류 발생');
-      // console.log(authError);
-      setError('비밀번호 변경 실패');
+      if (authError.response?.status === 401)
+        setError('비밀번호를 다시 확인해주세요.');
       return;
     }
     if (auth) {
-      // console.log('변경 성공');
-      // console.log(auth);
       dispatch(mainIsLoginThunk());
     }
   }, [auth, authError]);
 
   useEffect(() => {
-    if (user) {
+    dispatch(mainMyPageUnloadChangePassword());
+  }, []);
+
+  useEffect(() => {
+    if (auth && user) {
       history.push('/mypage');
       try {
         localStorage.setItem('main', JSON.stringify(user));
@@ -84,13 +86,11 @@ export default withRouter(function ChangePasswordForm({ history }) {
         console.log('localStorage is not working');
       }
     }
-  }, [history, user]);
-
+  }, [history, user, auth]);
   return (
     <>
       {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
-      <AuthForm
-        formType="changePassword"
+      <ChangePasswordForm
         form={form}
         onChange={onChange}
         onSubmit={onSubmit}

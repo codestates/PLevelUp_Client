@@ -60,6 +60,7 @@ export default function Viewer({
     day,
     limitUserNumber,
     Master: master,
+    coverUrl,
     createdAt,
     updatedAt,
   } = club;
@@ -83,6 +84,10 @@ export default function Viewer({
         <div>{startDate}</div>
         <div>{endDate}</div>
         <div>{limitUserNumber}</div>
+        <div>
+          coverUrl 입니다.
+          <img src={coverUrl} />
+        </div>
       </div>
       <div
         className={styles.readContent}

@@ -15,7 +15,7 @@ export default function EditorContainer() {
   }));
 
   const onChangeField = useCallback(
-    (key: string, value: string | number | Date) => {
+    (key: string, value: string | number | Date | File) => {
       return dispatch(masterEditChangeField({ key, value }));
     },
     [dispatch],

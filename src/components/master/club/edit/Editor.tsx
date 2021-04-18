@@ -44,7 +44,7 @@ function createQuill(
 
 type EditorType = {
   club: MasterClubEditReqType;
-  onChangeField: (key: string, value: string | number | Date) => void;
+  onChangeField: (key: string, value: string | number | Date | File) => void;
 };
 
 export default function Editor({ club, onChangeField }: EditorType) {
@@ -104,6 +104,10 @@ export default function Editor({ club, onChangeField }: EditorType) {
   }, [club]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === 'coverImg' && e.target.files) {
+      onChangeField(e.target.name, e.target.files[0]);
+      return;
+    }
     onChangeField(e.target.name, e.target.value);
   };
 
@@ -186,6 +190,15 @@ export default function Editor({ club, onChangeField }: EditorType) {
         <QuillWrapper>
           <div ref={descriptionQuillElement} />
         </QuillWrapper>
+        {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
+        <p>
+          <input
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            name="coverImg"
+            onChange={onChange}
+          />
+        </p>
       </EditorBlock>
     </div>
   );

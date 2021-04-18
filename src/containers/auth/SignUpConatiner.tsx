@@ -5,13 +5,15 @@ import {
   mainInitializeForm,
   mainInitializeAuth,
   mainSignUpThunk,
+  mainLoginKakaoThunk,
+  mainLoginGoogleThunk,
 } from '../../modules/auth';
 import { RootState } from '../../modules';
 import AuthForm from '../../components/auth/AuthForm';
 import { mainIsLoginThunk } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
-export default withRouter(function SignUpForm({ history }) {
+export default withRouter(function SignUpContainer({ history }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const {
@@ -34,6 +36,14 @@ export default withRouter(function SignUpForm({ history }) {
   );
 
   const loading = authLoading || userLoading;
+
+  const handleOAuth = () => {
+    dispatch(mainLoginKakaoThunk());
+  };
+
+  const handleOAuthGoogle = () => {
+    dispatch(mainLoginGoogleThunk());
+  };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -88,8 +98,11 @@ export default withRouter(function SignUpForm({ history }) {
         return;
       }
       if (authError.response?.status === 400) {
-        if (authError.response.data === '"password" length must be at least 6 characters long')
-        setError('비밀번호는 6자리 이상이어야 합니다.');
+        if (
+          authError.response.data ===
+          '"password" length must be at least 6 characters long'
+        )
+          setError('비밀번호는 6자리 이상이어야 합니다.');
         return;
       }
       // 기타 이유
@@ -122,6 +135,8 @@ export default withRouter(function SignUpForm({ history }) {
       <AuthForm
         formType="signUp"
         form={form}
+        handleOAuth={handleOAuth}
+        handleOAuthGoogle={handleOAuthGoogle}
         onChange={onChange}
         onSubmit={onSubmit}
         error={error}

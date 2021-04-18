@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
-import ListPage from 'pages/ListPage';
-import DetailPage from 'components/detail/Detail';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import PaymentHistoryPage from 'pages/PaymentHistoryPage';
@@ -23,6 +21,7 @@ import MasterClubListPage from './pages/master/ClubListPage';
 import ClubReadPage from './pages/ClubReadPage';
 import ClubListPage from './pages/ClubListPage';
 import LandingPage from 'pages/LandingPage';
+import MyPageChangePasswordPage from './pages/myPage/MyPageChangePasswordPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,8 +51,6 @@ function App() {
       <Switch>
         <Route exact path="/master/login" component={MasterLoginPage} />
         <Route exact path="/master/signup" component={MasterSignUpPage} />
-        <Route exact path="/list" component={ListPage} />
-        <Route exact path="/detail" component={DetailPage} />
         <Route exact path="/club/:clubId" component={ClubReadPage} />
         <Route exact path="/club" component={ClubListPage} />
         <Route exact path="/payment" component={PaymentPage} />
@@ -62,6 +59,11 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
+        <Route
+          exact
+          path="/mypage/changepassword"
+          component={MyPageChangePasswordPage}
+        />
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
