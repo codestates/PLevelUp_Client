@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+import { Link } from 'react-router-dom';
 import { MainClubReadResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 
@@ -73,6 +74,10 @@ export default function Viewer({ club, error, loading }: ViewerType) {
         )}
         <div>{endDate}</div>
         <div>{limitUserNumber}</div>
+        {/* 임시 이동버튼 추가 */}
+        <button>
+          <Link to="/payment">이동</Link>
+        </button>
       </div>
       <div
         className={styles.readContent}
