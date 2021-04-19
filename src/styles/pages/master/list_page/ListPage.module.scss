@@ -15,7 +15,14 @@
   .writeListButtonWrapper {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 3rem;
+    margin-bottom:2rem;
+    cursor: pointer;
+    .writeBtn{
+      @include btn-default('primary');
+      font-size: 14px;
+      height: 48px;
+      width: 100%;
+    }
   }
 
   .title {
