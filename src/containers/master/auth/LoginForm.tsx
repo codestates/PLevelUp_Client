@@ -60,15 +60,11 @@ export default withRouter(function LoginForm({ history }) {
 
   useEffect(() => {
     if (authError) {
-      console.log('오류 발생');
-      console.log(authError);
       setError('로그인 실패');
       return;
     }
 
     if (auth) {
-      console.log('로그인 성공');
-      console.log(auth);
       dispatch(masterIsLoginThunk());
     }
   }, [auth, authError]);
