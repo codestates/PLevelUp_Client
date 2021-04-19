@@ -34,10 +34,11 @@ export const mainClubRead = async (id: number) => {
 export type MainClubListResType = MainClubReadResType[];
 
 export type MainClubListReqType = {
-  [index: string]: number | string | null | undefined;
+  [index: string]: number | string | undefined;
   page: number;
   search?: string;
   place?: string;
+  day?: string;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
@@ -45,8 +46,9 @@ export async function mainClubList({
   page,
   search,
   place,
+  day,
 }: MainClubListReqType) {
-  const queryString = qs.stringify({ page, search, place });
+  const queryString = qs.stringify({ page, search, place, day });
   const response = await api.get<MainClubListResType>(
     `/api/main/club?${queryString}`,
   );

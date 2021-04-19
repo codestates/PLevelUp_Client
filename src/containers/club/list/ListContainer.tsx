@@ -31,9 +31,12 @@ export default withRouter(function ListContainer({ location, match, history }) {
     }),
   );
 
-  const { search = '', place = '' } = qs.parse(location.search, {
-    ignoreQueryPrefix: true,
-  });
+  const { search = null, place = null, day = null } = qs.parse(
+    location.search,
+    {
+      ignoreQueryPrefix: true,
+    },
+  );
 
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
@@ -43,33 +46,33 @@ export default withRouter(function ListContainer({ location, match, history }) {
         }
       : club,
   );
-
-  const onSearch = (search: string) => {
-    const query = qs.stringify({ search, place });
+  const handleSearch = (search?: string, place?: string, day?: string) => {
+    const query = qs.stringify({ search, place, day });
     history.push(`/club?${query}`);
     // window.location.reload();
     dispatch(mainClubUnloadList());
     setCurrentClubs([]);
     dispatch(
-      mainListThunk({ page: 1, search: search, place: place?.toString() }),
-    );
-    setPage(2);
-  };
-
-  const onPlace = (place: string | null) => {
-    const query = qs.stringify({ search, place });
-    history.push(`/club?${query}`);
-    dispatch(mainClubUnloadList());
-    setCurrentClubs([]);
-
-    dispatch(
       mainListThunk({
         page: 1,
         search: search?.toString(),
         place: place?.toString(),
+        day: day?.toString(),
       }),
     );
     setPage(2);
+  };
+
+  const onSearch = (search: string) => {
+    handleSearch(search?.toString(), place?.toString(), day?.toString());
+  };
+
+  const onPlace = (place: string | null) => {
+    handleSearch(search?.toString(), place?.toString(), day?.toString());
+  };
+
+  const onDay = (day: string | null) => {
+    handleSearch(search?.toString(), place?.toString(), day?.toString());
   };
 
   useEffect(() => {
@@ -131,12 +134,17 @@ export default withRouter(function ListContainer({ location, match, history }) {
     );
 
   if (lastPage === 0) {
-    return <div ref={loader}>리스트가 없습니다.</div>;
+    return (
+      <>
+        <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
+        <div ref={loader}>리스트가 없습니다.</div>
+      </>
+    );
   }
 
   return (
     <>
-      <Search onSearch={onSearch} onPlace={onPlace} />
+      <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
       <List clubs={currentClubs} />
       <div ref={loader} className={styles.loading}>
         {loading && <img src={loadingGif} alt="loading..." />}
