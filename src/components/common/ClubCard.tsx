@@ -35,12 +35,10 @@ export default withRouter(function ClubCard({
   const dayFromCreate =
     (new Date().getTime() - new Date(club.startDate).getTime()) /
     (1000 * 60 * 60 * 24);
-  const createDate = `${new Date(club.startDate).getMonth() + 1}/${new Date(
-    club.startDate,
-  ).getDate()}`;
+  const createDate = `${new Date(club.startDate).getMonth() + 1}/
+  ${new Date(club.startDate).getDate()}`;
 
   useEffect(() => {
-
     if (dayToClose < 5) {
       setBadgeStatus({
         ...badgeStatus,
@@ -97,7 +95,10 @@ export default withRouter(function ClubCard({
                   onClick={onRemoveBookmark}
                 />
               ) : (
-                <FaBookmark className={styles.icon} onClick={onAddBookmark} />
+                <FaRegBookmark
+                  className={styles.icon}
+                  onClick={onAddBookmark}
+                />
               )}
             </div>
           )}
