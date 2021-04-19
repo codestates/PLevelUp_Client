@@ -14,6 +14,7 @@ import createAsyncThunk, {
 const IsNotLogin = () => {
   try {
     localStorage.removeItem('main'); // localStorage 에서 main 를 제거
+    localStorage.removeItem('access_token'); // localStorage 에서 access_token 을 제거
   } catch (e) {
     console.log('localStorage is not working');
   }
