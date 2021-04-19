@@ -17,5 +17,9 @@ export default function BookmarkListContainer() {
     dispatch(mainGetBookmarkListThunk());
   }, [dispatch]);
 
+  // TODO: List Component 쓰면 안 된다.
+  // 랜딩 페이지용 컴포넌트 만들어야 함-> landing/SlickClubCard 아니었나??
+  if (!clubs) return <div />;
+
   return <List clubs={clubs} />;
 }
