@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import styles from '../../styles/pages/landing_page/SlickBanner.module.scss';
+import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
 import { Link } from 'react-router-dom';
 
 function SampleNextArrow(props: any) {
@@ -37,6 +37,11 @@ function SamplePrevArrow(props: any) {
   );
 }
 
+export type bannerDataType = {
+  id: number;
+  url: string;
+};
+
 export default function SlickBanner({ data }: any) {
   const settings = {
     arrows: true,
@@ -54,9 +59,9 @@ export default function SlickBanner({ data }: any) {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <div className={styles.container}>
+    <div className={styles.bannerContainer}>
       <Slider {...settings} className={styles.slider}>
-        {data.map((banner: any) => {
+        {data.map((banner: bannerDataType) => {
           return (
             <div className={styles.imgBox} key={banner.id}>
               <Link to="/list">

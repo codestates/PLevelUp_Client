@@ -41,7 +41,7 @@ export default withRouter(function EditActionButtonsContainer({ history }) {
   useEffect(() => {
     if (club) {
       const { id } = club;
-      console.log('등록 or 수정 성공');
+      // console.log('등록 or 수정 성공');
       history.push(`/master/${id}`);
     }
     if (error) {

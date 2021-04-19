@@ -1,5 +1,19 @@
 import api from '../index';
 
+export async function mainLoginKakao() {
+  console.log('mainKakaoLogin API호출');
+  const response = await api.get(`/api/main/auth/login/kakao`, {});
+  console.log('mainKakaoLogin API', response);
+  return response.data;
+}
+
+export async function mainLoginGoogle() {
+  console.log('mainGoogleLogin API호출');
+  const response = await api.get(`/api/main/auth/login/google`, {});
+  console.log('mainGoogleLogin API', response);
+  return response.data;
+}
+
 export type MainLoginReqType = {
   [index: string]: string;
   email: string;
@@ -56,7 +70,7 @@ export async function mainSignUp({
 }
 
 export type MainIsLoginResType = {
-  _id: number;
+  id: number;
   email: string;
   username: string;
 };
@@ -71,38 +85,3 @@ export const mainLogout = async () => {
   const response = await api.post<MainLogoutResType>('/api/main/auth/logout');
   return response.data;
 };
-
-export type MainChangePasswordReqType = {
-  [index: string]: string;
-  email: string;
-  password: string;
-  changePassword: string;
-};
-
-export type MainChangePasswordResType = {
-  id: number;
-  email: string;
-  username: string;
-  password: string;
-  createAd: Date;
-  updatedAt: Date;
-};
-
-export async function mainChangePassword({
-  email,
-  password,
-  changePassword,
-}: {
-  email: string;
-  password: string;
-  changePassword: string;
-}) {
-  const response = await api.post<MainChangePasswordResType>(
-    `/api/main/auth/update`,
-    {
-      email,
-      password,
-    },
-  );
-  return response.data;
-}

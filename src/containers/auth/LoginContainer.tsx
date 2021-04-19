@@ -5,13 +5,15 @@ import {
   mainInitializeForm,
   mainInitializeAuth,
   mainLoginThunk,
+  mainLoginKakaoThunk,
+  mainLoginGoogleThunk,
 } from '../../modules/auth';
 import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
 import AuthForm from '../../components/auth/AuthForm';
 import { mainIsLoginThunk } from '../../modules/user';
 
-export default withRouter(function LoginForm({ history }) {
+export default withRouter(function LoginConatiner({ history }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
   const {
@@ -30,6 +32,13 @@ export default withRouter(function LoginForm({ history }) {
     data: mainUser.user?.data,
   }));
   const loading = authLoading;
+  const handleOAuth = () => {
+    dispatch(mainLoginKakaoThunk());
+  };
+
+  const handleOAuthGoogle = () => {
+    dispatch(mainLoginGoogleThunk());
+  };
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,6 +104,8 @@ export default withRouter(function LoginForm({ history }) {
     <AuthForm
       formType="login"
       form={form}
+      handleOAuth={handleOAuth}
+      handleOAuthGoogle={handleOAuthGoogle}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}

@@ -48,12 +48,8 @@ type EditorType = {
 };
 
 export default function Editor({ club, onChangeField }: EditorType) {
-  const summaryQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
-  const summaryQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const descriptionQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
-  const topicQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
-  const topicQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
 
@@ -66,22 +62,11 @@ export default function Editor({ club, onChangeField }: EditorType) {
   };
 
   useEffect(() => {
-    summaryQuillInstance.current = createQuill(
-      summaryQuillElement,
-      '요약을 입력하세요.',
-    );
     descriptionQuillInstance.current = createQuill(
       descriptionQuillElement,
       '설명을 입력하세요.',
     );
-    topicQuillInstance.current = createQuill(
-      topicQuillElement,
-      '주제를 입력하세요.',
-    );
-
-    quillChange('summary', summaryQuillInstance.current);
     quillChange('description', descriptionQuillInstance.current);
-    quillChange('topic', topicQuillInstance.current);
   }, [onChangeField]);
 
   // 수정 시 기존 데이터를 화면에 출력해준다.
@@ -89,15 +74,8 @@ export default function Editor({ club, onChangeField }: EditorType) {
   useEffect(() => {
     if (mounted.current) return;
     mounted.current = true;
-    if (
-      club &&
-      summaryQuillInstance.current &&
-      descriptionQuillInstance.current &&
-      topicQuillInstance.current
-    ) {
-      summaryQuillInstance.current.root.innerHTML = club.summary;
+    if (club && descriptionQuillInstance.current) {
       descriptionQuillInstance.current.root.innerHTML = club.description;
-      topicQuillInstance.current.root.innerHTML = club.topic;
     }
     setStartDate(new Date(club.startDate.toString()));
     setEndDate(new Date(club.endDate.toString()));
@@ -179,13 +157,14 @@ export default function Editor({ club, onChangeField }: EditorType) {
           min="0"
           name="limitUserNumber"
         />
-        <QuillWrapper>
-          <div ref={summaryQuillElement} />
-        </QuillWrapper>
-        <hr />
-        <QuillWrapper>
-          <div ref={topicQuillElement} />
-        </QuillWrapper>
+        <input
+          className={styles.etcInput}
+          placeholder="요약을 입력하세요. 최대 40자"
+          onChange={onChange}
+          value={club.summary}
+          type="text"
+          name="summary"
+        />
         <hr />
         <QuillWrapper>
           <div ref={descriptionQuillElement} />

@@ -9,7 +9,6 @@ export type MasterClubEditReqType = {
   price: number;
   place: string;
   description: string;
-  topic: string;
   startDate: Date;
   endDate: Date;
   day: string;
@@ -25,7 +24,6 @@ export type MasterClubEditResType = {
   place: string;
   price: number;
   description: string;
-  topic: string;
   startDate: Date;
   endDate: Date;
   day: string;
@@ -43,7 +41,6 @@ export async function masterClubWrite({
   price,
   place,
   description,
-  topic,
   startDate,
   endDate,
   day,
@@ -65,7 +62,6 @@ export async function masterClubWrite({
     price,
     place,
     description,
-    topic,
     startDate,
     endDate,
     day,
@@ -88,7 +84,6 @@ export type MasterClubReadResType = {
   place: string;
   price: number;
   description: string;
-  topic: string;
   startDate: Date;
   endDate: Date;
   day: string;
@@ -110,8 +105,8 @@ export const masterClubRead = async (id: number) => {
 export type MasterClubListResType = MasterClubReadResType[];
 
 export type MasterClubListReqType = {
-  [index: string]: string;
-  page: string;
+  [index: string]: number;
+  page: number;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
@@ -130,7 +125,6 @@ export const masterClubUpdate = async ({
   price,
   place,
   description,
-  topic,
   startDate,
   endDate,
   day,
@@ -162,7 +156,6 @@ export const masterClubUpdate = async ({
       price,
       place,
       description,
-      topic,
       startDate,
       endDate,
       day,

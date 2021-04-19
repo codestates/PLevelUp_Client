@@ -20,6 +20,7 @@ import MasterClubListPage from './pages/master/ClubListPage';
 import ClubReadPage from './pages/ClubReadPage';
 import ClubListPage from './pages/ClubListPage';
 import LandingPage from 'pages/LandingPage';
+import MyPageChangePasswordPage from './pages/myPage/MyPageChangePasswordPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,10 +57,15 @@ function App() {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignUpPage} />
         <Route exact path="/mypage" component={MyPage} />
+        <Route
+          exact
+          path="/mypage/changepassword"
+          component={MyPageChangePasswordPage}
+        />
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
-        <Route exact path="/" component={ClubListPage} /> {/* 임시 */}
+        <Route exact path="/" component={LandingPage} /> {/* 임시 */}
       </Switch>
       <Footer />
     </>
