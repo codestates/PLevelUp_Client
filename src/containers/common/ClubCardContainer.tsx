@@ -16,8 +16,8 @@ export default withRouter(function ClubCardContainer({
   isMain,
 }: any) {
   const dispatch = useDispatch();
-  const { data: user } = useSelector(({ mainUser }: RootState) => ({
-    data: mainUser.user?.data,
+  const { user } = useSelector(({ mainUser }: RootState) => ({
+    user: mainUser.user?.data,
   }));
   const onClickCard = (e: any) => {
     history.push(`/club/${club.id}`);
@@ -42,22 +42,15 @@ export default withRouter(function ClubCardContainer({
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    if (club.isBookmark) {
-      setIsBookmarked(true);
-    }
-    if (club.isBookmark === false) {
-      setIsBookmarked(false);
-    }
+    club.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
   }, [club]);
 
   useEffect(() => {
     if (isMain) {
-      const isDBBookmark = club.Bookmarkers.find(
-        (el: { id: number }) => el.id === user?.id,
-      );
-      if (isDBBookmark) {
-        setIsBookmarked(true);
-      }
+      // const isAlreadyBookmarked = club.Bookmarked.find(
+      //   (el: { UserId: number }) => el.UserId === user?.id,
+      // );
+      // isAlreadyBookmarked ? setIsBookmarked(true) : setIsBookmarked(false);
     }
   }, []);
 
@@ -65,8 +58,8 @@ export default withRouter(function ClubCardContainer({
     <ClubCard
       club={club}
       onClickCard={onClickCard}
-      onAddBookmark={isMain ? onAddBookmark : () => {}}
-      onRemoveBookmark={isMain ? onRemoveBookmark : () => {}}
+      onAddBookmark={() => {}}
+      onRemoveBookmark={() => {}}
       isMain={isMain}
       isBookmarked={isMain ? isBookmarked : null}
     />

@@ -1,8 +1,5 @@
 import React, { memo } from 'react';
-import {
-  MainClubListResType,
-  MainClubReadResType,
-} from '../../../api/main/club';
+import { MainClubListResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 import ClubCardContainer from '../../../containers/common/ClubCardContainer';
 

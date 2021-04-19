@@ -1,0 +1,102 @@
+
+@import './../../common/basicMixin.scss';
+
+$font-stack: spoqa han sans neo,'sans-serif';
+$fontColorForSubTitle: rgb(255, 255, 255);
+$fontColorForMainTitle: rgb(255, 255, 255);
+
+
+//이 아래는 fixedBanner 코로나 관련 사회적 거리두기 안내 배너 scss입니다..
+
+.coronaWrapperBanner {
+
+    font-family: $font-stack;
+
+    @include respond-to('not-mobile') {
+        display: flex;
+        justify-content: center;
+        
+      }
+
+      .LinkBanner{
+        @include respond-to('not-mobile') {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            max-width: 1140px;
+            padding: 0px;
+            
+          }
+        
+ 
+          .bannerContainer {
+            @include respond-to('not-mobile') {
+                display: flex;
+                flex-direction: column;
+                background: rgb(0, 172, 131);
+                text-align: center;
+                max-width: 1140px;
+                width: 100%;
+                padding: 20px 0px;
+                cursor: pointer;
+                border-radius: 8px;
+                
+              }
+
+            .bannerSubTitle {
+                color: $fontColorForSubTitle;
+                @include respond-to('not-mobile') {
+                    font-size: 16px;
+                    line-height: 16px;
+                    text-align: center;
+                    padding-bottom: 4px;
+                 
+                  }
+                
+                  @include respond-to('small') {
+                    margin: 0px 0px 6px;
+                    font-size: 14px;
+                    line-height: 14px;
+                    text-align: center;
+                    
+                  }
+                .bannerSubImg {
+                    @include respond-to('not-mobile') {
+                        width: 24px;
+                        margin-bottom: 4px;
+                        vertical-align: middle;
+                      }
+                    
+                      @include respond-to('small') {
+                        width: 12px;
+                        margin-bottom: 4px;
+                        vertical-align: middle;
+                      }
+                }
+            }
+            .bannerTitle {
+                color: $fontColorForMainTitle;
+                @include respond-to('not-mobile') {
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 24px;
+                    text-align: center;
+            
+                  }
+                
+                  @include respond-to('small') {
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 18px;
+                    text-align: center;
+                
+                  }
+            }
+        }
+        
+      }
+   
+    
+}
+
+
