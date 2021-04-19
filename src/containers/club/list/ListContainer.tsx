@@ -12,8 +12,10 @@ import {
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 import loadingGif from '../../../asset/loading.gif';
 import { FaArrowCircleUp } from 'react-icons/fa';
+import Search from '../../../components/club/list/Search';
+import qs from 'qs';
 
-export default withRouter(function ListContainer({ location, match }) {
+export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
   const [page, setPage] = useState<number>(1);
   const [goToTop, setGoToTop] = useState(false);
@@ -29,6 +31,10 @@ export default withRouter(function ListContainer({ location, match }) {
     }),
   );
 
+  const { search = '' } = qs.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
+
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
@@ -37,6 +43,16 @@ export default withRouter(function ListContainer({ location, match }) {
         }
       : club,
   );
+
+  const onSearch = (search: string) => {
+    const query = qs.stringify({ search });
+    history.push(`/club?${query}`);
+    // window.location.reload();
+    dispatch(mainClubUnloadList());
+    setCurrentClubs([]);
+    dispatch(mainListThunk({ page: 1, search: search }));
+    setPage(2);
+  };
 
   useEffect(() => {
     setCurrentClubs(newCurrentClubs);
@@ -51,7 +67,7 @@ export default withRouter(function ListContainer({ location, match }) {
       }
       if (entries[0].isIntersecting && !loading) {
         if (lastPage >= page) {
-          dispatch(mainListThunk({ page: page }));
+          dispatch(mainListThunk({ page: page, search: search.toString() }));
           setPage(page + 1);
         } else {
           setGoToTop(true);
@@ -62,8 +78,10 @@ export default withRouter(function ListContainer({ location, match }) {
   );
 
   useEffect(() => {
-    dispatch(mainListThunk({ page: page }));
-    setPage(page + 1);
+    if (lastPage >= page) {
+      dispatch(mainListThunk({ page: page, search: search.toString() }));
+      setPage(page + 1);
+    }
   }, []);
 
   useEffect(() => {
@@ -75,9 +93,20 @@ export default withRouter(function ListContainer({ location, match }) {
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 
-  if (error) return <img src={loadingGif} alt="loading..." />;
+  if (error)
+    return (
+      <div ref={loader}>
+        <img src={loadingGif} alt="loading..." />
+      </div>
+    );
+
+  if (lastPage === 0) {
+    return <div ref={loader}>리스트가 없습니다.</div>;
+  }
+
   return (
     <>
+      <Search onSearch={onSearch} />
       <List clubs={currentClubs} />
       <div ref={loader} className={styles.loading}>
         {loading && <img src={loadingGif} alt="loading..." />}
