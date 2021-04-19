@@ -40,6 +40,7 @@ export default withRouter(function ClubCard({
   ).getDate()}`;
 
   useEffect(() => {
+
     if (dayToClose < 5) {
       setBadgeStatus({
         ...badgeStatus,
