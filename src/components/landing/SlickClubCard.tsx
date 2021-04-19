@@ -97,7 +97,7 @@ export default function SlickClubList({
         {data.map((club: MainClubReadResType) => {
           return (
             <div className={styles.cardContainer}>
-              <ClubCardContainer club={club} key={club.id} />
+              <ClubCardContainer club={club} key={club.id} isMain={true} />
             </div>
           );
         })}
