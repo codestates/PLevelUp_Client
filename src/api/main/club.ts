@@ -85,3 +85,10 @@ export async function removeBookmarkAPI(clubId: number) {
   );
   return response.data;
 }
+
+export async function getBookmarkListAPI() {
+  const response = await api.post<MainClubListReqType>(
+    `/api/main/club/getbookmark`,
+  );
+  return response.data;
+}

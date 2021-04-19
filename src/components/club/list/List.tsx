@@ -7,7 +7,7 @@ import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 import ClubCardContainer from '../../../containers/common/ClubCardContainer';
 
 type ListType = {
-  clubs: MainClubListResType;
+  clubs: MainClubListResType | null;
 };
 
 export default function List({ clubs }: ListType) {
@@ -15,7 +15,7 @@ export default function List({ clubs }: ListType) {
     <div className={styles.wrapper}>
       <div className={styles.title}>모든 클럽 보기</div>
       <div className={styles.container}>
-        {clubs.map(club => {
+        {clubs?.map(club => {
           return <ClubCardContainer club={club} key={club.id} />;
         })}
       </div>

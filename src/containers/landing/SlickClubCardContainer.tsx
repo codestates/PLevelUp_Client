@@ -51,6 +51,8 @@ export default function SlickClubCardContainer() {
 
   useEffect(() => {
     dispatch(mainListThunk({ page: 1 }));
+  }, [dispatch]);
+  useEffect(() => {
     setCurations(
       curations?.map((curation: curationsType) => {
         return {
@@ -59,7 +61,7 @@ export default function SlickClubCardContainer() {
         };
       }),
     );
-  }, [dispatch]);
+  }, [loading]);
 
   return (
     <>
