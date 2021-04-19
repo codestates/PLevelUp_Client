@@ -1,7 +1,12 @@
 import createAsyncThunk, {
   createRequestActionTypes,
 } from '../../../lib/createAsyncThunk';
-import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions';
+import {
+  ActionType,
+  createAction,
+  createAsyncAction,
+  createReducer,
+} from 'typesafe-actions';
 import {
   masterClubList,
   MasterClubListResType,
@@ -16,6 +21,9 @@ const [
   MASTER_CLUB_LIST_FAILURE,
 ] = createRequestActionTypes('master-list/MASTER_CLUB_LIST'); // 클럽 목록 조회
 
+// 액션 타입
+const MASTER_CLUB_UNLOAD_LIST = 'master-list/MASTER_CLUB_UNLOAD_LIST';
+
 // async 생성 함수
 export const masterClubListAsync = createAsyncAction(
   MASTER_CLUB_LIST,
@@ -23,9 +31,13 @@ export const masterClubListAsync = createAsyncAction(
   MASTER_CLUB_LIST_FAILURE,
 )<any, MasterClubListResType[], AxiosError>();
 
+// 액션 생성함수
+export const masterClubUnloadList = createAction(MASTER_CLUB_UNLOAD_LIST);
+
 // async 액션
 const asyncActions = {
   masterClubListAsync,
+  masterClubUnloadList,
 };
 type ListAsyncAction = ActionType<typeof asyncActions>;
 
@@ -57,6 +69,7 @@ export const masterListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       ...state,
       clubs: asyncState.error(action.payload),
     }),
+    [MASTER_CLUB_UNLOAD_LIST]: () => asyncInitialState,
   },
 );
 
