@@ -9,7 +9,6 @@ export type MasterClubEditReqType = {
   price: number;
   place: string;
   description: string;
-  topic: string;
   startDate: Date;
   endDate: Date;
   day: string;
@@ -25,7 +24,6 @@ export type MasterClubEditResType = {
   place: string;
   price: number;
   description: string;
-  topic: string;
   startDate: Date;
   endDate: Date;
   day: string;
@@ -43,7 +41,6 @@ export async function masterClubWrite({
   price,
   place,
   description,
-  topic,
   startDate,
   endDate,
   day,
@@ -65,7 +62,6 @@ export async function masterClubWrite({
     price,
     place,
     description,
-    topic,
     startDate,
     endDate,
     day,
@@ -88,7 +84,6 @@ export type MasterClubReadResType = {
   place: string;
   price: number;
   description: string;
-  topic: string;
   startDate: Date;
   endDate: Date;
   day: string;
@@ -130,7 +125,6 @@ export const masterClubUpdate = async ({
   price,
   place,
   description,
-  topic,
   startDate,
   endDate,
   day,
@@ -162,7 +156,6 @@ export const masterClubUpdate = async ({
       price,
       place,
       description,
-      topic,
       startDate,
       endDate,
       day,

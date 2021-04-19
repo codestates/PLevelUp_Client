@@ -85,7 +85,6 @@ export default withRouter(function LoginConatiner({ history }) {
     if (auth) {
       // console.log('로그인 성공');
       // console.log(auth);
-      console.log('여기');
       dispatch(mainIsLoginThunk());
     }
   }, [auth, authError]);

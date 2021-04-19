@@ -105,7 +105,6 @@ const initialState: EditState = {
     place: '',
     price: 0,
     description: '',
-    topic: '',
     startDate: new Date(),
     endDate: new Date(),
     day: '',
@@ -157,7 +156,6 @@ export const masterEdit = createReducer<EditState, EditAction>(initialState, {
       draft['club']['place'] = club.place;
       draft['club']['price'] = club.price;
       draft['club']['description'] = club.description;
-      draft['club']['topic'] = club.topic;
       draft['club']['startDate'] = club.startDate;
       draft['club']['endDate'] = club.endDate;
       draft['club']['day'] = club.day;

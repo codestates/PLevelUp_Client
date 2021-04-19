@@ -30,7 +30,6 @@ export type MainClubReadResType = {
   place: string; //* '온라인' || 홍대 || '강남'
   price: number; //* 50000
   description: string; //* 각종 내용
-  topic: string; //*
   startDate: Date; //* '2021-04-07 14:20:09.168',
   endDate: Date; //* '2021-04-07 14:20:09.168',
   day: string; //* 월 / 화 / 수
