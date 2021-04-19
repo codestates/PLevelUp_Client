@@ -12,6 +12,7 @@ import {
 } from '../../modules/club/bookmark';
 
 //TODO: 클럽카드 변경이 계속 많아서 container / component 구분을 못했는데 , 오늘 새벽코드정리하면서  분리하겠습니다.
+//TODO: 타입 any 제거
 export default withRouter(function ClubCard({
   club,
   history,
@@ -19,6 +20,7 @@ export default withRouter(function ClubCard({
   onAddBookmark,
   onRemoveBookmark,
   isBookmarked,
+  isMain,
 }: any) {
   //withRouter 사용시 type any필요로 함
   const [badgeStatus, setBadgeStatus] = useState({
@@ -38,6 +40,7 @@ export default withRouter(function ClubCard({
   ).getDate()}`;
 
   useEffect(() => {
+
     if (dayToClose < 5) {
       setBadgeStatus({
         ...badgeStatus,
@@ -86,13 +89,18 @@ export default withRouter(function ClubCard({
               <Badge type="online">온라인</Badge>
             ) : null}
           </div>
-          <div className={styles.bookmark}>
-            {isBookmarked ? (
-              <FaBookmark className={styles.icon} onClick={onRemoveBookmark} />
-            ) : (
-              <FaRegBookmark className={styles.icon} onClick={onAddBookmark} />
-            )}
-          </div>
+          {isMain && (
+            <div className={styles.bookmark}>
+              {isBookmarked ? (
+                <FaBookmark
+                  className={styles.icon}
+                  onClick={onRemoveBookmark}
+                />
+              ) : (
+                <FaBookmark className={styles.icon} onClick={onAddBookmark} />
+              )}
+            </div>
+          )}
         </div>
         <img
           src={club.coverUrl || defaultData.coverUrl}

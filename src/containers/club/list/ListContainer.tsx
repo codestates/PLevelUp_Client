@@ -62,6 +62,11 @@ export default withRouter(function ListContainer({ location, match }) {
   );
 
   useEffect(() => {
+    dispatch(mainListThunk({ page: page }));
+    setPage(page + 1);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, {
       threshold: 1,
     });

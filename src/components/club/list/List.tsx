@@ -15,8 +15,8 @@ export default function List({ clubs }: ListType) {
     <div className={styles.wrapper}>
       <div className={styles.title}>모든 클럽 보기</div>
       <div className={styles.container}>
-        {clubs?.map(club => {
-          return <ClubCardContainer club={club} key={club.id} />;
+        {clubs.map(club => {
+          return <ClubCardContainer club={club} key={club.id} isMain={true} />;
         })}
       </div>
     </div>
