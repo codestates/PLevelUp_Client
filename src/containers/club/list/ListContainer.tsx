@@ -31,7 +31,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
     }),
   );
 
-  const { search = '' } = qs.parse(location.search, {
+  const { search = '', place = '' } = qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
 
@@ -45,12 +45,30 @@ export default withRouter(function ListContainer({ location, match, history }) {
   );
 
   const onSearch = (search: string) => {
-    const query = qs.stringify({ search });
+    const query = qs.stringify({ search, place });
     history.push(`/club?${query}`);
     // window.location.reload();
     dispatch(mainClubUnloadList());
     setCurrentClubs([]);
-    dispatch(mainListThunk({ page: 1, search: search }));
+    dispatch(
+      mainListThunk({ page: 1, search: search, place: place?.toString() }),
+    );
+    setPage(2);
+  };
+
+  const onPlace = (place: string | null) => {
+    const query = qs.stringify({ search, place });
+    history.push(`/club?${query}`);
+    dispatch(mainClubUnloadList());
+    setCurrentClubs([]);
+
+    dispatch(
+      mainListThunk({
+        page: 1,
+        search: search?.toString(),
+        place: place?.toString(),
+      }),
+    );
     setPage(2);
   };
 
@@ -67,7 +85,13 @@ export default withRouter(function ListContainer({ location, match, history }) {
       }
       if (entries[0].isIntersecting && !loading) {
         if (lastPage >= page) {
-          dispatch(mainListThunk({ page: page, search: search.toString() }));
+          dispatch(
+            mainListThunk({
+              page: page,
+              search: search?.toString(),
+              place: place?.toString(),
+            }),
+          );
           setPage(page + 1);
         } else {
           setGoToTop(true);
@@ -79,7 +103,13 @@ export default withRouter(function ListContainer({ location, match, history }) {
 
   useEffect(() => {
     if (lastPage >= page) {
-      dispatch(mainListThunk({ page: page, search: search.toString() }));
+      dispatch(
+        mainListThunk({
+          page: page,
+          search: search?.toString(),
+          place: place?.toString(),
+        }),
+      );
       setPage(page + 1);
     }
   }, []);
@@ -106,7 +136,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
 
   return (
     <>
-      <Search onSearch={onSearch} />
+      <Search onSearch={onSearch} onPlace={onPlace} />
       <List clubs={currentClubs} />
       <div ref={loader} className={styles.loading}>
         {loading && <img src={loadingGif} alt="loading..." />}

@@ -48,7 +48,7 @@ export default function SlickClubCardContainer() {
   }, [bookmark]);
 
   useEffect(() => {
-    dispatch(mainListThunk({ page: 1, search: null }));
+    dispatch(mainListThunk({ page: 1 }));
   }, [dispatch]);
   useEffect(() => {
     setCurations(
