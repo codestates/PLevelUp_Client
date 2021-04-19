@@ -31,9 +31,7 @@ export default function SlickClubCardContainer() {
     },
   ]);
 
-  const newStateClub = curations?.map((
-    curation: curationsType, //TODO: 12시 이후, immer로 가독성높이기
-  ) => ({
+  const newStateClub = curations?.map((curation: curationsType) => ({
     ...curation,
     clubs: curation.clubs?.map((club: MainClubReadResType) =>
       club.id === bookmark?.clubId

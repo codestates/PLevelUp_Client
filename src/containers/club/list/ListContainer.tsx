@@ -29,19 +29,17 @@ export default withRouter(function ListContainer({ location, match }) {
     }),
   );
 
-  const newStateClub = currentClubs.map((
-    club: MainClubReadResType, //TODO: 12시 이후, immer로 가독성높이기
-  ) =>
+  const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
           ...club,
-          isBookmark: !club.isBookmark,
+          isBookmark: bookmark.isBookmark,
         }
       : club,
   );
 
   useEffect(() => {
-    setCurrentClubs(newStateClub);
+    setCurrentClubs(newCurrentClubs);
     dispatch(mainClubBookmarkUnload());
   }, [bookmark]);
 
