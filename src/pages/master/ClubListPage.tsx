@@ -5,7 +5,7 @@ export default function ClubListPage() {
   return (
     <>
       <ListContainer />
-      <PaginationContainer />
+      {/*<PaginationContainer />*/}
     </>
   );
 }

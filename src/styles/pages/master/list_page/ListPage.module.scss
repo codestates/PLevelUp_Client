@@ -2,9 +2,15 @@
 @import '../../../common/basicMixin.scss';
 
 .masterListWrapper {
-  margin-top: 60px;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: #fff; // utils에서 변수명 사용
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
 
   .writeListButtonWrapper {
     display: flex;
@@ -12,46 +18,66 @@
     margin-bottom: 3rem;
   }
 
-  .listItemBlock {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    /* 맨 위 포스트는 padding-top 없음 */
-
-    &:first-child {
-      padding-top: 0;
-    }
-
-    & + & {
-      border-top: 1px solid lightgray;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 0;
-      margin-top: 0;
-
-      &:hover {
-        color: dimgray;
-      }
-    }
-
-    p {
-      margin-top: 2rem;
+  .title {
+    align-self: flex-start;
+    margin: 25px 10px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0px 20px;
+    @include respond-to(not-mobile) {
+      margin: 20px 30px;
+      font-weight: 700;
+      line-height: 24px;
     }
   }
 
-  .subInfo {
-    margin-top: 1rem;
-    color: gray
+  h1 {
+    margin-top: 60px;
   }
-;
 
-  /* span 사이에 가운뎃점 문자 보여 주기 */
+  .container {
+    width: 90%;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; //가로 전체넓이를 다 쓰도록
+    grid-template-rows: auto; // 높이는 자동으로
+    row-gap: 20px; // 그리드 사이 간격
+    column-gap: 24px;
 
-  span + span:before {
-    color: darkgray;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    content: '\B7'; /* 가운뎃점 문자 */
+    @include respond-to('large') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include respond-to('medium') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include respond-to('small') {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include respond-to('x-small') {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 8px;
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+
+  img {
+    width: 200px;
+  }
+}
+
+.goToTop {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
