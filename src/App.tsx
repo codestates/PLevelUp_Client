@@ -20,6 +20,7 @@ import MasterClubListPage from './pages/master/ClubListPage';
 import ClubReadPage from './pages/ClubReadPage';
 import ClubListPage from './pages/ClubListPage';
 import LandingPage from 'pages/LandingPage';
+import HelpPage from 'pages/HelpPage';
 import MyPageChangePasswordPage from './pages/myPage/MyPageChangePasswordPage';
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           path="/mypage/changepassword"
           component={MyPageChangePasswordPage}
         />
+        <Route exact path="/help" component={HelpPage} />
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
