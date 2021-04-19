@@ -7,7 +7,7 @@ import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 import ClubCardContainer from '../../../containers/common/ClubCardContainer';
 
 type ListType = {
-  clubs: MainClubListResType;
+  clubs: MainClubListResType | null;
 };
 
 export default function List({ clubs }: ListType) {
