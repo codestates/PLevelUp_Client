@@ -23,7 +23,12 @@ export type MainClubReadResType = {
   MasterId: number; //* 클럽장 아이디
   Master: MainClubReadMasterType;
   coverUrl: string; //*'https://image.trevari.co.kr/file/af0767ba-bd4a-4d11-8b67-7980faede3e2.%E1%84%92%E1%85%AA%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%87%E1%85%A5%E1%86%B7.png',
-  isBookmark: boolean | null;
+  isBookmark: boolean;
+  isOnline: boolean;
+  isNew: boolean;
+  isMostEnd: boolean;
+  isEnd: boolean;
+  isFourLimitNumber: boolean;
 };
 
 export const mainClubRead = async (id: number) => {
@@ -34,13 +39,21 @@ export const mainClubRead = async (id: number) => {
 export type MainClubListResType = MainClubReadResType[];
 
 export type MainClubListReqType = {
-  [index: string]: number;
+  [index: string]: number | string | undefined;
   page: number;
+  search?: string;
+  place?: string;
+  day?: string;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
-export async function mainClubList({ page }: MainClubListReqType) {
-  const queryString = qs.stringify({ page });
+export async function mainClubList({
+  page,
+  search,
+  place,
+  day,
+}: MainClubListReqType) {
+  const queryString = qs.stringify({ page, search, place, day });
   const response = await api.get<MainClubListResType>(
     `/api/main/club?${queryString}`,
   );
