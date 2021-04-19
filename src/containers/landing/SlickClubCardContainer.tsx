@@ -67,7 +67,13 @@ export default function SlickClubCardContainer() {
         <div>로딩중</div>
       ) : (
         curations?.map((curation: curationsType) => {
-          return <SlickClubCard data={curation.clubs} name={curation.name} />;
+          return (
+            <SlickClubCard
+              data={curation.clubs}
+              name={curation.name}
+              key={curation.name}
+            />
+          );
         })
       )}
     </>
