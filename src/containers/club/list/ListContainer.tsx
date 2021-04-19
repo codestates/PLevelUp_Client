@@ -42,7 +42,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
     club.id === bookmark?.clubId
       ? {
           ...club,
-          isBookmark: bookmark.isBookmark,
+          isBookmark: club.isBookmark,
         }
       : club,
   );
