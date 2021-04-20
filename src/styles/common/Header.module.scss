@@ -1,3 +1,5 @@
+@import './utils.scss';
+
 // Header Desktop 버전입니다.
 header {
   display: block;
@@ -72,7 +74,7 @@ header {
           }
 
           a:hover {
-            color: #f60;
+            color: $primary;
           }
         }
         .pcVerIcon {
@@ -195,7 +197,7 @@ header {
           }
 
           a:hover {
-            color: #f60;
+            color: $primary;
           }
         }
         .pcVerIcon {

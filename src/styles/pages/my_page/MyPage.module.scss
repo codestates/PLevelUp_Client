@@ -1,8 +1,5 @@
 @import '../../common/utils.scss';
 
-$font-stack: spoqa han sans neo, 'sans-serif';
-$imsi-border: 1px solid #2c2c2a;
-
 a {
   text-decoration: none;
 }
@@ -19,7 +16,6 @@ a {
     display: flex;
     align-items: center;
     margin: 61px auto 0px auto;
-    font-family: $font-stack;
     height: 287.44px;
     position: relative;
 
@@ -52,7 +48,6 @@ a {
           height: 100%;
 
           .userName {
-            font-family: spoqa han sans neo, 'sans-serif';
             font-size: 1.1em;
             font-weight: bold;
           }
@@ -84,7 +79,6 @@ a {
                 width: 100px;
 
                 .changePasswordBtn {
-                  font-family: spoqa han sans neo, 'sans-serif';
                   font-size: 14px;
                   background: transparent;
                   border: none;
@@ -100,7 +94,6 @@ a {
                 width: 100px;
 
                 .logOutBtn {
-                  font-family: spoqa han sans neo, 'sans-serif';
                   font-size: 14px;
                   background: transparent;
                   border: none;
@@ -117,7 +110,7 @@ a {
         width: 100%;
 
         .banner {
-          border: $imsi-border;
+          border: 1px solid #2c2c2a;
           display: inline-block;
           max-width: 385px;
           max-height: 80px;
@@ -132,8 +125,7 @@ a {
     max-width: 1140px;
     align-items: center;
     margin: 0px auto 61px auto;
-    // border: $imsi-border;
-    font-family: spoqa han sans neo, 'sans-serif';
+    // border: 1px solid #2c2c2a;;
     padding: 0 16px;
     .recordArea {
       display: flex;
@@ -145,7 +137,6 @@ a {
         margin: 0px auto;
         width: 100%;
         display: flex;
-        padding-left: 0px;
 
         .areaList {
           /* display: inline-block; */
@@ -156,7 +147,7 @@ a {
             height: auto;
             padding: 15px 0px 17px !important;
             text-align: center;
-            // border: $imsi-border;
+            // border: 1px solid #2c2c2a;;
           }
         }
       }
@@ -182,7 +173,7 @@ a {
       margin-top: 48px;
       display: flex;
       justify-content: center;
-      border-bottom: $imsi-border;
+      border-bottom: 1px solid #2c2c2a;
     }
 
     .imgPro {
@@ -206,7 +197,6 @@ a {
     }
 
     .userName {
-      font-family: spoqa han sans neo, 'sans-serif';
       font-size: 18px;
     }
 

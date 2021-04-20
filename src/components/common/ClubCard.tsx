@@ -22,44 +22,8 @@ export default withRouter(function ClubCard({
   isBookmarked,
   isMain,
 }: any) {
-  //withRouter 사용시 type any필요로 함
-  // const [badgeStatus, setBadgeStatus] = useState({
-  //   isNewClub: false, //* New type='new'
-  //   isFullClub: false, //TODO 마감
-  //   isMostFullClub: false, //* 마감임박 type='mostFull'
-  // });
-
-  // const dayToClose =
-  //   (new Date(club.endDate).getTime() - new Date().getTime()) /
-  //   (1000 * 60 * 60 * 24);
-  // const dayFromCreate =
-  //   (new Date().getTime() - new Date(club.startDate).getTime()) /
-  //   (1000 * 60 * 60 * 24);
   const createDate = `${new Date(club.startDate).getMonth() + 1}/
   ${new Date(club.startDate).getDate()}`;
-
-  // useEffect(() => {
-  //   if (dayToClose < 5) {
-  //     setBadgeStatus({
-  //       ...badgeStatus,
-  //       isMostFullClub: true,
-  //     });
-  //   }
-  //   if (dayFromCreate < 7) {
-  //     setBadgeStatus({
-  //       ...badgeStatus,
-  //       isNewClub: true,
-  //     });
-  //   }
-  //   if (dayToClose < 0) {
-  //     setBadgeStatus({
-  //       ...badgeStatus,
-  //       isNewClub: false,
-  //       isMostFullClub: false,
-  //       isFullClub: true,
-  //     });
-  //   }
-  // }, []);
 
   const defaultData = {
     //* 추후 삭제

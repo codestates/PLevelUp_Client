@@ -1,3 +1,4 @@
+@import './utils.scss';
 $breakpoints: (
   'x-small': (
     max-width: 575px,
@@ -42,12 +43,12 @@ $breakpoints: (
 @mixin btn-default($display) {
   @if $display == 'primary' {
     color: #fff;
-    background-color: #f60;
-    border-color: #f60;
+    background-color: $primary;
+    border-color: $primary;
     :hover {
       color: #fff;
-      background-color: #d95700;
-      border-color: #cc5200;
+      background-color: $primaryLight;
+      border-color: $primaryLight;
     }
   } @else if $display== 'secondary' {
     color: white;

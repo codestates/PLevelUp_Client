@@ -29,6 +29,7 @@ export type MainClubReadResType = {
   isMostEnd: boolean;
   isEnd: boolean;
   isFourLimitNumber: boolean;
+  currentUserNumber: number;
 };
 
 export const mainClubRead = async (id: number) => {

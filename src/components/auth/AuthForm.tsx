@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import React, { ChangeEvent, FormEvent, MouseEventHandler } from 'react';
 import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
+import kakaoLoginBtnOfficial from '../../asset/kakao_login_medium_wide.png';
+import kakaoLoginBtn from '../../asset/kakao_login.png';
+import googleLoginBtn from '../../asset/google_login.png';
 
 type formTypeMapType = {
   [index: string]: string;
@@ -42,6 +45,9 @@ export default function AuthForm({
         <div className={styles.title}>
           {formType === 'login' ? '로그인' : '회원가입'}
         </div>
+        <img src={kakaoLoginBtnOfficial} />
+        <img className={styles.socialBtn} src={googleLoginBtn} />
+        <img className={styles.socialBtn} src={kakaoLoginBtn} />
         <button className={styles.googleBtn} onClick={handleOAuthGoogle}>
           구글로 시작하기
         </button>
