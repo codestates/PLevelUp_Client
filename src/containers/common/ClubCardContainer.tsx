@@ -45,15 +45,6 @@ export default withRouter(function ClubCardContainer({
     club.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
   }, [club]);
 
-  useEffect(() => {
-    if (isMain) {
-      // const isAlreadyBookmarked = club.Bookmarked.find(
-      //   (el: { UserId: number }) => el.UserId === user?.id,
-      // );
-      // isAlreadyBookmarked ? setIsBookmarked(true) : setIsBookmarked(false);
-    }
-  }, []);
-
   return (
     <ClubCard
       club={club}
