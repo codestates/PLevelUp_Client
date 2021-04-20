@@ -1,3 +1,4 @@
+import styles from '../../../../styles/pages/master/read_page/ReadPage.module.scss';
 import { useState } from 'react';
 import AskRemoveModal from './AskRemoveModal';
 
@@ -27,8 +28,12 @@ export default function ReadActionButtons({
 
   return (
     <>
-      <button onClick={onUpdate}>수정</button>
-      <button onClick={onRemoveClick}>삭제</button>
+      <button className={styles.actionBtn} onClick={onUpdate}>
+        수정
+      </button>
+      <button className={styles.actionBtn} onClick={onRemoveClick}>
+        삭제
+      </button>
       <AskRemoveModal
         visible={modal}
         onConfirm={onConfirm}
