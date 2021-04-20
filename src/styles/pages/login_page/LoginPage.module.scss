@@ -5,7 +5,7 @@
   margin: 0 auto;
   width: 100%;
   padding: 0 16px;
-  margin-top:60px; // 헤더 만큼 margin-top 추가
+  margin-top: 60px; // 헤더 만큼 margin-top 추가
   .loginContent {
     margin: 0px auto;
     max-width: 300px;
@@ -15,6 +15,10 @@
       font-size: 30px;
       font-weight: 600;
       margin-bottom: 40px;
+    }
+    .socialBtn {
+      width: 300px;
+      height: 50px;
     }
     .googleBtn {
       @include btn-default('secondary');
@@ -39,9 +43,9 @@
         width: 100%;
       }
       .errorMessage {
-        color: #721c24;
-        background-color: #f8d7da;
-        border-color: #f5c6cb;
+        color: $error;
+        background-color: $errorBackgroud;
+        border-color: $errorBorder;
         text-align: center;
         font-size: 0.875rem;
         margin-top: 1rem;
@@ -53,7 +57,7 @@
         text-align: right;
         user-select: auto;
         .registerLink {
-          color: rgb(255, 102, 0);
+          color: $secondary;
           text-decoration: underline;
         }
       }

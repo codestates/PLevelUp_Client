@@ -1,8 +1,5 @@
 @import '../../common/utils.scss';
 
-$font-stack: spoqa han sans neo, 'sans-serif';
-$imsi-border: 1px solid #2c2c2a;
-
 a {
   text-decoration: none;
 }
@@ -298,7 +295,7 @@ a:visited {
       margin-top: 48px;
       display: flex;
       justify-content: center;
-      border-bottom: $imsi-border;
+      border-bottom: 1px solid #2c2c2a;
     }
 
     .imgPro {
@@ -322,7 +319,6 @@ a:visited {
     }
 
     .userName {
-      font-family: spoqa han sans neo, 'sans-serif';
       font-size: 18px;
     }
 
