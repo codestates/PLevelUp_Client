@@ -55,9 +55,6 @@ export type IamportPaymentResType =
 
 export type MainPaymentHistoryReqType = {
   userId: number;
-  status: string;
-  title: string;
-  price: number;
 };
 
 export type MainPaymentResType = {

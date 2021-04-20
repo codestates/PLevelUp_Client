@@ -5,16 +5,14 @@ import {
 } from '../../api/main/payment';
 import PaymentCard from '../common/PaymentCard';
 import styles from '../../styles/pages/payment_page/PaymentHistoryPage.module.scss';
-import { withRouter } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
-import ClubEditPage from 'pages/master/ClubEditPage';
 
 export default function PaymentHistoryTemplate({
   payment,
   error,
   loading,
 }: {
-  payment: MainPaymentHistoryResType | any;
+  payment: MainPaymentHistoryResType | any; //타입수정예정
   error: AxiosError | null;
   loading: boolean;
 }) {

@@ -14,7 +14,7 @@ export default withRouter(function PaymentHistoryContainer() {
 
   const { data: payment, error, loading } = useSelector(
     ({ mainHistoryAsync }: RootState) => ({
-      data: mainHistoryAsync.payment.data,
+      data: mainHistoryAsync.payment.data!,
       error: mainHistoryAsync.payment.error,
       loading: mainHistoryAsync.payment.loading,
     }),

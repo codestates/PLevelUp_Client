@@ -29,13 +29,15 @@ export type MainApplyListReqType = {
   [index: string]: string;
 };
 
-export type MainApplyListResType = {
+export type MainApplyResType = {
   [index: string]: string;
   title: string;
   price: string;
 };
 
+export type MainApplyListResType = MainApplyResType[];
+
 export async function mainApplyList() {
-  const response = await api.get<MainApplyListResType>(`/api/main/auth/mypage`);
+  const response = await api.get<MainApplyResType>(`/api/main/auth/mypage`);
   return response.data;
 }

@@ -3,9 +3,9 @@ import styles from '../../styles/pages/my_page/MyPage.module.scss';
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
-import { MainApplyListResType } from 'api/main/myPage';
+import { MainApplyListResType, MainApplyResType } from 'api/main/myPage';
 import ApplyCard from '../common/ApplyCard';
-import { MainLoginResType, MainLogoutResType } from 'api/main/auth';
+import { MainIsLoginResType } from 'api/main/auth';
 import { MouseEventHandler } from 'react';
 
 export default function MyPageForm({
@@ -13,9 +13,9 @@ export default function MyPageForm({
   onLogout,
   apply,
 }: {
-  user: MainLoginResType | any;
+  user: MainIsLoginResType;
   onLogout: MouseEventHandler;
-  apply: MainApplyListResType | any;
+  apply: MainApplyListResType | null;
 }) {
   const { username } = user;
 
@@ -87,12 +87,8 @@ export default function MyPageForm({
                 <div className={styles.tabBodyClub}>
                   <div>
                     {apply &&
-                      apply.map((el: MainApplyListResType) => (
-                        <ApplyCard
-                          key={el.id}
-                          title={el.title}
-                          summary={el.summary}
-                        />
+                      apply.map((el: MainApplyResType) => (
+                        <ApplyCard key={el.id} data={el} />
                       ))}
                   </div>
                 </div>
@@ -101,39 +97,12 @@ export default function MyPageForm({
           </div>
         </div>
         {/* 
-            <ul className={styles.areaName}>
-              <li className={styles.areaList}>
-                <div className={styles.recordClubList}>
-                  <div className={styles.recordTitle}>클럽</div>
-                  <div className={styles.recordContents}>
-                    <div>
-                      {apply &&
-                        apply.map((el: MainApplyListResType) => (
-                          <ApplyCard
-                            key={el.id}
-                            title={el.title}
-                            summary={el.summary}
-                          />
-                        ))}
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li className={styles.areaList}>
-                <div className={styles.recordFavoriteList}>
-                  <div className={styles.recordTitle}>찜리스트</div>
-                  <div className={styles.recordContents}>
-                    <div>props로 추가될 실제 찜 클럽리스트</div> 
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
           <div className={styles.ifNotInvlovedClub}>
             <div>클럽이 없습니다.</div>
             <button>
               <Link to="/list">멤버쉽 신청하러 가기</Link>
             </button>
+            </div>
          */}
       </div>
     </div>

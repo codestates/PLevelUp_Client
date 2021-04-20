@@ -16,7 +16,7 @@ export default withRouter(function PaymentContainer({ match, history }) {
 
   const { data: club, error, loading } = useSelector(
     ({ mainReadAsync }: RootState) => ({
-      data: mainReadAsync.club.data,
+      data: mainReadAsync.club.data!,
       error: mainReadAsync.club.error,
       loading: mainReadAsync.club.loading,
     }),

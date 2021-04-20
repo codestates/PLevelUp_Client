@@ -13,12 +13,12 @@ import { useEffect } from 'react';
 export default withRouter(function MyPageContainer() {
   const dispatch = useDispatch();
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
-    data: mainUser.user?.data,
+    data: mainUser.user?.data!,
   }));
 
   const { data: apply, error, loading } = useSelector(
     ({ mainApplyAsync }: RootState) => ({
-      data: mainApplyAsync.apply.data,
+      data: mainApplyAsync.apply.data!,
       error: mainApplyAsync.apply.error,
       loading: mainApplyAsync.apply.loading,
     }),

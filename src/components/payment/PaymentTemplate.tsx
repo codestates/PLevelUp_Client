@@ -1,11 +1,14 @@
 import api from '../../api';
 import styles from '../../styles/pages/payment_page/PaymentPage.module.scss';
 import { Tablet, Desktop } from '../../mediaQuery';
-import { IoIosCheckbox } from 'react-icons/io';
+import { IoIosCheckbox, IoIosCheckboxOutline } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';
 import { IamportPaymentReqType } from '../../api/main/payment';
 import { withRouter } from 'react-router-dom';
+import { useState } from 'react';
+import { MainClubReadResType } from 'api/main/club';
+import { MainIsLoginResType } from 'api/main/auth';
 
 export default withRouter(function PaymentTemplate({
   club,
@@ -26,7 +29,7 @@ export default withRouter(function PaymentTemplate({
       amount: club?.price,
       buyer_email: user?.email,
       buyer_name: user?.username,
-      m_redirect_url: '/payment/complete',
+      m_redirect_url: `api/main/club/${id}/payment`,
       card_quota: [1, 2, 3, 4],
     };
 
@@ -48,6 +51,12 @@ export default withRouter(function PaymentTemplate({
         alert('결제가 취소되었습니다.');
       }
     });
+  };
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -181,8 +190,12 @@ export default withRouter(function PaymentTemplate({
                       가능합니다.
                     </div>
                     <div className={styles.policyContainer}>
-                      <div className={styles.checkBox}>
-                        <IoIosCheckbox color="#e4e4e4" size="20" />
+                      <div className={styles.checkBox} onClick={handleCheck}>
+                        {isChecked ? (
+                          <IoIosCheckbox color="#e4e4e4" size="20" />
+                        ) : (
+                          <IoIosCheckboxOutline color="#e4e4e4" size="20" />
+                        )}
                       </div>
                       <div>
                         결제 진행시 프레벨업의 이용약관 및 개인정보 처리방침을
@@ -192,7 +205,9 @@ export default withRouter(function PaymentTemplate({
                     <div className={styles.btnContainer}>
                       <button
                         type="button"
-                        className={styles.paymentBtn}
+                        className={`${styles.paymentBtn} ${
+                          isChecked ? '' : styles['disabled']
+                        }`}
                         onClick={onPay}
                       >
                         <div>{`${club.price}원 결제하기`}</div>
