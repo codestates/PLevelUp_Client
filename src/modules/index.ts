@@ -4,10 +4,6 @@ import masterUser from './master/user';
 import {
   mainAuth,
   mainAuthAsync,
-  mainLoginGoogleAsync,
-  mainLoginGoogleThunk,
-  mainLoginKakaoAsync,
-  mainLoginKakaoThunk,
 } from './auth';
 import mainUser from './user';
 import { masterEdit, masterEditAsync } from './master/club/edit';
@@ -41,8 +37,6 @@ const rootReducer = combineReducers({
   mainApplyAsync,
   mainChangePasswordAsync,
   mainChangePassword,
-  mainLoginGoogleThunk,
-  mainLoginKakaoThunk,
 });
 
 export default rootReducer;

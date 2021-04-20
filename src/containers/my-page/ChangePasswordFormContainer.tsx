@@ -73,9 +73,12 @@ export default withRouter(function ChangePasswordFormContainer({ history }) {
     }
   }, [auth, authError]);
 
-  useEffect(() => {
-    dispatch(mainMyPageUnloadChangePassword());
-  }, []);
+  useEffect(
+    () => () => {
+      dispatch(mainMyPageUnloadChangePassword());
+    },
+    [],
+  );
 
   useEffect(() => {
     if (auth && user) {

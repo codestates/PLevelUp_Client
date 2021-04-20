@@ -1,7 +1,12 @@
 import React from 'react';
+import HelpContainer from '../components/help/HelpContainer';
+import { withRouter } from 'react-router-dom';
+export default withRouter(function HelpPage({ match }) {
+  // const category = match.params.category || 'Club';
 
-const HelpPage = () => {
-  return <div> 문의하기(help)페이지 </div>;
-};
-
-export default HelpPage;
+  return (
+    <>
+      <HelpContainer />
+    </>
+  );
+});

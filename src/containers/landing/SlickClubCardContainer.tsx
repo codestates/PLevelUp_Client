@@ -31,9 +31,7 @@ export default function SlickClubCardContainer() {
     },
   ]);
 
-  const newStateClub = curations?.map((
-    curation: curationsType, //TODO: 12시 이후, immer로 가독성높이기
-  ) => ({
+  const newStateClub = curations?.map((curation: curationsType) => ({
     ...curation,
     clubs: curation.clubs?.map((club: MainClubReadResType) =>
       club.id === bookmark?.clubId
@@ -51,6 +49,8 @@ export default function SlickClubCardContainer() {
 
   useEffect(() => {
     dispatch(mainListThunk({ page: 1 }));
+  }, [dispatch]);
+  useEffect(() => {
     setCurations(
       curations?.map((curation: curationsType) => {
         return {
@@ -59,7 +59,7 @@ export default function SlickClubCardContainer() {
         };
       }),
     );
-  }, [dispatch]);
+  }, [loading]);
 
   return (
     <>
@@ -67,7 +67,13 @@ export default function SlickClubCardContainer() {
         <div>로딩중</div>
       ) : (
         curations?.map((curation: curationsType) => {
-          return <SlickClubCard data={curation.clubs} name={curation.name} />;
+          return (
+            <SlickClubCard
+              data={curation.clubs}
+              name={curation.name}
+              key={curation.name}
+            />
+          );
         })
       )}
     </>

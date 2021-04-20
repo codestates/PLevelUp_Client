@@ -8,11 +8,16 @@ import {
 import { withRouter } from 'react-router-dom';
 import ClubCard from '../../components/common/ClubCard';
 
-//Todo: isbookmarked 리팩토링
-export default withRouter(function ClubCardContainer({ club, history }: any) {
+//TODD: isbookmarked 리팩토링
+//TODD: any 타입 변경 해야함
+export default withRouter(function ClubCardContainer({
+  club,
+  history,
+  isMain,
+}: any) {
   const dispatch = useDispatch();
-  const { data: user } = useSelector(({ mainUser }: RootState) => ({
-    data: mainUser.user?.data,
+  const { user } = useSelector(({ mainUser }: RootState) => ({
+    user: mainUser.user?.data,
   }));
   const onClickCard = (e: any) => {
     history.push(`/club/${club.id}`);
@@ -35,22 +40,17 @@ export default withRouter(function ClubCardContainer({ club, history }: any) {
   };
 
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const isDBBookmark = club.Bookmarkers.find(
-    (el: { id: number }) => el.id === user?.id,
-  );
 
   useEffect(() => {
-    if (club.isBookmark) {
-      setIsBookmarked(true);
-    }
-    if (club.isBookmark === false) {
-      setIsBookmarked(false);
-    }
+    club.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
   }, [club]);
 
   useEffect(() => {
-    if (isDBBookmark) {
-      setIsBookmarked(true);
+    if (isMain) {
+      // const isAlreadyBookmarked = club.Bookmarked.find(
+      //   (el: { UserId: number }) => el.UserId === user?.id,
+      // );
+      // isAlreadyBookmarked ? setIsBookmarked(true) : setIsBookmarked(false);
     }
   }, []);
 
@@ -60,7 +60,8 @@ export default withRouter(function ClubCardContainer({ club, history }: any) {
       onClickCard={onClickCard}
       onAddBookmark={onAddBookmark}
       onRemoveBookmark={onRemoveBookmark}
-      isBookmarked={isBookmarked}
+      isMain={isMain}
+      isBookmarked={isMain ? isBookmarked : null}
     />
   );
 });

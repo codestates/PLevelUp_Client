@@ -12,6 +12,7 @@ import {
 } from '../../modules/club/bookmark';
 
 //TODO: 클럽카드 변경이 계속 많아서 container / component 구분을 못했는데 , 오늘 새벽코드정리하면서  분리하겠습니다.
+//TODO: 타입 any 제거
 export default withRouter(function ClubCard({
   club,
   history,
@@ -19,46 +20,46 @@ export default withRouter(function ClubCard({
   onAddBookmark,
   onRemoveBookmark,
   isBookmarked,
+  isMain,
 }: any) {
   //withRouter 사용시 type any필요로 함
-  const [badgeStatus, setBadgeStatus] = useState({
-    isNewClub: false, //* New type='new'
-    isFullClub: false, //TODO 마감
-    isMostFullClub: false, //* 마감임박 type='mostFull'
-  });
+  // const [badgeStatus, setBadgeStatus] = useState({
+  //   isNewClub: false, //* New type='new'
+  //   isFullClub: false, //TODO 마감
+  //   isMostFullClub: false, //* 마감임박 type='mostFull'
+  // });
 
-  const dayToClose =
-    (new Date(club.endDate).getTime() - new Date().getTime()) /
-    (1000 * 60 * 60 * 24);
-  const dayFromCreate =
-    (new Date().getTime() - new Date(club.startDate).getTime()) /
-    (1000 * 60 * 60 * 24);
-  const createDate = `${new Date(club.startDate).getMonth() + 1}/${new Date(
-    club.startDate,
-  ).getDate()}`;
+  // const dayToClose =
+  //   (new Date(club.endDate).getTime() - new Date().getTime()) /
+  //   (1000 * 60 * 60 * 24);
+  // const dayFromCreate =
+  //   (new Date().getTime() - new Date(club.startDate).getTime()) /
+  //   (1000 * 60 * 60 * 24);
+  const createDate = `${new Date(club.startDate).getMonth() + 1}/
+  ${new Date(club.startDate).getDate()}`;
 
-  useEffect(() => {
-    if (dayToClose < 5) {
-      setBadgeStatus({
-        ...badgeStatus,
-        isMostFullClub: true,
-      });
-    }
-    if (dayFromCreate < 7) {
-      setBadgeStatus({
-        ...badgeStatus,
-        isNewClub: true,
-      });
-    }
-    if (dayToClose < 0) {
-      setBadgeStatus({
-        ...badgeStatus,
-        isNewClub: false,
-        isMostFullClub: false,
-        isFullClub: true,
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (dayToClose < 5) {
+  //     setBadgeStatus({
+  //       ...badgeStatus,
+  //       isMostFullClub: true,
+  //     });
+  //   }
+  //   if (dayFromCreate < 7) {
+  //     setBadgeStatus({
+  //       ...badgeStatus,
+  //       isNewClub: true,
+  //     });
+  //   }
+  //   if (dayToClose < 0) {
+  //     setBadgeStatus({
+  //       ...badgeStatus,
+  //       isNewClub: false,
+  //       isMostFullClub: false,
+  //       isFullClub: true,
+  //     });
+  //   }
+  // }, []);
 
   const defaultData = {
     //* 추후 삭제
@@ -69,7 +70,7 @@ export default withRouter(function ClubCard({
   return (
     <div className={styles.card} onClick={onClickCard}>
       <div className={styles.imgBox}>
-        {badgeStatus.isFullClub ? (
+        {club.isEnd ? (
           <>
             <div className={styles.closeBackground}></div>
             <div className={styles.close}>마 감</div>
@@ -77,22 +78,28 @@ export default withRouter(function ClubCard({
         ) : null}
         <div className={styles.stickers}>
           <div className={styles.badge}>
-            {badgeStatus.isNewClub ? <Badge type="new">NEW</Badge> : null}
-            {badgeStatus.isMostFullClub ? (
-              <Badge type="mostFull">마감임박</Badge>
-            ) : null}
-            {badgeStatus.isFullClub ? <Badge type="full">마감</Badge> : null}
+            {club.isNew ? <Badge type="new">NEW</Badge> : null}
+            {club.isMostEnd ? <Badge type="mostFull">마감임박</Badge> : null}
+            {club.isEnd ? <Badge type="full">마감</Badge> : null}
             {club.place === '온라인' ? (
               <Badge type="online">온라인</Badge>
             ) : null}
           </div>
-          <div className={styles.bookmark}>
-            {isBookmarked ? (
-              <FaBookmark className={styles.icon} onClick={onRemoveBookmark} />
-            ) : (
-              <FaRegBookmark className={styles.icon} onClick={onAddBookmark} />
-            )}
-          </div>
+          {isMain && (
+            <div className={styles.bookmark}>
+              {isBookmarked ? (
+                <FaBookmark
+                  className={styles.icon}
+                  onClick={onRemoveBookmark}
+                />
+              ) : (
+                <FaRegBookmark
+                  className={styles.icon}
+                  onClick={onAddBookmark}
+                />
+              )}
+            </div>
+          )}
         </div>
         <img
           src={club.coverUrl || defaultData.coverUrl}
