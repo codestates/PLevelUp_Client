@@ -1,5 +1,57 @@
 @import './utils.scss';
+@import './basicMixin.scss';
+$font-stack: spoqa han sans neo, 'sans-serif';
 
 .errorWrapper {
+    background: white;
+    max-width: 1140px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 16px;
+    vertical-align: middle;
+    .errorContainer{
+        padding: 120px 0;
+        text-align: center;
+        vertical-align: middle;
+        font-family: $font-stack;
+        line-height: 1.5rem;
+        .errorImg{
+            vertical-align: middle;
+            border-style: none;
+        }
 
+        .errorMessage {
+            margin-top: 32px;
+            font-family: spoqa han sans neo,'sans-serif';
+            text-align: center;
+            display: block;
+            vertical-align: middle;
+        }
+        .RedirectBtn{
+            // width: fit-content;
+            margin-top: 32px;
+           
+            .LinkContainer {
+                
+                vertical-align: middle;
+                text-align: center;
+               
+           
+            
+
+                @include respond-to('not-mobile') {
+                   
+                    @include btn-default('primary');
+                
+                    &:hover {
+                        color: #fff;
+                        background-color: #d95700;
+                        border-color: #cc5200;
+                    }
+                }
+    
+            }
+        }
+        
+    }
 }
