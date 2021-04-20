@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { RootState } from '../../../modules';
 import List from '../../../components/club/list/List';
 import { mainClubUnloadList, mainListThunk } from '../../../modules/club/list';
@@ -10,8 +10,10 @@ import {
   MainClubReadResType,
 } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
+import errorStyles from '../../../styles/common/Error.module.scss';
 import loadingGif from '../../../asset/loading.gif';
 import { FaArrowCircleUp } from 'react-icons/fa';
+import fileImg from '../../../asset/file.png';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
 
@@ -42,7 +44,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
     club.id === bookmark?.clubId
       ? {
           ...club,
-          isBookmark: club.isBookmark,
+          isBookmark: bookmark.isBookmark,
         }
       : club,
   );
@@ -137,7 +139,22 @@ export default withRouter(function ListContainer({ location, match, history }) {
     return (
       <>
         <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
-        <div ref={loader}>리스트가 없습니다.</div>
+
+        <div className={errorStyles.errorWrapper}>
+          <div className={errorStyles.errorContainer}>
+            <div>
+              <img src={fileImg} className={errorStyles.errorImg} />
+            </div>
+            <div ref={loader} className={errorStyles.errorMessage}>
+              리스트가 없습니다.
+            </div>
+            <div className={errorStyles.RedirectBtn}>
+              <Link to="/" className={errorStyles.LinkContainer}>
+                메인 페이지로 돌아가기
+              </Link>
+            </div>
+          </div>
+        </div>
       </>
     );
   }
