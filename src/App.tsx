@@ -53,7 +53,7 @@ function App() {
         <Route exact path="/master/signup" component={MasterSignUpPage} />
         <Route exact path="/club/:clubId" component={ClubReadPage} />
         <Route exact path="/club" component={ClubListPage} />
-        <Route exact path="/payment" component={PaymentPage} />
+        <Route exact path="/club/:clubId/payment" component={PaymentPage} />
         <Route exact path="/payment/history" component={PaymentHistoryPage} />
         <Route exact path="/introduce" component={IntroducePage} />
         <Route exact path="/login" component={LoginPage} />

@@ -1,5 +1,5 @@
-import PaymentHistoryTemplate from 'containers/payment/PaymentHistoryContainer';
+import PaymentHistoryContainer from 'containers/payment/PaymentHistoryContainer';
 
 export default function PaymentHistoryPage() {
-  return <PaymentHistoryTemplate />;
+  return <PaymentHistoryContainer />;
 }

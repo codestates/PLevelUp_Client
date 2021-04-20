@@ -12,35 +12,32 @@ import { AsyncState, asyncState } from '../lib/reducerUtils';
 import {
   mainPaymentHistory,
   MainPaymentHistoryResType,
+  MainPaymentResType,
 } from '../api/main/payment';
 
-// async 액션 타입
 const [
   MAIN_PAYMENT_HISTORY,
   MAIN_PAYMENT_HISTORY_SUCCESS,
   MAIN_PAYMENT_HISTORY_FAILURE,
 ] = createRequestActionTypes('main-payment/MAIN_PAYMENT_HISTORY');
 
-// async 생성 함수
 export const mainPaymentHistoryAsync = createAsyncAction(
   MAIN_PAYMENT_HISTORY,
   MAIN_PAYMENT_HISTORY_SUCCESS,
   MAIN_PAYMENT_HISTORY_FAILURE,
 )<any, MainPaymentHistoryResType, AxiosError>();
 
-// 액션 타입
 const MAIN_PAYMENT_UNLOAD_HISTORY = 'main-payment/MAIN_PAYMENT_UNLOAD_HISTORY';
 
 export const mainPaymentUnloadHistory = createAction(
   MAIN_PAYMENT_UNLOAD_HISTORY,
 );
 
-// async 액션
 const asyncActions = { mainPaymentHistoryAsync, mainPaymentUnloadHistory };
 type HistoryAsyncAction = ActionType<typeof asyncActions>;
 
 type HistoryAsyncState = {
-  payment: AsyncState<MainPaymentHistoryResType, Error>;
+  payment: AsyncState<MainPaymentResType, Error>;
 };
 
 const asyncInitialState: HistoryAsyncState = {

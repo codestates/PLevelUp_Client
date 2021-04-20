@@ -60,24 +60,19 @@ export type MainPaymentHistoryReqType = {
   price: number;
 };
 
-export type MainPaymentHistoryResType = {
-  userId: number;
+export type MainPaymentResType = {
+  id?: number;
+  UserId: number;
+  ClubId: number;
   status: string;
   title: string;
   price: number;
+  createdAt: Date;
 };
 
-export async function mainPaymentHistory({
-  userId,
-  status,
-  title,
-  price,
-}: {
-  userId: number;
-  status: string;
-  title: string;
-  price: number;
-}) {
+export type MainPaymentHistoryResType = MainPaymentResType[];
+
+export async function mainPaymentHistory() {
   const response = await api.get<MainPaymentHistoryResType>(
     `/api/main/payment/history`,
   );

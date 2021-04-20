@@ -1,9 +1,13 @@
-import api from '../../api/index';
 import PaymentHistoryTemplate from 'components/payment/PaymentHistoryTemplate';
 import { withRouter } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { mainHistoryAsync } from '../../modules/payment';
+import {
+  mainHistoryAsync,
+  mainPaymentThunk,
+  mainPaymentUnloadHistory,
+} from '../../modules/payment';
 
 export default withRouter(function PaymentHistoryContainer() {
   const dispatch = useDispatch();
@@ -16,7 +20,11 @@ export default withRouter(function PaymentHistoryContainer() {
     }),
   );
 
+  useEffect(() => {
+    dispatch(mainPaymentThunk());
+  }, []);
+
   return (
-    <PaymentHistoryTemplate payment={payment} loading={loading} error={error} />
+    <PaymentHistoryTemplate payment={payment} error={error} loading={loading} />
   );
 });
