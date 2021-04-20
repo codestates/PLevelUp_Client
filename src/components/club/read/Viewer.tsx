@@ -71,7 +71,7 @@ export default function Viewer({
               className={styles.fixedAppBtn1}
               style={{ color: '#FDA254' }}
             >
-              <FaHeart size={24} />
+              <FaHeart className={styles.bookmarkIcon} size={24} />
             </button>
             <div className={styles.applyBtn}>
               <button className={styles.fixedAppBtn2}>

@@ -10,325 +10,285 @@
   @include respond-to('small') {
     margin-top: 48px;
   }
-    .clubInfoCard {
+  .clubInfoCard {
+    @include respond-to('not-mobile') {
+      position: fixed;
+      top: 110px;
+      left: 50%;
+      z-index: 50;
+      max-width: 1140px;
+      width: 100%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+    }
+
+    @include respond-to('small') {
+      top: 0;
+      max-width: 100%;
+      max-height: 100%;
+      height: 40%;
+    }
+
+    .clubCardContents {
       @include respond-to('not-mobile') {
-        position: fixed;
-        top: 110px;
-        left: 50%;
-        z-index: 50;
-        max-width: 1140px;
-        width: 100%;
-        -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        transform: translateX(-50%);
+        position: absolute;
+        right: 0;
       }
 
       @include respond-to('small') {
-        top: 0;
-        max-width: 100%;
-        max-height: 100%;
-        height: 40%;
+        position: relative;
+        right: 0;
       }
 
-      .clubCardContents {
+      .clubCardPC {
         @include respond-to('not-mobile') {
-          position: absolute;
-          right: 0;
+          display: block;
         }
 
         @include respond-to('small') {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
           position: relative;
-          right: 0;
         }
 
-        .clubCardPC {
+        .floatingCard {
           @include respond-to('not-mobile') {
-            display: block;
+            width: 380px;
+            padding: 32px;
+            box-shadow: 5px 10px 30px 0 rgba(92, 97, 112, 0.21);
+            background-color: white;
+            border: none;
           }
 
           @include respond-to('small') {
-            display: block;
-            max-width: 100%;
-            max-height: 100%;
-            position: relative;
+            //width: 100%;
+            //max-height: 100%;
+            //padding: 0;
+            //position: relative;
+            //height: 100%;
           }
 
-          .floatingCard {
+          .cardImgWrap {
+            overflow: hidden;
+            position: relative;
             @include respond-to('not-mobile') {
-              width: 380px;
-              padding: 32px;
-              box-shadow: 5px 10px 30px 0 rgba(92, 97, 112, 0.21);
-              background-color: white;
-              border: none;
+              img {
+                height: 211px;
+              }
             }
 
             @include respond-to('small') {
-              //width: 100%;
-              //max-height: 100%;
-              //padding: 0;
-              //position: relative;
-              //height: 100%;
-            }
-
-            .cardImgWrap {
-              overflow: hidden;
-              position: relative;
-              @include respond-to('not-mobile') {
-                img {
-                  height: 211px;
-                }
-              }
-
-              @include respond-to('small') {
-                img {
-                  width: 100%;
-                }
-              }
-
-              .cardImg {
-                position: absolute;
-                transform: translate(-50%, -50%);
-                border: 1px solid black;
-                top: 50%;
-                left: 50%;
-
-                @include respond-to('not-mobile') {
-                  width: 100%;
-                  height: 100%;
-                }
-
-                @include respond-to('small') {
-                  width: auto;
-                  height: auto;
-                }
-              }
-            }
-
-            .cardContentsWrap {
-
-
-              @include respond-to('not-mobile') {
-                padding: 20px 0;
-              }
-
-              @include respond-to('small') {
-                padding: 20px;
-              }
-
-              .floatingClubName {
-                margin: 0 0 8px;
-                color: #2a2a2c;
-                font-size: 22px;
-                font-weight: bold;
-                line-height: 1.59;
-                letter-spacing: -0.3px;
-
-                .clubTitle {
-                  display: inline-flex;
-
-                  .badges {
-                    height: 34px;
-                    align-items: center;
-                    padding: 0 0 0 8px;
-
-                    .tagSolid {
-                      display: inline-block;
-                      padding: 2px 5px 0;
-                      margin: 0 3px 6px 0;
-                      border-radius: 2px;
-                      letter-spacing: -0.2px;
-                      color: white;
-                      background: #00AC83;
-                      font-weight: normal;
-                      font-size: 12px;
-                      line-height: 1.5715;
-                      text-align: center;
-                      white-space: nowrap;
-                      overflow: hidden;
-                      font-variant: tabular-nums;
-                      box-sizing: border-box;
-                      font-family: spoqa han sans neo, 'sans-serif';
-                    }
-                  }
-                }
-              }
-
-              .placeTimeContainer {
-                color: #737373;
-                font-size: 14px;
-                font-weight: bold;
-                line-height: 1.5;
-
-                @include respond-to('not-mobile') {
-                  margin: 0 0 8px;
-                }
-
-                @include respond-to('small') {
-                  margin-top: 48px;
-                }
-              }
-
-              .monthlyPrice {
-                text-align: right;
-                @include respond-to('not-mobile') {
-                  font-size: 20px;
-                  color: #2a2a2c;
-                  letter-spacing: -0.27px;
-                }
-                @include respond-to('small') {
-                  font-size: 18px;
-                  color: #636364;
-                  line-height: 1.33;
-                  letter-spacing: -0.25px;
-                  text-align: right;
-                }
-              }
-            }
-
-            .floatingCardBtn {
-              @include respond-to('small') {
-                position:fixed;
-                bottom: 0;
-                height: 91px;
-                width:100%;
-                background:white;
-                padding: 15px 20px 34px 20px;
-              }
-              .fixedAppBtnBox {
-                position: static;
-                bottom: 0;
-                height: 56px;
+              img {
                 width: 100%;
+              }
+            }
 
-                .fixedAppBtn {
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: -ms-flexbox;
-                  display: flex;
-                  -webkit-align-items: center;
-                  -webkit-box-align: center;
-                  -ms-flex-align: center;
+            .cardImg {
+              position: absolute;
+              transform: translate(-50%, -50%);
+              border: 1px solid black;
+              top: 50%;
+              left: 50%;
+
+              @include respond-to('not-mobile') {
+                width: 100%;
+                height: 100%;
+              }
+
+              @include respond-to('small') {
+                width: auto;
+                height: auto;
+              }
+            }
+          }
+
+          .cardContentsWrap {
+            @include respond-to('not-mobile') {
+              padding: 20px 0;
+            }
+
+            @include respond-to('small') {
+              padding: 20px;
+            }
+
+            .floatingClubName {
+              margin: 0 0 8px;
+              color: #2a2a2c;
+              font-size: 22px;
+              font-weight: bold;
+              line-height: 1.59;
+              letter-spacing: -0.3px;
+
+              .clubTitle {
+                display: inline-flex;
+
+                .badges {
+                  height: 34px;
                   align-items: center;
-                  -webkit-box-pack: justify;
-                  -webkit-justify-content: space-between;
-                  -ms-flex-pack: justify;
-                  justify-content: space-between;
+                  padding: 0 0 0 8px;
 
-                  .fixedAppBtn1 {
-                    width: 56px;
-                    height: 56px;
-                    background: #ffe6d4;
-                    border: none;
-                    display: -webkit-box;
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
-                    display: flex;
-                    -webkit-box-pack: center;
-                    -webkit-justify-content: center;
-                    -ms-flex-pack: center;
-                    justify-content: center;
-                    -webkit-align-items: center;
-                    -webkit-box-align: center;
-                    -ms-flex-align: center;
-                    align-items: center;
-                    outline: none;
-                    padding: 0;
+                  .tagSolid {
+                    display: inline-block;
+                    padding: 2px 5px 0;
+                    margin: 0 3px 6px 0;
+                    border-radius: 2px;
+                    letter-spacing: -0.2px;
+                    color: white;
+                    background: #00ac83;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 1.5715;
+                    text-align: center;
+                    white-space: nowrap;
                     overflow: hidden;
-                    border-radius: 4px;
-                    -webkit-transition: all 0.3s ease;
-                    transition: all 0.3s ease;
-                    font-weight: 500;
-                    cursor: pointer;
-
-                    @include respond-to('not-mobile') {
-                      button[type=button], button[type=submit], button[type=reset] {
-                        -webkit-appearance: button;
-                      }
-                    }
-                  }
-
-                  .applyBtn {
-                    max-width: calc(100% - 66px);
-                    width: 100%;
-
-                    .fixedAppBtn2 {
-                      margin: 0;
-                      font-family: inherit;
-                      font-size: inherit;
-                      line-height: inherit;
-                      width: 100%;
-                      height: 56px;
-                      border: none;
-                      background: #FF6600;
-                      color: #FFF;
-                      display: -webkit-box;
-                      display: -webkit-flex;
-                      display: -ms-flexbox;
-                      display: flex;
-                      -webkit-box-pack: center;
-                      -webkit-justify-content: center;
-                      -ms-flex-pack: center;
-                      justify-content: center;
-                      -webkit-align-items: center;
-                      -webkit-box-align: center;
-                      -ms-flex-align: center;
-                      align-items: center;
-                      outline: none;
-                      padding: 0;
-                      overflow: hidden;
-                      border-radius: 4px;
-                      -webkit-transition: all 0.3s ease;
-                      transition: all 0.3s ease;
-                      font-weight: 500;
-                      cursor: pointer;
-                    }
+                    font-variant: tabular-nums;
+                    box-sizing: border-box;
                   }
                 }
               }
             }
-          }
-        }
-      }
-    }
 
-    .infoContainer {
-      z-index: -100;
-      margin: 0 -1px;
-      padding: 30px 20px;
-      @include respond-to('not-mobile') {
-        position: relative;
-      }
+            .placeTimeContainer {
+              color: #737373;
+              font-size: 14px;
+              font-weight: bold;
+              line-height: 1.5;
 
-      @include respond-to('small') {
-        display: block;
-      }
-
-      .infoWrap {
-        max-width: 1140px;
-        margin: 0 auto;
-
-        .infoContents {
-          @include respond-to('not-mobile') {
-            width: calc(100% - 450px);
-          }
-
-          @include respond-to('small') {
-            width: 100%
-          }
-
-          .infoMainContents {
-              color: #2a2a2c;
               @include respond-to('not-mobile') {
-                font-size: 18px;
-                line-height: 1.56;
+                margin: 0 0 8px;
               }
 
               @include respond-to('small') {
-                font-size: 15px;
-                line-height: 1.6;
+                margin-top: 48px;
               }
+            }
+
+            .monthlyPrice {
+              text-align: right;
+              @include respond-to('not-mobile') {
+                font-size: 20px;
+                color: #2a2a2c;
+                letter-spacing: -0.27px;
+              }
+              @include respond-to('small') {
+                font-size: 18px;
+                color: #636364;
+                line-height: 1.33;
+                letter-spacing: -0.25px;
+                text-align: right;
+              }
+            }
+          }
+
+          .floatingCardBtn {
+            @include respond-to('small') {
+              position: fixed;
+              bottom: 0;
+              height: 91px;
+              width: 100%;
+              background: white;
+              padding: 15px 20px 34px 20px;
+            }
+            .fixedAppBtnBox {
+              position: static;
+              bottom: 0;
+              height: 56px;
+              width: 100%;
+
+              .fixedAppBtn {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                -webkit-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+
+                .fixedAppBtn1 {
+                  @include btn-default('primary');
+                  background-color: $btnBackgroud;
+                  width: 56px;
+                  height: 56px;
+                  border: none;
+
+                  @include respond-to('not-mobile') {
+                    button[type='button'],
+                    button[type='submit'],
+                    button[type='reset'] {
+                      -webkit-appearance: button;
+                    }
+                  }
+                  .bookmarkIcon {
+                    color: #ffc200; // 눌렀을 때: #8762F3
+                    // color: #8762f3;
+                    // color: red; 눌렀을때 빨강으로 변경예정
+                  }
+                }
+
+                .applyBtn {
+                  max-width: calc(100% - 66px);
+                  width: 100%;
+
+                  .fixedAppBtn2 {
+                    @include btn-default('primary');
+                    width: 100%;
+                    height: 56px;
+                    border: none;
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   }
+
+  .infoContainer {
+    z-index: -100;
+    margin: 0 -1px;
+    padding: 30px 20px;
+    @include respond-to('not-mobile') {
+      position: relative;
+    }
+
+    @include respond-to('small') {
+      display: block;
+    }
+
+    .infoWrap {
+      max-width: 1140px;
+      margin: 0 auto;
+
+      .infoContents {
+        @include respond-to('not-mobile') {
+          width: calc(100% - 450px);
+        }
+
+        @include respond-to('small') {
+          width: 100%;
+        }
+
+        .infoMainContents {
+          color: #2a2a2c;
+          @include respond-to('not-mobile') {
+            font-size: 18px;
+            line-height: 1.56;
+          }
+
+          @include respond-to('small') {
+            font-size: 15px;
+            line-height: 1.6;
+          }
+        }
+      }
+    }
+  }
+}

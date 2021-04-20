@@ -1,4 +1,5 @@
 @import './basicMixin.scss';
+@import './utils.scss';
 
 .card {
   //* 일반 (mobile)
@@ -109,7 +110,7 @@
         font-size: 13px;
         font-weight: 500;
         line-height: 16px;
-        color: rgb(110, 110, 108);
+        color: $whiteGray;
         @include respond-to('not-mobile') {
           margin: 0px 0px 4px;
           font-size: 14px;
@@ -146,7 +147,7 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 15px;
-      color: rgb(131, 131, 128);
+      color: $whiteGray;
       letter-spacing: -0.5px;
       @include respond-to('not-mobile') {
         font-size: 13px;
