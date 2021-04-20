@@ -217,7 +217,9 @@
                   width: 56px;
                   height: 56px;
                   border: none;
-
+                  :hover {
+                    background-color: $btnBackgroud;
+                  }
                   @include respond-to('not-mobile') {
                     button[type='button'],
                     button[type='submit'],
@@ -226,9 +228,17 @@
                     }
                   }
                   .bookmarkIcon {
-                    color: #ffc200; // 눌렀을 때: #8762F3
-                    // color: #8762f3;
-                    // color: red; 눌렀을때 빨강으로 변경예정
+                    color: $secondary;
+
+                    :hover {
+                      color: $secondary;
+                    }
+                  }
+                  .active {
+                    color: red;
+                    :hover {
+                      color: red;
+                    }
                   }
                 }
 
