@@ -62,8 +62,8 @@ export default withRouter(function ClubCardContainer({
     <ClubCard
       club={club}
       onClickCard={onClickCard}
-      onAddBookmark={() => {}}
-      onRemoveBookmark={() => {}}
+      onAddBookmark={onAddBookmark}
+      onRemoveBookmark={onRemoveBookmark}
       isMain={isMain}
       isBookmarked={isMain ? isBookmarked : null}
     />
