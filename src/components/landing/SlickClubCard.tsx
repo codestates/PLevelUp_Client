@@ -38,7 +38,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-export default function SlickClubList({
+export default function SlickClubCard({
   data,
   name,
 }: {
@@ -94,10 +94,10 @@ export default function SlickClubList({
         </Link>
       </div>
       <Slider {...settings}>
-        {data.map((club: MainClubReadResType) => {
+        {data.map((club, index) => {
           return (
             <div className={styles.cardContainer}>
-              <ClubCardContainer club={club} key={club.id} isMain={true} />
+              <ClubCardContainer club={club} key={index} isMain={true} />
             </div>
           );
         })}
