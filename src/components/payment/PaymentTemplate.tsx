@@ -5,7 +5,6 @@ import { IoIosCheckbox } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';
 import { IamportPaymentReqType } from '../../api/main/payment';
-import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 export default withRouter(function PaymentTemplate({
@@ -13,8 +12,11 @@ export default withRouter(function PaymentTemplate({
   user,
   history,
 }: any) {
+  //console.log('-------------', club);
+  const { id } = club;
   const { IMP } = window;
   IMP?.init('imp67413694');
+
   const onPay = () => {
     const params: IamportPaymentReqType = {
       pg: 'html5_inicis',
@@ -24,39 +26,28 @@ export default withRouter(function PaymentTemplate({
       amount: club?.price,
       buyer_email: user?.email,
       buyer_name: user?.username,
-      notice_url: '/payment',
-      m_redirect_url: '/payments/complete',
+      m_redirect_url: '/payment/complete',
       card_quota: [1, 2, 3, 4],
     };
 
     IMP?.request_pay(params, res => {
       if (res.success) {
-        //고객이 결제 완료하면~우선 결제승인과 가상계좌발급된거임
         api
-          .post(`api/main/payment/complete`, {
-            imp_uid: res.imp_uid, //아임포트 고유아이디
-            merchant_uid: res.merchant_uid, //해당 클럽 아이디
+          .post(`api/main/club/${id}/payment`, {
+            imp_uid: res.imp_uid,
+            merchant_uid: res.merchant_uid,
           })
           .then(res => {
             if (res.data.status === 'paid') {
-              console.log('-------------222', res.data);
               alert('결제가 완료되었습니다.');
               history.push('/mypage');
             }
           })
-          .catch(err => console.log(err));
+          .catch(err => alert('결제에 실패했습니다. 다시 한 번 시도해주세요.'));
       } else {
-        //고객이 결제 취소한거
         alert('결제가 취소되었습니다.');
       }
     });
-  };
-
-  const [checked, setChecked] = useState(false);
-
-  const onChecked = () => {
-    setChecked(true);
-    console.log('check!!');
   };
 
   return (
@@ -191,11 +182,7 @@ export default withRouter(function PaymentTemplate({
                     </div>
                     <div className={styles.policyContainer}>
                       <div className={styles.checkBox}>
-                        <IoIosCheckbox
-                          color="#e4e4e4"
-                          size="20"
-                          onClick={onChecked}
-                        />
+                        <IoIosCheckbox color="#e4e4e4" size="20" />
                       </div>
                       <div>
                         결제 진행시 프레벨업의 이용약관 및 개인정보 처리방침을

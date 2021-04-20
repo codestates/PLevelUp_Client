@@ -1,5 +1,5 @@
-import PaymentTemplate from '../containers/payment/Payment';
+import PaymentContainer from '../containers/payment/PaymentContainer';
 
 export default function PaymentPage() {
-  return <PaymentTemplate />;
+  return <PaymentContainer />;
 }

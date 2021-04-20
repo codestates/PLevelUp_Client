@@ -36,7 +36,16 @@ export default function Viewer({
     return null;
   }
 
-  const { title, price, place, description, startDate, day, coverUrl } = club;
+  const {
+    id,
+    title,
+    price,
+    place,
+    description,
+    startDate,
+    day,
+    coverUrl,
+  } = club;
 
   const clubInfoContents = (
     <div className={styles.floatingCard}>
@@ -81,7 +90,7 @@ export default function Viewer({
               </button>
               {/* 임시 이동버튼 추가 */}
               <button>
-                <Link to="/payment">이동</Link>
+                <Link to={`club/${id}/payment`}>이동</Link>
               </button>
             </div>
           </div>
