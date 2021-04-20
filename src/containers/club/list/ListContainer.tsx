@@ -139,6 +139,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
     return (
       <>
         <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
+
         <div className={errorStyles.errorWrapper}>
           <div className={errorStyles.errorContainer}>
             <div>

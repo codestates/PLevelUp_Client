@@ -21,9 +21,8 @@ export default function Error({ children }: { children: ReactNode }) {
             {/* 임시 텍스트 */}
               앗, 원하시는 페이지를 찾을 수 없네요. 다시 접속해주세요.
               <br />
-              계속해서 같은 오류가 발생하신다면
-              <Link to="#">contact@PLevelUp.com</Link>으로 문의주세요 :)
-              <br />
+              계속해서 같은 오류가 발생하신다면 <Link to="#" className={styles.errorMessage}>contact@PLevelUp.com</Link> 으로 문의주세요 :)
+
           </div>
         }
         <div className={styles.RedirectBtn}>

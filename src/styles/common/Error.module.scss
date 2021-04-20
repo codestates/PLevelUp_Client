@@ -1,46 +1,71 @@
 @import './utils.scss';
 @import './basicMixin.scss';
-$font-stack: spoqa han sans neo, 'sans-serif';
+
 
 .errorWrapper {
-    background: white;
-    max-width: 1140px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 16px;
-    vertical-align: middle;
-    .errorContainer{
-        padding: 120px 0;
+
+    @include respond-to('not-mobile') {
+        background: white;
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 16px;
         text-align: center;
-        vertical-align: middle;
-        font-family: $font-stack;
-        line-height: 1.5rem;
+
+      }
+    
+      @include respond-to('small') {
+    
+        min-width: 100%;
+        background: white;
+        margin: 0 auto;
+        width: 100%;
+
+
+      }
+   
+
+    .errorContainer{
+        @include respond-to('not-mobile') {
+            padding: 120px 0;
+   
+    
+          }
+        
+          @include respond-to('small') {
+            padding: 120px 0;
+            text-align: center;
+        
+          }
+        
         .errorImg{
             vertical-align: middle;
             border-style: none;
         }
 
         .errorMessage {
-            margin-top: 32px;
-            font-family: spoqa han sans neo,'sans-serif';
-            text-align: center;
-            display: block;
-            vertical-align: middle;
+                     
+            
+            @include respond-to('not-mobile') {
+                margin-top: 32px;
+                white-space: pre;  
+        
+        
+              }
+            
+              @include respond-to('small') {
+ 
+                margin-top: 32px;          
+                max-width: 100%;
+                max-height: 100%;
+            
+              }
         }
         .RedirectBtn{
-            // width: fit-content;
             margin-top: 32px;
            
             .LinkContainer {
-                
-                vertical-align: middle;
-                text-align: center;
-               
-           
-            
-
-                @include respond-to('not-mobile') {
-                   
+              
                     @include btn-default('primary');
                 
                     &:hover {
@@ -48,7 +73,7 @@ $font-stack: spoqa han sans neo, 'sans-serif';
                         background-color: #d95700;
                         border-color: #cc5200;
                     }
-                }
+                
     
             }
         }

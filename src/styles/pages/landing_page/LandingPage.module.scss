@@ -1,7 +1,6 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
 
-$font-stack: spoqa han sans neo,'sans-serif';
 $fontColorForSubTitle: rgb(255, 255, 255);
 $fontColorForMainTitle: rgb(255, 255, 255);
 
@@ -45,7 +44,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
     height: 50px;
     padding: 10px 5px;
 
-    @include respond-to(not-mobile) {
+    @include respond-to('not-mobile') {
       height: 80px;
       padding: 20px 5px;
     }
@@ -53,7 +52,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
       font-weight: bold;
       font-size: 22px;
       line-height: 22px;
-      @include respond-to(not-mobile) {
+      @include respond-to('not-mobile') {
         font-weight: 700;
         font-size: 24px;
         line-height: 24px;
@@ -70,7 +69,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
   }
   .cardContainer {
     padding: 0 3px;
-    @include respond-to(not-mobile) {
+    @include respond-to('not-mobile') {
       padding: 0 10px;
     }
   }
@@ -92,27 +91,24 @@ $fontColorForMainTitle: rgb(255, 255, 255);
 
 .coronaWrapperBanner {
 
-    font-family: $font-stack;
-
-    @include respond-to('not-mobile') {
+   
         display: flex;
         justify-content: center;
         
-      }
-
+      
       .LinkBanner{
-        @include respond-to('not-mobile') {
+      
             width: 100%;
             display: flex;
             justify-content: center;
             max-width: 1140px;
             padding: 0px;
             
-          }
+         
         
  
           .bannerContainer {
-            @include respond-to('not-mobile') {
+       
                 display: flex;
                 flex-direction: column;
                 background: rgb(0, 172, 131);
@@ -123,10 +119,11 @@ $fontColorForMainTitle: rgb(255, 255, 255);
                 cursor: pointer;
                 border-radius: 8px;
                 
-              }
+           
 
             .bannerSubTitle {
                 color: $fontColorForSubTitle;
+                white-space: pre;
                 @include respond-to('not-mobile') {
                     font-size: 16px;
                     line-height: 16px;

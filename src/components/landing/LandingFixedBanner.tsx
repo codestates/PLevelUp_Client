@@ -10,7 +10,7 @@ export default function LandingFixedBannerOne() {
             <Link to={`/club/list`} className={styles.LinkBanner}>
                 <div className={styles.bannerContainer}>
                     <div className={styles.bannerSubTitle}>
-                        `안전하게 만나요   "   "`
+                        {`안전하게 만나요  `}
                         <img className={styles.bannerSubImg} src={powerImg} />
                     </div>
                     <div className={styles.bannerTitle}>사회적 거리두기 단계별 운영방침</div>
