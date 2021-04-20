@@ -1,4 +1,4 @@
 export const SERVER_HOST =
   process.env.NODE_ENV == 'production'
-    ? 'https://api.p-levelup.com'
+    ? process.env.SERVER_HOST
     : 'http://localhost:5000';
