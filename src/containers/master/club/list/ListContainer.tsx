@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import List from '../../../../components/master/club/list/List';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { RootState } from '../../../../modules';
 import {
   mainClubUnloadList,
@@ -9,7 +9,9 @@ import {
 } from '../../../../modules/club/list';
 import loadingGif from '../../../../asset/loading.gif';
 import styles from '../../../../styles/pages/list_page/ListPage.module.scss';
+import errorStyles from '../../../../styles/common/Error.module.scss';
 import { FaArrowCircleUp } from 'react-icons/fa';
+import fileImg from '../../../../asset/file.png';
 import { MasterClubListResType } from '../../../../api/master/club';
 import {
   masterClubUnloadList,
@@ -68,10 +70,20 @@ export default withRouter(function ListContainer({ location, match }) {
 
   if (!master)
     return (
-      <>
-        <div>클럽장만 볼 수 있는 페이지 입니다.</div>
-        <div ref={loader} />
-      </>
+      <div className={errorStyles.errorWrapper}>
+        <div className={errorStyles.errorContainer}>
+          <div>
+            <img src={fileImg} className={errorStyles.errorImg} />
+          </div>
+          <div className={errorStyles.errorMessage}>클럽장만 볼 수 있는 페이지 입니다.</div>
+          <div ref={loader} />
+          <div className={errorStyles.RedirectBtn}>
+            <Link to="/" className={errorStyles.LinkContainer}>
+              모든 클럽 돌아가기
+            </Link>
+          </div>
+        </div>
+      </div>
     );
   if (error)
     return (
