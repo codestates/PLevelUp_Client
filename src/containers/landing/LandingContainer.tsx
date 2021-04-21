@@ -39,7 +39,7 @@ export default function LandingContainer() {
     landingClubsList.push({
       clubs: clubsList.newList,
       to: '/club?filter=isNew',
-      title: '새로운에서 만나요',
+      title: '새로운 클럽에서 만나요',
       type: 'new',
     });
     landingClubsList.push({
