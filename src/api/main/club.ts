@@ -47,6 +47,7 @@ export type MainClubListReqType = {
   place?: string;
   day?: string;
   filter?: string;
+  limitNumber?: string;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
@@ -56,8 +57,16 @@ export async function mainClubList({
   place,
   day,
   filter,
+  limitNumber,
 }: MainClubListReqType) {
-  const queryString = qs.stringify({ page, search, place, day, filter });
+  const queryString = qs.stringify({
+    page,
+    search,
+    place,
+    day,
+    filter,
+    limitNumber,
+  });
   const response = await api.get<MainClubListResType>(
     `/api/main/club?${queryString}`,
   );
@@ -89,5 +98,6 @@ export async function getBookmarkListAPI() {
   const response = await api.post<MainClubListReqType>(
     `/api/main/club/getbookmark`,
   );
+  console.log(response.data);
   return response.data;
 }

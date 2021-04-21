@@ -1,14 +1,15 @@
-import { Link } from 'react-router-dom';
 import styles from '../../styles/pages/my_page/MyPage.module.scss';
+import ApplyCard from '../common/ApplyCard';
+import BookmarkListContainer from '../../containers/my-page/BookmarkListContainer';
+import { MainApplyListResType, MainApplyResType } from 'api/main/myPage';
+import { MainIsLoginResType } from 'api/main/auth';
+import { MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
-import { MainApplyListResType, MainApplyResType } from 'api/main/myPage';
-import ApplyCard from '../common/ApplyCard';
-import { MainIsLoginResType } from 'api/main/auth';
-import { MouseEventHandler } from 'react';
-import { AxiosError } from 'axios';
 
 export default function MyPageForm({
   user,
@@ -24,6 +25,7 @@ export default function MyPageForm({
   loading: boolean;
 }) {
   const { username } = user;
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -103,7 +105,10 @@ export default function MyPageForm({
                         />
                       ))}
                   </div>
-
+                  <div>
+                    {/* 임시위치 */}
+                    <BookmarkListContainer />
+                  </div>
                   <div className={styles.ifNotInvlovedClub}>
                     <div>클럽이 없습니다.</div>
                     <button>

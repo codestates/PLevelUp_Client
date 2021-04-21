@@ -6,7 +6,7 @@ export default function Categories({
   onSelect,
 }: {
   category: string;
-  onSelect: any;
+  onSelect: (category: string) => void;
 }) {
   const categories = [
     {
