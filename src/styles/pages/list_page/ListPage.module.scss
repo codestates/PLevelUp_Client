@@ -92,7 +92,7 @@
     padding: 2px 12px 8px;
     justify-content: space-between;
     max-width: 250px;
-    margin-right: 16px;
+    // margin-right: 16px;
     border: none;
     @include respond-to('small') {
       width: 100%;
@@ -141,20 +141,29 @@
   .selectBox {
     width: calc(100% - 28px);
     height: 32px;
-    padding: 2px 12px 8px;
+    padding: 2px 2px 8px;
+    // padding: 2px 12px 8px;
     justify-content: space-between;
     max-width: 400px;
     @include respond-to('small') {
       text-align: center;
     }
     .selectBtn {
+      text-align-last: center;
+      border: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: rgba(0, 0, 0, 0.07);
+      border-radius: 5px;
       margin-left: 10px;
-      width: 63px;
+      width: 40px;
       height: 28px;
-      color: $primary;
+      color: rgba(0, 0, 0, 0.5);
       @include respond-to('x-small') {
         text-align: center;
-        width: 50px;
+        width: 40px;
         font-size: 10px;
       }
     }
