@@ -1,10 +1,7 @@
 import { combineReducers } from 'redux';
 import { masterAuth, masterAuthAsync } from './master/auth';
 import masterUser from './master/user';
-import {
-  mainAuth,
-  mainAuthAsync,
-} from './auth';
+import { mainAuth, mainAuthAsync } from './auth';
 import mainUser from './user';
 import { masterEdit, masterEditAsync } from './master/club/edit';
 import { masterReadAsync } from './master/club/read';
@@ -16,6 +13,7 @@ import {
   mainChangePasswordAsync,
 } from './my-page/changePassword';
 import mainBookmarkAsync from './club/bookmark';
+import mainLandingAsync from './landing';
 
 const rootReducer = combineReducers({
   mainAuthAsync,
@@ -33,6 +31,7 @@ const rootReducer = combineReducers({
   masterListAsync,
   mainChangePasswordAsync,
   mainChangePassword,
+  mainLandingAsync,
 });
 
 export default rootReducer;

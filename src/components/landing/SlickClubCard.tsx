@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -40,10 +40,10 @@ function SamplePrevArrow(props: any) {
 
 export default function SlickClubCard({
   data,
-  name,
+  type,
 }: {
   data: MainClubListResType;
-  name: string;
+  type: string;
 }) {
   const settings = {
     dots: false,
@@ -86,22 +86,14 @@ export default function SlickClubCard({
     ],
   };
   return (
-    <div className={styles.container}>
-      <div className={styles.listHeader}>
-        <div className={styles.title}>{name} </div>
-        <Link to="/club" className={styles.link}>
-          <div className={styles.headerBtn}>전체보기</div>
-        </Link>
-      </div>
-      <Slider {...settings}>
-        {data.map((club, index) => {
-          return (
-            <div className={styles.cardContainer}>
-              <ClubCardContainer club={club} key={index} isMain={true} />
-            </div>
-          );
-        })}
-      </Slider>
-    </div>
+    <Slider {...settings}>
+      {data.map((club, index) => {
+        return (
+          <div className={styles.cardContainer} key={`${type}-${index}`}>
+            <ClubCardContainer club={club} isMain={true} />
+          </div>
+        );
+      })}
+    </Slider>
   );
 }
