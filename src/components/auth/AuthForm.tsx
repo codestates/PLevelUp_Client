@@ -134,14 +134,6 @@ export default function AuthForm({
                 <span className={styles.findLink}>아이디 찾기</span>
                 <span>ㅣ</span>
                 <span className={styles.findLink}>비밀번호 찾기</span>
-                <AskModal
-                  visible={true}
-                  title="비밀번호 찾기"
-                  description="임시비밀번호 발급합니다."
-                  confirmText="찾기"
-                  onConfirm={() => console.log('3')}
-                  onCancel={() => console.log('3')}
-                />
               </div>
             </>
           )}
