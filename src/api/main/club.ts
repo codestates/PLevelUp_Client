@@ -15,7 +15,7 @@ export type MainClubReadResType = {
   price: number; //* 50000
   description: string; //* 각종 내용
   startDate: Date; //* '2021-04-07 14:20:09.168',
-  endDate: Date; //* '2021-04-07 14:20:09.168',
+  times: number; // 12
   day: string; //* 월 / 화 / 수
   limitUserNumber: number; //* 20
   createdAt: Date; //* '2021-04-07 14:20:09.168',
@@ -26,9 +26,11 @@ export type MainClubReadResType = {
   isBookmark: boolean;
   isOnline: boolean;
   isNew: boolean;
-  isMostEnd: boolean;
+  isMostStart: boolean;
+  isStart: boolean;
   isEnd: boolean;
   isFourLimitNumber: boolean;
+  currentUserNumber: number;
 };
 
 export const mainClubRead = async (id: number) => {
@@ -44,6 +46,7 @@ export type MainClubListReqType = {
   search?: string;
   place?: string;
   day?: string;
+  filter?: string;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
@@ -52,8 +55,9 @@ export async function mainClubList({
   search,
   place,
   day,
+  filter,
 }: MainClubListReqType) {
-  const queryString = qs.stringify({ page, search, place, day });
+  const queryString = qs.stringify({ page, search, place, day, filter });
   const response = await api.get<MainClubListResType>(
     `/api/main/club?${queryString}`,
   );

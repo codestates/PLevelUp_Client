@@ -5,15 +5,22 @@ import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 import { Mobile, PC } from '../../../mediaQuery';
 import React from 'react';
 
+import Badge from '../../common/Badge';
 import { FaHeart } from 'react-icons/fa';
-import Error from '../../common/Error';
+import ErrorView from '../../common/ErrorView';
 
 export default function Viewer({
   club,
+  onAddBookmark,
+  onRemoveBookmark,
+  isBookmarked,
   error,
   loading,
 }: {
   club: MainClubReadResType | null;
+  onAddBookmark: () => void;
+  onRemoveBookmark: () => void;
+  isBookmarked: boolean;
   error: AxiosError | null;
   loading: boolean;
 }) {
@@ -21,14 +28,14 @@ export default function Viewer({
   if (error) {
     if (error.response) {
       if (error.response.status === 404) {
-        return <Error children={'존재하지 않는 클럽입니다.'} />;
+        return <ErrorView children={'존재하지 않는 클럽입니다.'} />;
       }
 
       if (error.response.status === 400) {
-        return <Error children={'잘못된 요청 입니다.'} />;
+        return <ErrorView children={'잘못된 요청 입니다.'} />;
       }
     }
-    return <Error children={'오류 발생'} />;
+    return <ErrorView children={'오류 발생'} />;
   }
 
   // 로딩 중이거나 아직 포스트 데이터가 없을 때
@@ -37,7 +44,6 @@ export default function Viewer({
   }
 
   const {
-    id,
     title,
     price,
     place,
@@ -45,7 +51,14 @@ export default function Viewer({
     startDate,
     day,
     coverUrl,
+    isNew,
+    isMostStart,
+    isEnd,
+    currentUserNumber,
+    limitUserNumber,
   } = club;
+  const createDate = `${new Date(startDate).getMonth() + 1}
+  /${new Date(startDate).getDate()}`;
 
   const clubInfoContents = (
     <div className={styles.floatingCard}>
@@ -57,36 +70,46 @@ export default function Viewer({
           <span className={styles.clubTitle}>
             {title}
             <span className={styles.badges}>
-              <span className={styles.tagSolid}>
-                {/* 임시 더미 데이터 작성했습니다. */}
-                마감임박
-              </span>
+              {isNew ? <Badge type="new">NEW</Badge> : null}
+              {isMostStart ? <Badge type="mostFull">마감임박</Badge> : null}
+              {isEnd ? <Badge type="full">마감</Badge> : null}
+              {place === '온라인' ? <Badge type="online">온라인</Badge> : null}
             </span>
           </span>
         </div>
 
         <div className={styles.placeTimeContainer}>
-          {/* 임시 더미 데이터 작성했습니다. */}
-          {place} | 매달 세 번째 {day}요일
-          <br />첫 모임일
-          {startDate}
+          {place} | 매 주 {day}요일
+          <br />
+          {`첫 모임일 ${createDate}(${club.day})`}
         </div>
-        <div className={styles.monthlyPrice}>월 {price}원</div>
+        <div className={styles.monthlyPrice}>총 {price}원</div>
       </div>
       <div className={styles.floatingCardBtn}>
         <div className={styles.fixedAppBtnBox}>
           <div className={styles.fixedAppBtn}>
-            {/* TODO: 찜되면 컬러 변경 해야함 #FD5600 */}
-            <button
-              className={styles.fixedAppBtn1}
-              style={{ color: '#FDA254' }}
-            >
-              <FaHeart className={styles.bookmarkIcon} size={24} />
+            <button className={styles.fixedAppBtn1}>
+              {isBookmarked ? (
+                <FaHeart
+                  className={`${styles.bookmarkIcon} ${styles.active}`}
+                  onClick={onRemoveBookmark}
+                  size={24}
+                />
+              ) : (
+                <FaHeart
+                  className={`${styles.bookmarkIcon}`}
+                  size={24}
+                  onClick={onAddBookmark}
+                />
+              )}
             </button>
             <div className={styles.applyBtn}>
               <button className={styles.fixedAppBtn2}>
-                {/* TODO: 실제 남은자리 데이터 변경 필요*/}
-                <Link to={`${id}/payment`}>2자리 남았어요! 지금 시작</Link>
+                <Link to={`${id}/payment`}>
+                  {`${
+                    limitUserNumber - currentUserNumber
+                  }자리 남았어요! 지금 시작`}
+                </Link>
               </button>
             </div>
           </div>

@@ -10,7 +10,7 @@ export type MasterLoginResType = {
   id: number;
   email: string;
   username: string;
-  createAd: Date;
+  createAt: Date;
   updatedAt: null;
 };
 
