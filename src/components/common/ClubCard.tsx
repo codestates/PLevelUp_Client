@@ -36,7 +36,13 @@ export default withRouter(function ClubCard({
       <div className={styles.imgBox}>
         {club.isEnd ? (
           <>
-            <div className={styles.closeBackground}></div>
+            <div className={styles.closeBackground} />
+            <div className={styles.close}>종 료</div>
+          </>
+        ) : null}
+        {club.isStart ? (
+          <>
+            <div className={styles.closeBackground} />
             <div className={styles.close}>마 감</div>
           </>
         ) : null}
@@ -44,7 +50,7 @@ export default withRouter(function ClubCard({
           <div className={styles.badge}>
             {club.isNew ? <Badge type="new">NEW</Badge> : null}
             {club.isMostEnd ? <Badge type="mostFull">마감임박</Badge> : null}
-            {club.isEnd ? <Badge type="full">마감</Badge> : null}
+            {/*{club.isStart ? <Badge type="full">마감</Badge> : null}*/}
             {club.place === '온라인' ? (
               <Badge type="online">온라인</Badge>
             ) : null}
