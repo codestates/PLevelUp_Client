@@ -10,8 +10,7 @@ export type MasterClubEditReqType = {
   place: string;
   description: string;
   startDate: Date;
-  endDate: Date;
-  day: string;
+  times: number;
   limitUserNumber: number;
   coverImg: File | null;
   coverUrl: string | null;
@@ -25,7 +24,7 @@ export type MasterClubEditResType = {
   price: number;
   description: string;
   startDate: Date;
-  endDate: Date;
+  times: number;
   day: string;
   limitUserNumber: number;
   createdAt: Date;
@@ -42,8 +41,7 @@ export async function masterClubWrite({
   place,
   description,
   startDate,
-  endDate,
-  day,
+  times,
   limitUserNumber,
   coverImg,
 }: MasterClubEditReqType) {
@@ -63,8 +61,7 @@ export async function masterClubWrite({
     place,
     description,
     startDate,
-    endDate,
-    day,
+    times,
     limitUserNumber,
     coverUrl,
   });
@@ -85,7 +82,7 @@ export type MasterClubReadResType = {
   price: number;
   description: string;
   startDate: Date;
-  endDate: Date;
+  times: number;
   day: string;
   limitUserNumber: number;
   createdAt: Date;
@@ -126,8 +123,7 @@ export const masterClubUpdate = async ({
   place,
   description,
   startDate,
-  endDate,
-  day,
+  times,
   limitUserNumber,
   coverImg,
   coverUrl,
@@ -157,8 +153,7 @@ export const masterClubUpdate = async ({
       place,
       description,
       startDate,
-      endDate,
-      day,
+      times,
       limitUserNumber,
       coverUrl: updateCoverUrl,
     },

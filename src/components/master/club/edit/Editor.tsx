@@ -51,7 +51,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
   const descriptionQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const [startDate, setStartDate] = useState<Date>();
-  const [endDate, setEndDate] = useState<Date>();
 
   const quillChange = (key: string, quill: Quill) => {
     quill.on('text-change', (delta, oldDelta, source) => {
@@ -78,7 +77,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
       descriptionQuillInstance.current.root.innerHTML = club.description;
     }
     setStartDate(new Date(club.startDate.toString()));
-    setEndDate(new Date(club.endDate.toString()));
   }, [club]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -128,24 +126,16 @@ export default function Editor({ club, onChangeField }: EditorType) {
             }}
           />
         </span>
-        <span>종료일: </span>
-        <span style={{ marginLeft: '10px' }}>
-          <DatePicker
-            selected={endDate}
-            onChange={(date: Date) => {
-              setEndDate(date);
-              if (date) {
-                onChangeField('endDate', date);
-              }
-            }}
-          />
-        </span>
+        <br />
         <input
           className={styles.etcInput}
-          placeholder="요일을 입력하세요."
+          placeholder="횟수를 입력하세요."
           onChange={onChange}
-          value={club.day}
-          name="day"
+          value={club.times}
+          name="times"
+          type="number"
+          step="1"
+          min="1"
         />
         <input
           className={styles.etcInput}

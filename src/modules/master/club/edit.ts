@@ -106,8 +106,7 @@ const initialState: EditState = {
     price: 0,
     description: '',
     startDate: new Date(),
-    endDate: new Date(),
-    day: '',
+    times: 0,
     limitUserNumber: 1,
     coverImg: null,
     coverUrl: null,
@@ -157,8 +156,7 @@ export const masterEdit = createReducer<EditState, EditAction>(initialState, {
       draft['club']['price'] = club.price;
       draft['club']['description'] = club.description;
       draft['club']['startDate'] = club.startDate;
-      draft['club']['endDate'] = club.endDate;
-      draft['club']['day'] = club.day;
+      draft['club']['times'] = club.times;
       draft['club']['limitUserNumber'] = club.limitUserNumber;
       if (club.coverImg) {
         draft['club']['coverImg'] = club.coverImg;
