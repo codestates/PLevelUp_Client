@@ -31,12 +31,6 @@ export default function LandingContainer() {
 
   if (clubsList) {
     landingClubsList.push({
-      clubs: clubsList.onlineList,
-      to: '/club?place=온라인',
-      title: '온라인에서 만나요',
-      type: 'online',
-    });
-    landingClubsList.push({
       clubs: clubsList.newList,
       to: '/club?filter=isNew',
       title: '새로운 클럽에서 만나요',
@@ -48,6 +42,13 @@ export default function LandingContainer() {
       title: '강남에서 만나요',
       type: 'gangnam',
     });
+    landingClubsList.push({
+      clubs: clubsList.onlineList,
+      to: '/club?place=온라인',
+      title: '온라인에서 만나요',
+      type: 'online',
+    });
+
     landingClubsList.push({
       clubs: clubsList.fourLimitList,
       to: '/club?limitNumber=4',
