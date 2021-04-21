@@ -6,11 +6,13 @@ export default function Search({
   onPlace,
   onDay,
   onFilter,
+  onLimitNumber,
 }: {
   onSearch: (search: string) => void;
   onPlace: (place: string | null) => void;
   onDay: (day: string | null) => void;
   onFilter: (day: string | null) => void;
+  onLimitNumber: (day: string | null) => void;
 }) {
   const [search, setSearch] = useState<string>('');
 
@@ -47,6 +49,15 @@ export default function Search({
     }
     onFilter(e.target.value);
   };
+
+  const onLimitNumberChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value === '인원수') {
+      onLimitNumber(null);
+      return;
+    }
+    onLimitNumber(e.target.value);
+  };
+
   return (
     <div className={styles.searchContainer}>
       <div className={styles.searchBox}>
@@ -89,6 +100,15 @@ export default function Search({
           <option>필터</option>
           <option value="isNew">새로운</option>
           <option value="isMostEnd">마감 임박</option>
+        </select>
+        <select className={styles.selectBtn} onChange={onLimitNumberChange}>
+          <option>인원수</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">이상</option>
         </select>
       </div>
     </div>
