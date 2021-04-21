@@ -15,6 +15,7 @@ import { FaArrowCircleUp } from 'react-icons/fa';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
 import ErrorView from '../../../components/common/ErrorView';
+import LoadingView from '../../../components/common/LoadingView';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
@@ -45,9 +46,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
-        ...club,
-        isBookmark: bookmark.isBookmark,
-      }
+          ...club,
+          isBookmark: bookmark.isBookmark,
+        }
       : club,
   );
   const handleSearch = (
@@ -179,7 +180,14 @@ export default withRouter(function ListContainer({ location, match, history }) {
   if (error)
     return (
       <div ref={loader}>
-        <img src={loadingGif} alt="loading..." />
+        <ErrorView />
+      </div>
+    );
+
+  if (loading || !clubs)
+    return (
+      <div ref={loader}>
+        <LoadingView />
       </div>
     );
 
