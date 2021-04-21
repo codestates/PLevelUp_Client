@@ -86,11 +86,7 @@ export default function Viewer({
             <div className={styles.applyBtn}>
               <button className={styles.fixedAppBtn2}>
                 {/* TODO: 실제 남은자리 데이터 변경 필요*/}
-                2자리 남았어요! 지금 시작
-              </button>
-              {/* 임시 이동버튼 추가 */}
-              <button>
-                <Link to={`club/${id}/payment`}>이동</Link>
+                <Link to={`${id}/payment`}>2자리 남았어요! 지금 시작</Link>
               </button>
             </div>
           </div>

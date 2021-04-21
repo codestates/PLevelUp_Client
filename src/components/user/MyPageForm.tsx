@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from '../../styles/pages/my_page/MyPage.module.scss';
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
+import { HiOutlineChevronRight } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
 import { MainApplyListResType, MainApplyResType } from 'api/main/myPage';
 import ApplyCard from '../common/ApplyCard';
@@ -62,7 +63,9 @@ export default function MyPageForm({
                   </div>
                   <div className={styles.subTitle}>
                     <span>더 알아보기</span>
-                    <span>아이콘 </span>
+                    <span>
+                      <HiOutlineChevronRight />
+                    </span>
                   </div>
                 </div>
               </a>
@@ -91,19 +94,18 @@ export default function MyPageForm({
                         <ApplyCard key={el.id} data={el} />
                       ))}
                   </div>
+
+                  <div className={styles.ifNotInvlovedClub}>
+                    <div>클럽이 없습니다.</div>
+                    <button>
+                      <Link to="/list">멤버쉽 신청하러 가기</Link>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* 
-          <div className={styles.ifNotInvlovedClub}>
-            <div>클럽이 없습니다.</div>
-            <button>
-              <Link to="/list">멤버쉽 신청하러 가기</Link>
-            </button>
-            </div>
-         */}
       </div>
     </div>
   );

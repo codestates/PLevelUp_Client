@@ -23,6 +23,7 @@ export type IamportPaymentReqType = {
   buyer_email: string | any;
   buyer_name: string | any;
   notice_url?: string;
+  custom_data: string;
   card_quota?: number[];
   m_redirect_url: string;
 };

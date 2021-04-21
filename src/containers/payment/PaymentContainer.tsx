@@ -1,4 +1,3 @@
-import api from '../../api/index';
 import PaymentTemplate from 'components/payment/PaymentTemplate';
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +15,7 @@ export default withRouter(function PaymentContainer({ match, history }) {
 
   const { data: club, error, loading } = useSelector(
     ({ mainReadAsync }: RootState) => ({
-      data: mainReadAsync.club.data!,
+      data: mainReadAsync.club.data,
       error: mainReadAsync.club.error,
       loading: mainReadAsync.club.loading,
     }),
@@ -24,8 +23,12 @@ export default withRouter(function PaymentContainer({ match, history }) {
 
   useEffect(() => {
     dispatch(mainClubReadThunk(clubId));
+    return () => {
+      dispatch(mainClubUnloadRead());
+    };
   }, []);
 
+  if (!club) return <div />;
   return (
     <PaymentTemplate user={user} club={club} error={error} loading={loading} />
   );

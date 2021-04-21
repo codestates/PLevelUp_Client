@@ -24,11 +24,12 @@ export default withRouter(function PaymentTemplate({
     const params: IamportPaymentReqType = {
       pg: 'html5_inicis',
       pay_method: 'card',
-      merchant_uid: club?.id,
+      merchant_uid: 'merchant_' + new Date().getTime(),
       name: club?.title,
       amount: club?.price,
       buyer_email: user?.email,
       buyer_name: user?.username,
+      custom_data: club.id,
       m_redirect_url: `api/main/club/${id}/payment`,
       card_quota: [1, 2, 3, 4],
     };
