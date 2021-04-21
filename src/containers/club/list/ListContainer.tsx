@@ -42,9 +42,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
-          ...club,
-          isBookmark: bookmark.isBookmark,
-        }
+        ...club,
+        isBookmark: bookmark.isBookmark,
+      }
       : club,
   );
   const handleSearch = (
