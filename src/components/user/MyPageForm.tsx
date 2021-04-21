@@ -94,14 +94,6 @@ export default function MyPageForm({ user, onLogout }: any) {
                     </div>
                   </div>
                 </li>
-                <li className={styles.areaList}>
-                  <div className={styles.recordPaymentList}>
-                    <div className={styles.recordTitle}>결제내역</div>
-                    <div className={styles.recordContents}>
-                      {/* <div>props로 추가될 실제 결제내역 리스트</div> */}
-                    </div>
-                  </div>
-                </li>
               </ul>
             </div>
 
