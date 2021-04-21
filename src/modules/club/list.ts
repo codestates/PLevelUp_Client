@@ -42,7 +42,7 @@ export const getBookmarkListAsync = createAsyncAction(
   GET_BOOKMARK_LIST,
   GET_BOOKMARK_LIST_SUCCESS,
   GET_BOOKMARK_LIST_FAILURE,
-)<any, any, AxiosError>();
+)<any, MainClubListResType, AxiosError>();
 // 액션 생성함수
 export const mainClubUnloadList = createAction(MAIN_CLUB_UNLOAD_LIST);
 
@@ -85,10 +85,13 @@ export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       ...state,
       clubs: asyncState.load(),
     }),
-    [GET_BOOKMARK_LIST_SUCCESS]: (state, action) => ({
-      ...state,
-      clubs: asyncState.success(action.payload.data),
-    }),
+    [GET_BOOKMARK_LIST_SUCCESS]: (state, action) => {
+      console.log(action.payload);
+      return {
+        ...state,
+        clubs: asyncState.success(action.payload),
+      };
+    },
     [GET_BOOKMARK_LIST_FAILURE]: (state, action) => ({
       ...state,
       clubs: asyncState.error(action.payload),

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
+import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 
 export default function Search({
   onSearch,
@@ -60,47 +61,55 @@ export default function Search({
   };
 
   return (
-    <div>
-      <input
-        value={search}
-        onChange={onSearchChange}
-        onKeyPress={handleKeyPress}
-      />
-      <button
-        onClick={() => {
-          onSearch(search);
-        }}
-        value={'버튼'}
-      >
-        검색
-      </button>
-      <select onChange={onPlaceChange} style={{ marginLeft: '10px' }}>
-        <option>장소</option>
-        <option value="온라인">온라인</option>
-        <option value="강남">강남</option>
-        <option value="판교">판교</option>
-        <option value="여의도">여의도</option>
-        <option value="오프라인">오프라인</option>
-      </select>
-      <select onChange={onDayChange} style={{ marginLeft: '10px' }}>
-        <option>요일</option>
-        <option value="일">일</option>
-        <option value="월">월</option>
-        <option value="화">화</option>
-        <option value="수">수</option>
-        <option value="목">목</option>
-        <option value="금">금</option>
-        <option value="토">토</option>
-      </select>
-      <select onChange={onLimitNumberChange} style={{ marginLeft: '10px' }}>
-        <option>인원수</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">이상</option>
-      </select>
+    <div className={styles.searchContainer}>
+      <div className={styles.searchBox}>
+        <input
+          className={styles.searchInput}
+          value={search}
+          onChange={onSearchChange}
+          onKeyPress={handleKeyPress}
+          placeholder="클럽이름, 클럽장 검색"
+        />
+        {/* <button
+          className={styles.searchBtn}
+          onClick={() => {
+            onSearch(search);
+          }}
+          value={'버튼'}
+        >
+          검색
+        </button> */}
+      </div>
+      <div className={styles.selectBox}>
+        <select className={styles.selectBtn} onChange={onPlaceChange}>
+          <option>장소</option>
+          <option value="온라인">온라인</option>
+          <option value="강남">강남</option>
+          <option value="판교">판교</option>
+          <option value="여의도">여의도</option>
+          <option value="오프라인">오프라인</option>
+        </select>
+        <select className={styles.selectBtn} onChange={onDayChange}>
+          <option>요일</option>
+          <option value="일">일</option>
+          <option value="월">월</option>
+          <option value="화">화</option>
+          <option value="수">수</option>
+          <option value="목">목</option>
+          <option value="금">금</option>
+          <option value="토">토</option>
+        </select>
+        <select className={styles.selectBtn} onChange={onLimitNumberChange}>
+          <option>인원수</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7 이상</option>
+        </select>
+      </div>
       <input type="checkbox" onChange={onFilterChange} checked={isNew} /> 새로운
       클럽
     </div>

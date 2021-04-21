@@ -7,6 +7,7 @@ import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
 import { Link } from 'react-router-dom';
 
 function SampleNextArrow(props: any) {
+  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
   const { className, style, onClick } = props;
   return (
     <div
@@ -22,6 +23,7 @@ function SampleNextArrow(props: any) {
   );
 }
 function SamplePrevArrow(props: any) {
+  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
   const { className, style, onClick } = props;
   return (
     <div
@@ -42,7 +44,7 @@ export type bannerDataType = {
   url: string;
 };
 
-export default function SlickBanner({ data }: any) {
+export default function SlickBanner({ data }: { data: bannerDataType[] }) {
   const settings = {
     arrows: true,
     dots: true,

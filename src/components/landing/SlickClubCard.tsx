@@ -8,6 +8,7 @@ import { MainClubListResType, MainClubReadResType } from 'api/main/club';
 import { Link } from 'react-router-dom';
 
 function SampleNextArrow(props: any) {
+  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
   const { className, style, onClick } = props;
   return (
     <div
@@ -23,6 +24,7 @@ function SampleNextArrow(props: any) {
   );
 }
 function SamplePrevArrow(props: any) {
+  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
   const { className, style, onClick } = props;
   return (
     <div

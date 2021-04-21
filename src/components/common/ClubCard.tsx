@@ -3,25 +3,24 @@ import styles from '../../styles/common/ClubCard.module.scss';
 import Badge from './Badge';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import { MainClubReadResType } from '../../api/main/club';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../modules';
-import { withRouter } from 'react-router-dom';
-import {
-  addBookmarkThunk,
-  removeBookmarkThunk,
-} from '../../modules/club/bookmark';
+import { MasterClubReadResType } from 'api/master/club';
 
-//TODO: 클럽카드 변경이 계속 많아서 container / component 구분을 못했는데 , 오늘 새벽코드정리하면서  분리하겠습니다.
-//TODO: 타입 any 제거
-export default withRouter(function ClubCard({
+type ClubCardPropsType = {
+  club: MainClubReadResType | MasterClubReadResType | any; //메인에는 있고 마스터에는 없는 속성때문에 계속 에라발생
+  onClickCard: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onAddBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  onRemoveBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  isBookmarked: boolean | null;
+  isMain: boolean;
+};
+export default function ClubCard({
   club,
-  history,
   onClickCard,
   onAddBookmark,
   onRemoveBookmark,
   isBookmarked,
   isMain,
-}: any) {
+}: ClubCardPropsType) {
   const createDate = `${new Date(club.startDate).getMonth() + 1}/
   ${new Date(club.startDate).getDate()}`;
 
@@ -89,4 +88,4 @@ export default withRouter(function ClubCard({
       </div>
     </div>
   );
-});
+}

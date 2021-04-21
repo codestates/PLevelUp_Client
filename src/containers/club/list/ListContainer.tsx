@@ -144,6 +144,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
               page: page,
               search: search?.toString(),
               place: place?.toString(),
+              day: day?.toString(),
+              filter: filter?.toString(),
+              limitNumber: limitNumber?.toString(),
             }),
           );
           setPage(page + 1);
@@ -162,6 +165,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
           page: page,
           search: search?.toString(),
           place: place?.toString(),
+          day: day?.toString(),
+          filter: filter?.toString(),
+          limitNumber: limitNumber?.toString(),
         }),
       );
       setPage(page + 1);
