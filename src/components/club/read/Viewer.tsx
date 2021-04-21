@@ -6,7 +6,7 @@ import React from 'react';
 
 import Badge from '../../common/Badge';
 import { FaHeart } from 'react-icons/fa';
-import Error from '../../common/Error';
+import ErrorView from '../../common/ErrorView';
 
 export default function Viewer({
   club,
@@ -27,14 +27,14 @@ export default function Viewer({
   if (error) {
     if (error.response) {
       if (error.response.status === 404) {
-        return <Error children={'존재하지 않는 클럽입니다.'} />;
+        return <ErrorView children={'존재하지 않는 클럽입니다.'} />;
       }
 
       if (error.response.status === 400) {
-        return <Error children={'잘못된 요청 입니다.'} />;
+        return <ErrorView children={'잘못된 요청 입니다.'} />;
       }
     }
-    return <Error children={'오류 발생'} />;
+    return <ErrorView children={'오류 발생'} />;
   }
 
   // 로딩 중이거나 아직 포스트 데이터가 없을 때
@@ -51,7 +51,7 @@ export default function Viewer({
     day,
     coverUrl,
     isNew,
-    isMostEnd,
+    isMostStart,
     isEnd,
     currentUserNumber,
     limitUserNumber,
@@ -70,7 +70,7 @@ export default function Viewer({
             {title}
             <span className={styles.badges}>
               {isNew ? <Badge type="new">NEW</Badge> : null}
-              {isMostEnd ? <Badge type="mostFull">마감임박</Badge> : null}
+              {isMostStart ? <Badge type="mostFull">마감임박</Badge> : null}
               {isEnd ? <Badge type="full">마감</Badge> : null}
               {place === '온라인' ? <Badge type="online">온라인</Badge> : null}
             </span>

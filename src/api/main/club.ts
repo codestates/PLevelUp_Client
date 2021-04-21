@@ -46,6 +46,7 @@ export type MainClubListReqType = {
   search?: string;
   place?: string;
   day?: string;
+  filter?: string;
 };
 
 // list는 headers를 같이 쓰기 때문에 .data를 return 해주지 않고 response를 바로 return해준다.
@@ -54,8 +55,9 @@ export async function mainClubList({
   search,
   place,
   day,
+  filter,
 }: MainClubListReqType) {
-  const queryString = qs.stringify({ page, search, place, day });
+  const queryString = qs.stringify({ page, search, place, day, filter });
   const response = await api.get<MainClubListResType>(
     `/api/main/club?${queryString}`,
   );
