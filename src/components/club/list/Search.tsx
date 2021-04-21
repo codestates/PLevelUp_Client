@@ -4,10 +4,12 @@ export default function Search({
   onSearch,
   onPlace,
   onDay,
+  onFilter,
 }: {
   onSearch: (search: string) => void;
   onPlace: (place: string | null) => void;
   onDay: (day: string | null) => void;
+  onFilter: (day: string | null) => void;
 }) {
   const [search, setSearch] = useState<string>('');
 
@@ -35,6 +37,14 @@ export default function Search({
       return;
     }
     onDay(e.target.value);
+  };
+
+  const onFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value === '필터') {
+      onFilter(null);
+      return;
+    }
+    onFilter(e.target.value);
   };
   return (
     <div>
@@ -67,6 +77,11 @@ export default function Search({
         <option value="목">목</option>
         <option value="금">금</option>
         <option value="토">토</option>
+      </select>
+      <select onChange={onFilterChange} style={{ marginLeft: '10px' }}>
+        <option>필터</option>
+        <option value="isNew">새로운</option>
+        <option value="isMostEnd">마감 임박</option>
       </select>
     </div>
   );

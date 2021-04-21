@@ -10,12 +10,11 @@ import {
   MainClubReadResType,
 } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
-import errorStyles from '../../../styles/common/Error.module.scss';
 import loadingGif from '../../../asset/loading.gif';
 import { FaArrowCircleUp } from 'react-icons/fa';
-import fileImg from '../../../asset/file.png';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
+import ErrorView from '../../../components/common/ErrorView';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
@@ -33,7 +32,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
     }),
   );
 
-  const { search = null, place = null, day = null } = qs.parse(
+  const { search = null, place = null, day = null, filter = null } = qs.parse(
     location.search,
     {
       ignoreQueryPrefix: true,
@@ -43,13 +42,18 @@ export default withRouter(function ListContainer({ location, match, history }) {
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
-        ...club,
-        isBookmark: bookmark.isBookmark,
-      }
+          ...club,
+          isBookmark: bookmark.isBookmark,
+        }
       : club,
   );
-  const handleSearch = (search?: string, place?: string, day?: string) => {
-    const query = qs.stringify({ search, place, day });
+  const handleSearch = (
+    search?: string,
+    place?: string,
+    day?: string,
+    filter?: string,
+  ) => {
+    const query = qs.stringify({ search, place, day, filter });
     history.push(`/club?${query}`);
     // window.location.reload();
     dispatch(mainClubUnloadList());
@@ -60,21 +64,46 @@ export default withRouter(function ListContainer({ location, match, history }) {
         search: search?.toString(),
         place: place?.toString(),
         day: day?.toString(),
+        filter: filter?.toString(),
       }),
     );
     setPage(2);
   };
 
   const onSearch = (search: string) => {
-    handleSearch(search?.toString(), place?.toString(), day?.toString());
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+    );
   };
 
   const onPlace = (place: string | null) => {
-    handleSearch(search?.toString(), place?.toString(), day?.toString());
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+    );
   };
 
   const onDay = (day: string | null) => {
-    handleSearch(search?.toString(), place?.toString(), day?.toString());
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+    );
+  };
+
+  const onFilter = (filter: string | null) => {
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+    );
   };
 
   useEffect(() => {
@@ -138,30 +167,28 @@ export default withRouter(function ListContainer({ location, match, history }) {
   if (lastPage === 0) {
     return (
       <>
-        <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
-
-        <div className={errorStyles.errorWrapper}>
-          <div className={errorStyles.errorContainer}>
-            <div>
-              <img src={fileImg} className={errorStyles.errorImg} />
-            </div>
-            <div ref={loader} className={errorStyles.errorMessage}>
-              리스트가 없습니다.
-            </div>
-            <div className={errorStyles.RedirectBtn}>
-              <Link to="/" className={errorStyles.LinkContainer}>
-                메인 페이지로 돌아가기
-              </Link>
-            </div>
-          </div>
-        </div>
+        <Search
+          onSearch={onSearch}
+          onPlace={onPlace}
+          onDay={onDay}
+          onFilter={onFilter}
+        />
+        <ErrorView
+          children={<div ref={loader}>리스트가 없습니다.</div>}
+          isGoMainBtn={false}
+        />
       </>
     );
   }
 
   return (
     <>
-      <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
+      <Search
+        onSearch={onSearch}
+        onPlace={onPlace}
+        onDay={onDay}
+        onFilter={onFilter}
+      />
       <List clubs={currentClubs} />
       <div ref={loader} className={styles.loading}>
         {loading && <img src={loadingGif} alt="loading..." />}
