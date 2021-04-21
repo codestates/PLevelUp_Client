@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { mainListThunk } from '../../modules/club/list';
-import SlickClubCard from '../../components/landing/SlickClubCard';
-import { MainClubListResType, MainClubReadResType } from 'api/main/club';
-import { mainClubBookmarkUnload } from '../../modules/club/bookmark';
 import LandingTemplate from '../../components/landing/LandingTemplate';
 import { mainLandingListThunk } from '../../modules/landing';
 import ErrorView from '../../components/common/ErrorView';
@@ -36,7 +32,7 @@ export default function LandingContainer() {
   if (clubsList) {
     landingClubsList.push({
       clubs: clubsList.onlineList,
-      to: '/club?place=online',
+      to: '/club?place=온라인',
       title: '온라인에서 만나요',
       type: 'online',
     });
