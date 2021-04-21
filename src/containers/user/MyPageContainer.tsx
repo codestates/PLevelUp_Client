@@ -3,12 +3,9 @@ import { RootState } from '../../modules';
 import { mainLogoutThunk } from '../../modules/user';
 import MyPageForm from 'components/user/MyPageForm';
 import { withRouter } from 'react-router';
-import {
-  mainApplyAsync,
-  mainApplyThunk,
-  mainApplyUnload,
-} from '../../modules/apply';
+import { mainApplyThunk } from '../../modules/apply';
 import { useEffect } from 'react';
+import ErrorView from 'components/common/ErrorView';
 
 export default withRouter(function MyPageContainer() {
   const dispatch = useDispatch();
@@ -31,6 +28,16 @@ export default withRouter(function MyPageContainer() {
   const onLogout = () => {
     dispatch(mainLogoutThunk());
   };
-
-  return <MyPageForm user={user} onLogout={onLogout} apply={apply} />;
+  if (!user) {
+    return <ErrorView children={'잘못된 요청입니다.'} />;
+  }
+  return (
+    <MyPageForm
+      user={user}
+      onLogout={onLogout}
+      apply={apply}
+      error={error}
+      loading={loading}
+    />
+  );
 });

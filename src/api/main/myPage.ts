@@ -32,6 +32,7 @@ export type MainApplyListReqType = {
 export type MainApplyResType = {
   [index: string]: string;
   title: string;
+  summary: string;
   price: string;
 };
 

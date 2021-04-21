@@ -23,7 +23,7 @@ export type IamportPaymentReqType = {
   buyer_email: string | any;
   buyer_name: string | any;
   notice_url?: string;
-  custom_data: string;
+  custom_data: number;
   card_quota?: number[];
   m_redirect_url: string;
 };
@@ -60,12 +60,13 @@ export type MainPaymentHistoryReqType = {
 
 export type MainPaymentResType = {
   id?: number;
-  UserId: number;
-  ClubId: number;
-  status: string;
+  UserId?: number;
+  ClubId?: number;
+  merchantUid?: string;
+  status?: string;
   title: string;
   price: number;
-  createdAt: Date;
+  createdAt?: Date;
 };
 
 export type MainPaymentHistoryResType = MainPaymentResType[];

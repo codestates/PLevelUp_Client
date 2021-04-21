@@ -8,18 +8,22 @@ import { MainApplyListResType, MainApplyResType } from 'api/main/myPage';
 import ApplyCard from '../common/ApplyCard';
 import { MainIsLoginResType } from 'api/main/auth';
 import { MouseEventHandler } from 'react';
+import { AxiosError } from 'axios';
 
 export default function MyPageForm({
   user,
   onLogout,
   apply,
+  error,
+  loading,
 }: {
   user: MainIsLoginResType;
   onLogout: MouseEventHandler;
   apply: MainApplyListResType | null;
+  error: AxiosError | null;
+  loading: boolean;
 }) {
   const { username } = user;
-
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -91,7 +95,12 @@ export default function MyPageForm({
                   <div>
                     {apply &&
                       apply.map((el: MainApplyResType) => (
-                        <ApplyCard key={el.id} data={el} />
+                        <ApplyCard
+                          key={el.id}
+                          title={el.title}
+                          summary={el.summary}
+                          price={el.price}
+                        />
                       ))}
                   </div>
 

@@ -44,6 +44,7 @@ export default function Viewer({
   }
 
   const {
+    id,
     title,
     price,
     place,

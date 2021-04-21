@@ -1,9 +1,10 @@
 import PaymentTemplate from 'components/payment/PaymentTemplate';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { useEffect } from 'react';
 import { mainClubReadThunk, mainClubUnloadRead } from '../../modules/club/read';
+import ErrorView from '../../components/common/ErrorView';
 
 export default withRouter(function PaymentContainer({ match, history }) {
   const { clubId } = match.params;
@@ -22,13 +23,14 @@ export default withRouter(function PaymentContainer({ match, history }) {
   );
 
   useEffect(() => {
-    dispatch(mainClubReadThunk(clubId));
+    if (user && club) dispatch(mainClubReadThunk(clubId));
     return () => {
       dispatch(mainClubUnloadRead());
     };
   }, []);
 
   if (!club) return <div />;
+
   return (
     <PaymentTemplate user={user} club={club} error={error} loading={loading} />
   );

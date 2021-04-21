@@ -5,18 +5,35 @@ import { IoIosCheckbox, IoIosCheckboxOutline } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';
 import { IamportPaymentReqType } from '../../api/main/payment';
-import { withRouter } from 'react-router-dom';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { useState } from 'react';
 import { MainClubReadResType } from 'api/main/club';
 import { MainIsLoginResType } from 'api/main/auth';
+import { AxiosError } from 'axios';
+
+type PaymentType = {
+  club: MainClubReadResType;
+  user: MainIsLoginResType | any;
+  error: AxiosError | null;
+  loading: boolean;
+};
 
 export default withRouter(function PaymentTemplate({
   club,
   user,
   history,
-}: any) {
+  error,
+  loading,
+}: PaymentType & RouteComponentProps) {
   //console.log('-------------', club);
-  const { id } = club;
+
+  if (!user) {
+    alert('로그인이 필요한 서비스입니다!');
+    history.push('/login');
+  }
+
+  const { id, title } = club;
+
   const { IMP } = window;
   IMP?.init('imp67413694');
 
@@ -106,9 +123,7 @@ export default withRouter(function PaymentTemplate({
                     프레벨업 멤버십 혜택 안내
                   </div>
                   <br />
-                  <div className={styles.period}>
-                    {`멤버십 기간: ${club.startDate} ~ ${club.endDate}`}
-                  </div>
+                  <div className={styles.period}>{`멤버십 기간:`}</div>
                   <div className={styles.benefitInfo}>
                     <div className={styles.benefitContainer}>
                       <div className={styles.benefitItem}>
