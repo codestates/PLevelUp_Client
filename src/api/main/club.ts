@@ -15,7 +15,7 @@ export type MainClubReadResType = {
   price: number; //* 50000
   description: string; //* 각종 내용
   startDate: Date; //* '2021-04-07 14:20:09.168',
-  endDate: Date; //* '2021-04-07 14:20:09.168',
+  times: number; // 12
   day: string; //* 월 / 화 / 수
   limitUserNumber: number; //* 20
   createdAt: Date; //* '2021-04-07 14:20:09.168',
@@ -26,7 +26,8 @@ export type MainClubReadResType = {
   isBookmark: boolean;
   isOnline: boolean;
   isNew: boolean;
-  isMostEnd: boolean;
+  isMostStart: boolean;
+  isStart: boolean;
   isEnd: boolean;
   isFourLimitNumber: boolean;
   currentUserNumber: number;

@@ -55,7 +55,7 @@ export default function Viewer({
     place,
     description,
     startDate,
-    endDate,
+    times,
     day,
     limitUserNumber,
     Master: master,
@@ -81,7 +81,7 @@ export default function Viewer({
         <div>{price}</div>
         <div>{day}</div>
         <div>{startDate}</div>
-        <div>{endDate}</div>
+        <div>{times}</div>
         <div>{limitUserNumber}</div>
         <div>
           coverUrl 입니다.

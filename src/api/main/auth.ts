@@ -24,7 +24,7 @@ export type MainLoginResType = {
   id: number;
   email: string;
   username: string;
-  createAd: Date;
+  createAt: Date;
   updatedAt: null;
 };
 
