@@ -177,38 +177,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 
-  if (error)
-    return (
-      <div ref={loader}>
-        <ErrorView />
-      </div>
-    );
-
-  if (loading || !clubs)
-    return (
-      <div ref={loader}>
-        <LoadingView />
-      </div>
-    );
-
-  if (lastPage === 0) {
-    return (
-      <>
-        <Search
-          onSearch={onSearch}
-          onPlace={onPlace}
-          onDay={onDay}
-          onFilter={onFilter}
-          onLimitNumber={onLimitNumber}
-        />
-        <ErrorView
-          children={<div ref={loader}>리스트가 없습니다.</div>}
-          isGoMainBtn={false}
-        />
-      </>
-    );
-  }
-  // TODO: 리렌더링 이슈 추후 수정
   return (
     <>
       <Search
@@ -218,20 +186,37 @@ export default withRouter(function ListContainer({ location, match, history }) {
         onFilter={onFilter}
         onLimitNumber={onLimitNumber}
       />
-      <List clubs={currentClubs} />
-      <div ref={loader} className={styles.loading}>
-        {loading && <img src={loadingGif} alt="loading..." />}
-        {goToTop && (
-          <div
-            className={styles.goToTop}
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            <FaArrowCircleUp className={styles.icon} size={64} />
+      {error ? (
+        <div ref={loader}>
+          <ErrorView />
+        </div>
+      ) : loading || !clubs ? (
+        <div ref={loader}>
+          <LoadingView />
+        </div>
+      ) : lastPage === 0 ? (
+        <ErrorView
+          children={<div ref={loader}>리스트가 없습니다.</div>}
+          isGoMainBtn={false}
+        />
+      ) : (
+        <>
+          <List clubs={currentClubs} />
+          <div ref={loader} className={styles.loading}>
+            {loading && <img src={loadingGif} alt="loading..." />}
+            {goToTop && (
+              <div
+                className={styles.goToTop}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <FaArrowCircleUp className={styles.icon} size={64} />
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 });
