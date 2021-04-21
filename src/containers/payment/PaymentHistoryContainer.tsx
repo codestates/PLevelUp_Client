@@ -3,11 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import {
-  mainHistoryAsync,
-  mainPaymentThunk,
-  mainPaymentUnloadHistory,
-} from '../../modules/payment';
+import { mainPaymentThunk } from '../../modules/payment';
 
 export default withRouter(function PaymentHistoryContainer() {
   const dispatch = useDispatch();

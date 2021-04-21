@@ -84,6 +84,9 @@ export default function Header({ user, onLogout }: HeaderProps) {
                   <div className={styles.dropDown}>
                     <Link to="/mypage">마이페이지</Link>
                   </div>
+                  <div className={styles.dropDown}>
+                    <Link to="/payment/history">결제 내역</Link>
+                  </div>
                   <div className={styles.dropDown} onClick={onLogout}>
                     로그아웃
                   </div>

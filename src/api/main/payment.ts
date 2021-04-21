@@ -54,19 +54,15 @@ export type IamportPaymentResType =
       error_msg: string;
     };
 
-export type MainPaymentHistoryReqType = {
-  userId: number;
-};
-
 export type MainPaymentResType = {
   id?: number;
-  UserId?: number;
-  ClubId?: number;
-  merchantUid?: string;
   status?: string;
   title: string;
   price: number;
-  createdAt?: Date;
+  UserId?: number;
+  ClubId?: number;
+  merchantUid?: string;
+  createdAt: Date;
 };
 
 export type MainPaymentHistoryResType = MainPaymentResType[];

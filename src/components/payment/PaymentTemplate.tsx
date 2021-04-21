@@ -1,9 +1,10 @@
 import api from '../../api';
 import styles from '../../styles/pages/payment_page/PaymentPage.module.scss';
 import { Tablet, Desktop } from '../../mediaQuery';
-import { IoIosCheckbox, IoIosCheckboxOutline } from 'react-icons/io';
+import { IoIosCheckbox } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';
+import { GoLightBulb } from 'react-icons/go';
 import { IamportPaymentReqType } from '../../api/main/payment';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { useState } from 'react';
@@ -25,14 +26,12 @@ export default withRouter(function PaymentTemplate({
   error,
   loading,
 }: PaymentType & RouteComponentProps) {
-  //console.log('-------------', club);
-
   if (!user) {
     alert('로그인이 필요한 서비스입니다!');
     history.push('/login');
   }
 
-  const { id, title } = club;
+  const { id, title, place, price, startDate, times, day, coverUrl } = club;
 
   const { IMP } = window;
   IMP?.init('imp67413694');
@@ -79,6 +78,7 @@ export default withRouter(function PaymentTemplate({
 
   return (
     <div>
+      {loading && <div>로딩중..</div>}
       <div className={styles.desktopContainer}>
         <Desktop>
           <div className={styles.wrapper}>
@@ -88,32 +88,30 @@ export default withRouter(function PaymentTemplate({
                 <div className={styles.clubInfo}>
                   <div className={styles.coverImg}>
                     <div className={styles.imgUrl}>
-                      <img
-                        src="https://image.trevari.co.kr/file/947eb52d-1510-4b9b-98b7-e03eb8de730d.%E1%84%87%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC.png"
-                        className={styles.url}
-                      ></img>
+                      <img src={coverUrl} className={styles.url}></img>
                     </div>
                   </div>
                   <div className={styles.compactClub}>
                     <div className={styles.badge}>신청하신 클럽</div>
-                    <div className={styles.clubName}>{club.title}</div>
+                    <div className={styles.clubName}>{title}</div>
+                    <div className={styles.clubTime}>
+                      <span className={styles.calendar}>
+                        <GoLightBulb color="#b6b6c0" size="17" />
+                      </span>
+                      {`첫 만남일 ${startDate}`}
+                    </div>
                     <div className={styles.clubTime}>
                       <span className={styles.calendar}>
                         <AiTwotoneCalendar color="#b6b6c0" size="17" />
                       </span>
-                      매달 네 번째 금요일(props)
+                      {`매주 ${day}요일`}
                     </div>
                     <div className={styles.clubPlace}>
                       <div className={styles.location}>
                         <IoLocationSharp color="#b6b6c0" size="17" />
                       </div>
                       <div className={styles.location}>
-                        <div>{club.place}</div>
-                        <div>
-                          <a href="http://naver.me/GBIpMwcJ">
-                            서울특별시 강남구 강남대로92길 19
-                          </a>
-                        </div>
+                        <div>{place}</div>
                       </div>
                     </div>
                   </div>
@@ -123,7 +121,9 @@ export default withRouter(function PaymentTemplate({
                     프레벨업 멤버십 혜택 안내
                   </div>
                   <br />
-                  <div className={styles.period}>{`멤버십 기간:`}</div>
+                  <div
+                    className={styles.period}
+                  >{`멤버십 횟수: 총 ${times}회`}</div>
                   <div className={styles.benefitInfo}>
                     <div className={styles.benefitContainer}>
                       <div className={styles.benefitItem}>
@@ -147,7 +147,7 @@ export default withRouter(function PaymentTemplate({
                           🏠 아지트 무료 대관
                         </div>
                         <div className={styles.benefitContent}>
-                          강남, 안국의 아지트 공간 무료 대관 OK!
+                          강남, 여의도 아지트 공간 무료 대관 OK!
                         </div>
                       </div>
                       <div className={styles.benefitItem}>
@@ -167,7 +167,7 @@ export default withRouter(function PaymentTemplate({
                   <div className={styles.priceWrapper}>
                     <div className={styles.priceContent}>
                       <span className={styles.category}>멤버십 비용</span>
-                      <div className={styles.price}>{club.price}</div>
+                      <div className={styles.price}>{price}</div>
                     </div>
                   </div>
                   <div className={styles.middleLine}></div>
@@ -208,9 +208,9 @@ export default withRouter(function PaymentTemplate({
                     <div className={styles.policyContainer}>
                       <div className={styles.checkBox} onClick={handleCheck}>
                         {isChecked ? (
-                          <IoIosCheckbox color="#e4e4e4" size="20" />
+                          <IoIosCheckbox color="#5d3dbf" size="20" />
                         ) : (
-                          <IoIosCheckboxOutline color="#e4e4e4" size="20" />
+                          <IoIosCheckbox color="#e4e4e4" size="20" />
                         )}
                       </div>
                       <div>
@@ -219,15 +219,22 @@ export default withRouter(function PaymentTemplate({
                       </div>
                     </div>
                     <div className={styles.btnContainer}>
-                      <button
-                        type="button"
-                        className={`${styles.paymentBtn} ${
-                          isChecked ? '' : styles['disabled']
-                        }`}
-                        onClick={onPay}
-                      >
-                        <div>{`${club.price}원 결제하기`}</div>
-                      </button>
+                      {isChecked ? (
+                        <button
+                          type="button"
+                          className={styles.paymentBtn}
+                          onClick={onPay}
+                        >
+                          <div>{`${price}원 결제하기`}</div>
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          className={`${styles.paymentBtn} ${styles.disabled}`}
+                        >
+                          <div>{`${price}원 결제하기`}</div>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -246,14 +253,11 @@ export default withRouter(function PaymentTemplate({
                   <div className={styles.compactClub}>
                     <div className={styles.left}>
                       <span className={styles.badge}>신청하신 클럽</span>
-                      <div className={styles.clubName}>{club.title}</div>
+                      <div className={styles.clubName}>{title}</div>
                     </div>
                     <div className={styles.right}>
                       <div className={styles.classImg}>
-                        <img
-                          src="https://image.trevari.co.kr/file/947eb52d-1510-4b9b-98b7-e03eb8de730d.%E1%84%87%E1%85%A1%E1%86%A8%E1%84%8C%E1%85%A2%E1%84%8B%E1%85%AD%E1%86%BC.png"
-                          className={styles.coverImg}
-                        />
+                        <img src={coverUrl} className={styles.coverImg} />
                       </div>
                     </div>
                   </div>
@@ -262,9 +266,17 @@ export default withRouter(function PaymentTemplate({
                     <div className={styles.textBox}>
                       <div className={styles.timeContainer}>
                         <span>
+                          <GoLightBulb color="#b6b6c0" size="17" />
+                        </span>
+                        <div className={styles.date}>
+                          {`첫 만남일 ${startDate}`}
+                        </div>
+                      </div>
+                      <div className={styles.timeContainer}>
+                        <span>
                           <AiTwotoneCalendar color="#b6b6c0" size="17" />
                         </span>
-                        <div className={styles.date}>매달 네 번째~</div>
+                        <div className={styles.date}>{`매주 ${day}요일`}</div>
                       </div>
                     </div>
                     <div className={styles.placeContainer}>
@@ -272,16 +284,7 @@ export default withRouter(function PaymentTemplate({
                         <IoLocationSharp color="#b6b6c0" size="17" />
                       </div>
                       <div className={styles.textBox}>
-                        <div>{club.place}</div>
-                        <div>
-                          <a
-                            href="http://naver.me/GBIpMwcJ"
-                            target="_blank"
-                            className={styles.addressUrl}
-                          >
-                            서울특별시 강남구 강남대로92길 19
-                          </a>
-                        </div>
+                        <div>{place}</div>
                       </div>
                     </div>
                   </div>
@@ -293,7 +296,7 @@ export default withRouter(function PaymentTemplate({
                       프레벨업 멤버십 혜택 안내
                     </div>
                     <div className={styles.period}>
-                      멤버십 기간: 2021.04.16 ~ 2021.08.15 (props)
+                      {`멤버십 횟수: 총 ${times}회`}
                     </div>
                     <div className={styles.infoContainer}>
                       <div className={styles.benefitContainer}>
@@ -318,7 +321,7 @@ export default withRouter(function PaymentTemplate({
                             🏠 아지트 무료 대관
                           </div>
                           <div className={styles.benefitContent}>
-                            강남, 안국 등 트레바리 아지트 공간 무료 대관 OK!
+                            강남, 여의도 등 아지트 공간 무료 대관 OK!
                           </div>
                         </div>
                         <div className={styles.benefitItem}>
@@ -340,7 +343,7 @@ export default withRouter(function PaymentTemplate({
                 <div className={styles.infoContainer}>
                   <div className={styles.priceInfo}>
                     <span className={styles.name}>멤버십 비용</span>
-                    <div className={styles.price}>{`${club.price}원`}</div>
+                    <div className={styles.price}>{`${price}원`}</div>
                   </div>
                 </div>
                 <div className={styles.middleLine}></div>
@@ -379,8 +382,12 @@ export default withRouter(function PaymentTemplate({
                     가능합니다.
                   </div>
                   <div className={styles.policyContainer}>
-                    <div className={styles.checkBox}>
-                      <IoIosCheckbox color="#e4e4e4" size="20" />
+                    <div className={styles.checkBox} onClick={handleCheck}>
+                      {isChecked ? (
+                        <IoIosCheckbox color="#5d3dbf" size="20" />
+                      ) : (
+                        <IoIosCheckbox color="#e4e4e4" size="20" />
+                      )}
                     </div>
                     <div>
                       결제 진행시 프레벨업의 이용약관 및 개인정보 처리방침을
@@ -388,9 +395,22 @@ export default withRouter(function PaymentTemplate({
                     </div>
                   </div>
                   <div className={styles.btnContainer}>
-                    <button type="button" className={styles.paymentBtn}>
-                      <div>(props)원 결제하기</div>
-                    </button>
+                    {isChecked ? (
+                      <button
+                        type="button"
+                        className={styles.paymentBtn}
+                        onClick={onPay}
+                      >
+                        <div>{`${price}원 결제하기`}</div>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className={`${styles.paymentBtn} ${styles.disabled}`}
+                      >
+                        <div>{`${price}원 결제하기`}</div>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

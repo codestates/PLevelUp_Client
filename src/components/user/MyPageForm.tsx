@@ -98,10 +98,11 @@ export default function MyPageForm({
                     {apply &&
                       apply.map((el: MainApplyResType) => (
                         <ApplyCard
-                          key={el.id}
+                          key={el.title}
                           title={el.title}
                           summary={el.summary}
-                          price={el.price}
+                          place={el.place}
+                          times={el.times}
                         />
                       ))}
                   </div>

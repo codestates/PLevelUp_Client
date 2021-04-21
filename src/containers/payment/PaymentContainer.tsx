@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { useEffect } from 'react';
 import { mainClubReadThunk, mainClubUnloadRead } from '../../modules/club/read';
-import ErrorView from '../../components/common/ErrorView';
 
 export default withRouter(function PaymentContainer({ match, history }) {
   const { clubId } = match.params;
@@ -23,14 +22,10 @@ export default withRouter(function PaymentContainer({ match, history }) {
   );
 
   useEffect(() => {
-    if (user && club) dispatch(mainClubReadThunk(clubId));
-    return () => {
-      dispatch(mainClubUnloadRead());
-    };
+    dispatch(mainClubReadThunk(clubId));
   }, []);
 
   if (!club) return <div />;
-
   return (
     <PaymentTemplate user={user} club={club} error={error} loading={loading} />
   );

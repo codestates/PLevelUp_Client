@@ -25,15 +25,11 @@ export async function mainMyPageChangePassword({
   return response.data;
 }
 
-export type MainApplyListReqType = {
-  [index: string]: string;
-};
-
 export type MainApplyResType = {
-  [index: string]: string;
   title: string;
   summary: string;
-  price: string;
+  place: string;
+  times: number;
 };
 
 export type MainApplyListResType = MainApplyResType[];

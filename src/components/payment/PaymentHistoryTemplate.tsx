@@ -12,7 +12,7 @@ export default function PaymentHistoryTemplate({
   error,
   loading,
 }: {
-  payment: MainPaymentHistoryResType | any; //타입수정예정
+  payment: MainPaymentHistoryResType | any;
   error: AxiosError | null;
   loading: boolean;
 }) {
@@ -41,10 +41,7 @@ export default function PaymentHistoryTemplate({
                       key={el.id}
                       title={el.title}
                       price={el.price}
-                      ClubId={el.ClubId}
-                      UserId={el.UserId}
                       createdAt={el.createdAt}
-                      status={el.status}
                     />
                   ))}
               </div>
