@@ -1,11 +1,11 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../styles/pages/my_page/MyPage.module.scss';
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
-
+import BookmarkListContainer from '../../containers/my-page/BookmarkListContainer';
 export default function MyPageForm({ user, onLogout }: any) {
-  console.log(user);
   // const { username } = user;
   return (
     <>
@@ -89,6 +89,7 @@ export default function MyPageForm({ user, onLogout }: any) {
                   <div className={styles.recordFavoriteList}>
                     <div className={styles.recordTitle}>찜리스트</div>
                     <div className={styles.recordContents}>
+                      <BookmarkListContainer />
                       {/* <div>props로 추가될 실제 찜 클럽리스트</div> */}
                     </div>
                   </div>
