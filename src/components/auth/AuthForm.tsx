@@ -5,6 +5,7 @@ import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import kakaoLoginBtnOfficial from '../../asset/kakao_login_medium_wide.png';
 import kakaoLoginBtn from '../../asset/kakao_login.png';
 import googleLoginBtn from '../../asset/google_login.png';
+import AskModal from '../common/AskModal';
 
 type formTypeMapType = {
   [index: string]: string;
@@ -111,10 +112,6 @@ export default function AuthForm({
                 </div>
               </div>
               <hr />
-              {/* 아예 빼버리는 것이 좋을 지, UI/Ux?적으로 기능없이 alert띄우는
-           정도로 있는 것 자체가 도움이 될지 모르겠습니다. 로그인 창인데 아디디
-          찾기, 비밀번호 찾기가 없어? (이런반응일 때 진짜 찾기 안되도 있는
-          것만으로도 도움이 되는지 마이너스인지 의논필요) 없으면 되게 화면 숭해보임 */}
               <div className={styles.findInfoWrapper}>
                 <span className={styles.findLink}>아이디 찾기</span>
                 <span>ㅣ</span>
@@ -137,6 +134,14 @@ export default function AuthForm({
                 <span className={styles.findLink}>아이디 찾기</span>
                 <span>ㅣ</span>
                 <span className={styles.findLink}>비밀번호 찾기</span>
+                <AskModal
+                  visible={true}
+                  title="비밀번호 찾기"
+                  description="임시비밀번호 발급합니다."
+                  confirmText="찾기"
+                  onConfirm={() => console.log('3')}
+                  onCancel={() => console.log('3')}
+                />
               </div>
             </>
           )}
