@@ -258,13 +258,13 @@ a {
     column-gap: 24px;
 
     @include respond-to('large') {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: 1fr 1fr;
     }
     @include respond-to('medium') {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
     }
     @include respond-to('small') {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
     }
     @include respond-to('x-small') {
       grid-template-columns: 1fr 1fr;
