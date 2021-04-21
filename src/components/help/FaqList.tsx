@@ -19,7 +19,7 @@ export default function FaqList({ category }: { category: string }) {
   }
   const [faqData, setFaqData] = useState(faqClubData);
   useEffect(() => {
-    const dummyData: any = setDummy(category);
+    const dummyData: any = setDummy(category); //TODO: 더미로 아직 들어올 타입이 미정
     setFaqData(dummyData);
   }, [category]);
   return (

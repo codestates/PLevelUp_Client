@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from '../../styles/pages/help_page/HelpPage.module.scss';
 
 export default function FaqItem({ data }: { data: any }) {
+  //TODO: 더미로 아직 들어올 타입이 미정
   const [isToggle, setIsToggle] = useState(false);
 
   const onClick = () => {
