@@ -159,7 +159,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
   );
 
   useEffect(() => {
-    if (lastPage >= page) {
+    // 여기서 lastPage === 0 인 경우는 이전에 리스트 없는 조건까지 검색하고
+    // 이동 후 다시 돌아왔을 때이다.
+    if (lastPage >= page || lastPage === 0) {
       dispatch(
         mainListThunk({
           page: page,
@@ -196,10 +198,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
         <div ref={loader}>
           <ErrorView />
         </div>
-      ) : loading || !clubs ? (
-        <div ref={loader}>
-          <LoadingView />
-        </div>
       ) : lastPage === 0 ? (
         <ErrorView
           children={<div ref={loader}>리스트가 없습니다.</div>}
@@ -209,7 +207,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
         <>
           <List clubs={currentClubs} />
           <div ref={loader} className={styles.loading}>
-            {loading && <img src={loadingGif} alt="loading..." />}
+            {loading && <LoadingView />}
             {goToTop && (
               <div
                 className={styles.goToTop}
