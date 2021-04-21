@@ -15,6 +15,7 @@ import { FaArrowCircleUp } from 'react-icons/fa';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
 import ErrorView from '../../../components/common/ErrorView';
+import LoadingView from '../../../components/common/LoadingView';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
@@ -32,19 +33,22 @@ export default withRouter(function ListContainer({ location, match, history }) {
     }),
   );
 
-  const { search = null, place = null, day = null, filter = null } = qs.parse(
-    location.search,
-    {
-      ignoreQueryPrefix: true,
-    },
-  );
+  const {
+    search = null,
+    place = null,
+    day = null,
+    filter = null,
+    limitNumber = null,
+  } = qs.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
 
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
-        ...club,
-        isBookmark: bookmark.isBookmark,
-      }
+          ...club,
+          isBookmark: bookmark.isBookmark,
+        }
       : club,
   );
   const handleSearch = (
@@ -52,8 +56,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
     place?: string,
     day?: string,
     filter?: string,
+    limitNumber?: string,
   ) => {
-    const query = qs.stringify({ search, place, day, filter });
+    const query = qs.stringify({ search, place, day, filter, limitNumber });
     history.push(`/club?${query}`);
     // window.location.reload();
     dispatch(mainClubUnloadList());
@@ -65,6 +70,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
         place: place?.toString(),
         day: day?.toString(),
         filter: filter?.toString(),
+        limitNumber: limitNumber?.toString(),
       }),
     );
     setPage(2);
@@ -76,6 +82,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
       place?.toString(),
       day?.toString(),
       filter?.toString(),
+      limitNumber?.toString(),
     );
   };
 
@@ -85,6 +92,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
       place?.toString(),
       day?.toString(),
       filter?.toString(),
+      limitNumber?.toString(),
     );
   };
 
@@ -94,6 +102,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
       place?.toString(),
       day?.toString(),
       filter?.toString(),
+      limitNumber?.toString(),
     );
   };
 
@@ -103,6 +112,17 @@ export default withRouter(function ListContainer({ location, match, history }) {
       place?.toString(),
       day?.toString(),
       filter?.toString(),
+      limitNumber?.toString(),
+    );
+  };
+
+  const onLimitNumber = (limitNumber: string | null) => {
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+      limitNumber?.toString(),
     );
   };
 
@@ -160,7 +180,14 @@ export default withRouter(function ListContainer({ location, match, history }) {
   if (error)
     return (
       <div ref={loader}>
-        <img src={loadingGif} alt="loading..." />
+        <ErrorView />
+      </div>
+    );
+
+  if (loading || !clubs)
+    return (
+      <div ref={loader}>
+        <LoadingView />
       </div>
     );
 
@@ -172,6 +199,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
           onPlace={onPlace}
           onDay={onDay}
           onFilter={onFilter}
+          onLimitNumber={onLimitNumber}
         />
         <ErrorView
           children={<div ref={loader}>리스트가 없습니다.</div>}
@@ -180,7 +208,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
       </>
     );
   }
-
+  // TODO: 리렌더링 이슈 추후 수정
   return (
     <>
       <Search
@@ -188,6 +216,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
         onPlace={onPlace}
         onDay={onDay}
         onFilter={onFilter}
+        onLimitNumber={onLimitNumber}
       />
       <List clubs={currentClubs} />
       <div ref={loader} className={styles.loading}>
