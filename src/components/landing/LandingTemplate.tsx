@@ -5,8 +5,6 @@ import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
 import { Link } from 'react-router-dom';
 import SlickClubCard from './SlickClubCard';
 import { MainClubListResType } from '../../api/main/club';
-import { MainLandingResType } from '../../api/main';
-import Slider from 'react-slick';
 
 type LandingClubType = {
   clubs: MainClubListResType;

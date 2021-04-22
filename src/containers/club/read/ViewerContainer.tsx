@@ -61,7 +61,6 @@ export default withRouter(function ViewerContainer({ match, history }) {
     };
   }, []);
 
-  // TODO: 오류 소스인데 시간 없어서 isBookmarked false 로 해놨음
   return (
     <Viewer
       club={club}
