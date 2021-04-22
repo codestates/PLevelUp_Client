@@ -17,20 +17,29 @@ export default withRouter(function ViewerContainer({ match, history }) {
   const { clubId } = match.params;
   const dispatch = useDispatch();
   // TODO: ! bookmark 제거 해야함
-  const { data: club, error, loading, bookmark } = useSelector(
-    ({ mainReadAsync, mainBookmarkAsync }: RootState) => ({
+  const { data: club, error, loading, bookmark, user } = useSelector(
+    ({ mainReadAsync, mainBookmarkAsync, mainUser }: RootState) => ({
       data: mainReadAsync.club.data,
       error: mainReadAsync.club.error,
       loading: mainReadAsync.club.loading,
       bookmark: mainBookmarkAsync.bookmark.data!,
+      user: mainUser.user?.data,
     }),
   );
-  const onAddBookmark = () => {
+  const onAddBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+    if (!user?.id) {
+      e.stopPropagation(); //상위이벤트 제어
+      history.push('/login');
+    }
     if (club) {
       dispatch(addBookmarkThunk(club.id));
     }
   };
-  const onRemoveBookmark = () => {
+  const onRemoveBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+    if (!user?.id) {
+      e.stopPropagation(); //상위이벤트 제어
+      history.push('/login');
+    }
     if (club) {
       dispatch(removeBookmarkThunk(club.id));
     }
