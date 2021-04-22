@@ -27,7 +27,7 @@ export default withRouter(function ClubCardContainer({
       bookmark: mainBookmarkAsync.data,
     }),
   );
-  const onClickCard = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const onClickCard = (_: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isMain) {
       history.push(`/club/${club.id}`);
     } else {
@@ -43,7 +43,7 @@ export default withRouter(function ClubCardContainer({
     if (!user?.id) {
       history.push('/login');
     }
-    if ('isBookmark' in club && club.isBookmark) {
+    if ('isBookmark' in club) {
       dispatch(mainBookmarkThunk(club.id, isBookmark));
     }
   };
