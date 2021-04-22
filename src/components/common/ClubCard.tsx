@@ -8,16 +8,17 @@ import { MasterClubReadResType } from 'api/master/club';
 type ClubCardPropsType = {
   club: MainClubReadResType | MasterClubReadResType;
   onClickCard: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onAddBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
-  onRemoveBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  onUpdateBookmark: (
+    e: React.MouseEvent<SVGElement, MouseEvent>,
+    isBookmark: boolean,
+  ) => void;
   isBookmarked: boolean | null;
   isMain: boolean;
 };
 export default function ClubCard({
   club,
   onClickCard,
-  onAddBookmark,
-  onRemoveBookmark,
+  onUpdateBookmark,
   isBookmarked,
   isMain,
 }: ClubCardPropsType) {
@@ -59,12 +60,16 @@ export default function ClubCard({
               {isBookmarked ? (
                 <FaBookmark
                   className={styles.icon}
-                  onClick={onRemoveBookmark}
+                  onClick={e => {
+                    onUpdateBookmark(e, false);
+                  }}
                 />
               ) : (
                 <FaRegBookmark
                   className={styles.icon}
-                  onClick={onAddBookmark}
+                  onClick={e => {
+                    onUpdateBookmark(e, true);
+                  }}
                 />
               )}
             </div>

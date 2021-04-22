@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../modules';
 import {
-  addBookmarkThunk,
-  removeBookmarkThunk,
+  mainBookmarkThunk,
+  mainClubBookmarkUnload,
 } from '../../modules/club/bookmark';
 import { withRouter } from 'react-router-dom';
 import ClubCard from '../../components/common/ClubCard';
@@ -21,9 +21,12 @@ export default withRouter(function ClubCardContainer({
   isMain,
 }: ClubCardPropsType & RouteComponentProps) {
   const dispatch = useDispatch();
-  const { user } = useSelector(({ mainUser }: RootState) => ({
-    user: mainUser.user?.data,
-  }));
+  const { user, bookmark } = useSelector(
+    ({ mainUser, mainBookmarkAsync }: RootState) => ({
+      user: mainUser.user?.data,
+      bookmark: mainBookmarkAsync.data,
+    }),
+  );
   const onClickCard = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isMain) {
       history.push(`/club/${club.id}`);
@@ -31,35 +34,41 @@ export default withRouter(function ClubCardContainer({
       history.push(`/master/${club.id}`);
     }
   };
-  const onAddBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+
+  const onUpdateBookmark = (
+    e: React.MouseEvent<SVGElement, MouseEvent>,
+    isBookmark: boolean,
+  ) => {
+    e.stopPropagation(); //상위이벤트 제어
     if (!user?.id) {
-      e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
     }
-    e.stopPropagation(); //상위이벤트 제어
-    dispatch(addBookmarkThunk(club.id));
-  };
-  const onRemoveBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
-    if (!user?.id) {
-      e.stopPropagation(); //상위이벤트 제어
-      history.push('/login');
+    if ('isBookmark' in club && club.isBookmark) {
+      dispatch(mainBookmarkThunk(club.id, isBookmark));
     }
-    e.stopPropagation(); //상위이벤트 제어
-    dispatch(removeBookmarkThunk(club.id));
   };
 
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
+    if (club && bookmark && user) {
+      if (bookmark.clubId === club.id && user.id === bookmark.userId) {
+        setIsBookmarked(bookmark.isBookmark);
+        dispatch(mainClubBookmarkUnload());
+      }
+    }
+  }, [bookmark]);
+
+  useEffect(() => {
     'isBookmark' in club && setIsBookmarked(club.isBookmark);
+    dispatch(mainClubBookmarkUnload());
   }, [club]);
 
   return (
     <ClubCard
       club={club}
       onClickCard={onClickCard}
-      onAddBookmark={onAddBookmark}
-      onRemoveBookmark={onRemoveBookmark}
+      onUpdateBookmark={onUpdateBookmark}
       isMain={isMain}
       isBookmarked={isBookmarked}
     />
