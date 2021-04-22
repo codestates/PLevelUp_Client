@@ -24,3 +24,17 @@ export async function mainMyPageChangePassword({
   );
   return response.data;
 }
+
+export type MainApplyResType = {
+  title: string;
+  summary: string;
+  place: string;
+  times: number;
+};
+
+export type MainApplyListResType = MainApplyResType[];
+
+export async function mainApplyList() {
+  const response = await api.get<MainApplyResType>(`/api/main/auth/mypage`);
+  return response.data;
+}

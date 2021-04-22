@@ -4,160 +4,284 @@ a {
   text-decoration: none;
 }
 
-.MyPage {
-  position: relative;
-  margin: 0px auto;
+a:visited {
+  text-decoration: none;
+}
+a:active {
+  color: $primary;
+}
 
-  min-width: 100%;
+.container {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
 
-  .userWrapper {
-    max-width: 1140px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin: 61px auto 0px auto;
-    height: 287.44px;
-    position: relative;
+  .wrapper {
+    display: block;
+    color: rgba(0, 0, 0, 0.87);
 
-    z-index: 0;
-    padding: 0 16px;
+    .MypageWrapper {
+      padding: 30px 0px 40px;
+      background: white;
+      border-color: rgb(225, 225, 225);
 
-    .userInfo {
-      .userInfoTop {
-        display: flex;
+      .userWrapper {
+        max-width: 1140px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 16px;
 
-        .profile {
+        .flexHeader {
           display: flex;
-          flex-direction: column;
-          align-items: center;
 
-          .profileImg {
-            margin: 0 auto;
+          .imgWrapper {
+            margin: 52px -36px 24px 39px;
+            text-align: center;
+          }
 
-            .imgPro {
-              margin: -20px 20px 15px 0px;
-              vertical-align: middle;
-              font-size: 9em;
-              max-width: 100%;
+          .menuWrapper {
+            padding: 16px 0px 0px 64px;
+
+            .menuName {
+              font-size: 24px;
+              color: rgb(60, 59, 59);
+              font-weight: bold;
+            }
+            .menuItem {
+              margin: 24px 0px 24px -22px;
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+
+              .passwordItem {
+                width: 100px;
+                cursor: pointer;
+                margin-top: 14px;
+                text-align: center;
+                height: 24px;
+
+                .passwordIcon {
+                  height: 32px;
+                  margin-top: -14px;
+                }
+
+                p {
+                  text-decoration: none;
+                  font-size: 14px;
+                  color: rgb(123, 123, 123);
+                }
+              }
+              .logOutItem {
+                width: 100px;
+                height: 24px;
+                cursor: pointer;
+                margin-top: 14px;
+                text-align: center;
+
+                .logOutIcon {
+                  height: 32px;
+                  margin-top: -14px;
+                }
+
+                p {
+                  text-decoration: none;
+                  font-size: 14px;
+                  color: rgb(73, 73, 73);
+                }
+              }
             }
           }
         }
 
-        .userfastInfo {
-          align-items: baseline;
-          height: 100%;
+        .bannerBox {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
 
-          .userName {
-            font-size: 1.1em;
-            font-weight: bold;
-          }
-
-          .fastInfoBottom {
-            margin: 24px 0px 0px -27px;
-
-            display: flex;
-            justify-content: space-between;
-
+          .aBox {
+            display: inline-block;
+            max-width: 385px;
+            max-height: 80px;
             width: 100%;
             height: 100%;
 
-            .infoBox {
-              padding: 0px auto;
-              display: block;
-              width: 100%;
+            .banner {
+              display: flex;
+              flex-direction: column;
               align-items: center;
-
-              .infoBoxImg {
-                font-size: 26px;
+              justify-content: space-between;
+              padding: 22px 33px 15px;
+              margin: 21px;
+              text-align: center;
+              color: white;
+              cursor: pointer;
+              background: #00ac83;
+              .title {
+                margin: 0px 0px 6px;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 1;
+                text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
               }
 
-              .infoBoxList {
-                position: relative;
+              .subTitle {
                 display: flex;
+                align-items: center;
                 justify-content: center;
-                height: 32px;
-                width: 100px;
-
-                .changePasswordBtn {
-                  font-size: 14px;
-                  background: transparent;
-                  border: none;
-                }
-              }
-
-              .infoBoxListBtn {
-                padding-left: 5px;
-                position: relative;
-                display: flex;
-                justify-content: center;
-                height: 32px;
-                width: 100px;
-
-                .logOutBtn {
-                  font-size: 14px;
-                  background: transparent;
-                  border: none;
-                }
               }
             }
           }
         }
       }
-      .userInfoBottom {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        width: 100%;
-
-        .banner {
-          border: 1px solid #2c2c2a;
-          display: inline-block;
-          max-width: 385px;
-          max-height: 80px;
-          width: 100%;
-          height: 100%;
-        }
-      }
     }
-  }
 
-  .recordAreaWrapper {
-    max-width: 1140px;
-    align-items: center;
-    margin: 0px auto 61px auto;
-    // border: 1px solid #2c2c2a;;
-    padding: 0 16px;
-    .recordArea {
-      display: flex;
-      justify-content: center;
-      width: 100%;
+    .bottomWrapper {
+      background: white;
+      display: block;
 
-      .areaName {
-        /* justify-content: center; */
+      .tabWrapper {
+        width: 1140px;
         margin: 0px auto;
-        width: 100%;
-        display: flex;
 
-        .areaList {
-          /* display: inline-block; */
-          list-style-type: none;
-          width: 40%;
+        .nav {
+          display: flex;
+          flex-wrap: wrap;
+          padding-left: 0;
+          margin-bottom: 0;
+          list-style: none;
+          margin-top: 0;
 
-          .recordTitle {
-            height: auto;
-            padding: 15px 0px 17px !important;
+          .navItemWrapper {
+            width: 48%;
             text-align: center;
-            // border: 1px solid #2c2c2a;;
+            background: white;
+
+            .navItem {
+              margin-bottom: -1px;
+            }
+
+            .navItem :active {
+              border-top: 1.5px solid rgb(60, 59, 59) !important;
+              border-radius: 0px !important;
+              color: rgb(60, 59, 59) !important;
+            }
           }
         }
       }
-    }
 
-    .ifNotInvlovedClub {
-      text-align: center;
+      // .tabContent {
+      // }
     }
   }
 }
+//     .fastInfoBottom {
+//       margin: 24px 0px 0px -27px;
+
+//       display: flex;
+//       justify-content: space-between;
+
+//       width: 100%;
+//       height: 100%;
+
+//       .infoBox {
+//         padding: 0px auto;
+//         display: block;
+//         width: 100%;
+//         align-items: center;
+
+//         .infoBoxImg {
+//           font-size: 26px;
+//         }
+
+//         .infoBoxList {
+//           position: relative;
+//           display: flex;
+//           justify-content: center;
+//           height: 32px;
+//           width: 100px;
+
+//           .changePasswordBtn {
+//             font-family: spoqa han sans neo, 'sans-serif';
+//             font-size: 14px;
+//             background: transparent;
+//             border: none;
+//           }
+//         }
+
+//         .infoBoxListBtn {
+//           padding-left: 5px;
+//           position: relative;
+//           display: flex;
+//           justify-content: center;
+//           height: 32px;
+//           width: 100px;
+
+//           .logOutBtn {
+//             font-family: spoqa han sans neo, 'sans-serif';
+//             font-size: 14px;
+//             background: transparent;
+//             border: none;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+// .userInfoBottom {
+//   display: flex;
+//   flex-direction: row;
+//   align-items: flex-start;
+//   width: 100%;
+
+//   .banner {
+//     border: $imsi-border;
+//     display: inline-block;
+//     max-width: 385px;
+//     max-height: 80px;
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+
+// .recordAreaWrapper {
+//   max-width: 1140px;
+//   align-items: center;
+//   margin: 0px auto 61px auto;
+//   // border: $imsi-border;
+//   font-family: spoqa han sans neo, 'sans-serif';
+//   padding: 0 16px;
+//   .recordArea {
+//     display: flex;
+//     justify-content: center;
+//     width: 100%;
+
+//     .areaName {
+//       /* justify-content: center; */
+//       margin: 0px auto;
+//       width: 100%;
+//       display: flex;
+//       padding-left: 0px;
+
+//       .areaList {
+//         /* display: inline-block; */
+//         list-style-type: none;
+//         width: 40%;
+
+//         .recordTitle {
+//           height: auto;
+//           padding: 15px 0px 17px !important;
+//           text-align: center;
+//           // border: $imsi-border;
+//         }
+//       }
+//     }
+//   }
+
+//   .ifNotInvlovedClub {
+//     text-align: center;
+//   }
+// }
 
 //////////////////////////////////////////////////////
 //mobile.ver
