@@ -51,7 +51,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
   const descriptionQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const [startDate, setStartDate] = useState<Date>();
-  const [endDate, setEndDate] = useState<Date>();
 
   const quillChange = (key: string, quill: Quill) => {
     quill.on('text-change', (delta, oldDelta, source) => {
@@ -78,7 +77,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
       descriptionQuillInstance.current.root.innerHTML = club.description;
     }
     setStartDate(new Date(club.startDate.toString()));
-    setEndDate(new Date(club.endDate.toString()));
   }, [club]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -89,14 +87,9 @@ export default function Editor({ club, onChangeField }: EditorType) {
     onChangeField(e.target.name, e.target.value);
   };
 
-  const onDayChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    onChangeField(e.target.name, e.target.value);
-  };
-
   return (
     <div className={styles.masterEditWrapper}>
       <EditorBlock>
-        <span>제목: </span>
         <input
           className={styles.titleInput}
           placeholder="제목을 입력하세요."
@@ -104,8 +97,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
           value={club.title}
           name="title"
         />
-        <br />
-        <span>장소: </span>
         <input
           className={styles.etcInput}
           placeholder="장소를 입력하세요."
@@ -113,8 +104,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
           value={club.place}
           name="place"
         />
-        <br />
-        <span>금액: </span>
         <input
           className={styles.etcInput}
           placeholder="금액을 입력하세요."
@@ -125,7 +114,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
           min="0"
           name="price"
         />
-        <br />
         <span>시작일: </span>
         <span>
           <DatePicker
@@ -138,38 +126,17 @@ export default function Editor({ club, onChangeField }: EditorType) {
             }}
           />
         </span>
-        <span style={{ marginLeft: '10px' }}>종료일: </span>
-        <span>
-          <DatePicker
-            selected={endDate}
-            onChange={(date: Date) => {
-              setEndDate(date);
-              if (date) {
-                onChangeField('endDate', date);
-              }
-            }}
-          />
-        </span>
-        {/*<input*/}
-        {/*  className={styles.etcInput}*/}
-        {/*  placeholder="요일을 입력하세요."*/}
-        {/*  onChange={onChange}*/}
-        {/*  value={club.day}*/}
-        {/*  name="day"*/}
-        {/*/>*/}
         <br />
-        <span>요일: </span>
-        <select onChange={onDayChange} name="day">
-          <option value="일">일</option>
-          <option value="월">월</option>
-          <option value="화">화</option>
-          <option value="수">수</option>
-          <option value="목">목</option>
-          <option value="금">금</option>
-          <option value="토">토</option>
-        </select>
-        <br />
-        <span>최대 인원: </span>
+        <input
+          className={styles.etcInput}
+          placeholder="횟수를 입력하세요."
+          onChange={onChange}
+          value={club.times}
+          name="times"
+          type="number"
+          step="1"
+          min="1"
+        />
         <input
           className={styles.etcInput}
           placeholder="최대 인원을 입력하세요."
@@ -180,8 +147,6 @@ export default function Editor({ club, onChangeField }: EditorType) {
           min="0"
           name="limitUserNumber"
         />
-        <br />
-        <span>요약: </span>
         <input
           className={styles.etcInput}
           placeholder="요약을 입력하세요. 최대 40자"
@@ -190,20 +155,19 @@ export default function Editor({ club, onChangeField }: EditorType) {
           type="text"
           name="summary"
         />
-        <br />
-        <span>설명: </span>
+       <hr/>
         <QuillWrapper>
-          <div ref={descriptionQuillElement} className={styles.qlContainer} />
+          <div ref={descriptionQuillElement} />
         </QuillWrapper>
         {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
-        <br />
-        <span>커버 이미지: </span>
+       <p>
         <input
           type="file"
           accept="image/jpg,impge/png,image/jpeg,image/gif"
           name="coverImg"
           onChange={onChange}
         />
+       </p>
       </EditorBlock>
     </div>
   );

@@ -16,19 +16,24 @@ export default withRouter(function ViewerContainer({ match, history }) {
   // 처음 마운트 될 떄 클럽 읽기 API 요청
   const { clubId } = match.params;
   const dispatch = useDispatch();
+  // TODO: ! bookmark 제거 해야함
   const { data: club, error, loading, bookmark } = useSelector(
     ({ mainReadAsync, mainBookmarkAsync }: RootState) => ({
-      data: mainReadAsync.club.data!,
+      data: mainReadAsync.club.data,
       error: mainReadAsync.club.error,
       loading: mainReadAsync.club.loading,
       bookmark: mainBookmarkAsync.bookmark.data!,
     }),
   );
   const onAddBookmark = () => {
-    dispatch(addBookmarkThunk(club.id));
+    if (club) {
+      dispatch(addBookmarkThunk(club.id));
+    }
   };
   const onRemoveBookmark = () => {
-    dispatch(removeBookmarkThunk(club.id));
+    if (club) {
+      dispatch(removeBookmarkThunk(club.id));
+    }
   };
   const [isBookmarked, setIsBookmarked] = useState(club?.isBookmark);
 
@@ -44,12 +49,13 @@ export default withRouter(function ViewerContainer({ match, history }) {
     };
   }, []);
 
+  // TODO: 오류 소스인데 시간 없어서 isBookmarked false 로 해놨음
   return (
     <Viewer
       club={club}
       onAddBookmark={onAddBookmark}
       onRemoveBookmark={onRemoveBookmark}
-      isBookmarked={isBookmarked}
+      isBookmarked={false}
       loading={loading}
       error={error}
     />

@@ -7,26 +7,27 @@ import {
 } from '../../modules/club/bookmark';
 import { withRouter } from 'react-router-dom';
 import ClubCard from '../../components/common/ClubCard';
+import { MainClubReadResType } from '../../api/main/club';
+import { RouteComponentProps } from 'react-router-dom';
+import { MasterClubReadResType } from '../../api/master/club';
 
-//TODD: isbookmarked 리팩토링
-//TODD: any 타입 변경 해야함
+type ClubCardPropsType = {
+  club: MainClubReadResType | MasterClubReadResType | any; //TODO any안쓰면 50줄 해결이 안됨..
+  isMain: boolean;
+};
 export default withRouter(function ClubCardContainer({
   club,
   history,
   isMain,
-}: any) {
+}: ClubCardPropsType & RouteComponentProps) {
   const dispatch = useDispatch();
   const { user } = useSelector(({ mainUser }: RootState) => ({
     user: mainUser.user?.data,
   }));
-  const onClickCard = (e: any) => {
-    if (isMain) {
-      history.push(`/club/${club.id}`);
-    } else {
-      history.push(`/master/${club.id}`);
-    }
+  const onClickCard = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    history.push(`/club/${club.id}`);
   };
-  const onAddBookmark = (e: any) => {
+  const onAddBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     if (!user?.id) {
       e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
@@ -34,7 +35,7 @@ export default withRouter(function ClubCardContainer({
     e.stopPropagation(); //상위이벤트 제어
     dispatch(addBookmarkThunk(club.id));
   };
-  const onRemoveBookmark = (e: any) => {
+  const onRemoveBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     if (!user?.id) {
       e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
@@ -46,7 +47,8 @@ export default withRouter(function ClubCardContainer({
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    club.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
+    // Property 'isBookmark' does not exist on type 'MasterClubReadResType'.
+    club?.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
   }, [club]);
 
   return (

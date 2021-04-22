@@ -10,12 +10,12 @@ import {
   MainClubReadResType,
 } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
-import errorStyles from '../../../styles/common/Error.module.scss';
 import loadingGif from '../../../asset/loading.gif';
 import { FaArrowCircleUp } from 'react-icons/fa';
-import fileImg from '../../../asset/file.png';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
+import ErrorView from '../../../components/common/ErrorView';
+import LoadingView from '../../../components/common/LoadingView';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
@@ -33,23 +33,32 @@ export default withRouter(function ListContainer({ location, match, history }) {
     }),
   );
 
-  const { search = null, place = null, day = null } = qs.parse(
-    location.search,
-    {
-      ignoreQueryPrefix: true,
-    },
-  );
+  const {
+    search = null,
+    place = null,
+    day = null,
+    filter = null,
+    limitNumber = null,
+  } = qs.parse(location.search, {
+    ignoreQueryPrefix: true,
+  });
 
   const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
     club.id === bookmark?.clubId
       ? {
-        ...club,
-        isBookmark: bookmark.isBookmark,
-      }
+          ...club,
+          isBookmark: bookmark.isBookmark,
+        }
       : club,
   );
-  const handleSearch = (search?: string, place?: string, day?: string) => {
-    const query = qs.stringify({ search, place, day });
+  const handleSearch = (
+    search?: string,
+    place?: string,
+    day?: string,
+    filter?: string,
+    limitNumber?: string,
+  ) => {
+    const query = qs.stringify({ search, place, day, filter, limitNumber });
     history.push(`/club?${query}`);
     // window.location.reload();
     dispatch(mainClubUnloadList());
@@ -60,21 +69,61 @@ export default withRouter(function ListContainer({ location, match, history }) {
         search: search?.toString(),
         place: place?.toString(),
         day: day?.toString(),
+        filter: filter?.toString(),
+        limitNumber: limitNumber?.toString(),
       }),
     );
     setPage(2);
   };
 
   const onSearch = (search: string) => {
-    handleSearch(search?.toString(), place?.toString(), day?.toString());
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+      limitNumber?.toString(),
+    );
   };
 
   const onPlace = (place: string | null) => {
-    handleSearch(search?.toString(), place?.toString(), day?.toString());
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+      limitNumber?.toString(),
+    );
   };
 
   const onDay = (day: string | null) => {
-    handleSearch(search?.toString(), place?.toString(), day?.toString());
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+      limitNumber?.toString(),
+    );
+  };
+
+  const onFilter = (filter: string | null) => {
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+      limitNumber?.toString(),
+    );
+  };
+
+  const onLimitNumber = (limitNumber: string | null) => {
+    handleSearch(
+      search?.toString(),
+      place?.toString(),
+      day?.toString(),
+      filter?.toString(),
+      limitNumber?.toString(),
+    );
   };
 
   useEffect(() => {
@@ -95,6 +144,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
               page: page,
               search: search?.toString(),
               place: place?.toString(),
+              day: day?.toString(),
+              filter: filter?.toString(),
+              limitNumber: limitNumber?.toString(),
             }),
           );
           setPage(page + 1);
@@ -107,12 +159,17 @@ export default withRouter(function ListContainer({ location, match, history }) {
   );
 
   useEffect(() => {
-    if (lastPage >= page) {
+    // 여기서 lastPage === 0 인 경우는 이전에 리스트 없는 조건까지 검색하고
+    // 이동 후 다시 돌아왔을 때이다.
+    if (lastPage >= page || lastPage === 0) {
       dispatch(
         mainListThunk({
           page: page,
           search: search?.toString(),
           place: place?.toString(),
+          day: day?.toString(),
+          filter: filter?.toString(),
+          limitNumber: limitNumber?.toString(),
         }),
       );
       setPage(page + 1);
@@ -128,54 +185,42 @@ export default withRouter(function ListContainer({ location, match, history }) {
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 
-  if (error)
-    return (
-      <div ref={loader}>
-        <img src={loadingGif} alt="loading..." />
-      </div>
-    );
-
-  if (lastPage === 0) {
-    return (
-      <>
-        <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
-
-        <div className={errorStyles.errorWrapper}>
-          <div className={errorStyles.errorContainer}>
-            <div>
-              <img src={fileImg} className={errorStyles.errorImg} />
-            </div>
-            <div ref={loader} className={errorStyles.errorMessage}>
-              리스트가 없습니다.
-            </div>
-            <div className={errorStyles.RedirectBtn}>
-              <Link to="/" className={errorStyles.LinkContainer}>
-                메인 페이지로 돌아가기
-              </Link>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
-
   return (
     <>
-      <Search onSearch={onSearch} onPlace={onPlace} onDay={onDay} />
-      <List clubs={currentClubs} />
-      <div ref={loader} className={styles.loading}>
-        {loading && <img src={loadingGif} alt="loading..." />}
-        {goToTop && (
-          <div
-            className={styles.goToTop}
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            <FaArrowCircleUp className={styles.icon} size={64} />
+      <Search
+        onSearch={onSearch}
+        onPlace={onPlace}
+        onDay={onDay}
+        onFilter={onFilter}
+        onLimitNumber={onLimitNumber}
+      />
+      {error ? (
+        <div ref={loader}>
+          <ErrorView />
+        </div>
+      ) : lastPage === 0 ? (
+        <ErrorView
+          children={<div ref={loader}>리스트가 없습니다.</div>}
+          isGoMainBtn={false}
+        />
+      ) : (
+        <>
+          <List clubs={currentClubs} />
+          <div ref={loader} className={styles.loading}>
+            {loading && <LoadingView />}
+            {goToTop && (
+              <div
+                className={styles.goToTop}
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              >
+                <FaArrowCircleUp className={styles.icon} size={64} />
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 });
