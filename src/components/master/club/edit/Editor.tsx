@@ -155,19 +155,19 @@ export default function Editor({ club, onChangeField }: EditorType) {
           type="text"
           name="summary"
         />
-        <hr />
+       <hr/>
         <QuillWrapper>
           <div ref={descriptionQuillElement} />
         </QuillWrapper>
         {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
-        <p>
-          <input
-            type="file"
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
-            name="coverImg"
-            onChange={onChange}
-          />
-        </p>
+       <p>
+        <input
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg,image/gif"
+          name="coverImg"
+          onChange={onChange}
+        />
+       </p>
       </EditorBlock>
     </div>
   );
