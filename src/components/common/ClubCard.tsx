@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from '../../styles/common/ClubCard.module.scss';
 import Badge from './Badge';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
@@ -73,12 +73,11 @@ export default function ClubCard({
         <img
           src={club.coverUrl || defaultData.coverUrl}
           className={styles.image}
+        alt="coverUrl"
         />
       </div>
       <div className={styles.contentBox}>
         <div className={styles.infoBox}>
-          {/* //TODO 클럽장 info advance로 */}
-          {/* <div className={styles.info}>{club.leaderTitle}</div> */}
           <div className={styles.title}>{club.title}</div>
           <div className={styles.desc}>{club.summary}</div>
         </div>
