@@ -251,6 +251,13 @@
                     width: 100%;
                     height: 56px;
                     border: none;
+                    :hover {
+                      background-color: $primary;
+                      text-decoration: none;
+                    }
+                    .paymentLink {
+                      color: #fff;
+                    }
                   }
                 }
               }

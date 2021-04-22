@@ -35,8 +35,11 @@ export default withRouter(function ViewerContainer({ match, history }) {
       dispatch(removeBookmarkThunk(club.id));
     }
   };
-  const [isBookmarked, setIsBookmarked] = useState(club?.isBookmark);
+  const [isBookmarked, setIsBookmarked] = useState(club?.isBookmark); //TODO: 현재 오류 이슈발견! 이전 북마크 선택한것으로 반영이되는 이슈 : 일단해결 로직확인필요
 
+  useEffect(() => {
+    setIsBookmarked(club?.isBookmark);
+  }, [loading]);
   useEffect(() => {
     setIsBookmarked(bookmark?.isBookmark);
   }, [bookmark]);
@@ -55,7 +58,7 @@ export default withRouter(function ViewerContainer({ match, history }) {
       club={club}
       onAddBookmark={onAddBookmark}
       onRemoveBookmark={onRemoveBookmark}
-      isBookmarked={false}
+      isBookmarked={isBookmarked}
       loading={loading}
       error={error}
     />
