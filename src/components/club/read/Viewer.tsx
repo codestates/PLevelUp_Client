@@ -18,8 +18,8 @@ export default function Viewer({
   loading,
 }: {
   club: MainClubReadResType | null;
-  onAddBookmark: () => void;
-  onRemoveBookmark: () => void;
+  onAddBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  onRemoveBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
   isBookmarked: boolean | undefined;
   error: AxiosError | null;
   loading: boolean;
