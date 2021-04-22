@@ -12,7 +12,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { MasterClubReadResType } from '../../api/master/club';
 
 type ClubCardPropsType = {
-  club: MainClubReadResType | MasterClubReadResType | any; //TODO any안쓰면 50줄 해결이 안됨..
+  club: MainClubReadResType | MasterClubReadResType;
   isMain: boolean;
 };
 export default withRouter(function ClubCardContainer({
@@ -51,8 +51,7 @@ export default withRouter(function ClubCardContainer({
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    // Property 'isBookmark' does not exist on type 'MasterClubReadResType'.
-    club?.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
+    'isBookmark' in club && setIsBookmarked(club.isBookmark);
   }, [club]);
 
   return (
@@ -62,7 +61,7 @@ export default withRouter(function ClubCardContainer({
       onAddBookmark={onAddBookmark}
       onRemoveBookmark={onRemoveBookmark}
       isMain={isMain}
-      isBookmarked={isMain ? isBookmarked : null}
+      isBookmarked={isBookmarked}
     />
   );
 });
