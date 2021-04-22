@@ -29,7 +29,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
       error: mainListAsync.clubs.error,
       loading: mainListAsync.clubs.loading,
       lastPage: mainListAsync.lastPage,
-      bookmark: mainBookmarkAsync.bookmark.data,
+      bookmark: mainBookmarkAsync.data,
     }),
   );
 
@@ -43,14 +43,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
     ignoreQueryPrefix: true,
   });
 
-  const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
-    club.id === bookmark?.clubId
-      ? {
-          ...club,
-          isBookmark: bookmark.isBookmark,
-        }
-      : club,
-  );
   const handleSearch = (
     search?: string,
     place?: string,
@@ -125,11 +117,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
       limitNumber?.toString(),
     );
   };
-
-  useEffect(() => {
-    setCurrentClubs(newCurrentClubs);
-    dispatch(mainClubBookmarkUnload());
-  }, [bookmark]);
 
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
