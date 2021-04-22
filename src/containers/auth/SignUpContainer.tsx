@@ -8,8 +8,9 @@ import {
   mainLoginKakaoThunk,
   mainLoginGoogleThunk,
 } from '../../modules/auth';
+import LoadingView from '../../components/common/LoadingView';
 import { RootState } from '../../modules';
-import AuthForm from '../../components/auth/AuthForm';
+import SignUpForm from '../../components/auth/SignUpForm';
 import { mainIsLoginThunk } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
@@ -131,19 +132,14 @@ export default withRouter(function SignUpContainer({ history }) {
 
   return (
     <>
-      {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
-      <AuthForm
-        formType="signUp"
+      {loading && <LoadingView />}
+      <SignUpForm
         form={form}
         handleOAuth={handleOAuth}
         handleOAuthGoogle={handleOAuthGoogle}
         onChange={onChange}
         onSubmit={onSubmit}
         error={error}
-        modal={null} //TODO 임시.. 로그인/회원가입 분리해야하는 것 같다.
-        onFindPasswordClick={null}
-        onCancel={null}
-        onConfirm={null}
       />
     </>
   );

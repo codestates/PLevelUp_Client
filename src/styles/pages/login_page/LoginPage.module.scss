@@ -32,9 +32,16 @@
       margin: 26px 0px;
     }
     .loginForm {
-      .loginInput {
-        @include form-control-default;
-        margin-bottom: 8px;
+      .inputBox {
+        text-align: start;
+        .label {
+          font-size: 0.85rem;
+          margin-left: 3px;
+        }
+        .loginInput {
+          @include form-control-default;
+          margin-bottom: 8px;
+        }
       }
       .loginBtn {
         @include btn-default('primary');
@@ -61,16 +68,11 @@
           text-decoration: underline;
         }
       }
-      .findInfoWrapper {
-        font-size: 14px;
-        margin: 16px 0px 8px;
-        text-align: center;
 
-        .findLink {
-          color: rgb(123, 123, 123);
-          cursor: pointer;
-          text-decoration: underline;
-        }
+      .findLink {
+        color: rgb(123, 123, 123);
+        cursor: pointer;
+        text-decoration: underline;
       }
     }
     .noLoginLink {

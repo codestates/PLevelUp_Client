@@ -11,7 +11,7 @@ import {
 } from '../../modules/auth';
 import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
-import AuthForm from '../../components/auth/AuthForm';
+import LoginForm from '../../components/auth/LoginForm';
 import { mainIsLoginThunk } from '../../modules/user';
 
 export default withRouter(function LoginConatiner({ history }) {
@@ -121,8 +121,7 @@ export default withRouter(function LoginConatiner({ history }) {
     onSendMail(email);
   };
   return (
-    <AuthForm
-      formType="login"
+    <LoginForm
       form={form}
       handleOAuth={handleOAuth}
       handleOAuthGoogle={handleOAuthGoogle}
