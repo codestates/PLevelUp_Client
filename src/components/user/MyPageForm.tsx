@@ -1,111 +1,127 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from '../../styles/pages/my_page/MyPage.module.scss';
+import ApplyCard from '../common/ApplyCard';
+import BookmarkListContainer from '../../containers/my-page/BookmarkListContainer';
+import { MainApplyListResType, MainApplyResType } from 'api/main/myPage';
+import { MainIsLoginResType } from 'api/main/auth';
+import { MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
+import { HiOutlineChevronRight } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
-import BookmarkListContainer from '../../containers/my-page/BookmarkListContainer';
-export default function MyPageForm({ user, onLogout }: any) {
-  // const { username } = user;
+
+export default function MyPageForm({
+  user,
+  onLogout,
+  apply,
+  error,
+  loading,
+}: {
+  user: MainIsLoginResType;
+  onLogout: MouseEventHandler;
+  apply: MainApplyListResType | null;
+  error: AxiosError | null;
+  loading: boolean;
+}) {
+  const { username } = user;
+
   return (
-    <>
-      <div className="wrapper">
-        <div className={styles.MyPage}>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <div className={styles.MypageWrapper}>
           <div className={styles.userWrapper}>
-            <div className={styles.userInfo}>
-              <div className={styles.userInfoTop}>
-                <div className={styles.profile}>
-                  <div className={styles.profileImg}>
-                    <FaUserCircle className={styles.imgPro} />
-                  </div>
+            <div className={styles.flexHeader}>
+              <div className={styles.imgWrapper}>
+                <FaUserCircle size="100" color="#c5c5c5" />
+              </div>
+              <div className={styles.menuWrapper}>
+                <div className={styles.menuName}>
+                  <p className={styles.userName}>{`${username}님`}</p>
                 </div>
-                <div className={styles.userfastInfo}>
-                  <div className={styles.fastInfoTop}>
-                    {/* <div className={styles.userName}>{username}님</div> ->  */}
+
+                <div className={styles.menuItem}>
+                  <div className={styles.passwordItem}>
+                    <div className={styles.passwordIcon}>
+                      <MdBuild size="20" />
+                    </div>
+                    <p>
+                      <Link to="/mypage/changepassword">비밀번호 변경</Link>
+                    </p>
                   </div>
-                  <div className={styles.fastInfoBottom}>
-                    <div className={styles.infoBox}>
-                      <div className={styles.infoBoxList}>
-                        <MdBuild className={styles.InfoBoxImg} />
-                      </div>
-                      <div className={styles.infoBoxList}>
-                        <button className={styles.changePasswordBtn}>
-                          <Link to="/update">비밀번호 변경</Link>
-                        </button>
-                      </div>
+                  <div className={styles.logOutItem}>
+                    <div className={styles.logOutIcon}>
+                      <BiDoorOpen size="20" />
                     </div>
-                    <div className={styles.infoBox}>
-                      <div className={styles.infoBoxList}>
-                        <BiDoorOpen className={styles.InfoBoxImg} />
-                      </div>
-                      <div className={styles.infoBoxListBtn}>
-                        <button className={styles.logOutBtn} onClick={onLogout}>
-                          로그아웃
-                        </button>
-                      </div>
-                    </div>
+                    <p className={styles.logOutBtn} onClick={onLogout}>
+                      로그아웃
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className={styles.userInfoBottom}>
-                <div className={styles.banner}>
-                  <svg
-                    className={styles.bannerImg}
-                    width="100%"
-                    style={{ margin: '0px' }}
-                    overflow="hidden"
-                    height="100%"
-                    version="1.1"
-                    viewBox="0 0 115 14"
-                    xmlns="http://www.inkscape.org/namespaces/inkscape"
-                  >
-                    <text
-                      style={{
-                        fill: '#ee8205',
-                        fontFamily: 'Spoqa Han Sans Neo',
-                        fontSize: '22px',
-                        fontWeight: 'bold',
-                      }}
-                    >
-                      P'Level Up
-                    </text>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.recordAreaWrapper}>
-            <div className={styles.recordArea}>
-              <ul className={styles.areaName}>
-                <li className={styles.areaList}>
-                  <div className={styles.recordClubList}>
-                    <div className={styles.recordTitle}>클럽</div>
-                    <div className={styles.recordContents}>
-                      {/* <div>props로 추가될 실제 참가 클럽리스트</div> */}
-                    </div>
-                  </div>
-                </li>
-                <li className={styles.areaList}>
-                  <div className={styles.recordFavoriteList}>
-                    <div className={styles.recordTitle}>찜리스트</div>
-                    <div className={styles.recordContents}>
-                      <BookmarkListContainer />
-                      {/* <div>props로 추가될 실제 찜 클럽리스트</div> */}
-                    </div>
-                  </div>
-                </li>
-              </ul>
             </div>
 
-            <div className={styles.ifNotInvlovedClub}>
-              <div>클럽이 없습니다.</div>
-              <button>
-                <Link to="/list">멤버쉽 신청하러 가기</Link>
-              </button>
+            <div className={styles.bannerBox}>
+              <a className={styles.aBox}>
+                <div className={styles.banner}>
+                  <div className={styles.title}>
+                    사회적 거리두기 단계별 운영방침 💪🏻
+                  </div>
+                  <div className={styles.subTitle}>
+                    <span>더 알아보기</span>
+                    <span>
+                      <HiOutlineChevronRight />
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.bottomWrapper}>
+          <div className={styles.tabWrapper}>
+            <ul className={styles.nav}>
+              <div className={styles.navItemWrapper}>
+                <li className={styles.navItem}>클럽</li>
+              </div>
+              <div className={styles.navItemWrapper}>
+                <li className={styles.navItem}>찜리스트</li>
+              </div>
+            </ul>
+          </div>
+          <div className={styles.tabContent}>
+            <div className={styles.tabBody}>
+              <div className={styles.tabBodyWrapper}>
+                <div className={styles.tabBodyClub}>
+                  <div>
+                    {apply &&
+                      apply.map((el: MainApplyResType) => (
+                        <ApplyCard
+                          key={el.title}
+                          title={el.title}
+                          summary={el.summary}
+                          place={el.place}
+                          times={el.times}
+                        />
+                      ))}
+                  </div>
+                  <div>
+                    {/* 임시위치 */}
+                    <BookmarkListContainer />
+                  </div>
+                  <div className={styles.ifNotInvlovedClub}>
+                    <div>클럽이 없습니다.</div>
+                    <button>
+                      <Link to="/list">멤버쉽 신청하러 가기</Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

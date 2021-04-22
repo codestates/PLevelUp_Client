@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import styles from '../../styles/common/Header.module.scss';
+import { MasterIsLoginResType } from 'api/master/auth';
+import { MainIsLoginResType } from 'api/main/auth';
+
+type HeaderProps = {
+  user: MainIsLoginResType | MasterIsLoginResType | any;
+  onLogout: MouseEventHandler<HTMLDivElement>;
+};
 
 // TODO: 민정 any 대신 타입 지정 할 것, 메인 유저 마스터 유저 구분하여 다른 헤더로 구성할 것
-export default function Header({ user, onLogout }: any) {
+export default function Header({ user, onLogout }: HeaderProps) {
   const [isMyPageOpen, setIsMyPageOpen] = useState(false);
   const [isHeaderShow, setIsHeaderShow] = useState(true);
 
@@ -76,6 +83,9 @@ export default function Header({ user, onLogout }: any) {
                 >
                   <div className={styles.dropDown}>
                     <Link to="/mypage">마이페이지</Link>
+                  </div>
+                  <div className={styles.dropDown}>
+                    <Link to="/payment/history">결제 내역</Link>
                   </div>
                   <div className={styles.dropDown} onClick={onLogout}>
                     로그아웃

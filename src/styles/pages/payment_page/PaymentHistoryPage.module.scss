@@ -1,0 +1,54 @@
+@import '../../common/basicMixin.scss';
+
+.container {
+  margin-top: 61px;
+  transition: margin-top 0.5s ease 0s;
+
+  .historyHeader {
+    background: white;
+    border-bottom: 1px solid rgb(225, 225, 225);
+    border-top-color: rgb(225, 225, 225);
+    border-right-color: rgb(225, 225, 225);
+    border-left-color: rgb(225, 225, 225);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 6px 0px inset;
+    padding: 20px 0px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(123, 123, 123);
+
+    .wrapper {
+      max-width: 1140px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 16px;
+
+      .backBtn {
+        float: left;
+        position: absolute;
+
+        .arrowIcon {
+          width: 48px;
+          height: 52px;
+          padding: 15px 18px;
+          margin: -14px 0px 0px -17px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .historyBody {
+    background: white;
+    padding: 20px 0px;
+
+    .wrapper {
+      max-width: 1140px;
+      width: 100%;
+      padding: 0 16px;
+
+      .contentWrapper {
+        margin-top: 24px;
+      }
+    }
+  }
+}

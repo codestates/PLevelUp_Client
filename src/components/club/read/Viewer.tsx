@@ -1,4 +1,5 @@
 import { AxiosError } from 'axios';
+import { Link } from 'react-router-dom';
 import { MainClubReadResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 import { Mobile, PC } from '../../../mediaQuery';
@@ -43,6 +44,7 @@ export default function Viewer({
   }
 
   const {
+    id,
     title,
     price,
     place,
@@ -104,9 +106,11 @@ export default function Viewer({
             </button>
             <div className={styles.applyBtn}>
               <button className={styles.fixedAppBtn2}>
-                {`${
-                  limitUserNumber - currentUserNumber
-                }자리 남았어요! 지금 시작`}
+                <Link to={`${id}/payment`}>
+                  {`${
+                    limitUserNumber - currentUserNumber
+                  }자리 남았어요! 지금 시작`}
+                </Link>
               </button>
             </div>
           </div>

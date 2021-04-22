@@ -238,6 +238,10 @@ hr {
                 @include btn-default('primary');
                 display: block;
                 width: 100%;
+                //기능 수정 후 확인예정
+                &.disabled {
+                  opacity: 0.65;
+                }
                 div {
                   margin: 5px 0px 8px 0px;
                 }
