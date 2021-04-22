@@ -218,9 +218,9 @@
                 justify-content: space-between;
 
                 .fixedAppBtn1 {
-                  width: 56px;
+                  @include btn-default('primary');
+                  width: 48%;
                   height: 56px;
-                  background: #ffe6d4;
                   border: none;
                   display: -webkit-box;
                   display: -webkit-flex;
@@ -250,11 +250,12 @@
                   }
                 }
 
-                .applyBtn {
-                  max-width: calc(100% - 66px);
+                .removeBtn {
+                  max-width: calc(48%);
                   width: 100%;
 
                   .fixedAppBtn2 {
+                    @include btn-default('primary');
                     margin: 0;
                     font-family: inherit;
                     font-size: inherit;
@@ -262,8 +263,8 @@
                     width: 100%;
                     height: 56px;
                     border: none;
-                    background: #FF6600;
-                    color: #FFF;
+                    background-color: $secondary;
+                    color:$btnBackgroud;
                     display: -webkit-box;
                     display: -webkit-flex;
                     display: -ms-flexbox;
@@ -334,13 +335,4 @@
       }
     }
   }
-
-}
-.actionBtn{
-  @include btn-default('primary');
-  margin : 15px;
-  text-align:center;
-  font-size: 14px;
-  //height: 48px;
-  //width: 100%;
 }

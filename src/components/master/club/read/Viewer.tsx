@@ -1,7 +1,6 @@
 import styles from '../../../../styles/pages/master/read_page/ReadPage.module.scss';
 import { MasterClubReadResType } from '../../../../api/master/club';
 import { AxiosError } from 'axios';
-import { FaHeart } from 'react-icons/fa';
 import { Mobile, PC } from '../../../../mediaQuery';
 import React from 'react';
 import Badge from '../../../common/Badge';
@@ -64,46 +63,17 @@ export default function Viewer({
     startDate,
     times,
     day,
-    limitUserNumber,
     Master: master,
     coverUrl,
     createdAt,
     updatedAt,
+    isNew,
+    isMostStart,
+    isEnd,
+    currentUserNumber,
+    limitUserNumber,
   } = club;
 
-  //
-  // return (
-  //   <div className={styles.masterReadWrapper}>
-  //     <div className={styles.readHead}>
-  //       <h1>{title}</h1>
-  //       <div className={styles.subInfo}>
-  //         <span>
-  //           <b>{master.username}</b>
-  //         </span>
-  //         <span>
-  //           {`등록: ${createdAt}`}
-  //           {updatedAt !== null && `, 최종 업데이트 : ${updatedAt}`}
-  //         </span>
-  //       </div>
-  //       <div>{place}</div>
-  //       <div>{price}</div>
-  //       <div>{day}</div>
-  //       <div>{startDate}</div>
-  //       <div>{times}</div>
-  //       <div>{limitUserNumber}</div>
-  //       <div>
-  //         coverUrl 입니다.
-  //         <img src={coverUrl} />
-  //       </div>
-  //     </div>
-  //     <div>{summary}</div>
-  //     <div
-  //       className={styles.readContent}
-  //       dangerouslySetInnerHTML={{ __html: description }}
-  //     />
-  //     {actionButtons}
-  //   </div>
-  // );
   const createDate = `${new Date(startDate).getMonth() + 1}
   /${new Date(startDate).getDate()}`;
 
@@ -116,12 +86,12 @@ export default function Viewer({
         <div className={styles.floatingClubName}>
           <span className={styles.clubTitle}>
             {title}
-            {/*<span className={styles.badges}>*/}
-            {/*    {isNew ? <Badge type="new">NEW</Badge> : null}*/}
-            {/*  {isMostStart ? <Badge type="mostFull">마감임박</Badge> : null}*/}
-            {/*  {isEnd ? <Badge type="full">마감</Badge> : null}*/}
-            {/*  {place === '온라인' ? <Badge type="online">온라인</Badge> : null}*/}
-            {/*</span>*/}
+            <span className={styles.badges}>
+              {isNew ? <Badge type="new">NEW</Badge> : null}
+              {isMostStart ? <Badge type="mostFull">마감임박</Badge> : null}
+              {isEnd ? <Badge type="full">마감</Badge> : null}
+              {place === '온라인' ? <Badge type="online">온라인</Badge> : null}
+            </span>
           </span>
         </div>
         <div className={styles.placeTimeContainer}>
@@ -131,6 +101,11 @@ export default function Viewer({
         </div>
         <div className={styles.monthlyPrice}>
           총 {price.toLocaleString('ko-KR')}원
+        </div>
+      </div>
+      <div className={styles.floatingCardBtn}>
+        <div className={styles.fixedAppBtnBox}>
+          <div className={styles.fixedAppBtn}>{actionButtons}</div>
         </div>
       </div>
     </div>
@@ -166,7 +141,6 @@ export default function Viewer({
     <div className={styles.masterReadPage}>
       <CardViewer />
       <DescriptionViewer />
-      {actionButtons}
     </div>
   );
 }
