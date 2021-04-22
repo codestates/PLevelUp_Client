@@ -11,7 +11,7 @@ export default function BookmarkListContainer() {
   const { clubs, bookmark } = useSelector(
     ({ mainListAsync, mainBookmarkAsync }: RootState) => ({
       clubs: mainListAsync.clubs.data,
-      bookmark: mainBookmarkAsync.bookmark.data,
+      bookmark: mainBookmarkAsync.data,
     }),
   );
   const [bookmarkClubList, setBookmarkClubList] = useState<MainClubListResType>(
