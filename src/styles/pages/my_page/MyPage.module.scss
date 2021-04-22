@@ -6,7 +6,9 @@ a {
 
 a:visited {
   text-decoration: none;
-  color: rgb(73, 73, 73);
+}
+a:active {
+  color: $primary;
 }
 
 .container {
