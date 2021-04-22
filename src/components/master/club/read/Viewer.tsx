@@ -70,109 +70,108 @@ export default function Viewer({
     updatedAt,
   } = club;
 
-  //
-  // return (
-  //   <div className={styles.masterReadWrapper}>
-  //     <div className={styles.readHead}>
-  //       <h1>{title}</h1>
-  //       <div className={styles.subInfo}>
-  //         <span>
-  //           <b>{master.username}</b>
-  //         </span>
-  //         <span>
-  //           {`등록: ${createdAt}`}
-  //           {updatedAt !== null && `, 최종 업데이트 : ${updatedAt}`}
-  //         </span>
+  return (
+    <div className={styles.masterReadWrapper}>
+      <div className={styles.readHead}>
+        <h1>{title}</h1>
+        <div className={styles.subInfo}>
+          <span>
+            <b>{master.username}</b>
+          </span>
+          <span>
+            {`등록: ${createdAt}`}
+            {updatedAt !== null && `, 최종 업데이트 : ${updatedAt}`}
+          </span>
+        </div>
+        <div>{place}</div>
+        <div>{price}</div>
+        <div>{day}</div>
+        <div>{startDate}</div>
+        <div>{times}</div>
+        <div>{limitUserNumber}</div>
+        <div>
+          coverUrl 입니다.
+          <img src={coverUrl} />
+        </div>
+      </div>
+      <div>{summary}</div>
+      <div
+        className={styles.readContent}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+      {actionButtons}
+    </div>
+  );
+
+  //   const clubInfoContents = (
+  //     <div className={styles.floatingCard}>
+  //       <div className={styles.cardImgWrap}>
+  //         <img src={coverUrl} alt="coverUrl" />
   //       </div>
-  //       <div>{place}</div>
-  //       <div>{price}</div>
-  //       <div>{day}</div>
-  //       <div>{startDate}</div>
-  //       <div>{endDate}</div>
-  //       <div>{limitUserNumber}</div>
-  //       <div>
-  //         coverUrl 입니다.
-  //         <img src={coverUrl} />
+  //       <div className={styles.cardContentsWrap}>
+  //         <div className={styles.floatingClubName}>
+  //           <span className={styles.clubTitle}>
+  //             {title}
+  //             <span className={styles.badges}>
+  //               <span className={styles.tagSolid}>
+  //                 {/* 임시 더미 데이터 작성했습니다. */}
+  //                 마감임박
+  //               </span>
+  //             </span>
+  //           </span>
+  //         </div>
+  //         <div>{place}</div>
+  //         <div>{price}</div>
+  //         <div>{day}</div>
+  //         <div>{startDate}</div>
+  //         <div>{times}</div>
+  //         <div>{limitUserNumber}</div>
+  //         <div>
+  //           coverUrl 입니다.
+  //           <img src={coverUrl} />
+  //
+  //         <div className={styles.placeTimeContainer}>
+  //           {/* 임시 더미 데이터 작성했습니다. */}
+  //           {place} | 매달 세 번째 {day}요일
+  //           <br />첫 모임일
+  //           {startDate}
+  //         </div>
+  //         <div className={styles.monthlyPrice}>월 {price}원</div>
   //       </div>
   //     </div>
-  //     <div>{summary}</div>
-  //     <div
-  //       className={styles.readContent}
-  //       dangerouslySetInnerHTML={{ __html: description }}
-  //     />
-  //     {actionButtons}
-  //   </div>
-  // );
-
-//   const clubInfoContents = (
-//     <div className={styles.floatingCard}>
-//       <div className={styles.cardImgWrap}>
-//         <img src={coverUrl} alt="coverUrl" />
-//       </div>
-//       <div className={styles.cardContentsWrap}>
-//         <div className={styles.floatingClubName}>
-//           <span className={styles.clubTitle}>
-//             {title}
-//             <span className={styles.badges}>
-//               <span className={styles.tagSolid}>
-//                 {/* 임시 더미 데이터 작성했습니다. */}
-//                 마감임박
-//               </span>
-//             </span>
-//           </span>
-//         </div>
-//         <div>{place}</div>
-//         <div>{price}</div>
-//         <div>{day}</div>
-//         <div>{startDate}</div>
-//         <div>{times}</div>
-//         <div>{limitUserNumber}</div>
-//         <div>
-//           coverUrl 입니다.
-//           <img src={coverUrl} />
-//
-//         <div className={styles.placeTimeContainer}>
-//           {/* 임시 더미 데이터 작성했습니다. */}
-//           {place} | 매달 세 번째 {day}요일
-//           <br />첫 모임일
-//           {startDate}
-//         </div>
-//         <div className={styles.monthlyPrice}>월 {price}원</div>
-//       </div>
-//     </div>
-//   );
-//
-//   // 내부 컴포넌트
-//   const CardViewer = () => (
-//     <div className={styles.clubInfoCard}>
-//       <div className={styles.clubCardContents}>
-//         <div className={styles.clubCardPC}>
-//           <PC children={clubInfoContents} />
-//           <Mobile children={clubInfoContents} />
-//         </div>
-//       </div>
-//     </div>
-//   );
-//
-//   // 내부 컴포넌트
-//   const DescriptionViewer = () => (
-//     <div className={styles.infoContainer}>
-//       <div className={styles.infoWrap}>
-//         <div className={styles.infoContents}>
-//           <div
-//             className={styles.infoMainContents}
-//             dangerouslySetInnerHTML={{ __html: description }}
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-//
-//   return (
-//     <div className={styles.masterReadPage}>
-//       <CardViewer />
-//       <DescriptionViewer />
-//       {actionButtons}
-//     </div>
-//   );
- }
+  //   );
+  //
+  //   // 내부 컴포넌트
+  //   const CardViewer = () => (
+  //     <div className={styles.clubInfoCard}>
+  //       <div className={styles.clubCardContents}>
+  //         <div className={styles.clubCardPC}>
+  //           <PC children={clubInfoContents} />
+  //           <Mobile children={clubInfoContents} />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  //
+  //   // 내부 컴포넌트
+  //   const DescriptionViewer = () => (
+  //     <div className={styles.infoContainer}>
+  //       <div className={styles.infoWrap}>
+  //         <div className={styles.infoContents}>
+  //           <div
+  //             className={styles.infoMainContents}
+  //             dangerouslySetInnerHTML={{ __html: description }}
+  //           />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  //
+  //   return (
+  //     <div className={styles.masterReadPage}>
+  //       <CardViewer />
+  //       <DescriptionViewer />
+  //       {actionButtons}
+  //     </div>
+  //   );
+}
