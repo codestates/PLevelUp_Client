@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { RootState } from '../../../modules';
 import {
@@ -7,8 +7,8 @@ import {
   mainClubUnloadRead,
 } from '../../../modules/club/read';
 import {
-  addBookmarkThunk,
-  removeBookmarkThunk,
+  mainBookmarkThunk,
+  mainClubBookmarkUnload,
 } from '../../../modules/club/bookmark';
 import Viewer from '../../../components/club/read/Viewer';
 
@@ -22,36 +22,36 @@ export default withRouter(function ViewerContainer({ match, history }) {
       data: mainReadAsync.club.data,
       error: mainReadAsync.club.error,
       loading: mainReadAsync.club.loading,
-      bookmark: mainBookmarkAsync.bookmark.data!,
+      bookmark: mainBookmarkAsync.data,
       user: mainUser.user?.data,
     }),
   );
-  const onAddBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+
+  const onUpdateBookmark = (isBookmark: boolean) => {
     if (!user?.id) {
-      e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
     }
     if (club) {
-      dispatch(addBookmarkThunk(club.id));
+      dispatch(mainBookmarkThunk(club.id, isBookmark));
     }
   };
-  const onRemoveBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
-    if (!user?.id) {
-      e.stopPropagation(); //상위이벤트 제어
-      history.push('/login');
-    }
-    if (club) {
-      dispatch(removeBookmarkThunk(club.id));
-    }
-  };
-  const [isBookmarked, setIsBookmarked] = useState(club?.isBookmark); //TODO: 현재 오류 이슈발견! 이전 북마크 선택한것으로 반영이되는 이슈 : 일단해결 로직확인필요
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    setIsBookmarked(club?.isBookmark);
-  }, [loading]);
-  useEffect(() => {
-    setIsBookmarked(bookmark?.isBookmark);
+    if (club && bookmark && user) {
+      if (bookmark.clubId === club.id && user.id === bookmark.userId) {
+        setIsBookmarked(bookmark.isBookmark);
+        dispatch(mainClubBookmarkUnload());
+      }
+    }
   }, [bookmark]);
+
+  useEffect(() => {
+    if (club) {
+      setIsBookmarked(club.isBookmark);
+      dispatch(mainClubBookmarkUnload());
+    }
+  }, [club]);
 
   useEffect(() => {
     dispatch(mainClubReadThunk(clubId));
@@ -61,12 +61,10 @@ export default withRouter(function ViewerContainer({ match, history }) {
     };
   }, []);
 
-  // TODO: 오류 소스인데 시간 없어서 isBookmarked false 로 해놨음
   return (
     <Viewer
       club={club}
-      onAddBookmark={onAddBookmark}
-      onRemoveBookmark={onRemoveBookmark}
+      onUpdateBookmark={onUpdateBookmark}
       isBookmarked={isBookmarked}
       loading={loading}
       error={error}

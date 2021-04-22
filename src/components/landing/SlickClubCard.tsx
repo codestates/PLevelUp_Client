@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ClubCardContainer from '../../containers/common/ClubCardContainer';
 import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
-import { MainClubListResType, MainClubReadResType } from 'api/main/club';
-import { Link } from 'react-router-dom';
+import { MainClubListResType } from 'api/main/club';
 
-function SampleNextArrow(props: any) {
-  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
+function SampleNextArrow(props: {
+  className?: string;
+  style?: Object;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
   const { className, style, onClick } = props;
   return (
     <>
@@ -30,15 +32,17 @@ function SampleNextArrow(props: any) {
             color: 'red',
           }}
           onClick={onClick}
-        ></div>
+        />
       </div>
     </>
   );
 }
-function SamplePrevArrow(props: any) {
-  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
+function SamplePrevArrow(props: {
+  className?: string;
+  style?: Object;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
   const { className, style, onClick } = props;
-  console.log(props);
   return (
     <div>
       <div
@@ -59,7 +63,7 @@ function SamplePrevArrow(props: any) {
             ...style,
             color: 'red',
           }}
-        ></div>
+        />
       </div>
     </div>
   );

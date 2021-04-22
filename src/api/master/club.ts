@@ -90,6 +90,13 @@ export type MasterClubReadResType = {
   MasterId: number;
   Master: MasterClubReadMasterType;
   coverUrl: string;
+  isOnline: boolean;
+  isNew: boolean;
+  isMostStart: boolean;
+  isStart: boolean;
+  isEnd: boolean;
+  isFourLimitNumber: boolean;
+  currentUserNumber: number;
 };
 
 export const masterClubRead = async (id: number) => {

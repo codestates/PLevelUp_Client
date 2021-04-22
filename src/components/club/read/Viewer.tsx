@@ -11,16 +11,14 @@ import ErrorView from '../../common/ErrorView';
 
 export default function Viewer({
   club,
-  onAddBookmark,
-  onRemoveBookmark,
+  onUpdateBookmark,
   isBookmarked,
   error,
   loading,
 }: {
   club: MainClubReadResType | null;
-  onAddBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
-  onRemoveBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
-  isBookmarked: boolean | undefined;
+  onUpdateBookmark: (isBookmark: boolean) => void;
+  isBookmarked: boolean;
   error: AxiosError | null;
   loading: boolean;
 }) {
@@ -90,19 +88,17 @@ export default function Viewer({
         <div className={styles.fixedAppBtnBox}>
           <div className={styles.fixedAppBtn}>
             <button className={styles.fixedAppBtn1}>
-              {isBookmarked ? (
-                <FaHeart
-                  className={`${styles.bookmarkIcon} ${styles.active}`}
-                  onClick={onRemoveBookmark}
-                  size={24}
-                />
-              ) : (
-                <FaHeart
-                  className={`${styles.bookmarkIcon}`}
-                  size={24}
-                  onClick={onAddBookmark}
-                />
-              )}
+              <FaHeart
+                className={
+                  isBookmarked
+                    ? `${styles.bookmarkIcon} ${styles.active}`
+                    : `${styles.bookmarkIcon}`
+                }
+                onClick={() => {
+                  onUpdateBookmark(!isBookmarked);
+                }}
+                size={24}
+              />
             </button>
             <div className={styles.applyBtn}>
               <button className={styles.fixedAppBtn2}>

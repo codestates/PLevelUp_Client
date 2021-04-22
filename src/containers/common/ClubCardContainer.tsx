@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../modules';
 import {
-  addBookmarkThunk,
-  removeBookmarkThunk,
+  mainBookmarkThunk,
+  mainClubBookmarkUnload,
 } from '../../modules/club/bookmark';
 import { withRouter } from 'react-router-dom';
 import ClubCard from '../../components/common/ClubCard';
@@ -12,7 +12,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { MasterClubReadResType } from '../../api/master/club';
 
 type ClubCardPropsType = {
-  club: MainClubReadResType | MasterClubReadResType | any; //TODO any안쓰면 50줄 해결이 안됨..
+  club: MainClubReadResType | MasterClubReadResType;
   isMain: boolean;
 };
 export default withRouter(function ClubCardContainer({
@@ -21,48 +21,56 @@ export default withRouter(function ClubCardContainer({
   isMain,
 }: ClubCardPropsType & RouteComponentProps) {
   const dispatch = useDispatch();
-  const { user } = useSelector(({ mainUser }: RootState) => ({
-    user: mainUser.user?.data,
-  }));
-  const onClickCard = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const { user, bookmark } = useSelector(
+    ({ mainUser, mainBookmarkAsync }: RootState) => ({
+      user: mainUser.user?.data,
+      bookmark: mainBookmarkAsync.data,
+    }),
+  );
+  const onClickCard = (_: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (isMain) {
       history.push(`/club/${club.id}`);
     } else {
       history.push(`/master/${club.id}`);
     }
   };
-  const onAddBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
+
+  const onUpdateBookmark = (
+    e: React.MouseEvent<SVGElement, MouseEvent>,
+    isBookmark: boolean,
+  ) => {
+    e.stopPropagation(); //상위이벤트 제어
     if (!user?.id) {
-      e.stopPropagation(); //상위이벤트 제어
       history.push('/login');
     }
-    e.stopPropagation(); //상위이벤트 제어
-    dispatch(addBookmarkThunk(club.id));
-  };
-  const onRemoveBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
-    if (!user?.id) {
-      e.stopPropagation(); //상위이벤트 제어
-      history.push('/login');
+    if ('isBookmark' in club) {
+      dispatch(mainBookmarkThunk(club.id, isBookmark));
     }
-    e.stopPropagation(); //상위이벤트 제어
-    dispatch(removeBookmarkThunk(club.id));
   };
 
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
-    // Property 'isBookmark' does not exist on type 'MasterClubReadResType'.
-    club?.isBookmark ? setIsBookmarked(true) : setIsBookmarked(false);
+    if (club && bookmark && user) {
+      if (bookmark.clubId === club.id && user.id === bookmark.userId) {
+        setIsBookmarked(bookmark.isBookmark);
+        dispatch(mainClubBookmarkUnload());
+      }
+    }
+  }, [bookmark]);
+
+  useEffect(() => {
+    'isBookmark' in club && setIsBookmarked(club.isBookmark);
+    dispatch(mainClubBookmarkUnload());
   }, [club]);
 
   return (
     <ClubCard
       club={club}
       onClickCard={onClickCard}
-      onAddBookmark={onAddBookmark}
-      onRemoveBookmark={onRemoveBookmark}
+      onUpdateBookmark={onUpdateBookmark}
       isMain={isMain}
-      isBookmarked={isMain ? isBookmarked : null}
+      isBookmarked={isBookmarked}
     />
   );
 });

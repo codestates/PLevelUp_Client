@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from '../../styles/common/ClubCard.module.scss';
 import Badge from './Badge';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
@@ -6,18 +6,19 @@ import { MainClubReadResType } from '../../api/main/club';
 import { MasterClubReadResType } from 'api/master/club';
 
 type ClubCardPropsType = {
-  club: MainClubReadResType | MasterClubReadResType | any; //메인에는 있고 마스터에는 없는 속성때문에 계속 에라발생
+  club: MainClubReadResType | MasterClubReadResType;
   onClickCard: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onAddBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
-  onRemoveBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
+  onUpdateBookmark: (
+    e: React.MouseEvent<SVGElement, MouseEvent>,
+    isBookmark: boolean,
+  ) => void;
   isBookmarked: boolean | null;
   isMain: boolean;
 };
 export default function ClubCard({
   club,
   onClickCard,
-  onAddBookmark,
-  onRemoveBookmark,
+  onUpdateBookmark,
   isBookmarked,
   isMain,
 }: ClubCardPropsType) {
@@ -33,12 +34,12 @@ export default function ClubCard({
   return (
     <div className={styles.card} onClick={onClickCard}>
       <div className={styles.imgBox}>
-        {club.isEnd ? (
+        {club.isEnd && (
           <>
             <div className={styles.closeBackground} />
             <div className={styles.close}>종 료</div>
           </>
-        ) : null}
+        )}
         {club.isStart ? (
           <>
             <div className={styles.closeBackground} />
@@ -48,7 +49,7 @@ export default function ClubCard({
         <div className={styles.stickers}>
           <div className={styles.badge}>
             {club.isNew ? <Badge type="new">NEW</Badge> : null}
-            {club.isMostEnd ? <Badge type="mostFull">마감임박</Badge> : null}
+            {club.isMostStart ? <Badge type="mostFull">마감임박</Badge> : null}
             {/*{club.isStart ? <Badge type="full">마감</Badge> : null}*/}
             {club.place === '온라인' ? (
               <Badge type="online">온라인</Badge>
@@ -59,12 +60,16 @@ export default function ClubCard({
               {isBookmarked ? (
                 <FaBookmark
                   className={styles.icon}
-                  onClick={onRemoveBookmark}
+                  onClick={e => {
+                    onUpdateBookmark(e, false);
+                  }}
                 />
               ) : (
                 <FaRegBookmark
                   className={styles.icon}
-                  onClick={onAddBookmark}
+                  onClick={e => {
+                    onUpdateBookmark(e, true);
+                  }}
                 />
               )}
             </div>
@@ -73,12 +78,11 @@ export default function ClubCard({
         <img
           src={club.coverUrl || defaultData.coverUrl}
           className={styles.image}
+          alt="coverUrl"
         />
       </div>
       <div className={styles.contentBox}>
         <div className={styles.infoBox}>
-          {/* //TODO 클럽장 info advance로 */}
-          {/* <div className={styles.info}>{club.leaderTitle}</div> */}
           <div className={styles.title}>{club.title}</div>
           <div className={styles.desc}>{club.summary}</div>
         </div>

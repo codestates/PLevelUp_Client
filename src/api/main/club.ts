@@ -74,22 +74,17 @@ export async function mainClubList({
 }
 
 export type BookmarkResType = {
-  ClubId: number;
-  UserId: number;
+  clubId: number;
+  userId: number;
+  isBookmark: boolean;
 };
 
-export async function addBookmarkAPI(clubId: number) {
+export async function updateBookmark(clubId: number, isBookmark: boolean) {
+  // toggle 방식을 서버 체크 방식이 아닌 true, false 값을 넘겨주는 이유는
+  // 타이밍 이슈를 제거하기 위해서
   const response = await api.post<BookmarkResType>(
-    `/api/main/club/addbookmark/${clubId}`,
-  );
-  console.log('api/main/club.ts/bookmarkClubAPI response.data');
-  console.log(response.data);
-  return response.data;
-}
-
-export async function removeBookmarkAPI(clubId: number) {
-  const response = await api.delete<BookmarkResType>(
-    `/api/main/club/removebookmark/${clubId}`,
+    `/api/main/club/updatebookmark/${clubId}`,
+    { isBookmark },
   );
   return response.data;
 }
