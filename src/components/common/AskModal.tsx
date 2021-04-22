@@ -8,17 +8,19 @@ type AskModalType = {
   cancelText?: string;
   onConfirm: () => void;
   onCancel: () => void;
+  children: any | null; //TODO: 리액트 노드들 또는 null
 };
 
 export default function AskModal({
-                                   visible,
-                                   title,
-                                   description,
-                                   confirmText = '확인',
-                                   cancelText = '취소',
-                                   onConfirm,
-                                   onCancel,
-                                 }: AskModalType) {
+  visible,
+  title,
+  description,
+  confirmText = '확인',
+  cancelText = '취소',
+  onConfirm,
+  onCancel,
+  children,
+}: AskModalType) {
   if (!visible) return null;
 
   return (
@@ -26,6 +28,7 @@ export default function AskModal({
       <div className={styles.fullscreen}>
         <div className={styles.askModalWrapper}>
           <h2>{title}</h2>
+          {children}
           <p>{description}</p>
           <div className="buttons">
             <button onClick={onCancel}>{cancelText}</button>

@@ -140,6 +140,10 @@ export default withRouter(function SignUpContainer({ history }) {
         onChange={onChange}
         onSubmit={onSubmit}
         error={error}
+        modal={null} //TODO 임시.. 로그인/회원가입 분리해야하는 것 같다.
+        onFindPasswordClick={null}
+        onCancel={null}
+        onConfirm={null}
       />
     </>
   );

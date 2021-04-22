@@ -7,6 +7,7 @@ import {
   mainLoginThunk,
   mainLoginKakaoThunk,
   mainLoginGoogleThunk,
+  mainSendPasswordThunk,
 } from '../../modules/auth';
 import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
@@ -100,6 +101,25 @@ export default withRouter(function LoginConatiner({ history }) {
       }
     }
   }, [history, user]);
+
+  const onSendMail = (email: string) => {
+    dispatch(mainSendPasswordThunk(email));
+    console.log(email + '로보냈습니다.');
+  };
+  const [modal, setModal] = useState(false);
+  const onFindPasswordClick = () => {
+    setModal(true);
+  };
+
+  const onCancel = () => {
+    setModal(false);
+  };
+
+  const onConfirm = (email: string) => {
+    setModal(false);
+    alert('임시 비밀번호가 발급되었습니다');
+    onSendMail(email);
+  };
   return (
     <AuthForm
       formType="login"
@@ -109,6 +129,10 @@ export default withRouter(function LoginConatiner({ history }) {
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
+      modal={modal}
+      onFindPasswordClick={onFindPasswordClick}
+      onCancel={onCancel}
+      onConfirm={onConfirm}
     />
   );
 });

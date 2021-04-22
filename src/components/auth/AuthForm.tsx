@@ -5,7 +5,7 @@ import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import kakaoLoginBtnOfficial from '../../asset/kakao_login_medium_wide.png';
 import kakaoLoginBtn from '../../asset/kakao_login.png';
 import googleLoginBtn from '../../asset/google_login.png';
-import AskModal from '../common/AskModal';
+import FindPasswordModal from '../../components/auth/FindPasswordModal';
 
 type formTypeMapType = {
   [index: string]: string;
@@ -28,6 +28,10 @@ type AuthFormProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
+  modal: any;
+  onFindPasswordClick: any;
+  onCancel: any;
+  onConfirm: any;
 };
 
 export default function AuthForm({
@@ -38,6 +42,10 @@ export default function AuthForm({
   onChange,
   onSubmit,
   error,
+  modal,
+  onFindPasswordClick,
+  onCancel,
+  onConfirm,
 }: AuthFormProps) {
   const formTypeText = formTypeMap[formType];
   return (
@@ -115,7 +123,14 @@ export default function AuthForm({
               <div className={styles.findInfoWrapper}>
                 <span className={styles.findLink}>아이디 찾기</span>
                 <span>ㅣ</span>
-                <span className={styles.findLink}>비밀번호 찾기</span>
+                <span className={styles.findLink} onClick={onFindPasswordClick}>
+                  비밀번호 찾기
+                </span>
+                <FindPasswordModal
+                  visible={modal}
+                  onConfirm={onConfirm}
+                  onCancel={onCancel}
+                />
               </div>
             </>
           )}
