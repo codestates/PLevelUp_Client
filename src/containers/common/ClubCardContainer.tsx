@@ -25,7 +25,11 @@ export default withRouter(function ClubCardContainer({
     user: mainUser.user?.data,
   }));
   const onClickCard = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    history.push(`/club/${club.id}`);
+    if (isMain) {
+      history.push(`/club/${club.id}`);
+    } else {
+      history.push(`/master/${club.id}`);
+    }
   };
   const onAddBookmark = (e: React.MouseEvent<SVGElement, MouseEvent>) => {
     if (!user?.id) {
