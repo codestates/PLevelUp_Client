@@ -6,7 +6,7 @@ import { MainClubReadResType } from '../../api/main/club';
 import { MasterClubReadResType } from 'api/master/club';
 
 type ClubCardPropsType = {
-  club: MainClubReadResType | MasterClubReadResType | any; //메인에는 있고 마스터에는 없는 속성때문에 계속 에라발생
+  club: MainClubReadResType | MasterClubReadResType;
   onClickCard: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   onAddBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
   onRemoveBookmark: (e: React.MouseEvent<SVGElement, MouseEvent>) => void;
@@ -33,12 +33,12 @@ export default function ClubCard({
   return (
     <div className={styles.card} onClick={onClickCard}>
       <div className={styles.imgBox}>
-        {club.isEnd ? (
+        {club.isEnd && (
           <>
             <div className={styles.closeBackground} />
             <div className={styles.close}>종 료</div>
           </>
-        ) : null}
+        )}
         {club.isStart ? (
           <>
             <div className={styles.closeBackground} />
@@ -48,7 +48,7 @@ export default function ClubCard({
         <div className={styles.stickers}>
           <div className={styles.badge}>
             {club.isNew ? <Badge type="new">NEW</Badge> : null}
-            {club.isMostEnd ? <Badge type="mostFull">마감임박</Badge> : null}
+            {club.isMostStart ? <Badge type="mostFull">마감임박</Badge> : null}
             {/*{club.isStart ? <Badge type="full">마감</Badge> : null}*/}
             {club.place === '온라인' ? (
               <Badge type="online">온라인</Badge>
@@ -73,7 +73,7 @@ export default function ClubCard({
         <img
           src={club.coverUrl || defaultData.coverUrl}
           className={styles.image}
-        alt="coverUrl"
+          alt="coverUrl"
         />
       </div>
       <div className={styles.contentBox}>
