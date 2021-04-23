@@ -7,7 +7,7 @@ import kakaoLoginBtn from '../../asset/kakao_login.png';
 import googleLoginBtn from '../../asset/google_login.png';
 import FindPasswordModal from '../../components/auth/FindPasswordModal';
 
-type AuthFormProps = {
+type SignUpFormProps = {
   form: MainSignUpReqType | MainLoginReqType;
   handleOAuth: MouseEventHandler<HTMLButtonElement>;
   handleOAuthGoogle: MouseEventHandler<HTMLButtonElement>;
@@ -16,14 +16,14 @@ type AuthFormProps = {
   error: string;
 };
 
-export default function AuthForm({
+export default function SignUpForm({
   form,
   handleOAuth,
   handleOAuthGoogle,
   onChange,
   onSubmit,
   error,
-}: AuthFormProps) {
+}: SignUpFormProps) {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.loginContent}>

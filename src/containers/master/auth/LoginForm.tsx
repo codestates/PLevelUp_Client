@@ -8,6 +8,7 @@ import {
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
 import AuthForm from '../../../components/master/auth/AuthForm';
+import MasterLoginForm from '../../../components/master/auth/MasterLoginForm';
 import { withRouter } from 'react-router-dom';
 import { masterIsLoginThunk } from '../../../modules/master/user';
 
@@ -81,8 +82,7 @@ export default withRouter(function LoginForm({ history }) {
     }
   }, [history, user]);
   return (
-    <AuthForm
-      formType="login"
+    <MasterLoginForm
       form={form}
       onChange={onChange}
       onSubmit={onSubmit}
