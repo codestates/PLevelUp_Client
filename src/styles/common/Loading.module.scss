@@ -1,0 +1,11 @@
+@import './basicMixin.scss';
+.loadingContainer {
+  margin: 0 auto;
+  text-align: center;
+  .loadingImg {
+    width: 10%;
+    @include respond-to('not-mobile') {
+      width: 5%;
+    }
+  }
+}
