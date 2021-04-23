@@ -3,7 +3,7 @@ import { RootState } from '../../modules';
 import { mainLogoutThunk } from '../../modules/user';
 import MyPageForm from 'components/user/MyPageForm';
 import { withRouter } from 'react-router';
-import { mainApplyThunk } from '../../modules/apply';
+import { mainApplyThunk, mainApplyUnload } from '../../modules/apply';
 import { useEffect } from 'react';
 import ErrorView from 'components/common/ErrorView';
 
@@ -23,6 +23,9 @@ export default withRouter(function MyPageContainer() {
 
   useEffect(() => {
     dispatch(mainApplyThunk());
+    return () => {
+      dispatch(mainApplyUnload());
+    };
   }, []);
 
   const onLogout = () => {
