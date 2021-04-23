@@ -109,9 +109,16 @@ export default function Search({
           <option value="6">6</option>
           <option value="7">7 이상</option>
         </select>
+        <span className={styles.checkbox}>
+          <input
+            className={styles.checkBtn}
+            type="checkbox"
+            onChange={onFilterChange}
+            checked={isNew}
+          />
+          새로운 클럽
+        </span>
       </div>
-      <input type="checkbox" onChange={onFilterChange} checked={isNew} /> 새로운
-      클럽
     </div>
   );
 }

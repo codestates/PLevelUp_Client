@@ -1,42 +1,71 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ClubCardContainer from '../../containers/common/ClubCardContainer';
 import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
-import { MainClubListResType, MainClubReadResType } from 'api/main/club';
-import { Link } from 'react-router-dom';
+import { MainClubListResType } from 'api/main/club';
 
-function SampleNextArrow(props: any) {
-  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
+function SampleNextArrow(props: {
+  className?: string;
+  style?: Object;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'block',
-        background: '#ffd7d2',
-        right: '-35px',
-      }}
-      onClick={onClick}
-    />
+    <>
+      <div
+        className={`${className} ${styles.sample}`}
+        style={{
+          ...style,
+          display: 'block',
+          background: 'white',
+          right: '-5px',
+          width: '1px',
+        }}
+        onClick={onClick}
+      >
+        <div
+          className="slick-next"
+          style={{
+            ...style,
+            color: 'red',
+          }}
+          onClick={onClick}
+        />
+      </div>
+    </>
   );
 }
-function SamplePrevArrow(props: any) {
-  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
+function SamplePrevArrow(props: {
+  className?: string;
+  style?: Object;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'block',
-        background: '#ffd7d2',
-        left: '-35px',
-      }}
-      onClick={onClick}
-    />
+    <div>
+      <div
+        className={`${className} ${styles.sample}`}
+        style={{
+          ...style,
+          display: 'block',
+          background: 'white',
+          color: 'red',
+          left: '-5px',
+          width: '1px',
+        }}
+        onClick={onClick}
+      >
+        <div
+          className="slick-prev"
+          style={{
+            ...style,
+            color: 'red',
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -81,6 +110,7 @@ export default function SlickClubCard({
       {
         breakpoint: 400,
         settings: {
+          arrows: false,
           slidesToShow: 1,
           slidesToScroll: 1,
         },
@@ -88,7 +118,7 @@ export default function SlickClubCard({
     ],
   };
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className={styles.slider}>
       {data.map((club, index) => {
         return (
           <div className={styles.cardContainer} key={`${type}-${index}`}>

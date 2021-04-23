@@ -75,6 +75,19 @@ export type MainIsLoginResType = {
   username: string;
 };
 
+export type MainSendPasswordResType = {
+  accepted: string[];
+  rejected: string[];
+  envelopTime: number;
+  messageTime: number;
+  messageSize: number;
+  response: string;
+  envelop: {
+    from: string;
+    to: string[];
+  };
+  messageId: string;
+};
 export const mainIsLogin = async () => {
   const response = await api.get<MainIsLoginResType>('/api/main/auth/islogin');
   return response.data;
@@ -83,5 +96,16 @@ export type MainLogoutResType = {};
 
 export const mainLogout = async () => {
   const response = await api.post<MainLogoutResType>('/api/main/auth/logout');
+  return response.data;
+};
+
+export const mainSendPassword = async (email: string) => {
+  const response = await api.post<MainSendPasswordResType>(
+    '/api/main/auth/findPassword',
+    {
+      email,
+    },
+  );
+  console.log(response);
   return response.data;
 };

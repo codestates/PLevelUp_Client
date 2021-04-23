@@ -1,21 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { RootState } from '../../../modules';
 import List from '../../../components/club/list/List';
 import { mainClubUnloadList, mainListThunk } from '../../../modules/club/list';
-import { mainClubBookmarkUnload } from '../../../modules/club/bookmark';
-import {
-  MainClubListResType,
-  MainClubReadResType,
-} from '../../../api/main/club';
+import { MainClubListResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
-import loadingGif from '../../../asset/loading.gif';
 import { FaArrowCircleUp } from 'react-icons/fa';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
 import ErrorView from '../../../components/common/ErrorView';
-import LoadingView from '../../../components/common/LoadingView';
+import Loading from '../../../components/common/Loading';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
@@ -23,13 +18,12 @@ export default withRouter(function ListContainer({ location, match, history }) {
   const [goToTop, setGoToTop] = useState(false);
   const [currentClubs, setCurrentClubs] = useState<MainClubListResType>([]);
   const dispatch = useDispatch();
-  const { clubs, error, loading, lastPage, bookmark } = useSelector(
-    ({ mainListAsync, mainBookmarkAsync }: RootState) => ({
+  const { clubs, error, loading, lastPage } = useSelector(
+    ({ mainListAsync }: RootState) => ({
       clubs: mainListAsync.clubs.data,
       error: mainListAsync.clubs.error,
       loading: mainListAsync.clubs.loading,
       lastPage: mainListAsync.lastPage,
-      bookmark: mainBookmarkAsync.bookmark.data,
     }),
   );
 
@@ -43,14 +37,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
     ignoreQueryPrefix: true,
   });
 
-  const newCurrentClubs = currentClubs.map((club: MainClubReadResType) =>
-    club.id === bookmark?.clubId
-      ? {
-          ...club,
-          isBookmark: bookmark.isBookmark,
-        }
-      : club,
-  );
   const handleSearch = (
     search?: string,
     place?: string,
@@ -126,11 +112,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
     );
   };
 
-  useEffect(() => {
-    setCurrentClubs(newCurrentClubs);
-    dispatch(mainClubBookmarkUnload());
-  }, [bookmark]);
-
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       if (!loading && clubs) {
@@ -184,7 +165,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
 
     return () => observer && observer.disconnect();
   }, [handleObserver]);
-
   return (
     <>
       <Search
@@ -207,7 +187,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
         <>
           <List clubs={currentClubs} />
           <div ref={loader} className={styles.loading}>
-            {loading && <LoadingView />}
+            {loading && <Loading />}
             {goToTop && (
               <div
                 className={styles.goToTop}
