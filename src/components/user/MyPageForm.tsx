@@ -10,7 +10,7 @@ import { BiDoorOpen } from 'react-icons/bi';
 import { MdBuild } from 'react-icons/md';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
-import LoadingView from 'components/common/LoadingView';
+import Loading from '../../components/common/Loading';
 
 export default function MyPageForm({
   user,
@@ -36,7 +36,7 @@ export default function MyPageForm({
   };
 
   if (loading) {
-    return <LoadingView />;
+    return <Loading />;
   }
   return (
     <div className={styles.container}>
