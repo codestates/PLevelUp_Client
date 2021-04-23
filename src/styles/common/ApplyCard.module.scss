@@ -1,0 +1,75 @@
+@import './utils.scss';
+@import './basicMixin.scss';
+
+.applyContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid #ecece9;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 30px;
+
+  @include respond-to('not-mobile') {
+    min-width: 216px;
+    width: 30%;
+    height: auto;
+    border-radius: 8px;
+    margin-left: 90px;
+  }
+
+  .contentBox {
+    background-color: #f0f0f0;
+    padding: 28px 0px 0px 0px;
+
+    .title {
+      margin: 10px 0px 10px;
+      font-weight: 700;
+      font-size: 17px;
+      line-height: 21px;
+      color: rgb(44, 44, 42);
+      text-align: center;
+
+      @include respond-to('not-mobile') {
+        margin: 0px 0px 8px;
+        font-size: 20px;
+        line-height: 26px;
+      }
+    }
+    .summary {
+      margin: 0px 0px 20px;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 18px;
+      color: rgb(63, 63, 60);
+      text-align: center;
+      padding: 10px 0px;
+
+      @include respond-to('not-mobile') {
+        margin: 0px 0px 18px;
+        padding-top: 10px;
+        font-size: 15px;
+        line-height: 22px;
+      }
+    }
+  }
+
+  .placeAndTime {
+    padding: 10px 0px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: rgb(44, 44, 42);
+    text-align: center;
+
+    @include respond-to('not-mobile') {
+      padding: 10px 0px;
+      font-size: 15px;
+      line-height: 22px;
+      text-align: center;
+    }
+  }
+}

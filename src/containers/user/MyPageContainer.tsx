@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { mainLogoutThunk } from '../../modules/user';
-import MyPageForm from 'components/user/MyPageForm';
 import { withRouter } from 'react-router';
 import { mainApplyThunk } from '../../modules/apply';
 import { useEffect } from 'react';
-import ErrorView from 'components/common/ErrorView';
+import MyPageForm from 'components/user/MyPageForm';
+import ErrorView from '../../components/common/ErrorView';
 
-export default withRouter(function MyPageContainer() {
+export default withRouter(function MyPageContainer({ history }) {
   const dispatch = useDispatch();
   const { data: user } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data!,
@@ -27,10 +27,13 @@ export default withRouter(function MyPageContainer() {
 
   const onLogout = () => {
     dispatch(mainLogoutThunk());
+    history.push('/');
   };
+
   if (!user) {
     return <ErrorView children={'잘못된 요청입니다.'} />;
   }
+
   return (
     <MyPageForm
       user={user}

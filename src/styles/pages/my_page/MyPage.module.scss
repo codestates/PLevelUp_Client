@@ -17,382 +17,277 @@ a:active {
   line-height: 1.5;
   text-align: left;
 
-  .wrapper {
+  .MypageWrapper {
     display: block;
-    color: rgba(0, 0, 0, 0.87);
-
-    .MypageWrapper {
-      padding: 30px 0px 40px;
-      background: white;
-      border-color: rgb(225, 225, 225);
-
-      .userWrapper {
-        max-width: 1140px;
-        margin: 0 auto;
-        width: 100%;
-        padding: 0 16px;
-
-        .flexHeader {
-          display: flex;
-
-          .imgWrapper {
-            margin: 52px -36px 24px 39px;
-            text-align: center;
-          }
-
-          .menuWrapper {
-            padding: 16px 0px 0px 64px;
-
-            .menuName {
-              font-size: 24px;
-              color: rgb(60, 59, 59);
-              font-weight: bold;
-            }
-            .menuItem {
-              margin: 24px 0px 24px -22px;
-              display: flex;
-              justify-content: space-between;
-              width: 100%;
-
-              .passwordItem {
-                width: 100px;
-                cursor: pointer;
-                margin-top: 14px;
-                text-align: center;
-                height: 24px;
-
-                .passwordIcon {
-                  height: 32px;
-                  margin-top: -14px;
-                }
-
-                p {
-                  text-decoration: none;
-                  font-size: 14px;
-                  color: rgb(123, 123, 123);
-                }
-              }
-              .logOutItem {
-                width: 100px;
-                height: 24px;
-                cursor: pointer;
-                margin-top: 14px;
-                text-align: center;
-
-                .logOutIcon {
-                  height: 32px;
-                  margin-top: -14px;
-                }
-
-                p {
-                  text-decoration: none;
-                  font-size: 14px;
-                  color: rgb(73, 73, 73);
-                }
-              }
-            }
-          }
-        }
-
-        .bannerBox {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-
-          .aBox {
-            display: inline-block;
-            max-width: 385px;
-            max-height: 80px;
-            width: 100%;
-            height: 100%;
-
-            .banner {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: space-between;
-              padding: 22px 33px 15px;
-              margin: 21px;
-              text-align: center;
-              color: white;
-              cursor: pointer;
-              background: #00ac83;
-              .title {
-                margin: 0px 0px 6px;
-                font-weight: 500;
-                font-size: 18px;
-                line-height: 1;
-                text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
-              }
-
-              .subTitle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .bottomWrapper {
-      background: white;
-      display: block;
-
-      .tabWrapper {
-        width: 1140px;
-        margin: 0px auto;
-
-        .nav {
-          display: flex;
-          flex-wrap: wrap;
-          padding-left: 0;
-          margin-bottom: 0;
-          list-style: none;
-          margin-top: 0;
-
-          .navItemWrapper {
-            width: 48%;
-            text-align: center;
-            background: white;
-
-            .navItem {
-              margin-bottom: -1px;
-            }
-
-            .navItem :active {
-              border-top: 1.5px solid rgb(60, 59, 59) !important;
-              border-radius: 0px !important;
-              color: rgb(60, 59, 59) !important;
-            }
-          }
-        }
-      }
-
-      // .tabContent {
-      // }
-    }
-  }
-}
-//     .fastInfoBottom {
-//       margin: 24px 0px 0px -27px;
-
-//       display: flex;
-//       justify-content: space-between;
-
-//       width: 100%;
-//       height: 100%;
-
-//       .infoBox {
-//         padding: 0px auto;
-//         display: block;
-//         width: 100%;
-//         align-items: center;
-
-//         .infoBoxImg {
-//           font-size: 26px;
-//         }
-
-//         .infoBoxList {
-//           position: relative;
-//           display: flex;
-//           justify-content: center;
-//           height: 32px;
-//           width: 100px;
-
-//           .changePasswordBtn {
-//             font-family: spoqa han sans neo, 'sans-serif';
-//             font-size: 14px;
-//             background: transparent;
-//             border: none;
-//           }
-//         }
-
-//         .infoBoxListBtn {
-//           padding-left: 5px;
-//           position: relative;
-//           display: flex;
-//           justify-content: center;
-//           height: 32px;
-//           width: 100px;
-
-//           .logOutBtn {
-//             font-family: spoqa han sans neo, 'sans-serif';
-//             font-size: 14px;
-//             background: transparent;
-//             border: none;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// .userInfoBottom {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: flex-start;
-//   width: 100%;
-
-//   .banner {
-//     border: $imsi-border;
-//     display: inline-block;
-//     max-width: 385px;
-//     max-height: 80px;
-//     width: 100%;
-//     height: 100%;
-//   }
-// }
-
-// .recordAreaWrapper {
-//   max-width: 1140px;
-//   align-items: center;
-//   margin: 0px auto 61px auto;
-//   // border: $imsi-border;
-//   font-family: spoqa han sans neo, 'sans-serif';
-//   padding: 0 16px;
-//   .recordArea {
-//     display: flex;
-//     justify-content: center;
-//     width: 100%;
-
-//     .areaName {
-//       /* justify-content: center; */
-//       margin: 0px auto;
-//       width: 100%;
-//       display: flex;
-//       padding-left: 0px;
-
-//       .areaList {
-//         /* display: inline-block; */
-//         list-style-type: none;
-//         width: 40%;
-
-//         .recordTitle {
-//           height: auto;
-//           padding: 15px 0px 17px !important;
-//           text-align: center;
-//           // border: $imsi-border;
-//         }
-//       }
-//     }
-//   }
-
-//   .ifNotInvlovedClub {
-//     text-align: center;
-//   }
-// }
-
-//////////////////////////////////////////////////////
-//mobile.ver
-
-@media (max-width: 769px) {
-  .MyPage {
-    position: relative;
-    margin: 0px auto;
-    width: 100%;
-    max-width: 1140px;
+    padding: 30px 0px 40px;
+    background: white;
+    border-color: rgb(225, 225, 225);
 
     .userWrapper {
-      margin-top: 48px;
-      display: flex;
-      justify-content: center;
-      border-bottom: 1px solid #2c2c2a;
-    }
-
-    .imgPro {
-      margin: 10px 10px 5px 0px;
-      vertical-align: middle;
-      font-size: auto;
-      width: auto;
-      height: 85px;
-      display: flex;
-    }
-
-    .userInfoTop {
-      display: flex;
+      margin: 0 auto;
       width: 100%;
-    }
+      padding: 0 16px;
 
-    .userInfoBottom {
-      display: flex;
-      width: 100%;
-      max-width: inherit;
-    }
+      @include respond-to('small') {
+        max-width: 1140px;
+      }
 
-    .userName {
-      font-size: 18px;
-    }
+      .flexHeader {
+        display: flex;
 
-    .changePasswordBtn {
-      font-size: 12px;
-    }
+        .imgWrapper {
+          margin: 62px -32px 24px 39px;
+          text-align: center;
 
-    .logOutBtn {
-      font-size: 12px;
-    }
+          @include respond-to('small') {
+            border-radius: 5rem;
+            width: 69px;
+            height: 69px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
+            margin: 10px 10px 5px 0px;
+          }
+        }
 
-    .fastInfoBottom {
-      width: 100%;
-      margin: 18px 0px 14px -10px;
-    }
+        .menuWrapper {
+          padding: 28px 0px 0px 70px;
 
-    .infoBox {
-      width: 80%;
+          @include respond-to('small') {
+            padding: 8px 0px 0px;
+            margin-left: 60px;
+          }
+
+          .menuName {
+            font-size: 32px;
+            color: rgb(60, 59, 59);
+            font-weight: 900;
+            margin-bottom: -23px;
+
+            @include respond-to('small') {
+              font-size: 22px;
+              color: rgb(60, 59, 59);
+              font-weight: bold;
+              margin-bottom: -18px;
+            }
+          }
+          .menuItem {
+            margin: 0px 0px 0px -22px;
+            display: flex;
+            color: rgb(60, 59, 59);
+            justify-content: space-between;
+            width: 100%;
+
+            @include respond-to('small') {
+              font-size: 16px;
+              color: rgb(60, 59, 59);
+              font-weight: 500;
+              height: 24px;
+              margin-top: 10px;
+              width: 203px;
+              flex-wrap: nowrap;
+            }
+
+            .passwordItem {
+              width: 100px;
+              cursor: pointer;
+              margin-top: 14px;
+              text-align: center;
+              height: 24px;
+
+              .passwordIcon {
+                margin-top: -14px;
+
+                @include respond-to('small') {
+                  height: 28px;
+                  margin-top: -14px;
+                }
+              }
+
+              p {
+                text-decoration: none;
+                font-size: 14px;
+                color: rgb(123, 123, 123);
+              }
+            }
+            .logOutItem {
+              width: 100px;
+              height: 24px;
+              cursor: pointer;
+              margin-top: 14px;
+              text-align: center;
+
+              .logOutIcon {
+                margin-top: -14px;
+              }
+
+              p {
+                text-decoration: none;
+                font-size: 14px;
+                color: rgb(73, 73, 73);
+              }
+            }
+          }
+        }
+      }
+
+      .bannerBox {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+        @include respond-to('small') {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin: 60px -20px 0px -42px;
+        }
+
+        .aBox {
+          display: inline-block;
+          max-width: 385px;
+          max-height: 80px;
+          width: 100%;
+          height: 100%;
+
+          .banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 33px 15px;
+            margin: 20px -12px 14px 40px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            background: #00ac83;
+            .title {
+              margin: 0px 0px 6px;
+              font-weight: 500;
+              font-size: 18px;
+              line-height: 1;
+              text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+            }
+
+            .subTitle {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              span {
+                display: inline-block;
+                margin: 0px 4px 0px 0px;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 1;
+              }
+            }
+          }
+        }
+      }
     }
   }
-}
 
-.wrapper {
-  max-width: 1140px;
-  margin: 0 auto;
-  background-color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  .bottomWrapper {
+    display: block;
+    background: white;
+    margin-top: 40px;
 
-  .title {
-    align-self: flex-start;
-    margin: 25px 10px;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
-    padding: 0px 20px;
-    @include respond-to(not-mobile) {
-      margin: 20px 30px;
-      font-weight: 700;
-      line-height: 24px;
-    }
-  }
-  h1 {
-    margin-top: 60px;
-  }
+    .tabWrapper {
+      background: white;
+      margin: 0px 30px;
 
-  .container {
-    width: 90%;
-    max-width: 1140px;
-    margin: 0 auto;
-    display: grid;
-    // grid-template-columns: 1fr 1fr; //가로 전체넓이를 다 쓰도록
-    grid-template-rows: auto; // 높이는 자동으로
-    row-gap: 20px; // 그리드 사이 간격
-    column-gap: 24px;
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+        margin-top: 0;
 
-    @include respond-to('large') {
-      grid-template-columns: 1fr 1fr;
+        .navItemWrapper {
+          border-top: 1px solid lightgray;
+          padding: 15px 0px 17px;
+          font-size: 18px;
+          width: 48%;
+          text-align: center;
+          background: white;
+          cursor: pointer;
+
+          &.active {
+            border-top: 1.5px solid rgb(60, 59, 59);
+            border-radius: 0px;
+            color: rgb(60, 59, 59);
+          }
+
+          .navItem {
+            font-weight: 500;
+            color: rgb(95, 95, 95);
+            margin-bottom: -1px;
+          }
+        }
+      }
     }
-    @include respond-to('medium') {
-      grid-columns: -1;
+
+    .tabContent {
+      .tabBodyWrapper {
+        background: white;
+        margin: 0px 30px;
+
+        .clubEmptyBox {
+          margin-top: 120px;
+          margin-bottom: 250px;
+          text-align: center;
+
+          @include respond-to('small') {
+            margin-top: 60px;
+            margin-bottom: 186px;
+            text-align: center;
+          }
+
+          .message {
+            font-size: 18px;
+            color: rgb(149, 149, 149);
+            margin-top: 19px;
+
+            @include respond-to('small') {
+              font-size: 14px;
+            }
+          }
+
+          .moveBtn {
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.15rem;
+            transition: color 0.15s ease-in-out,
+              background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+              box-shadow 0.15s ease-in-out;
+            margin-top: 32px;
+            background-color: $primary;
+
+            a {
+              text-decoration: none;
+              color: white;
+            }
+          }
+        }
+      }
     }
-    @include respond-to('small') {
-      grid-columns: -1;
-    }
-    @include respond-to('x-small') {
-      grid-columns: -1;
-      column-gap: 8px;
+
+    .tabBodbyBookmark {
+      max-width: 300px;
+      margin-left: 90px;
+
+      @include respond-to('small') {
+        max-width: 700px;
+        margin: 0px;
+      }
     }
   }
 }

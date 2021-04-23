@@ -1,11 +1,17 @@
+@import './utils.scss';
 @import './basicMixin.scss';
+
+a {
+  text-decoration: none;
+  color: rgba(42, 42, 44, 0.8);
+}
 
 .footer {
   display: block;
   margin: 0px;
   background: #f7f7f5;
   width: 100%;
-  padding: 35px 0px;
+  padding: 30px 0px;
 
   .footerContainer {
     padding: 27px 20px;
@@ -25,8 +31,32 @@
         width: 100%;
       }
 
+      .listContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 33%;
+        margin: 30px 0 0 38px;
+
+        @include respond-to('small') {
+          display: flex;
+          justify-content: space-between;
+          max-width: 320px;
+          width: 100%;
+          margin: 16px 0 0 0;
+        }
+
+        .list {
+          cursor: pointer;
+          font-size: 15px;
+          color: #4e4e4c;
+          font-weight: 500;
+        }
+      }
+
       .infoBox {
         margin-left: 40px;
+        margin-top: 33px;
         box-sizing: border-box;
 
         @include respond-to('small') {
@@ -40,34 +70,16 @@
           font-size: 16px;
           margin-bottom: 15px;
           color: rgba(42, 42, 44, 0.8);
+
+          @include respond-to('small') {
+            margin-top: 35px;
+          }
         }
 
         .place {
           font-size: 11px;
           margin: 0px 0px 10px;
           color: #6e6e6c;
-        }
-      }
-
-      .listContainer {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        width: 31%;
-        margin: 30px 0 0 38px;
-
-        @include respond-to('small') {
-          display: flex;
-          justify-content: space-between;
-          max-width: 320px;
-          width: 100%;
-          margin: 16px 0 0 0;
-        }
-
-        .list {
-          cursor: pointer;
-          font-size: 12px;
-          color: #4e4e4c;
         }
       }
     }
