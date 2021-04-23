@@ -4,7 +4,7 @@ import { RootState } from '../../modules';
 import LandingTemplate from '../../components/landing/LandingTemplate';
 import { mainLandingListThunk } from '../../modules/landing';
 import ErrorView from '../../components/common/ErrorView';
-import LoadingView from '../../components/common/LoadingView';
+import Loading from '../../components/common/Loading';
 export default function LandingContainer() {
   const dispatch = useDispatch();
   const { clubsList, error, loading } = useSelector(
@@ -24,7 +24,7 @@ export default function LandingContainer() {
   }
 
   if (loading || !clubsList) {
-    return <LoadingView />;
+    return <Loading />;
   }
 
   const landingClubsList = [];

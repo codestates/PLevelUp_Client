@@ -4,15 +4,13 @@ import { withRouter } from 'react-router-dom';
 import { RootState } from '../../../modules';
 import List from '../../../components/club/list/List';
 import { mainClubUnloadList, mainListThunk } from '../../../modules/club/list';
-import {
-  MainClubListResType,
-} from '../../../api/main/club';
+import { MainClubListResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 import { FaArrowCircleUp } from 'react-icons/fa';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
 import ErrorView from '../../../components/common/ErrorView';
-import LoadingView from '../../../components/common/LoadingView';
+import Loading from '../../../components/common/Loading';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<any>(null);
@@ -167,7 +165,6 @@ export default withRouter(function ListContainer({ location, match, history }) {
 
     return () => observer && observer.disconnect();
   }, [handleObserver]);
-
   return (
     <>
       <Search
@@ -190,7 +187,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
         <>
           <List clubs={currentClubs} />
           <div ref={loader} className={styles.loading}>
-            {loading && <LoadingView />}
+            {loading && <Loading />}
             {goToTop && (
               <div
                 className={styles.goToTop}

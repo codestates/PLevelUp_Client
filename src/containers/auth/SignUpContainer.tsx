@@ -8,7 +8,7 @@ import {
   mainLoginKakaoThunk,
   mainLoginGoogleThunk,
 } from '../../modules/auth';
-import LoadingView from '../../components/common/LoadingView';
+import Loading from '../../components/common/Loading';
 import { RootState } from '../../modules';
 import SignUpForm from '../../components/auth/SignUpForm';
 import { mainIsLoginThunk } from '../../modules/user';
@@ -132,15 +132,18 @@ export default withRouter(function SignUpContainer({ history }) {
 
   return (
     <>
-      {loading && <LoadingView />}
-      <SignUpForm
-        form={form}
-        handleOAuth={handleOAuth}
-        handleOAuthGoogle={handleOAuthGoogle}
-        onChange={onChange}
-        onSubmit={onSubmit}
-        error={error}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <SignUpForm
+          form={form}
+          handleOAuth={handleOAuth}
+          handleOAuthGoogle={handleOAuthGoogle}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          error={error}
+        />
+      )}
     </>
   );
 });
