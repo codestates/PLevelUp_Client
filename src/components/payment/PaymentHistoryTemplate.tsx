@@ -29,6 +29,9 @@ export default function PaymentHistoryTemplate({
           결제내역
         </div>
       </div>
+      <div className={styles.listClubBox}>
+        클럽
+      </div>
 
       <div className={styles.historyBody}>
         <div className={styles.wrapper}>
