@@ -21,7 +21,7 @@ export default function MyPageForm({
 }: {
   user: MainIsLoginResType;
   onLogout: MouseEventHandler;
-  apply: MainApplyListResType | null;
+  apply: MainApplyListResType | [];
   error: AxiosError | null;
   loading: boolean;
 }) {
@@ -120,7 +120,14 @@ export default function MyPageForm({
           <div className={styles.tabBodyWrapper}>
             {isNavOpen ? (
               <div className={styles.tabBodbyClub}>
-                {apply ? (
+                {apply.length === 0 ? (
+                  <div className={styles.clubEmptyBox}>
+                    <p className={styles.message}>클럽이 없습니다.</p>
+                    <button className={styles.moveBtn}>
+                      <Link to="/club">멤버쉽 신청하러 가기</Link>
+                    </button>
+                  </div>
+                ) : (
                   <div className={styles.applyCard}>
                     {apply.map((club: MainApplyResType) => (
                       <ApplyCard
@@ -131,13 +138,6 @@ export default function MyPageForm({
                         times={club.times}
                       />
                     ))}
-                  </div>
-                ) : (
-                  <div className={styles.clubEmptyBox}>
-                    <p className={styles.message}>클럽이 없습니다.</p>
-                    <button className={styles.moveBtn}>
-                      <Link to="/club">멤버쉽 신청하러 가기</Link>
-                    </button>
                   </div>
                 )}
               </div>
