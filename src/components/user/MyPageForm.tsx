@@ -142,11 +142,7 @@ export default function MyPageForm({
                 )}
               </div>
             ) : null}
-            {isNavSecondOpen ? (
-              <div className={styles.tabBodbyBookmark}>
-                <BookmarkListContainer />
-              </div>
-            ) : null}
+            {isNavSecondOpen && <BookmarkListContainer />}
           </div>
         </div>
       </div>
