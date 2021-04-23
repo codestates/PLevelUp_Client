@@ -78,22 +78,22 @@
               font-weight: bold;
               font-size: 18px;
             }
-            .price{
+            .priceWrapper{
               color: #616161;
               margin-top: 50px;
               display: inherit;
              
-              .priceData{
+              .price{
                 color: #5D3DC3;
                 padding-left: 4px;
               }
             }
-            .paymentDate {
+            .dateWrapper {
               display: inherit;
               color: #616161;
               margin-bottom: 10px;
 
-              .dateData{
+              .date{
                 padding-left: 4px;
               }
             }

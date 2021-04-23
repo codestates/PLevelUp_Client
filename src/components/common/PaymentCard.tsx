@@ -10,13 +10,13 @@ export default function PaymentCard({
   return (
     <div className={styles.listContainer}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.price}>
+      <div className={styles.priceWrapper}>
         <MdMonetizationOn size="17" />
-        <div className={styles.priceData}>  {price}원</div>
+        <div className={styles.price}>  {price}원</div>
       </div>
-      <div className={styles.paymentDate}>
+      <div className={styles.dateWrapper}>
         <MdDateRange size="17" />
-        <div className={styles.dateData}>  {createdAt}</div>
+        <div className={styles.date}>  {createdAt}</div>
       </div>
     </div>
 
