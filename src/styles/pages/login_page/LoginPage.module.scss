@@ -42,6 +42,9 @@
           @include form-control-default;
           margin-bottom: 8px;
         }
+        ::placeholder {
+          font-size: 0.85rem;
+        }
       }
       .loginBtn {
         @include btn-default('primary');
@@ -68,11 +71,19 @@
           text-decoration: underline;
         }
       }
-
       .findLink {
         color: rgb(123, 123, 123);
+        font-size: 0.85rem;
         cursor: pointer;
-        text-decoration: underline;
+      }
+      .findInfoWrapper {
+        margin: 10px;
+        .findLink {
+          color: rgb(123, 123, 123);
+          font-size: 0.85rem;
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
     .noLoginLink {

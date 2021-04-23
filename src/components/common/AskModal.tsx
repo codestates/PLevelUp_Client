@@ -29,10 +29,14 @@ export default function AskModal({
         <div className={styles.askModalWrapper}>
           <h2>{title}</h2>
           {children}
-          <p>{description}</p>
-          <div className="buttons">
-            <button onClick={onCancel}>{cancelText}</button>
-            <button onClick={onConfirm}>{confirmText}</button>
+          <span>{description}</span>
+          <div className={styles.buttons}>
+            <button className={styles.cancelBtn} onClick={onCancel}>
+              {cancelText}
+            </button>
+            <button className={styles.confirmBtn} onClick={onConfirm}>
+              {confirmText}
+            </button>
           </div>
         </div>
       </div>

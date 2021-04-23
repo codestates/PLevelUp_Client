@@ -69,8 +69,8 @@ export default function LoginForm({
             </div>
             <hr />
             <div className={styles.findInfoWrapper}>
-              <span className={styles.findLink}>이메일 찾기</span>
-              <span>ㅣ</span>
+              {/* <span className={styles.findLink}>이메일 찾기</span>
+              <span>ㅣ</span> */}
               <span className={styles.findLink} onClick={onFindPasswordClick}>
                 비밀번호 찾기
               </span>

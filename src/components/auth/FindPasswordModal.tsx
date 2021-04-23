@@ -16,7 +16,6 @@ export default function FindPasswordModal({
   const [email, setEmail] = useState('');
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-    console.log(email);
   };
   return (
     <AskModal
