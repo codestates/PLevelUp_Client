@@ -14,10 +14,12 @@ type LoginFormProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
-  modal: any;
-  onFindPasswordClick: any;
-  onCancel: any;
-  onConfirm: any;
+  modal: boolean;
+  onFindPasswordClick: (
+    event: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+  ) => void;
+  onConfirm: (email: string) => void;
+  onCancel: () => void;
 };
 
 export default function LoginForm({

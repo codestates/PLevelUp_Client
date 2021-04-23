@@ -7,7 +7,6 @@ import {
   masterSignUpThunk,
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
-import AuthForm from '../../../components/master/auth/AuthForm';
 import MasterSignUpForm from '../../../components/master/auth/MasterSignUpForm';
 import { masterIsLoginThunk } from '../../../modules/master/user';
 import { withRouter } from 'react-router-dom';
