@@ -5,7 +5,6 @@
   max-width: 1140px;
   margin: 60px auto 0;
   background-color: #fff; // utils에서 변수명 사용
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,12 +72,25 @@
 
 .loading {
   text-align: center;
-
   img {
-    width: 200px;
+    @include respond-to('not-mobile') {
+      width: 200px;
+    }
+    @include respond-to('small') {
+      width: 100px;
+    }
   }
 }
-
+.goToTop {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
 .goToTop {
   text-align: center;
   margin-top: 5px;
