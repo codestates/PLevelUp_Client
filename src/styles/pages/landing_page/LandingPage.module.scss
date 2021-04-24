@@ -1,23 +1,30 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
 
-$fontColorForSubTitle: rgb(255, 255, 255);
-$fontColorForMainTitle: rgb(255, 255, 255);
+
+$fontColorForTitle: rgb(255, 255, 255);
 
 .bannerContainer {
   margin: 0 auto;
   padding: 20px 30px;
   width: 100%;
   max-width: 1140px;
-
+  @include respond-to('small') {
+    width: 100vw;
+    padding: 0px 0px;
+  }
   .imgBox {
     position: relative;
     width: 100%;
-    height: 250px;
+    min-height: 25vh;
+    max-height: 300px;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
-
+    @include respond-to('small') {
+      max-height: 300px;
+      min-height: 30vh;
+    }
     .img {
       vertical-align: middle;
       border-style: none;
@@ -36,6 +43,9 @@ $fontColorForMainTitle: rgb(255, 255, 255);
   width: 100%;
   max-width: 1140px;
   -webkit-box-pack: justify;
+  @include respond-to('small') {
+    margin-top: 25px;
+  }
   .listHeader {
     display: flex;
     justify-content: space-between;
@@ -97,18 +107,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
   }
 }
 //이 아래는 fixedBanner 코로나 관련 사회적 거리두기 안내 배너 scss입니다..
-.slick-prev {
-  color: blue;
-  :before {
-    color: blue;
-  }
-}
-.slick-next {
-  color: red;
-  :before {
-    color: red;
-  }
-}
+
 .coronaWrapperBanner {
   display: flex;
   justify-content: center;
@@ -130,7 +129,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
       cursor: pointer;
       border-radius: 8px;
       .bannerSubTitle {
-        color: $fontColorForSubTitle;
+        color: $fontColorForTitle;
         white-space: pre;
         @include respond-to('not-mobile') {
           font-size: 16px;
@@ -160,7 +159,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
         }
       }
       .bannerTitle {
-        color: $fontColorForMainTitle;
+        color: $fontColorForTitle;
         @include respond-to('not-mobile') {
           font-weight: bold;
           font-size: 24px;
