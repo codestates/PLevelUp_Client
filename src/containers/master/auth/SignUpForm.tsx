@@ -124,7 +124,7 @@ export default withRouter(function SignUpForm({ history }) {
   }, [auth, authError]);
   useEffect(() => {
     if (user) {
-      history.push('/');
+      history.push('/master');
       try {
         localStorage.setItem('master', JSON.stringify(user));
       } catch (e) {
