@@ -1,13 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import List from '../../../../components/master/club/list/List';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { RootState } from '../../../../modules';
-import loadingGif from '../../../../asset/loading.gif';
 import styles from '../../../../styles/pages/master/list_page/ListPage.module.scss';
-import errorStyles from '../../../../styles/common/Error.module.scss';
 import { FaArrowCircleUp } from 'react-icons/fa';
-import fileImg from '../../../../asset/file.png';
 import { MasterClubListResType } from '../../../../api/master/club';
 import {
   masterClubUnloadList,
@@ -19,7 +16,7 @@ import ListWriteButton from 'components/master/club/list/ListWriteButton';
 
 export default withRouter(function ListContainer({ location, match }) {
   const dispatch = useDispatch();
-  const loader = useRef<any>(null);
+  const loader = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState<number>(1);
   const [goToTop, setGoToTop] = useState(false);
   const [currentClubs, setCurrentClubs] = useState<MasterClubListResType>([]);
@@ -62,8 +59,9 @@ export default withRouter(function ListContainer({ location, match }) {
     const observer = new IntersectionObserver(handleObserver, {
       threshold: 1,
     });
-    observer.observe(loader.current);
-
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 

@@ -4,7 +4,6 @@
 .masterEditWrapper {
   width: 100%;
   max-width: 1140px;
-  margin: 60px auto 0;
 
   .editErrorMessage {
     color: red;
@@ -12,7 +11,7 @@
   }
 
   @include respond-to('not-mobile') {
-    padding: 5rem;
+    padding: 2rem 5rem 5rem;
   }
   @include respond-to('small') {
     padding: 1rem;

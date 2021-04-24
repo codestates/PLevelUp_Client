@@ -13,7 +13,7 @@ import ErrorView from '../../../components/common/ErrorView';
 import Loading from '../../../components/common/Loading';
 
 export default withRouter(function ListContainer({ location, match, history }) {
-  const loader = useRef<any>(null);
+  const loader = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState<number>(1);
   const [goToTop, setGoToTop] = useState(false);
   const [currentClubs, setCurrentClubs] = useState<MainClubListResType>([]);
@@ -161,8 +161,9 @@ export default withRouter(function ListContainer({ location, match, history }) {
     const observer = new IntersectionObserver(handleObserver, {
       threshold: 1,
     });
-    observer.observe(loader.current);
-
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
     return () => observer && observer.disconnect();
   }, [handleObserver]);
   return (

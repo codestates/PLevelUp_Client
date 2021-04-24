@@ -12,7 +12,6 @@ import { AsyncState, asyncState } from '../lib/reducerUtils';
 import {
   mainPaymentHistory,
   MainPaymentHistoryResType,
-  MainPaymentResType,
 } from '../api/main/payment';
 
 const [
@@ -37,7 +36,7 @@ const asyncActions = { mainPaymentHistoryAsync, mainPaymentUnloadHistory };
 type HistoryAsyncAction = ActionType<typeof asyncActions>;
 
 type HistoryAsyncState = {
-  payment: AsyncState<MainPaymentResType, Error>;
+  payment: AsyncState<MainPaymentHistoryResType, Error>; // TODO: 3 민정 타입 변경 MainPaymentResType -> MainPaymentHistoryResType 맞는지 체크
 };
 
 const asyncInitialState: HistoryAsyncState = {

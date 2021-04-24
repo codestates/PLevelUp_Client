@@ -10,10 +10,10 @@ import { MasterClubEditReqType } from '../../../../api/master/club';
 import { errorsType } from '../../../../containers/master/club/edit/EditorContainer';
 
 function createQuill(
-  element: React.MutableRefObject<any>,
+  element: React.RefObject<HTMLDivElement>,
   placeholderString: string,
 ) {
-  return new Quill(element.current, {
+  return new Quill(element.current!, {
     theme: 'bubble',
     placeholder: placeholderString,
     modules: {
@@ -36,7 +36,7 @@ type EditorType = {
 };
 
 export default function Editor({ club, onChangeField, errors }: EditorType) {
-  const descriptionQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
+  const descriptionQuillElement = useRef<HTMLDivElement>(null); // Quill을 적용할 DivElement 를 설정
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const [startDate, setStartDate] = useState<Date>();
 
@@ -49,11 +49,13 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
   };
 
   useEffect(() => {
-    descriptionQuillInstance.current = createQuill(
-      descriptionQuillElement,
-      '설명을 입력하세요.',
-    );
-    quillChange('description', descriptionQuillInstance.current);
+    if (descriptionQuillElement) {
+      descriptionQuillInstance.current = createQuill(
+        descriptionQuillElement,
+        '설명을 입력하세요.',
+      );
+      quillChange('description', descriptionQuillInstance.current);
+    }
   }, [onChangeField]);
 
   // 수정 시 기존 데이터를 화면에 출력해준다.
