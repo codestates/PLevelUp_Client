@@ -4,6 +4,7 @@
 .masterReadPage {
   width: 100%;
   overflow: hidden;
+  margin-top: 60px;
 
   @include respond-to('not-mobile') {
     //margin-top: 61px;

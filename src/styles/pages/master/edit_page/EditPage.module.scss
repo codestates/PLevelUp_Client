@@ -4,7 +4,7 @@
 .masterEditWrapper {
   width: 100%;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 60px auto 0;
 
   @include respond-to('not-mobile') {
     padding: 5rem;
