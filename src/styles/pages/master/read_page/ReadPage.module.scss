@@ -6,7 +6,7 @@
   overflow: hidden;
 
   @include respond-to('not-mobile') {
-    margin-top: 61px;
+    //margin-top: 61px;
   }
 
   @include respond-to('small') {
@@ -263,8 +263,8 @@
                     width: 100%;
                     height: 56px;
                     border: none;
-                    background-color: $secondary;
-                    color:$btnBackgroud;
+                    //background-color: $secondary;
+                    //color:$btnBackgroud;
                     display: -webkit-box;
                     display: -webkit-flex;
                     display: -ms-flexbox;
