@@ -161,15 +161,21 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 }
               >
                 <li>
-                  <Link to="/club">모든 클럽 보기</Link>
+                  <Link className={styles.link} to="/club">
+                    모든 클럽 보기
+                  </Link>
                 </li>
                 <hr />
                 <li>
-                  <Link to="/introduce">프로그램 소개</Link>
+                  <Link className={styles.link} to="/introduce">
+                    프로그램 소개
+                  </Link>
                 </li>
                 <hr />
                 <li>
-                  <Link to="/help">자주 묻는 질문</Link>
+                  <Link className={styles.link} to="/help">
+                    자주 묻는 질문
+                  </Link>
                 </li>
               </ul>
 
@@ -184,11 +190,15 @@ export default function Header({ user, onLogout }: HeaderProps) {
                   user.id ? (
                     <div>
                       <li className={styles.dropDown}>
-                        <Link to="/mypage">마이페이지</Link>
+                        <Link className={styles.link} to="/mypage">
+                          마이페이지
+                        </Link>
                       </li>
                       <hr />
                       <li className={styles.dropDown}>
-                        <Link to="/payment/history">결제 내역</Link>
+                        <Link className={styles.link} to="/payment/history">
+                          결제 내역
+                        </Link>
                       </li>
                       <hr />
                       <li className={styles.dropDown} onClick={onLogout}>
@@ -198,7 +208,9 @@ export default function Header({ user, onLogout }: HeaderProps) {
                   ) : (
                     <div>
                       <li className={styles.dropDown} onClick={onLogout}>
-                        <Link to="/master">내 클럽 보기</Link>
+                        <Link className={styles.link} to="/master">
+                          내 클럽 보기
+                        </Link>
                       </li>
                       <li className={styles.dropDown} onClick={onLogout}>
                         로그아웃
@@ -208,11 +220,15 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 ) : (
                   <div>
                     <li className={styles.dropDown}>
-                      <Link to="/login">일반 로그인</Link>
+                      <Link className={styles.link} to="/login">
+                        일반 로그인
+                      </Link>
                     </li>
                     <hr />
                     <li className={styles.dropDown}>
-                      <Link to="/master/login">클럽장 로그인</Link>
+                      <Link className={styles.link} to="/master/login">
+                        클럽장 로그인
+                      </Link>
                     </li>
                   </div>
                 )}

@@ -90,6 +90,12 @@
               top: 32px;
               transition: top 0.4s ease 0s;
             }
+            .link {
+              color: #212529;
+              &:hover {
+                color: $primary;
+              }
+            }
 
             li {
               padding: 13px 0px 13px 5px;
@@ -105,6 +111,12 @@
               color: #212529;
               &:hover {
                 color: $primary;
+              }
+              .link {
+                color: #212529;
+                &:hover {
+                  color: $primary;
+                }
               }
             }
           }
