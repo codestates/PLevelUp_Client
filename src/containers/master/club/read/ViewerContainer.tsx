@@ -48,7 +48,7 @@ export default withRouter(function ViewerContainer({ match, history }) {
     }
   };
 
-  const isMyClub = (master && master._id) === (club && club.Master.id);
+  const isMyClub = (master && master.id) === (club && club.Master.id);
 
   if (!isMyClub) return <div>본인이 작성한 Club만 볼 수 있습니다.</div>;
 
