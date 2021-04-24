@@ -188,7 +188,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
           <List clubs={currentClubs} />
           <div ref={loader} className={styles.loading}>
             {loading && <Loading />}
-            {goToTop && (
+            {goToTop && lastPage > 1 && (
               <div
                 className={styles.goToTop}
                 onClick={() => {
@@ -199,6 +199,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
               </div>
             )}
           </div>
+          <div style={{ minHeight: '50px' }} />
         </>
       )}
     </>
