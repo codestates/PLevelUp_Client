@@ -19,7 +19,7 @@ import ListWriteButton from 'components/master/club/list/ListWriteButton';
 
 export default withRouter(function ListContainer({ location, match }) {
   const dispatch = useDispatch();
-  const loader = useRef<any>(null);
+  const loader = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState<number>(1);
   const [goToTop, setGoToTop] = useState(false);
   const [currentClubs, setCurrentClubs] = useState<MasterClubListResType>([]);
@@ -62,8 +62,9 @@ export default withRouter(function ListContainer({ location, match }) {
     const observer = new IntersectionObserver(handleObserver, {
       threshold: 1,
     });
-    observer.observe(loader.current);
-
+    if (loader.current) {
+      observer.observe(loader.current);
+    }
     return () => observer && observer.disconnect();
   }, [handleObserver]);
 
