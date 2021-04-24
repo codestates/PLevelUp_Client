@@ -54,11 +54,20 @@ export default function SlickBanner({ data }: { data: bannerDataType[] }) {
     slidesToScroll: 1,
     adaptiveHeight: true,
     autoplay: true,
-    speed: 2000,
+    speed: 500,
     autoplaySpeed: 5000,
     cssEase: 'linear',
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 769,
+        settings: {
+          arrows: false,
+          dots: true,
+        },
+      },
+    ],
   };
   return (
     <div className={styles.bannerContainer}>
