@@ -11,11 +11,8 @@ import 'quill/dist/quill.bubble.css';
 import styles from '../../../../styles/pages/master/edit_page/EditPage.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../../../../styles/pages/master/edit_page/EditPageEditor.css';
 import { MasterClubEditReqType } from '../../../../api/master/club';
-
-const QuillWrapper = ({ children }: { children: ReactNode }) => (
-  <div className={styles.quillWrapper}>{children}</div>
-);
 
 function createQuill(
   element: React.MutableRefObject<any>,
@@ -185,9 +182,7 @@ export default function Editor({ club, onChangeField }: EditorType) {
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>설명</span>
         <div className={styles.editInput}>
-          <QuillWrapper>
-            <div className={styles.qlContainer} ref={descriptionQuillElement} />
-          </QuillWrapper>
+          <div ref={descriptionQuillElement} />
         </div>
       </div>
     </div>
