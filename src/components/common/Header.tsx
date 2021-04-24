@@ -5,10 +5,10 @@ import { FcMenu } from 'react-icons/fc';
 import styles from '../../styles/common/Header.module.scss';
 import { MasterIsLoginResType } from 'api/master/auth';
 import { MainIsLoginResType } from 'api/main/auth';
-import { Mobile, PC } from '../../mediaQuery';
+import { Mobile } from '../../mediaQuery';
 
 type HeaderProps = {
-  user: MainIsLoginResType | MasterIsLoginResType | any;
+  user: MainIsLoginResType | MasterIsLoginResType;
   onLogout: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
