@@ -17,5 +17,7 @@ export default withRouter(function HeaderContainer({ history }) {
     history.push('/');
   };
 
+  if (!user) return <div />; // TODO: 1 인수 user 없을 때 처리 할 것, 이해 안 될 시 TODO 1 으로 질문 !!
+
   return <Header user={user} onLogout={onLogout} />;
 });

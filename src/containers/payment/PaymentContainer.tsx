@@ -25,7 +25,8 @@ export default withRouter(function PaymentContainer({ match, history }) {
     dispatch(mainClubReadThunk(clubId));
   }, []);
 
-  if (!club) return <div />;
+  if (!club || !user) return <div />; // TODO: 2 민정 user 없을 때 처리 할 것 -> 안 보여야 하는 것인지, 다른 페이지로 redirect 해야할 것인지 등등, 이해 안 될 시 TODO 2 로질문!!
+
   return (
     <PaymentTemplate user={user} club={club} error={error} loading={loading} />
   );
