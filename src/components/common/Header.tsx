@@ -8,7 +8,7 @@ import { MainIsLoginResType } from 'api/main/auth';
 import { Mobile } from '../../mediaQuery';
 
 type HeaderProps = {
-  user: MainIsLoginResType | MasterIsLoginResType;
+  user: MainIsLoginResType | MasterIsLoginResType | null;
   onLogout: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
