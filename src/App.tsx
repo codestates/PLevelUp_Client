@@ -69,7 +69,7 @@ function App() {
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
-        <Route exact path="/" component={LandingPage} /> {/* 임시 */}
+        <Route exact path="/" component={LandingPage} />
       </Switch>
       <Footer />
     </>

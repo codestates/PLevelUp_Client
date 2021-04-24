@@ -16,6 +16,8 @@ import {
   MainSignUpReqType,
   mainLoginKakao,
   mainLoginGoogle,
+  mainSendPassword,
+  MainSendPasswordResType,
 } from '../api/main/auth';
 import { AxiosError } from 'axios';
 import { asyncState, AsyncState } from '../lib/reducerUtils';
@@ -49,6 +51,11 @@ const [
   MAIN_CHANGE_PASSWORD_SUCCESS,
   MAIN_CHANGE_PASSWORD_FAILURE,
 ] = createRequestActionTypes('main-auth/MAIN_CHANGE_PASSWORD');
+const [
+  MAIN_SEND_TEMPORARY_PASSWORD,
+  MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS,
+  MAIN_SEND_TEMPORARY_PASSWORD_FAILURE,
+] = createRequestActionTypes('main-auth/MAIN_SEND_TEMPORARY_PASSWORD');
 
 const MAIN_INITIALIZE_AUTH = 'main-auth/MAIN_INITIALIZE_AUTH';
 
@@ -75,6 +82,11 @@ export const mainLoginGoogleAsync = createAsyncAction(
   MAIN_LOGIN_GOOGLE_SUCCESS,
   MAIN_LOGIN_GOOGLE_FAILURE,
 )<any, MainLoginResType, AxiosError>();
+export const mainSendTemporaryPasswordAsync = createAsyncAction(
+  MAIN_SEND_TEMPORARY_PASSWORD,
+  MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS,
+  MAIN_SEND_TEMPORARY_PASSWORD_FAILURE,
+)<string, MainSendPasswordResType, AxiosError>();
 
 export const mainInitializeAuth = createAction(MAIN_INITIALIZE_AUTH)<string>();
 
@@ -83,6 +95,7 @@ const asyncActions = {
   mainLoginAsync,
   mainLoginKakaoAsync,
   mainLoginGoogleAsync,
+  mainSendTemporaryPasswordAsync,
   mainInitializeAuth,
 };
 
@@ -205,6 +218,15 @@ export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
       ...state,
       auth: asyncState.initial(),
     }),
+    [MAIN_SEND_TEMPORARY_PASSWORD]: state => ({
+      ...state,
+    }),
+    [MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS]: state => ({
+      ...state,
+    }),
+    [MAIN_SEND_TEMPORARY_PASSWORD_FAILURE]: state => ({
+      ...state,
+    }),
   },
 );
 
@@ -229,3 +251,7 @@ export const mainLoginGoogleThunk = createAsyncThunk(
   mainLoginGoogle,
 );
 export const mainSignUpThunk = createAsyncThunk(mainSignUpAsync, mainSignUp);
+export const mainSendPasswordThunk = createAsyncThunk(
+  mainSendTemporaryPasswordAsync,
+  mainSendPassword,
+);

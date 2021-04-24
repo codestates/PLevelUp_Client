@@ -7,7 +7,7 @@ import {
   masterSignUpThunk,
 } from '../../../modules/master/auth';
 import { RootState } from '../../../modules';
-import AuthForm from '../../../components/master/auth/AuthForm';
+import MasterSignUpForm from '../../../components/master/auth/MasterSignUpForm';
 import { masterIsLoginThunk } from '../../../modules/master/user';
 import { withRouter } from 'react-router-dom';
 
@@ -106,8 +106,7 @@ export default withRouter(function SignUpForm({ history }) {
   return (
     <>
       {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
-      <AuthForm
-        formType="signUp"
+      <MasterSignUpForm
         form={form}
         onChange={onChange}
         onSubmit={onSubmit}

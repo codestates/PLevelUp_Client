@@ -1,3 +1,5 @@
+@import './basicMixin.scss';
+
 .modalWrapper {
   .fullscreen {
     position: fixed;
@@ -31,6 +33,13 @@
     .buttons {
       display: flex;
       justify-content: flex-end;
+      margin: 15px auto;
+      .cancelBtn {
+        @include btn-default('primary');
+      }
+      .confirmBtn {
+        @include btn-default('primary');
+      }
     }
 
     button + button {

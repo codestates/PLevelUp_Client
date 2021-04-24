@@ -12,6 +12,7 @@
     border-left-color: rgb(225, 225, 225);
     box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 6px 0px inset;
     padding: 20px 0px;
+    margin-bottom: 40px;
     text-align: center;
     font-weight: bold;
     color: rgb(123, 123, 123);
@@ -36,18 +37,69 @@
       }
     }
   }
+  .listClubBox {
+    max-width: 600px;
+    height: 50px;
+    color: rgb(242, 242, 245);
+    font-size: 17px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 14px 16px;
+    background: #959595;
+    border-radius: 0.15rem;
+  }
 
   .historyBody {
     background: white;
-    padding: 20px 0px;
+    padding: 80px 0px;
 
     .wrapper {
-      max-width: 1140px;
+      max-width: 600px;
+      text-align: left;
+      margin: 0 auto;
       width: 100%;
-      padding: 0 16px;
+      padding: 0 6px;
 
       .contentWrapper {
-        margin-top: 24px;
+       
+   
+        .listContainer {
+   
+          width: 100%;
+          margin: 0px 0px 62.5px 0px;
+          display: flex;
+          flex-direction: column;
+          border-top: 3px solid rgb(193, 194, 202);
+          border-bottom: 3px solid rgb(193, 194, 202);
+          line-height: 1.5;
+            .title{
+              background: #f0f0f0;
+              padding: 7px;
+              font-weight: bold;
+              font-size: 18px;
+            }
+            .priceWrapper{
+              color: #616161;
+              margin-top: 50px;
+              display: inherit;
+             
+              .price{
+                color: #5D3DC3;
+                padding-left: 4px;
+              }
+            }
+            .dateWrapper {
+              display: inherit;
+              color: #616161;
+              margin-bottom: 10px;
+
+              .date{
+                padding-left: 4px;
+              }
+            }
+          
+        }
+        
       }
     }
   }

@@ -13,7 +13,7 @@ export default function List({ clubs }: ListType) {
     <div className={styles.masterListWrapper}>
       <div className={styles.writeListButtonWrapper}>
         <Link to="/master/edit">
-          <button>새 글 작성하기</button>
+          <button className={styles.writeBtn}>새 글 작성하기</button>
         </Link>
       </div>
       <div className={styles.container}>
