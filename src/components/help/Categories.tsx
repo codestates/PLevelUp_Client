@@ -1,5 +1,4 @@
 import styles from '../../styles/pages/help_page/HelpPage.module.scss';
-import { NavLink } from 'react-router-dom';
 
 export default function Categories({
   category,

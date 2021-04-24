@@ -1,9 +1,9 @@
 import PaymentTemplate from 'components/payment/PaymentTemplate';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { useEffect } from 'react';
-import { mainClubReadThunk, mainClubUnloadRead } from '../../modules/club/read';
+import { mainClubReadThunk } from '../../modules/club/read';
 
 export default withRouter(function PaymentContainer({ match, history }) {
   const { clubId } = match.params;

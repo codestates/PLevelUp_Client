@@ -12,7 +12,6 @@ import { AsyncState, asyncState } from '../lib/reducerUtils';
 import {
   mainPaymentHistory,
   MainPaymentHistoryResType,
-  MainPaymentResType,
 } from '../api/main/payment';
 
 const [
