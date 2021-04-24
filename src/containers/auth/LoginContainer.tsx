@@ -17,22 +17,18 @@ import { mainIsLoginThunk } from '../../modules/user';
 export default withRouter(function LoginConatiner({ history }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
-  const {
-    form,
-    data: auth,
-    loading: authLoading,
-    error: authError,
-  } = useSelector(({ mainAuth, mainAuthAsync }: RootState) => ({
-    form: mainAuth.login,
-    data: mainAuthAsync.auth.data,
-    loading: mainAuthAsync.auth.loading,
-    error: mainAuthAsync.auth.error,
-  }));
+  const { form, data: auth, error: authError } = useSelector(
+    ({ mainAuth, mainAuthAsync }: RootState) => ({
+      form: mainAuth.login,
+      data: mainAuthAsync.auth.data,
+      error: mainAuthAsync.auth.error,
+    }),
+  );
 
-  const { data: user } = useSelector(({ mainUser }: RootState) => ({
+  const { data: user, userError } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
+    userError: mainUser.user?.error,
   }));
-  const loading = authLoading;
   const handleOAuth = () => {
     dispatch(mainLoginKakaoThunk());
   };
@@ -92,6 +88,10 @@ export default withRouter(function LoginConatiner({ history }) {
 
   // user 값이 잘 설정되었는지 확인
   useEffect(() => {
+    if (userError) {
+      setError('로그인 실패');
+    }
+
     if (user) {
       history.push('/');
       try {
