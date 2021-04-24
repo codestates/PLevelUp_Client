@@ -1,268 +1,22 @@
 @import './utils.scss';
+// @import './basicMixin.scss';
 
-// Header Desktop 버전입니다.
-header {
-  display: block;
-
-  .hideHeaderContainer {
-    background: white;
-    top: -61px;
-    transition: top 1s ease 0s;
-    width: 100%;
-    border-bottom: 1px solid rgb(225, 225, 225);
-    height: 61px;
-    position: fixed;
-    z-index: 1040;
-
-    .navContainer {
-      display: flex;
-      max-width: 1140px;
-      margin: 0 auto;
-
-      .logoWrapper {
-        display: inline-block;
-        width: auto;
-        height: 60px;
-        align-items: center;
-        padding: 0px 21px;
-
-        //hambuger, icon 데스크탑에서 none
-
-        .icon {
-          display: none;
-        }
-
-        .logo {
-          width: 88px;
-          height: 60px;
-          display: flex;
-          padding-top: 20px;
-          cursor: pointer;
-          background: transparent;
-          text-decoration: none;
-        }
-      }
-
-      .menuList {
-        position: static;
-        top: 0px;
-        display: inline-block;
-        height: 60px;
-        margin-left: auto;
-        z-index: 1060;
-        width: auto;
-        border-bottom: 0px;
-        border-top: none;
-        transition: top 0.4s ease 0s;
-        list-style-type: none;
-        background: transparent;
-        left: 0px;
-        right: 0px;
-        padding: 0px 16px;
-        margin-bottom: 0px;
-        margin-top: 0;
-
-        li {
-          font-size: 14px;
-          display: inline-block;
-          padding: 20px 8px;
-          height: 100%;
-          cursor: pointer;
-
-          a {
-            color: inherit;
-            text-decoration: none;
-          }
-
-          a:hover {
-            color: $primary;
-          }
-        }
-        .pcVerIcon {
-          padding-top: 15px;
-          padding-bottom: 15px;
-          position: relative;
-          vertical-align: top;
-          user-select: auto;
-
-          .icon {
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
-            cursor: pointer;
-            border-radius: 3rem;
-            border: 0.5px solid rgb(232, 232, 232);
-          }
-
-          //icon 토글 상태따라 스타일 지정
-          .MyPageNone {
-            display: none;
-          }
-
-          .MyPageContainer {
-            display: block;
-            position: absolute;
-            width: 128px;
-            background-color: rgb(247, 247, 250);
-            right: 0px;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 500;
-            color: rgb(115, 115, 115);
-            padding: 8px 16px;
-
-            .dropDown {
-              padding: 8px 0px;
-              cursor: pointer;
-            }
-          }
-        }
-      }
-
-      hr {
-        display: none;
-      }
-    }
-  }
-  .spacer {
-    height: 61px;
-  }
-
-  .headerContainer {
-    background: white;
-    top: 0px;
-    transition: top 1s ease 0s;
-    width: 100%;
-    border-bottom: 1px solid rgb(225, 225, 225);
-    height: 61px;
-    position: fixed;
-    z-index: 1040;
-
-    .navContainer {
-      display: flex;
-      max-width: 1140px;
-      margin: 0 auto;
-
-      .logoWrapper {
-        display: inline-block;
-        width: auto;
-        height: 60px;
-        align-items: center;
-        padding: 0px 21px;
-
-        //hambuger, icon 데스크탑에서 none
-
-        .icon {
-          display: none;
-        }
-
-        .logo {
-          width: 88px;
-          height: 60px;
-          display: flex;
-          padding-top: 20px;
-          cursor: pointer;
-          background: transparent;
-        }
-      }
-
-      .menuList {
-        position: static;
-        top: 0px;
-        display: inline-block;
-        height: 60px;
-        margin-left: auto;
-        z-index: 1060;
-        width: auto;
-        border-bottom: 0px;
-        border-top: none;
-        transition: top 0.4s ease 0s;
-        list-style-type: none;
-        background: transparent;
-        left: 0px;
-        right: 0px;
-        padding: 0px 16px;
-        margin-bottom: 0px;
-        margin-top: 0;
-
-        li {
-          font-size: 14px;
-          display: inline-block;
-          padding: 20px 8px;
-          height: 100%;
-          cursor: pointer;
-
-          a {
-            color: inherit;
-            text-decoration: none;
-          }
-
-          a:hover {
-            color: $primary;
-          }
-        }
-        .pcVerIcon {
-          padding-top: 15px;
-          padding-bottom: 15px;
-          position: relative;
-          vertical-align: top;
-          user-select: auto;
-
-          .icon {
-            width: 30px;
-            height: 30px;
-            vertical-align: middle;
-            cursor: pointer;
-            border-radius: 3rem;
-            border: 0.5px solid rgb(232, 232, 232);
-          }
-
-          //icon 토글 상태따라 스타일 지정
-          .MyPageNone {
-            display: none;
-          }
-
-          .MyPageContainer {
-            display: block;
-            position: absolute;
-            width: 128px;
-            background-color: rgb(247, 247, 250);
-            right: 0px;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 500;
-            color: rgb(115, 115, 115);
-            padding: 8px 16px;
-
-            .dropDown {
-              padding: 8px 0px;
-              cursor: pointer;
-            }
-          }
-        }
-      }
-
-      hr {
-        display: none;
-      }
-    }
-  }
-}
-
-//Mobile ver.
 @media screen and (max-width: 768px) {
   header {
     display: block;
 
-    .hideHeaderContainer {
+    .headerContainer {
       position: fixed;
       z-index: 1040;
-      background: white;
-      top: -61px;
+      background: transparent;
+      top: 0px;
       transition: top 1s ease 0s;
       width: 100%;
-      border-bottom: none;
       height: 49px;
+
+      &.active {
+        top: -48px;
+      }
 
       .navContainer {
         display: flex;
@@ -270,83 +24,137 @@ header {
         margin: 0px auto;
 
         .logoWrapper {
-          -webkit-box-align: center;
-          align-items: center;
-          width: 28%;
-          height: 48px;
-          padding: 8px 0px 0px 20px;
-          z-index: 1060;
-          background: transparent;
           display: flex;
-          -webkit-box-pack: justify;
           justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 48px;
+          padding: 0px 21px;
+          z-index: 1060;
+          background: white;
+
+          .menuBtn {
+            cursor: pointer;
+            width: 56px;
+            border: 0px;
+            padding: 0px 20px 0px 16px;
+            margin: 0px -16px;
+          }
 
           .logo {
             display: inline-block;
             cursor: pointer;
-            background: transparent;
+          }
+
+          .mobileMyIcon {
+            margin: auto 0px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            border-radius: 3rem;
+            border: 0.5px solid rgb(232, 232, 232);
           }
         }
-        .menuList {
-          position: static;
-          top: 0px;
-          display: flex;
-          height: 60px;
-          margin-left: auto;
-          z-index: 1060;
-          width: auto;
-          border-bottom: 0px;
-          border-top: none;
-          transition: top 0.4s ease 0s;
-          list-style-type: none;
-          background: transparent;
-          left: 0px;
-          right: 0px;
-          padding: 0px 16px;
-          margin-bottom: 0px;
-          margin-top: 0;
+
+        .pcMenuList {
+          display: none;
+        }
+        .mobileWrapper {
+          .menuList {
+            position: absolute;
+            top: -500px;
+            transition: top 0.4s ease 0s;
+            list-style-type: none;
+            background-color: white;
+            left: 0px;
+            right: 0px;
+            padding: 0px 16px;
+            width: 100%;
+            border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 0px;
+            z-index: 1030;
+
+            &.active {
+              top: 32px;
+              transition: top 0.4s ease 0s;
+            }
+
+            li {
+              padding: 13px 0px 13px 5px;
+            }
+
+            hr {
+              border: 0.5px solid rgba(0, 0, 0, 0.1);
+              margin: 0px;
+            }
+
+            .dropDown {
+              padding: 13px 0px 13px 5px;
+            }
+          }
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  header {
+    display: block;
 
     .headerContainer {
-      position: fixed;
-      z-index: 1040;
       background: white;
       top: 0px;
       transition: top 1s ease 0s;
       width: 100%;
-      border-bottom: none;
-      height: 49px;
+      height: 61px;
+      position: fixed;
+      z-index: 1040;
+
+      &.active {
+        top: -61px;
+      }
 
       .navContainer {
         display: flex;
-        max-width: 1140px;
+        max-width: 1112px;
         margin: 0px auto;
 
         .logoWrapper {
-          -webkit-box-align: center;
+          display: inline-block;
+          width: auto;
+          height: 60px;
           align-items: center;
-          width: 28%;
-          height: 48px;
-          padding: 8px 0px 0px 20px;
+          padding: 0px 28px;
           z-index: 1060;
-          background: transparent;
-          display: flex;
-          -webkit-box-pack: justify;
+          background: white;
           justify-content: space-between;
 
+          .menuBtn {
+            display: none;
+          }
+
           .logo {
-            display: inline-block;
+            display: flex;
+            height: 100%;
+            align-items: center;
             cursor: pointer;
-            background: transparent;
+          }
+
+          .mobileMyIcon {
+            display: none;
           }
         }
-        .menuList {
+
+        .pcMenuList {
           position: static;
-          top: 0px;
           display: flex;
+          flex-direction: row;
+          top: 0px;
           height: 60px;
+          margin-top: 0;
+          margin-bottom: 0;
           margin-left: auto;
           z-index: 1060;
           width: auto;
@@ -354,19 +162,61 @@ header {
           border-top: none;
           transition: top 0.4s ease 0s;
           list-style-type: none;
-          background: transparent;
           left: 0px;
           right: 0px;
           padding: 0px 16px;
-          margin-bottom: 0px;
-          margin-top: 0;
+
+          li {
+            font-size: 14px;
+            display: inline-block;
+            padding: 20px 8px;
+            height: 100%;
+          }
+
+          .pcVerIcon {
+            font-size: 14px;
+            display: inline-block;
+            padding: 14px 14px;
+            height: 100%;
+            cursor: pointer;
+
+            .icon {
+              cursor: pointer;
+              border-radius: 3rem;
+              width: 30px;
+              height: 30px;
+            }
+
+            .MyPageContainer {
+              display: block;
+              position: absolute;
+              width: 128px;
+              background-color: #f7f7fa;
+              border: 0.5px solid #e8e8e8;
+              right: 0px;
+              margin-top: 9px;
+              margin-right: 230px;
+              font-size: 14px;
+              font-weight: 500;
+              color: #737373;
+              padding: 8px 16px;
+
+              &.active {
+                display: none;
+              }
+
+              .dropDown {
+                padding: 8px 0px;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .mobileWrapper {
+            display: none;
+          }
         }
       }
     }
   }
-  .spacer {
-    height: 61px;
-  }
 }
-
-//---원래 logoSvg에 있던 속성이지만 안 먹혀서 logoSvgText로 뺌.---
