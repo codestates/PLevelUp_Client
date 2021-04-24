@@ -4,11 +4,10 @@ import { MainClubReadResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 import { Mobile, PC } from '../../../mediaQuery';
 import ApplyFAQList from '../../../components/club/read/ApplyFAQList';
-import { faqforReadPagedata } from 'asset/data/dummy';
+import { faqForReadPageData } from 'asset/data/dummy';
 import { FaHeart } from 'react-icons/fa';
 import ErrorView from '../../common/ErrorView';
 import Badge from '../../common/Badge';
-
 
 export default function Viewer({
   club,
@@ -106,8 +105,9 @@ export default function Viewer({
             <div className={styles.applyBtn}>
               <button className={styles.fixedAppBtn2}>
                 <Link className={styles.paymentLink} to={`${id}/payment`}>
-                  {`${limitUserNumber - currentUserNumber
-                    }자리 남았어요! 지금 시작`}
+                  {`${
+                    limitUserNumber - currentUserNumber
+                  }자리 남았어요! 지금 시작`}
                 </Link>
               </button>
             </div>
@@ -143,14 +143,11 @@ export default function Viewer({
     </div>
   );
 
-
-
-
   return (
     <div className={styles.readPage}>
       <CardViewer />
       <DescriptionViewer />
-      <ApplyFAQList faq={faqforReadPagedata} />
+      <ApplyFAQList faqList={faqForReadPageData} />
     </div>
   );
 }

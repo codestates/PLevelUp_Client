@@ -4,6 +4,7 @@ import { RootState } from '../../modules';
 import { masterLogoutThunk } from '../../modules/master/user';
 import { mainLogoutThunk } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
+import React from 'react';
 
 export default withRouter(function HeaderContainer({ history }) {
   const { data: user } = useSelector(({ masterUser, mainUser }: RootState) => ({
