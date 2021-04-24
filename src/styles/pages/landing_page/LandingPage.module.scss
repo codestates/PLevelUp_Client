@@ -1,8 +1,8 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
 
-$fontColorForSubTitle: rgb(255, 255, 255);
-$fontColorForMainTitle: rgb(255, 255, 255);
+
+$fontColorForTitle: rgb(255, 255, 255);
 
 .bannerContainer {
   margin: 0 auto;
@@ -129,7 +129,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
       cursor: pointer;
       border-radius: 8px;
       .bannerSubTitle {
-        color: $fontColorForSubTitle;
+        color: $fontColorForTitle;
         white-space: pre;
         @include respond-to('not-mobile') {
           font-size: 16px;
@@ -159,7 +159,7 @@ $fontColorForMainTitle: rgb(255, 255, 255);
         }
       }
       .bannerTitle {
-        color: $fontColorForMainTitle;
+        color: $fontColorForTitle;
         @include respond-to('not-mobile') {
           font-weight: bold;
           font-size: 24px;
