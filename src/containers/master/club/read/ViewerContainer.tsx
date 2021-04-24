@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import {
   masterClubReadThunk,
@@ -10,6 +10,7 @@ import Viewer from '../../../../components/master/club/read/Viewer';
 import ReadActionButtons from '../../../../components/master/club/read/ReadActionButtons';
 import { masterEditSetOriginalClub } from '../../../../modules/master/club/edit';
 import { masterClubRemove } from '../../../../api/master/club';
+import ErrorView from '../../../../components/common/ErrorView';
 
 export default withRouter(function ViewerContainer({ match, history }) {
   // 처음 마운트 될 떄 포스트 읽기 API 요청
@@ -50,7 +51,13 @@ export default withRouter(function ViewerContainer({ match, history }) {
 
   const isMyClub = (master && master.id) === (club && club.Master.id);
 
-  if (!isMyClub) return <div>본인이 작성한 Club만 볼 수 있습니다.</div>;
+  if (!isMyClub)
+    return (
+      <ErrorView
+        children={<div>본인이 작성한 Club만 볼 수 있습니다.</div>}
+        isGoMainBtn={true}
+      />
+    );
 
   return (
     <Viewer
