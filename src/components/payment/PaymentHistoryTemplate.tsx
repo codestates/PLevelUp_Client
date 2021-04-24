@@ -12,7 +12,7 @@ export default function PaymentHistoryTemplate({
   error,
   loading,
 }: {
-  payment: MainPaymentHistoryResType | any;
+  payment: MainPaymentHistoryResType;
   error: AxiosError | null;
   loading: boolean;
 }) {
