@@ -1,24 +1,19 @@
 // 등록 및 수정에서 사용되는 Editor
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.bubble.css';
 import styles from '../../../../styles/pages/master/edit_page/EditPage.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { MasterClubEditReqType } from '../../../../api/master/club';
-// children을 Type으로 빼고 ReactNode 타입지정은 귀찮으니 any로..
-const EditorBlock = ({ children }: any) => (
-  <div className={styles.editBlock}>{children}</div>
-);
 
-type InputType = {
-  placeholder: string;
-  value: string | number | undefined;
-  name: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-};
-
-const QuillWrapper = ({ children }: any) => (
+const QuillWrapper = ({ children }: { children: ReactNode }) => (
   <div className={styles.quillWrapper}>{children}</div>
 );
 
@@ -89,23 +84,30 @@ export default function Editor({ club, onChangeField }: EditorType) {
 
   return (
     <div className={styles.masterEditWrapper}>
-      <EditorBlock>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>제목</span>
         <input
-          className={styles.titleInput}
+          className={styles.editInput}
           placeholder="제목을 입력하세요."
           onChange={onChange}
           value={club.title}
           name="title"
         />
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>장소</span>
         <input
-          className={styles.etcInput}
+          className={styles.editInput}
           placeholder="장소를 입력하세요."
           onChange={onChange}
           value={club.place}
           name="place"
         />
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>금액</span>
         <input
-          className={styles.etcInput}
+          className={styles.editInput}
           placeholder="금액을 입력하세요."
           onChange={onChange}
           value={club.price}
@@ -114,8 +116,61 @@ export default function Editor({ club, onChangeField }: EditorType) {
           min="0"
           name="price"
         />
-        <span>시작일: </span>
-        <span>
+      </div>
+
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>횟수</span>
+        <input
+          className={styles.editInput}
+          placeholder="횟수를 입력하세요."
+          onChange={onChange}
+          value={club.times}
+          name="times"
+          type="number"
+          step="1"
+          min="1"
+        />
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>최대 인원</span>
+        <input
+          className={styles.editInput}
+          placeholder="최대 인원을 입력하세요."
+          onChange={onChange}
+          value={club.limitUserNumber}
+          type="number"
+          step="1"
+          min="0"
+          name="limitUserNumber"
+        />
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>요약</span>
+        <input
+          className={styles.editInput}
+          placeholder="요약을 입력하세요. 최대 40자"
+          onChange={onChange}
+          value={club.summary}
+          type="text"
+          name="summary"
+        />
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>커버 이미지</span>
+        <input
+          className={styles.editFile}
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg,image/gif"
+          name="coverImg"
+          onChange={onChange}
+        />
+        {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName} style={{ float: 'left' }}>
+          시작일
+        </span>
+        <div className={styles.editDatePicker} style={{ float: 'left' }}>
           <DatePicker
             selected={startDate}
             onChange={(date: Date) => {
@@ -125,50 +180,16 @@ export default function Editor({ club, onChangeField }: EditorType) {
               }
             }}
           />
-        </span>
-        <br />
-        <input
-          className={styles.etcInput}
-          placeholder="횟수를 입력하세요."
-          onChange={onChange}
-          value={club.times}
-          name="times"
-          type="number"
-          step="1"
-          min="1"
-        />
-        <input
-          className={styles.etcInput}
-          placeholder="최대 인원을 입력하세요."
-          onChange={onChange}
-          value={club.limitUserNumber}
-          type="number"
-          step="1"
-          min="0"
-          name="limitUserNumber"
-        />
-        <input
-          className={styles.etcInput}
-          placeholder="요약을 입력하세요. 최대 40자"
-          onChange={onChange}
-          value={club.summary}
-          type="text"
-          name="summary"
-        />
-       <hr/>
-        <QuillWrapper>
-          <div ref={descriptionQuillElement} />
-        </QuillWrapper>
-        {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
-       <p>
-        <input
-          type="file"
-          accept="image/jpg,impge/png,image/jpeg,image/gif"
-          name="coverImg"
-          onChange={onChange}
-        />
-       </p>
-      </EditorBlock>
+        </div>
+      </div>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>설명</span>
+        <div className={styles.editInput}>
+          <QuillWrapper>
+            <div className={styles.qlContainer} ref={descriptionQuillElement} />
+          </QuillWrapper>
+        </div>
+      </div>
     </div>
   );
 }

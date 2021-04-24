@@ -28,12 +28,14 @@ export default function ReadActionButtons({
 
   return (
     <>
-      <button className={styles.actionBtn} onClick={onUpdate}>
+      <button className={styles.fixedAppBtn1} onClick={onUpdate}>
         수정
       </button>
-      <button className={styles.actionBtn} onClick={onRemoveClick}>
-        삭제
-      </button>
+      <div className={styles.removeBtn}>
+        <button className={styles.fixedAppBtn2} onClick={onRemoveClick}>
+          삭제
+        </button>
+      </div>
       <AskRemoveModal
         visible={modal}
         onConfirm={onConfirm}

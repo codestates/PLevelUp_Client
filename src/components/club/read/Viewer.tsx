@@ -82,7 +82,9 @@ export default function Viewer({
           <br />
           {`첫 모임일 ${createDate}(${club.day})`}
         </div>
-        <div className={styles.monthlyPrice}>총 {price}원</div>
+        <div className={styles.monthlyPrice}>
+          총 {price.toLocaleString('ko-KR')}원
+        </div>
       </div>
       <div className={styles.floatingCardBtn}>
         <div className={styles.fixedAppBtnBox}>

@@ -15,12 +15,14 @@
   .writeListButtonWrapper {
     display: flex;
     justify-content: flex-end;
-    margin-bottom:2rem;
+    margin-top:1rem;
+    margin-bottom:1rem;
     cursor: pointer;
+    width: 90%;
     .writeBtn{
       @include btn-default('primary');
       font-size: 14px;
-      height: 48px;
+      height: 36px;
       width: 100%;
     }
   }
@@ -31,7 +33,7 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
-    padding: 0px 20px;
+    padding: 0 20px;
     @include respond-to(not-mobile) {
       margin: 20px 30px;
       font-weight: 700;
