@@ -4,7 +4,12 @@
 .masterEditWrapper {
   width: 100%;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 60px auto 0;
+
+  .editErrorMessage {
+    color: red;
+      margin-left: 25%;
+  }
 
   @include respond-to('not-mobile') {
     padding: 5rem;
@@ -14,7 +19,7 @@
   }
 
   .editInputBlock {
-    margin-bottom: 2rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
 
@@ -32,41 +37,22 @@
     .editInput {
       font-size: 1rem;
       outline: none;
-      padding-bottom: 0.5rem;
       border: none;
       margin-left: 1rem;
       border-bottom: 1px solid grey;
-
-      @include respond-to('not-mobile') {
-        width: 85%;
-      }
-      @include respond-to('small') {
-        width: 75%;
-      }
+      width: 75%;
     }
 
     .editFile {
       font-size: 1rem;
       outline: none;
-      padding-bottom: 0.5rem;
       border: none;
       margin-left: 1rem;
-      @include respond-to('not-mobile') {
-        width: 85%;
-      }
-      @include respond-to('small') {
-        width: 75%;
-      }
+      width: 75%;
     }
 
     .editDatePicker {
-      @include respond-to('not-mobile') {
-        width: 85%;
-      }
-      @include respond-to('small') {
-        width: 75%;
-      }
-      padding-bottom: 0.5rem;
+      width: 75%;
       margin-left: 1rem;
       border-bottom: 1px solid grey;
 
@@ -80,23 +66,6 @@
         }
       }
     }
-  }
-
-  .quillWrapper {
-
-    .qlContainer {
-      div {
-        padding: 0;
-        min-height: 320px;
-        font-size: 1.125rem;
-        line-height: 1.5;
-      }
-
-      .ql-editor.ql-blank::before { // 정해진 class 이므로 변경 x
-        left: 0;
-      }
-    }
-
   }
 
   .btnWrapper {

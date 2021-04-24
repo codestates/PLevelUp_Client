@@ -102,9 +102,31 @@ export default withRouter(function SignUpContainer({ history }) {
         if (
           authError.response.data ===
           '"password" length must be at least 6 characters long'
-        )
+        ) {
           setError('비밀번호는 6자리 이상이어야 합니다.');
-        return;
+          return;
+        }
+
+        if (authError.response.data === '"email" must be a valid email') {
+          setError('이메일 형식이 아닙니다.');
+          return;
+        }
+
+        if (
+          authError.response.data ===
+          '"username" length must be less than or equal to 15 characters long'
+        ) {
+          setError('이름은 15자 이하이어야 합니다.');
+          return;
+        }
+
+        if (
+          authError.response.data ===
+          '"username" length must be at least 2 characters long'
+        ) {
+          setError('이름은 2자 이상이어야 합니다.');
+          return;
+        }
       }
       // 기타 이유
       setError('회원가입 실패');

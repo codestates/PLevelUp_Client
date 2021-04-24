@@ -12,6 +12,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .loadingContainer {
+      margin: 0 auto;
+      text-align: center;
+      .loadingImg {
+        width: 50%;
+        @include respond-to('not-mobile') {
+          width: 100%;
+        }
+      }
+    }
   }
 
   .askModalWrapper {

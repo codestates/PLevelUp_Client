@@ -19,7 +19,6 @@ export default function AskRemoveModal({
       confirmText="삭제"
       onConfirm={onConfirm}
       onCancel={onCancel}
-      children={null}
     />
   );
 }
