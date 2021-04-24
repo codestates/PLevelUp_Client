@@ -3,7 +3,7 @@ import {
   MainPaymentResType,
   MainPaymentHistoryResType,
 } from '../../api/main/payment';
-import PaymentCard from '../common/PaymentCard';
+import PaymentCard from './PaymentCard';
 import styles from '../../styles/pages/payment_page/PaymentHistoryPage.module.scss';
 import { IoIosArrowBack } from 'react-icons/io';
 
@@ -29,6 +29,7 @@ export default function PaymentHistoryTemplate({
           결제내역
         </div>
       </div>
+      <div className={styles.listClubBox}>클럽</div>
 
       <div className={styles.historyBody}>
         <div className={styles.wrapper}>

@@ -8,8 +8,9 @@ import {
   mainLoginKakaoThunk,
   mainLoginGoogleThunk,
 } from '../../modules/auth';
+import Loading from '../../components/common/Loading';
 import { RootState } from '../../modules';
-import AuthForm from '../../components/auth/AuthForm';
+import SignUpForm from '../../components/auth/SignUpForm';
 import { mainIsLoginThunk } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
 
@@ -131,16 +132,18 @@ export default withRouter(function SignUpContainer({ history }) {
 
   return (
     <>
-      {loading && <p style={{ textAlign: 'center' }}>로딩중..</p>}
-      <AuthForm
-        formType="signUp"
-        form={form}
-        handleOAuth={handleOAuth}
-        handleOAuthGoogle={handleOAuthGoogle}
-        onChange={onChange}
-        onSubmit={onSubmit}
-        error={error}
-      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <SignUpForm
+          form={form}
+          handleOAuth={handleOAuth}
+          handleOAuthGoogle={handleOAuthGoogle}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          error={error}
+        />
+      )}
     </>
   );
 });
