@@ -167,6 +167,7 @@
 
             .monthlyPrice {
               text-align: right;
+              font-weight: bold;
               @include respond-to('not-mobile') {
                 font-size: 20px;
                 color: #2a2a2c;

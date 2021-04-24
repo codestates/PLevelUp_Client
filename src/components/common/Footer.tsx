@@ -9,12 +9,12 @@ export default function Footer() {
           <div className={styles.list}>공지사항</div>
           <div className={styles.list}>이용약관</div>
           <div className={styles.list}>
-            <Link className={styles.link} to="introduce">
+            <Link className={styles.link} to="/introduce">
               회사소개
             </Link>
           </div>
           <div className={styles.list}>
-            <Link className={styles.link} to="help">
+            <Link className={styles.link} to="/help">
               자주 묻는 질문
             </Link>
           </div>

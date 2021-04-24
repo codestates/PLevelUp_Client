@@ -2,65 +2,90 @@
 @import '../../../common/basicMixin.scss';
 
 .masterEditWrapper {
-  width:100%;
-  margin-top: 60px;
+  width: 100%;
+  max-width: 1140px;
 
-  @include respond-to('not-mobile'){
-    margin-top:61px;
-  }
-  @include respond-to('small'){
-    margin-top:48px;
-  }
-  .editBlock {
-    /* 페이지 위아래 여백 지정 */
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    padding-left: 15rem;
-    padding-right: 15rem;
+  .editErrorMessage {
+    color: red;
+      margin-left: 25%;
   }
 
-  .titleInput {
-    font-size: 2rem;
-    outline: none;
-    padding-bottom: 0.5rem;
-    border: none;
-    border-bottom: 1px solid grey;
-    margin-bottom: 2rem;
-    margin-left: 1rem;
-    width: 90%;
+  @include respond-to('not-mobile') {
+    padding: 2rem 5rem 5rem;
+  }
+  @include respond-to('small') {
+    padding: 1rem;
   }
 
-  .etcInput {
-    font-size: 1rem;
-    outline: none;
-    padding-bottom: 0.5rem;
-    border: none;
-    border-bottom: 1px solid grey;
-    margin-bottom: 2rem;
-    margin-left: 1rem;
-    width: 90%;
-  }
+  .editInputBlock {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
 
-  .quillWrapper {
-    margin-left: 1rem;
-    .qlContainer{
-      div {
-        padding: 0;
-        min-height: 320px;
-        font-size: 1.125rem;
-        line-height: 1.5;
+    .editName {
+      font-weight: bold;
+
+      @include respond-to('not-mobile') {
+        font-size: 1.5rem;
       }
-      .ql-editor { // 정해진 class 이므로 변경 x
-        padding: 0;
-        min-height: 320px;
-        font-size: 1.125rem;
-        line-height: 1.5;
-      }
-
-      .ql-editor.ql-blank::before { // 정해진 class 이므로 변경 x
-        left: 0;
+      @include respond-to('small') {
+        font-size: 1rem;
       }
     }
 
+    .editInput {
+      font-size: 1rem;
+      outline: none;
+      border: none;
+      margin-left: 1rem;
+      border-bottom: 1px solid grey;
+      width: 75%;
+    }
+
+    .editFile {
+      font-size: 1rem;
+      outline: none;
+      border: none;
+      margin-left: 1rem;
+      width: 75%;
+    }
+
+    .editDatePicker {
+      width: 75%;
+      margin-left: 1rem;
+      border-bottom: 1px solid grey;
+
+      div {
+        div {
+          input {
+            font-size: 1rem;
+            outline: none;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  .btnWrapper {
+    @include respond-to('not-mobile') {
+      display: flex;
+      justify-content: flex-end;
+      .btn {
+        @include btn-default('primary');
+        width: 4rem;
+        &:nth-child(2) {
+          margin-left: 20px;
+        }
+      }
+    }
+    @include respond-to('small') {
+      display: flex;
+      justify-content: space-between;
+      .btn {
+        @include btn-default('primary');
+        width: 48%;
+      }
+    }
   }
 }

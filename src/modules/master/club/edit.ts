@@ -107,7 +107,7 @@ const initialState: EditState = {
     description: '',
     startDate: new Date(),
     times: 0,
-    limitUserNumber: 1,
+    limitUserNumber: 0,
     coverImg: null,
     coverUrl: null,
   },

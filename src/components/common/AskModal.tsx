@@ -1,4 +1,5 @@
 import styles from '../../styles/common/Modal.module.scss';
+import { ReactNode } from 'react';
 
 type AskModalType = {
   visible: boolean;
@@ -8,7 +9,7 @@ type AskModalType = {
   cancelText?: string;
   onConfirm: () => void;
   onCancel: () => void;
-  children: any | null; //TODO: 리액트 노드들 또는 null
+  children?: ReactNode;
 };
 
 export default function AskModal({

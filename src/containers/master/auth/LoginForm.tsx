@@ -14,23 +14,21 @@ import { masterIsLoginThunk } from '../../../modules/master/user';
 export default withRouter(function LoginForm({ history }) {
   const [error, setError] = useState('');
   const dispatch = useDispatch();
-  const {
-    form,
-    data: auth,
-    loading: authLoading,
-    error: authError,
-  } = useSelector(({ masterAuth, masterAuthAsync }: RootState) => ({
-    form: masterAuth.login,
-    data: masterAuthAsync.auth.data,
-    loading: masterAuthAsync.auth.loading,
-    error: masterAuthAsync.auth.error,
-  }));
+  const { form, data: auth, error: authError } = useSelector(
+    ({ masterAuth, masterAuthAsync }: RootState) => ({
+      form: masterAuth.login,
+      data: masterAuthAsync.auth.data,
+      loading: masterAuthAsync.auth.loading,
+      error: masterAuthAsync.auth.error,
+    }),
+  );
 
-  const { data: user } = useSelector(({ masterUser }: RootState) => ({
-    data: masterUser.user?.data,
-  }));
-
-  const loading = authLoading;
+  const { data: user, userError } = useSelector(
+    ({ masterUser }: RootState) => ({
+      data: masterUser.user?.data,
+      userError: masterUser.user?.error,
+    }),
+  );
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +69,10 @@ export default withRouter(function LoginForm({ history }) {
 
   // user 값이 잘 설정되었는지 확인
   useEffect(() => {
+    if (userError) {
+      setError('로그인 실패');
+    }
+
     if (user) {
       history.push('/master');
       try {

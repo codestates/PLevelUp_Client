@@ -14,7 +14,7 @@ import { AxiosError } from 'axios';
 
 type PaymentType = {
   club: MainClubReadResType;
-  user: MainIsLoginResType | any;
+  user: MainIsLoginResType;
   error: AxiosError | null;
   loading: boolean;
 };
@@ -88,7 +88,7 @@ export default withRouter(function PaymentTemplate({
                 <div className={styles.clubInfo}>
                   <div className={styles.coverImg}>
                     <div className={styles.imgUrl}>
-                      <img src={coverUrl} className={styles.url}></img>
+                      <img src={coverUrl} className={styles.url} />
                     </div>
                   </div>
                   <div className={styles.compactClub}>
@@ -170,7 +170,7 @@ export default withRouter(function PaymentTemplate({
                       <div className={styles.price}>{price}</div>
                     </div>
                   </div>
-                  <div className={styles.middleLine}></div>
+                  <div className={styles.middleLine} />
                   <div className={styles.infoContainer}>
                     <div className={styles.method}>
                       <span>결제수단 선택</span>
@@ -182,7 +182,7 @@ export default withRouter(function PaymentTemplate({
                             type="radio"
                             value="card"
                             name="selectMethod"
-                          ></input>
+                          />
                           신용카드 / 체크카드
                           <div className={styles.cardNotice}>
                             모든 신용카드 4개월 무이자 할부 가능
@@ -193,13 +193,13 @@ export default withRouter(function PaymentTemplate({
                             type="radio"
                             value="vbank"
                             name="selectMethod"
-                          ></input>
+                          />
                           계좌이체 (가상계좌)
                         </div>
                       </form>
                     </div>
                   </div>
-                  <div className={styles.middleLine}></div>
+                  <div className={styles.middleLine} />
                   <div className={styles.infoContainer}>
                     <div className={styles.refundPolicy}>
                       ※ 수수료 발생 기간에도 결제 당일 23시 59분까지 전액 환불이
@@ -257,11 +257,15 @@ export default withRouter(function PaymentTemplate({
                     </div>
                     <div className={styles.right}>
                       <div className={styles.classImg}>
-                        <img src={coverUrl} className={styles.coverImg} />
+                        <img
+                          src={coverUrl}
+                          className={styles.coverImg}
+                          alt="coverUrl"
+                        />
                       </div>
                     </div>
                   </div>
-                  <div className={styles.margin}></div>
+                  <div className={styles.margin} />
                   <div className={styles.detailInfo}>
                     <div className={styles.textBox}>
                       <div className={styles.timeContainer}>
@@ -346,7 +350,7 @@ export default withRouter(function PaymentTemplate({
                     <div className={styles.price}>{`${price}원`}</div>
                   </div>
                 </div>
-                <div className={styles.middleLine}></div>
+                <div className={styles.middleLine} />
                 <div className={styles.infoContainer}>
                   <div className={styles.method}>
                     <span>결제수단 선택</span>
@@ -354,28 +358,20 @@ export default withRouter(function PaymentTemplate({
                   <div className={styles.infoContainer}>
                     <form>
                       <div className={styles.formCheck}>
-                        <input
-                          type="radio"
-                          value="card"
-                          name="selectMethod"
-                        ></input>
+                        <input type="radio" value="card" name="selectMethod" />
                         신용카드 / 체크카드
                         <div className={styles.cardNotice}>
                           모든 신용카드 4개월 무이자 할부 가능
                         </div>
                       </div>
                       <div className={styles.formCheck}>
-                        <input
-                          type="radio"
-                          value="vbank"
-                          name="selectMethod"
-                        ></input>
+                        <input type="radio" value="vbank" name="selectMethod" />
                         계좌이체 (가상계좌)
                       </div>
                     </form>
                   </div>
                 </div>
-                <div className={styles.middleLine}></div>
+                <div className={styles.middleLine} />
                 <div className={styles.infoContainer}>
                   <div className={styles.refundPolicy}>
                     ※ 수수료 발생 기간에도 결제 당일 23시 59분까지 전액 환불이

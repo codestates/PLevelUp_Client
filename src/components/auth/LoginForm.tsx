@@ -6,6 +6,7 @@ import kakaoLoginBtnOfficial from '../../asset/kakao_login_medium_wide.png';
 import kakaoLoginBtn from '../../asset/kakao_login.png';
 import googleLoginBtn from '../../asset/google_login.png';
 import FindPasswordModal from '../../components/auth/FindPasswordModal';
+import { SERVER_HOST } from '../../config';
 
 type LoginFormProps = {
   form: MainSignUpReqType | MainLoginReqType;
@@ -97,11 +98,11 @@ export default function LoginForm({
           >
             카카오로 시작하기
           </button>
-          <a href={`http://localhost:5000/api/main/auth/login/google`}>
+          <a href={`${SERVER_HOST}/api/main/auth/login/google`}>
             구글로 시작하기
           </a>
           <br />
-          <a href={`http://localhost:5000/api/main/auth/login/kakao`}>
+          <a href={`${SERVER_HOST}/api/main/auth/login/kakao`}>
             카카오로 시작하기
           </a>
         </form>

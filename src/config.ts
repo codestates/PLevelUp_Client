@@ -1,4 +1,4 @@
-export const SERVER_HOST =
-  process.env.NODE_ENV == 'production'
-    ? 'https://api.p-levelup.com'
-    : 'http://localhost:5000';
+import dotenv from 'dotenv';
+dotenv.config();
+
+export const SERVER_HOST = process.env.REACT_APP_SERVER_HOST;

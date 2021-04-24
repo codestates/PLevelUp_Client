@@ -5,28 +5,15 @@ import 'quill/dist/quill.bubble.css';
 import styles from '../../../../styles/pages/master/edit_page/EditPage.module.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import '../../../../styles/pages/master/edit_page/EditPageEditor.css';
 import { MasterClubEditReqType } from '../../../../api/master/club';
-// children을 Type으로 빼고 ReactNode 타입지정은 귀찮으니 any로..
-const EditorBlock = ({ children }: any) => (
-  <div className={styles.editBlock}>{children}</div>
-);
-
-type InputType = {
-  placeholder: string;
-  value: string | number | undefined;
-  name: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-};
-
-const QuillWrapper = ({ children }: any) => (
-  <div className={styles.quillWrapper}>{children}</div>
-);
+import { errorsType } from '../../../../containers/master/club/edit/EditorContainer';
 
 function createQuill(
-  element: React.MutableRefObject<any>,
+  element: React.RefObject<HTMLDivElement>,
   placeholderString: string,
 ) {
-  return new Quill(element.current, {
+  return new Quill(element.current!, {
     theme: 'bubble',
     placeholder: placeholderString,
     modules: {
@@ -45,10 +32,11 @@ function createQuill(
 type EditorType = {
   club: MasterClubEditReqType;
   onChangeField: (key: string, value: string | number | Date | File) => void;
+  errors: errorsType;
 };
 
-export default function Editor({ club, onChangeField }: EditorType) {
-  const descriptionQuillElement = useRef<any>(); // Quill을 적용할 DivElement 를 설정
+export default function Editor({ club, onChangeField, errors }: EditorType) {
+  const descriptionQuillElement = useRef<HTMLDivElement>(null); // Quill을 적용할 DivElement 를 설정
   const descriptionQuillInstance = useRef<Quill>(); // Quill 인스턴스를 설정
   const [startDate, setStartDate] = useState<Date>();
 
@@ -61,11 +49,13 @@ export default function Editor({ club, onChangeField }: EditorType) {
   };
 
   useEffect(() => {
-    descriptionQuillInstance.current = createQuill(
-      descriptionQuillElement,
-      '설명을 입력하세요.',
-    );
-    quillChange('description', descriptionQuillInstance.current);
+    if (descriptionQuillElement) {
+      descriptionQuillInstance.current = createQuill(
+        descriptionQuillElement,
+        '설명을 입력하세요.',
+      );
+      quillChange('description', descriptionQuillInstance.current);
+    }
   }, [onChangeField]);
 
   // 수정 시 기존 데이터를 화면에 출력해준다.
@@ -89,23 +79,36 @@ export default function Editor({ club, onChangeField }: EditorType) {
 
   return (
     <div className={styles.masterEditWrapper}>
-      <EditorBlock>
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>제목</span>
         <input
-          className={styles.titleInput}
+          className={styles.editInput}
           placeholder="제목을 입력하세요."
           onChange={onChange}
           value={club.title}
           name="title"
         />
+      </div>
+      {errors.title !== '' && (
+        <div className={styles.editErrorMessage}>{errors.title}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>장소</span>
         <input
-          className={styles.etcInput}
+          className={styles.editInput}
           placeholder="장소를 입력하세요."
           onChange={onChange}
           value={club.place}
           name="place"
         />
+      </div>
+      {errors.place !== '' && (
+        <div className={styles.editErrorMessage}>{errors.place}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>금액</span>
         <input
-          className={styles.etcInput}
+          className={styles.editInput}
           placeholder="금액을 입력하세요."
           onChange={onChange}
           value={club.price}
@@ -114,8 +117,93 @@ export default function Editor({ club, onChangeField }: EditorType) {
           min="0"
           name="price"
         />
-        <span>시작일: </span>
-        <span>
+      </div>
+      {errors.price !== '' && (
+        <div className={styles.editErrorMessage}>{errors.price}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>횟수</span>
+        <input
+          className={styles.editInput}
+          placeholder="횟수를 입력하세요."
+          onChange={onChange}
+          value={club.times}
+          name="times"
+          type="number"
+          step="1"
+          min="1"
+        />
+      </div>
+      {errors.times !== '' && (
+        <div className={styles.editErrorMessage}>{errors.times}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>최대 인원</span>
+        <input
+          className={styles.editInput}
+          placeholder="최대 인원을 입력하세요."
+          onChange={onChange}
+          value={club.limitUserNumber}
+          type="number"
+          step="1"
+          min="2"
+          name="limitUserNumber"
+        />
+      </div>
+      {errors.limitUserNumber !== '' && (
+        <div className={styles.editErrorMessage}>{errors.limitUserNumber}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>요약</span>
+        <input
+          className={styles.editInput}
+          placeholder="요약을 입력하세요. 최대 40자"
+          onChange={onChange}
+          value={club.summary}
+          type="text"
+          name="summary"
+        />
+      </div>
+      {errors.summary !== '' && (
+        <div className={styles.editErrorMessage}>{errors.summary}</div>
+      )}
+      {club.coverUrl ? (
+        <>
+          <div className={styles.editInputBlock}>
+            <span className={styles.editName}>커버 이미지</span>
+            {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
+          </div>
+          <div className={styles.editInputBlock}>
+            <span className={styles.editName} />
+            <input
+              className={styles.editFile}
+              type="file"
+              accept="image/jpg,impge/png,image/jpeg,image/gif"
+              name="coverImg"
+              onChange={onChange}
+            />
+          </div>
+        </>
+      ) : (
+        <div className={styles.editInputBlock}>
+          <span className={styles.editName}>커버 이미지</span>
+          <input
+            className={styles.editFile}
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            name="coverImg"
+            onChange={onChange}
+          />
+        </div>
+      )}
+      {errors.coverImg !== '' && (
+        <div className={styles.editErrorMessage}>{errors.coverImg}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName} style={{ float: 'left' }}>
+          시작일
+        </span>
+        <div className={styles.editDatePicker} style={{ float: 'left' }}>
           <DatePicker
             selected={startDate}
             onChange={(date: Date) => {
@@ -125,50 +213,23 @@ export default function Editor({ club, onChangeField }: EditorType) {
               }
             }}
           />
-        </span>
-        <br />
-        <input
-          className={styles.etcInput}
-          placeholder="횟수를 입력하세요."
-          onChange={onChange}
-          value={club.times}
-          name="times"
-          type="number"
-          step="1"
-          min="1"
-        />
-        <input
-          className={styles.etcInput}
-          placeholder="최대 인원을 입력하세요."
-          onChange={onChange}
-          value={club.limitUserNumber}
-          type="number"
-          step="1"
-          min="0"
-          name="limitUserNumber"
-        />
-        <input
-          className={styles.etcInput}
-          placeholder="요약을 입력하세요. 최대 40자"
-          onChange={onChange}
-          value={club.summary}
-          type="text"
-          name="summary"
-        />
-       <hr/>
-        <QuillWrapper>
+        </div>
+      </div>
+      {errors.startDate !== '' && (
+        <div className={styles.editErrorMessage}>{errors.startDate}</div>
+      )}
+      <div className={styles.editInputBlock}>
+        <span className={styles.editName}>설명</span>
+        <div className={styles.editInput}>
           <div ref={descriptionQuillElement} />
-        </QuillWrapper>
-        {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
-       <p>
-        <input
-          type="file"
-          accept="image/jpg,impge/png,image/jpeg,image/gif"
-          name="coverImg"
-          onChange={onChange}
-        />
-       </p>
-      </EditorBlock>
+        </div>
+      </div>
+      {errors.description !== '' && (
+        <div className={styles.editErrorMessage}>{errors.description}</div>
+      )}
+      {errors.server !== '' && (
+        <div className={styles.editErrorMessage}>{errors.server}</div>
+      )}
     </div>
   );
 }

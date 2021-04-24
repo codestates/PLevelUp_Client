@@ -3,9 +3,8 @@
 
 .masterListWrapper {
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 60px auto 0;
   background-color: #fff; // utils에서 변수명 사용
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,12 +14,14 @@
   .writeListButtonWrapper {
     display: flex;
     justify-content: flex-end;
-    margin-bottom:2rem;
+    margin-top:1rem;
+    margin-bottom:1rem;
     cursor: pointer;
+    width: 90%;
     .writeBtn{
       @include btn-default('primary');
       font-size: 14px;
-      height: 48px;
+      height: 36px;
       width: 100%;
     }
   }
@@ -31,7 +32,7 @@
     font-weight: bold;
     font-size: 18px;
     line-height: 22px;
-    padding: 0px 20px;
+    padding: 0 20px;
     @include respond-to(not-mobile) {
       margin: 20px 30px;
       font-weight: 700;
@@ -71,12 +72,25 @@
 
 .loading {
   text-align: center;
-
   img {
-    width: 200px;
+    @include respond-to('not-mobile') {
+      width: 200px;
+    }
+    @include respond-to('small') {
+      width: 100px;
+    }
   }
 }
-
+.goToTop {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
 .goToTop {
   text-align: center;
   margin-top: 5px;

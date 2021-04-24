@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { MouseEventHandler } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -6,8 +6,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from '../../styles/pages/landing_page/LandingPage.module.scss';
 import { Link } from 'react-router-dom';
 
-function SampleNextArrow(props: any) {
-  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
+function SampleNextArrow(props: {
+  className?: string;
+  style?: Object;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
   const { className, style, onClick } = props;
   return (
     <div
@@ -22,8 +25,11 @@ function SampleNextArrow(props: any) {
     />
   );
 }
-function SamplePrevArrow(props: any) {
-  //슬릭배너 props 나와있지 않아 타입알기 어렵다.
+function SamplePrevArrow(props: {
+  className?: string;
+  style?: Object;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}) {
   const { className, style, onClick } = props;
   return (
     <div
@@ -54,11 +60,20 @@ export default function SlickBanner({ data }: { data: bannerDataType[] }) {
     slidesToScroll: 1,
     adaptiveHeight: true,
     autoplay: true,
-    speed: 2000,
+    speed: 500,
     autoplaySpeed: 5000,
     cssEase: 'linear',
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 769,
+        settings: {
+          arrows: false,
+          dots: true,
+        },
+      },
+    ],
   };
   return (
     <div className={styles.bannerContainer}>
@@ -67,7 +82,7 @@ export default function SlickBanner({ data }: { data: bannerDataType[] }) {
           return (
             <div className={styles.imgBox} key={banner.id}>
               <Link to="/list">
-                <img className={styles.img} src={banner.url} />
+                <img className={styles.img} src={banner.url} alt="bannerImg" />
               </Link>
             </div>
           );

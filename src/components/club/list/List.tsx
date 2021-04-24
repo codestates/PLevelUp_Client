@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { MainClubListResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
 import ClubCardContainer from '../../../containers/common/ClubCardContainer';

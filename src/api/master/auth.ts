@@ -62,7 +62,7 @@ export async function masterSignUp({
 }
 
 export type MasterIsLoginResType = {
-  _id: number;
+  id: number;
   email: string;
   username: string;
 };

@@ -11,11 +11,12 @@
       background: transparent;
       top: 0px;
       transition: top 1s ease 0s;
+      border-bottom: 1px solid #e1e1e1;
       width: 100%;
-      height: 49px;
+      height: 61px;
 
       &.active {
-        top: -48px;
+        top: -61px;
       }
 
       .navContainer {
@@ -28,7 +29,7 @@
           justify-content: space-between;
           align-items: center;
           width: 100%;
-          height: 48px;
+          height: 61px;
           padding: 0px 21px;
           z-index: 1060;
           background: white;
@@ -58,6 +59,16 @@
 
         .pcMenuList {
           display: none;
+          align-items: center;
+          .pcMenuItem {
+            // margin-right: 5px;
+            .link {
+              color: #212529;
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
         }
         .mobileWrapper {
           .menuList {
@@ -79,6 +90,12 @@
               top: 32px;
               transition: top 0.4s ease 0s;
             }
+            .link {
+              color: #212529;
+              &:hover {
+                color: $primary;
+              }
+            }
 
             li {
               padding: 13px 0px 13px 5px;
@@ -91,10 +108,23 @@
 
             .dropDown {
               padding: 13px 0px 13px 5px;
+              color: #212529;
+              &:hover {
+                color: $primary;
+              }
+              .link {
+                color: #212529;
+                &:hover {
+                  color: $primary;
+                }
+              }
             }
           }
         }
       }
+    }
+    .spacer {
+      height: 61px;
     }
   }
 }
@@ -165,6 +195,20 @@
           left: 0px;
           right: 0px;
           padding: 0px 16px;
+          align-items: center;
+          .pcMenuItem {
+            margin-right: 15px;
+            .link {
+              color: #212529;
+              font-size: 14px;
+              display: inline-block;
+              padding: 20px 8px;
+              height: 100%;
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
 
           li {
             font-size: 14px;
@@ -175,6 +219,7 @@
 
           .pcVerIcon {
             font-size: 14px;
+            position: relative;
             display: inline-block;
             padding: 14px 14px;
             height: 100%;
@@ -195,7 +240,6 @@
               border: 0.5px solid #e8e8e8;
               right: 0px;
               margin-top: 9px;
-              margin-right: 230px;
               font-size: 14px;
               font-weight: 500;
               color: #737373;
@@ -208,6 +252,12 @@
               .dropDown {
                 padding: 8px 0px;
                 cursor: pointer;
+                .link {
+                  color: #212529;
+                  &:hover {
+                    color: $primary;
+                  }
+                }
               }
             }
           }
@@ -217,6 +267,9 @@
           }
         }
       }
+    }
+    .spacer {
+      height: 61px;
     }
   }
 }
