@@ -3,8 +3,7 @@ import ApplyFAQItem from './ApplyFAQItem';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 
 //faq area
-export default function faqArea({ faq }: { faq: any }) {
-
+export default function FaqArea({ faq }: { faq: any }) {
   const [faqData, setFaqData] = useState(faq);
 
   return (
@@ -12,16 +11,11 @@ export default function faqArea({ faq }: { faq: any }) {
       <div className={styles.faqContainer}>
         <div className={styles.faqContents}>
           <div className={styles.faqTitle}>FAQ</div>
-          {
-            faqData.map((data: any) => (
-              <ApplyFAQItem key={data.id} faq={data} />
-            ))
-          }
-
+          {faqData.map((data: any) => (
+            <ApplyFAQItem key={data.id} faq={data} />
+          ))}
         </div>
       </div>
     </div>
   );
-
-
 }
