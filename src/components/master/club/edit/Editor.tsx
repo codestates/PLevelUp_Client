@@ -165,17 +165,35 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
       {errors.summary !== '' && (
         <div className={styles.editErrorMessage}>{errors.summary}</div>
       )}
-      <div className={styles.editInputBlock}>
-        <span className={styles.editName}>커버 이미지</span>
-        <input
-          className={styles.editFile}
-          type="file"
-          accept="image/jpg,impge/png,image/jpeg,image/gif"
-          name="coverImg"
-          onChange={onChange}
-        />
-        {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
-      </div>
+      {club.coverUrl ? (
+        <>
+          <div className={styles.editInputBlock}>
+            <span className={styles.editName}>커버 이미지</span>
+            {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
+          </div>
+          <div className={styles.editInputBlock}>
+            <span className={styles.editName} />
+            <input
+              className={styles.editFile}
+              type="file"
+              accept="image/jpg,impge/png,image/jpeg,image/gif"
+              name="coverImg"
+              onChange={onChange}
+            />
+          </div>
+        </>
+      ) : (
+        <div className={styles.editInputBlock}>
+          <span className={styles.editName}>커버 이미지</span>
+          <input
+            className={styles.editFile}
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            name="coverImg"
+            onChange={onChange}
+          />
+        </div>
+      )}
       {errors.coverImg !== '' && (
         <div className={styles.editErrorMessage}>{errors.coverImg}</div>
       )}
