@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { masterIsLoginThunk, masterTempSetUser } from './modules/master/user';
 import { mainIsLoginThunk, mainTempSetUser } from './modules/user';
 
+import CoronaPage from 'pages/CoronaPage';
 import IntroducePage from 'pages/IntroducePage';
 import PaymentPage from 'pages/PaymentPage';
 import PaymentHistoryPage from 'pages/PaymentHistoryPage';
@@ -69,6 +70,7 @@ function App() {
         <Route exact path="/master/edit" component={MasterClubEditPage} />
         <Route exact path="/master/:clubId" component={MasterClubReadPage} />
         <Route exact path={['/master/']} component={MasterClubListPage} />
+        { /* 민정님이 연결하실 코로나페이지 <Route exact path="" component={CoronaPage} /> */}
         <Route exact path="/" component={LandingPage} />
       </Switch>
       <Footer />

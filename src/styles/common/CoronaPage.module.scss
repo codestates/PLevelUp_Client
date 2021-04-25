@@ -1,0 +1,84 @@
+@import '../common/basicMixin.scss';
+
+p{
+    margin-top: 0;
+    color: rgba(0,0,0,.87);
+    line-height: 1.5;
+}
+  
+.Wrapper {
+   
+    @include respond-to('not-mobile'){
+        max-width: 840px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 16px;
+        
+    }
+    @include respond-to('small'){
+        max-width: 840px;
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 16px;
+    }
+    .container{ 
+        padding-top:16px;
+
+        .LinkBox{
+            font-size: 1rem;
+            float: left; 
+            color: $primaryLight;
+        }
+        .index{
+             text-align: center;
+
+            .title{
+                font-weight: bold;
+                margin: 16px;
+                text-align: center;           
+            }
+            .date{
+                font-size: 13px;
+            }
+        }
+        .coronaWrapperBanner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color:rgb(255, 255, 255);
+            background: rgb(0, 172, 131);  
+            max-width: 840px;
+            height: 280px;
+            margin: 32px 0px;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0px;
+   
+                  .bannerSubImg {
+                    @include respond-to('not-mobile') {
+                      width: 30px;
+                    }
+          
+                    @include respond-to('small') {
+                      width: 20px;
+                    }
+                  }
+                
+                .bannerTitle {  
+
+                    font-weight: bold;
+                  @include respond-to('not-mobile') {                  
+                    font-size: 28px;                
+                  }
+          
+                  @include respond-to('small') {           
+                    font-size: 18px;                    
+                  }
+                }
+                         
+          }
+        .body{
+            margin-bottom: 100px;
+        }
+    }
+}

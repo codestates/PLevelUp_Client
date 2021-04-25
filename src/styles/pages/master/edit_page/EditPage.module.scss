@@ -88,4 +88,26 @@
       }
     }
   }
+
+  .btnWrapper {
+    @include respond-to('not-mobile') {
+      display: flex;
+      justify-content: flex-end;
+      .btn {
+        @include btn-default('primary');
+        width: 4rem;
+        &:nth-child(2) {
+          margin-left: 20px;
+        }
+      }
+    }
+    @include respond-to('small') {
+      display: flex;
+      justify-content: space-between;
+      .btn {
+        @include btn-default('primary');
+        width: 48%;
+      }
+    }
+  }
 }

@@ -70,14 +70,19 @@
 
 .goToTop {
   text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 50px;
+  margin-bottom: 10px;
 
-  svg {
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  .img{
+    width: 40px;
+    height: 40px;
+
+
+  // svg {
+  //   &:hover {
+  //     cursor: pointer;
+  //   }
+  // }
 }
 
 //searchBar

@@ -6,11 +6,11 @@ import List from '../../../components/club/list/List';
 import { mainClubUnloadList, mainListThunk } from '../../../modules/club/list';
 import { MainClubListResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/list_page/ListPage.module.scss';
-import { FaArrowCircleUp } from 'react-icons/fa';
 import Search from '../../../components/club/list/Search';
 import qs from 'qs';
 import ErrorView from '../../../components/common/ErrorView';
 import Loading from '../../../components/common/Loading';
+import gotoTopImg from '../../../asset/landingPageInGotoUp/goToTopImg.png';
 
 export default withRouter(function ListContainer({ location, match, history }) {
   const loader = useRef<HTMLDivElement>(null);
@@ -201,7 +201,8 @@ export default withRouter(function ListContainer({ location, match, history }) {
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
-                <FaArrowCircleUp className={styles.icon} size={64} />
+                <img src={gotoTopImg} className={styles.img} />
+                {/* <FaArrowCircleUp className={styles.icon} size={64} /> */}
               </div>
             )}
           </div>
