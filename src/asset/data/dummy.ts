@@ -33,11 +33,6 @@ export const infoBanner = [
     id: 2,
     url: introduce2,
   },
-  {
-    id: 5,
-    url:
-      'https://cdn.discordapp.com/attachments/828197199833202739/835749252361617447/2021-04-25_2.27.39.png',
-  },
 ];
 
 export type FaqDummyType = {
