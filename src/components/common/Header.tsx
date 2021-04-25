@@ -90,6 +90,13 @@ export default function Header({ user, onLogout }: HeaderProps) {
             </div>
           </div>
           <div className={styles.pcMenuList}>
+            {user === null || (user !== null && 'type' in user) ? null : (
+              <div className={styles.pcMenuItem} onClick={handleAllClose}>
+                <Link className={styles.link} to="/master">
+                  내 클럽 보기
+                </Link>
+              </div>
+            )}
             <div className={styles.pcMenuItem} onClick={handleAllClose}>
               <Link className={styles.link} to="/club">
                 모든 클럽 보기
@@ -110,7 +117,7 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 }
               >
                 {user ? (
-                  user.id ? (
+                  user !== null && 'type' in user ? (
                     <div>
                       <div className={styles.dropDown}>
                         <Link className={styles.link} to="/mypage">
@@ -128,11 +135,6 @@ export default function Header({ user, onLogout }: HeaderProps) {
                     </div>
                   ) : (
                     <div>
-                      <div className={styles.dropDown}>
-                        <Link className={styles.link} to="/master">
-                          내 클럽 보기
-                        </Link>
-                      </div>
                       <div className={styles.dropDown} onClick={onLogout}>
                         로그아웃
                       </div>
@@ -202,7 +204,7 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 }
               >
                 {user ? (
-                  user.id ? (
+                  user !== null && 'type' in user ? (
                     <div>
                       <Link
                         className={styles.link}
@@ -236,15 +238,17 @@ export default function Header({ user, onLogout }: HeaderProps) {
                         onClick={handleAllClose}
                         to="/master"
                       >
-                        <li className={styles.dropDown} onClick={onLogout}>
-                          내 클럽 보기
-                        </li>
+                        <li className={styles.dropDown}>내 클럽 보기</li>
                       </Link>
                       <li className={styles.dropDown} onClick={onLogout}>
                         로그아웃
                       </li>
                       <div
-                        className={isMyPageOpen ? `${styles.modalOpen}` : ''}
+                        className={
+                          isMyPageOpen
+                            ? `${styles.modalOpen} ${styles.logout}`
+                            : ''
+                        }
                         onClick={handleAllClose}
                       />
                     </div>
