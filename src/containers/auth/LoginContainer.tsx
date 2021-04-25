@@ -13,9 +13,11 @@ import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
 import LoginForm from '../../components/auth/LoginForm';
 import { mainIsLoginThunk } from '../../modules/user';
+import { useCookies } from 'react-cookie';
 
-export default withRouter(function LoginConatiner({ history }) {
+export default withRouter(function LoginContainer({ history }) {
   const [error, setError] = useState('');
+  const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
   const dispatch = useDispatch();
   const { form, data: auth, error: authError } = useSelector(
     ({ mainAuth, mainAuthAsync }: RootState) => ({
@@ -24,6 +26,10 @@ export default withRouter(function LoginConatiner({ history }) {
       error: mainAuthAsync.auth.error,
     }),
   );
+
+  useEffect(() => {
+    dispatch(mainIsLoginThunk());
+  }, [cookies]);
 
   const { data: user, userError } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
@@ -67,7 +73,7 @@ export default withRouter(function LoginConatiner({ history }) {
   useEffect(() => {
     dispatch(mainInitializeForm('login'));
     return () => {
-      dispatch(mainInitializeAuth(''));
+      dispatch(mainInitializeAuth());
     };
   }, []);
 
