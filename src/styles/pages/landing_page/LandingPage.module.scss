@@ -1,7 +1,6 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
 
-
 $fontColorForTitle: rgb(255, 255, 255);
 
 .bannerContainer {
@@ -9,21 +8,26 @@ $fontColorForTitle: rgb(255, 255, 255);
   padding: 20px 30px;
   width: 100%;
   max-width: 1140px;
+
   @include respond-to('small') {
     width: 100vw;
     padding: 0px 0px;
   }
+
   .imgBox {
     position: relative;
     width: 100%;
-    min-height: 25vh;
+    min-height: 43vh;
     max-height: 300px;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
+    border-radius: 8px;
+
     @include respond-to('small') {
       max-height: 300px;
       min-height: 30vh;
+      border-radius: 0px;
     }
     .img {
       vertical-align: middle;
