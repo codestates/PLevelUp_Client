@@ -129,7 +129,7 @@ export default function MyPageForm({
           )}
           {isNavOpen && (
             <div className={styles.applyCardList}>
-              {/* <ApplyCardList /> //TODO: 컴포넌트 */}
+              {/* <ApplyCardList />//민정 플젝이후 리팩: 컴포넌트 */}
               {apply?.map((club: MainApplyResType) => (
                 <ApplyCard
                   key={club.title}

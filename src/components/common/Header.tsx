@@ -43,7 +43,9 @@ export default function Header({ user, onLogout }: HeaderProps) {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -187,6 +189,10 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 >
                   <li>자주 묻는 질문</li>
                 </Link>
+                <div
+                  className={isMenuOpen ? `${styles.modalOpen}` : ''}
+                  onClick={handleAllClose}
+                />
               </ul>
 
               <ul
@@ -219,6 +225,10 @@ export default function Header({ user, onLogout }: HeaderProps) {
                       <li className={styles.dropDown} onClick={onLogout}>
                         로그아웃
                       </li>
+                      <div
+                        className={isMyPageOpen ? `${styles.modalOpen}` : ''}
+                        onClick={handleAllClose}
+                      />
                     </div>
                   ) : (
                     <div>
@@ -234,6 +244,10 @@ export default function Header({ user, onLogout }: HeaderProps) {
                       <li className={styles.dropDown} onClick={onLogout}>
                         로그아웃
                       </li>
+                      <div
+                        className={isMyPageOpen ? `${styles.modalOpen}` : ''}
+                        onClick={handleAllClose}
+                      />
                     </div>
                   )
                 ) : (
@@ -255,6 +269,14 @@ export default function Header({ user, onLogout }: HeaderProps) {
                         클럽장 로그인
                       </Link>
                     </li>
+                    <div
+                      className={
+                        isMyPageOpen
+                          ? `${styles.modalOpen} ${styles.logout}`
+                          : ''
+                      }
+                      onClick={handleAllClose}
+                    />
                   </div>
                 )}
               </ul>
