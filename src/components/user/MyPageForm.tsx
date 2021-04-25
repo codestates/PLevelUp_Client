@@ -125,7 +125,7 @@ export default function MyPageForm({
             <div className={styles.clubEmptyBox}>
               <p className={styles.message}>클럽이 없습니다.</p>
               <button className={styles.moveBtn}>
-                <Link to="/club">멤버쉽 신청하러 가기</Link>
+                <Link to="/club">멤버십 신청하러 가기</Link>
               </button>
             </div>
           )}
