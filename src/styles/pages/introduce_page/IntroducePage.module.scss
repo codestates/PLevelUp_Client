@@ -15,9 +15,13 @@
     }
 
     .contentImg {
+      max-width: 1000px;
+      margin-left: 45px;
+
       @include respond-to('small') {
         width: 100vw;
         padding: 0px 0px;
+        margin: 0px;
       }
     }
   }
