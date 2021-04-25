@@ -1,28 +1,53 @@
 export const bannerData = [
   {
-    id: 1,
+    id: 10,
     url:
       'https://image.trevari.co.kr/file/01c1283e-64c9-4689-9c99-b8200c3ab060.book-pc.png',
   },
   {
-    id: 2,
+    id: 7,
     url:
       'https://image.trevari.co.kr/file/bec681f0-c194-4c91-b275-1681aa3e6049.toojaPC.png',
   },
   {
-    id: 3,
+    id: 8,
     url:
       'https://image.trevari.co.kr/file/97906a40-5487-4a4b-bcc2-027055dbc4e4.career-pm%28PC%29.png',
+  },
+  {
+    id: 9,
+    url:
+      'https://image.trevari.co.kr/file/97906a40-5487-4a4b-bcc2-027055dbc4e4.career-pm%28PC%29.png',
+  },
+  {
+    id: 1,
+    url:
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749252361617447/2021-04-25_2.27.39.png',
+  },
+  {
+    id: 2,
+    url:
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749264066871306/2021-04-25_2.27.28.png',
+  },
+  {
+    id: 3,
+    url:
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749283495149598/2021-04-25_2.27.48.png',
   },
   {
     id: 4,
     url:
-      'https://image.trevari.co.kr/file/97906a40-5487-4a4b-bcc2-027055dbc4e4.career-pm%28PC%29.png',
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749292870074388/2021-04-25_2.27.56.png',
   },
   {
     id: 5,
     url:
-      'https://cdn.discordapp.com/attachments/828197199833202739/835749252361617447/2021-04-25_2.27.39.png',
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749301560934451/2021-04-25_2.28.03.png',
+  },
+  {
+    id: 6,
+    url:
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749315531898912/2021-04-25_2.28.14.png',
   },
 ];
 

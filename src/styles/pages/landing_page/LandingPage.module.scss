@@ -15,7 +15,7 @@ $fontColorForTitle: rgb(255, 255, 255);
   .imgBox {
     position: relative;
     width: 100%;
-    min-height: 25vh;
+    min-height: 35vh;
     max-height: 300px;
     margin: 0 auto;
     text-align: center;
@@ -24,6 +24,8 @@ $fontColorForTitle: rgb(255, 255, 255);
       max-height: 300px;
       min-height: 30vh;
     }
+    //1140-310 1024-316  900 -268     900-287 768-203
+    //1140-308 1100 -292 1000-263 900-230 800-202
     .img {
       vertical-align: middle;
       border-style: none;
