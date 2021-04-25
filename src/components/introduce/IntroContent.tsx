@@ -1,5 +1,5 @@
 import styles from '../../styles/pages/introduce_page/IntroducePage.module.scss';
-import introContent from '../../asset/introContent/IntroContent.png';
+import introduceContent from '../../asset/introduceContent/introduceContent.png';
 
 export default function IntroduceContent() {
   return (
@@ -9,7 +9,7 @@ export default function IntroduceContent() {
           <hr />
           <img
             className={styles.contentImg}
-            src={introContent}
+            src={introduceContent}
             alt="introduce"
           ></img>
         </div>

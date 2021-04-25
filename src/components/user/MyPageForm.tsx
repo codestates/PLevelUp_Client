@@ -6,8 +6,8 @@ import { MainIsLoginResType } from 'api/main/auth';
 import { MouseEventHandler, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AxiosError } from 'axios';
-import { BiDoorOpen } from 'react-icons/bi';
-import { MdBuild } from 'react-icons/md';
+import { AiOutlineReload } from 'react-icons/ai';
+import { IoMdLogOut } from 'react-icons/io';
 import { HiOutlineChevronRight } from 'react-icons/hi';
 import { FaUserCircle } from 'react-icons/fa';
 import Loading from '../../components/common/Loading';
@@ -55,19 +55,17 @@ export default function MyPageForm({
             <div className={styles.menuItem}>
               {user.type === 'local' && (
                 <div className={styles.passwordItem}>
-                  <div className={styles.passwordIcon}>
-                    <MdBuild size="20" />
-                  </div>
-                  <div>
-                    <Link className={styles.link} to="/mypage/changepassword">
-                      비밀번호 변경
-                    </Link>
-                  </div>
+                  <Link className={styles.link} to="/mypage/changepassword">
+                    <div className={styles.passwordIcon}>
+                      <AiOutlineReload size="20" fill="#7b7b7b" />
+                    </div>
+                    <div>비밀번호 변경</div>
+                  </Link>
                 </div>
               )}
               <div className={styles.logOutItem} onClick={onLogout}>
                 <div className={styles.logOutIcon}>
-                  <BiDoorOpen size="20" />
+                  <IoMdLogOut size="20" fill="#7b7b7b" />
                 </div>
                 <div className={styles.logOutBtn}>로그아웃</div>
               </div>
