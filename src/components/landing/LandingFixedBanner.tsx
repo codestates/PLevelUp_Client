@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function LandingFixedBannerOne() {
   return (
     <div className={styles.coronaWrapperBanner}>
-      <Link to={`/club/list`} className={styles.LinkBanner}>
+      <Link to={`/notice`} className={styles.LinkBanner}>
         <div className={styles.bannerContainer}>
           <div className={styles.bannerSubTitle}>
             {`안전하게 만나요  `}
