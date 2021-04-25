@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { MainClubReadResType } from 'api/main/club';
 import { MainIsLoginResType } from 'api/main/auth';
 import { AxiosError } from 'axios';
+import Loading from 'components/common/Loading';
 
 type PaymentType = {
   club: MainClubReadResType;
@@ -26,11 +27,6 @@ export default withRouter(function PaymentTemplate({
   error,
   loading,
 }: PaymentType & RouteComponentProps) {
-  if (!user) {
-    alert('로그인이 필요한 서비스입니다!');
-    history.push('/login');
-  }
-
   const { id, title, place, price, startDate, times, day, coverUrl } = club;
 
   const { IMP } = window;
@@ -76,9 +72,12 @@ export default withRouter(function PaymentTemplate({
     setIsChecked(!isChecked);
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div>
-      {loading && <div>로딩중..</div>}
       <div className={styles.desktopContainer}>
         <Desktop>
           <div className={styles.wrapper}>
@@ -88,7 +87,11 @@ export default withRouter(function PaymentTemplate({
                 <div className={styles.clubInfo}>
                   <div className={styles.coverImg}>
                     <div className={styles.imgUrl}>
-                      <img src={coverUrl} className={styles.url} />
+                      <img
+                        src={coverUrl}
+                        alt="coverUrl"
+                        className={styles.url}
+                      />
                     </div>
                   </div>
                   <div className={styles.compactClub}>
@@ -98,7 +101,12 @@ export default withRouter(function PaymentTemplate({
                       <span className={styles.calendar}>
                         <GoLightBulb color="#b6b6c0" size="17" />
                       </span>
-                      {`첫 만남일 ${startDate}`}
+                      {`첫 만남일: ${String(
+                        new Date(startDate).getFullYear(),
+                      )}년 
+                        ${String(new Date(startDate).getMonth())}월 
+                        ${String(new Date(startDate).getDate())}일
+                      `}
                     </div>
                     <div className={styles.clubTime}>
                       <span className={styles.calendar}>
@@ -107,11 +115,11 @@ export default withRouter(function PaymentTemplate({
                       {`매주 ${day}요일`}
                     </div>
                     <div className={styles.clubPlace}>
-                      <div className={styles.location}>
+                      <span className={styles.location}>
                         <IoLocationSharp color="#b6b6c0" size="17" />
-                      </div>
+                      </span>
                       <div className={styles.location}>
-                        <div>{place}</div>
+                        <div> {place}</div>
                       </div>
                     </div>
                   </div>
@@ -167,7 +175,9 @@ export default withRouter(function PaymentTemplate({
                   <div className={styles.priceWrapper}>
                     <div className={styles.priceContent}>
                       <span className={styles.category}>멤버십 비용</span>
-                      <div className={styles.price}>{price}</div>
+                      <div className={styles.price}>
+                        {`${price.toLocaleString('ko-KR')}원`}
+                      </div>
                     </div>
                   </div>
                   <div className={styles.middleLine} />
@@ -225,14 +235,18 @@ export default withRouter(function PaymentTemplate({
                           className={styles.paymentBtn}
                           onClick={onPay}
                         >
-                          <div>{`${price}원 결제하기`}</div>
+                          <div>{`${price.toLocaleString(
+                            'ko-KR',
+                          )}원 결제하기`}</div>
                         </button>
                       ) : (
                         <button
                           type="button"
                           className={`${styles.paymentBtn} ${styles.disabled}`}
                         >
-                          <div>{`${price}원 결제하기`}</div>
+                          <div>{`${price.toLocaleString(
+                            'ko-KR',
+                          )}원 결제하기`}</div>
                         </button>
                       )}
                     </div>
@@ -273,7 +287,12 @@ export default withRouter(function PaymentTemplate({
                           <GoLightBulb color="#b6b6c0" size="17" />
                         </span>
                         <div className={styles.date}>
-                          {`첫 만남일 ${startDate}`}
+                          {`첫 만남일: ${String(
+                            new Date(startDate).getFullYear(),
+                          )}년 
+                        ${String(new Date(startDate).getMonth())}월 
+                        ${String(new Date(startDate).getDate())}일
+                      `}
                         </div>
                       </div>
                       <div className={styles.timeContainer}>
@@ -347,7 +366,9 @@ export default withRouter(function PaymentTemplate({
                 <div className={styles.infoContainer}>
                   <div className={styles.priceInfo}>
                     <span className={styles.name}>멤버십 비용</span>
-                    <div className={styles.price}>{`${price}원`}</div>
+                    <div className={styles.price}>{`${price.toLocaleString(
+                      'ko-KR',
+                    )}원`}</div>
                   </div>
                 </div>
                 <div className={styles.middleLine} />
@@ -397,14 +418,18 @@ export default withRouter(function PaymentTemplate({
                         className={styles.paymentBtn}
                         onClick={onPay}
                       >
-                        <div>{`${price}원 결제하기`}</div>
+                        <div>{`${price.toLocaleString(
+                          'ko-KR',
+                        )}원 결제하기`}</div>
                       </button>
                     ) : (
                       <button
                         type="button"
                         className={`${styles.paymentBtn} ${styles.disabled}`}
                       >
-                        <div>{`${price}원 결제하기`}</div>
+                        <div>{`${price.toLocaleString(
+                          'ko-KR',
+                        )}원 결제하기`}</div>
                       </button>
                     )}
                   </div>
