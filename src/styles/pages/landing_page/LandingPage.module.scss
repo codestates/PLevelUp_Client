@@ -20,9 +20,11 @@ $fontColorForTitle: rgb(255, 255, 255);
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
+    border-radius: 8px;
     @include respond-to('small') {
       max-height: 300px;
       min-height: 30vh;
+      border-radius: 0px;
     }
     //1140-310 1024-316  900 -268     900-287 768-203
     //1140-308 1100 -292 1000-263 900-230 800-202
