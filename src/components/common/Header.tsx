@@ -65,7 +65,7 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 onClick={handleMenuOpen}
               />
             </div>
-            <div className={styles.logo}>
+            <div className={styles.logo} onClick={handleAllClose}>
               <Link to="/">
                 <span
                   style={{
