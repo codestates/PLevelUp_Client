@@ -1,5 +1,5 @@
 import styles from '../../styles/pages/introduce_page/IntroducePage.module.scss';
-import introContent from '../../asset/IntroContent/IntroContent.png';
+import introContent from '../../asset/introContent/IntroContent.png';
 
 export default function IntroduceContent() {
   return (

@@ -65,13 +65,11 @@ export default function MyPageForm({
                   </div>
                 </div>
               )}
-              <div className={styles.logOutItem}>
+              <div className={styles.logOutItem} onClick={onLogout}>
                 <div className={styles.logOutIcon}>
                   <BiDoorOpen size="20" />
                 </div>
-                <div className={styles.logOutBtn} onClick={onLogout}>
-                  로그아웃
-                </div>
+                <div className={styles.logOutBtn}>로그아웃</div>
               </div>
             </div>
           </div>
@@ -79,10 +77,11 @@ export default function MyPageForm({
         {/* 민정 플젝이후 리팩: 여기 컴포넌트2 */}
         <div className={styles.bannerBox}>
           <a className={styles.aBox}>
-            {/* 민정 플젝이후 리팩: Link교체 */}
             <div className={styles.banner}>
               <div className={styles.title}>
-                사회적 거리두기 단계별 운영방침 💪🏻
+                <Link to="/notice" className={styles.link}>
+                  사회적 거리두기 단계별 운영방침 💪🏻
+                </Link>
               </div>
               <div className={styles.subTitle}>
                 <span>
