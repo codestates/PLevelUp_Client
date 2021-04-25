@@ -5,28 +5,28 @@ const Mobile: React.FC = ({ children }) => {
   const isMobile = useMediaQuery({
     query: '(max-width:768px)',
   });
-  return <React.Fragment>{isMobile && children}</React.Fragment>;
+  return <>{isMobile && children}</>;
 };
 
 const PC: React.FC = ({ children }) => {
   const isPc = useMediaQuery({
     query: '(min-width:769px) ',
   });
-  return <React.Fragment>{isPc && children}</React.Fragment>;
+  return <>{isPc && children}</>;
 };
 
 const Tablet: React.FC = ({ children }) => {
   const isTablet = useMediaQuery({
     query: '(max-width:991px)',
   });
-  return <React.Fragment>{isTablet && children}</React.Fragment>;
+  return <>{isTablet && children}</>;
 };
 
 const Desktop: React.FC = ({ children }) => {
   const isDesktop = useMediaQuery({
     query: '(min-width:992px)',
   });
-  return <React.Fragment>{isDesktop && children}</React.Fragment>;
+  return <>{isDesktop && children}</>;
 };
 
 export { Mobile, PC, Tablet, Desktop };

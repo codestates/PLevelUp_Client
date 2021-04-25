@@ -5,7 +5,7 @@ import { FcMenu } from 'react-icons/fc';
 import styles from '../../styles/common/Header.module.scss';
 import { MasterIsLoginResType } from 'api/master/auth';
 import { MainIsLoginResType } from 'api/main/auth';
-import { Mobile } from '../../mediaQuery';
+import { Mobile } from '../../lib/styles/MediaQuery';
 
 type HeaderProps = {
   user: MainIsLoginResType | MasterIsLoginResType | null;
