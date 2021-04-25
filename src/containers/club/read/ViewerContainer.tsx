@@ -13,10 +13,8 @@ import {
 import Viewer from '../../../components/club/read/Viewer';
 
 export default withRouter(function ViewerContainer({ match, history }) {
-  // 처음 마운트 될 떄 클럽 읽기 API 요청
   const { clubId } = match.params;
   const dispatch = useDispatch();
-  // TODO: ! bookmark 제거 해야함
   const { data: club, error, loading, bookmark, user } = useSelector(
     ({ mainReadAsync, mainBookmarkAsync, mainUser }: RootState) => ({
       data: mainReadAsync.club.data,

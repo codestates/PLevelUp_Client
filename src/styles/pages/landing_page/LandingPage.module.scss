@@ -1,7 +1,6 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
 
-
 $fontColorForTitle: rgb(255, 255, 255);
 
 .bannerContainer {
@@ -9,21 +8,26 @@ $fontColorForTitle: rgb(255, 255, 255);
   padding: 20px 30px;
   width: 100%;
   max-width: 1140px;
+
   @include respond-to('small') {
     width: 100vw;
     padding: 0px 0px;
   }
+
   .imgBox {
     position: relative;
     width: 100%;
-    min-height: 25vh;
+    min-height: 43vh;
     max-height: 300px;
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
+    border-radius: 8px;
+
     @include respond-to('small') {
       max-height: 300px;
       min-height: 30vh;
+      border-radius: 0px;
     }
     .img {
       vertical-align: middle;
@@ -39,7 +43,7 @@ $fontColorForTitle: rgb(255, 255, 255);
 
 .container {
   margin: 0px auto;
-  padding: 4%;
+  padding: 2% 4%;
   width: 100%;
   max-width: 1140px;
   -webkit-box-pack: justify;
@@ -177,3 +181,39 @@ $fontColorForTitle: rgb(255, 255, 255);
     }
   }
 }
+
+//클럽 모두 보러 가기 버튼
+
+.LinkWrapper{
+  margin: 20px;
+
+   .Link{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $primary;
+    background: rgb(255, 255, 255);
+    color:  $primary;
+    font-size: inherit;
+    font-weight: 500;
+  
+    &:focus{
+      outline:none;
+  }
+      @include respond-to('not-mobile'){ 
+        width: 336px;
+        height: 48px;
+        padding: 0px;
+        margin: 10px auto 50px auto;
+  
+      }
+  
+      @include respond-to('small'){
+        width: 100%;
+        height: 56px;
+        
+      }
+  }
+}
+

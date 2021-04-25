@@ -13,6 +13,7 @@
   @include respond-to('small') {
     margin-top: 48px;
   }
+
   .clubInfoCard {
     @include respond-to('not-mobile') {
       position: fixed;
@@ -108,8 +109,6 @@
           }
 
           .cardContentsWrap {
-
-
             @include respond-to('not-mobile') {
               padding: 20px 0;
             }
@@ -181,7 +180,7 @@
               }
               @include respond-to('small') {
                 font-size: 18px;
-                color: #636364;
+                color: #2a2a2c;
                 line-height: 1.33;
                 letter-spacing: -0.25px;
                 text-align: right;
@@ -191,13 +190,14 @@
 
           .floatingCardBtn {
             @include respond-to('small') {
-              position:fixed;
+              position: fixed;
               bottom: 0;
               height: 91px;
-              width:100%;
-              background:white;
+              width: 100%;
+              background: white;
               padding: 15px 20px 34px 20px;
             }
+
             .fixedAppBtnBox {
               position: static;
               bottom: 0;

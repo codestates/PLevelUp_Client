@@ -29,8 +29,8 @@ export default function MyPageForm({
 
   const [isNavOpen, setIsNavOpen] = useState(true);
   // const [isNavSecondOpen, setIsNavSecondOpen] = useState(false);
-  //TODO: isNav를 개수만큼 만드는 건 좋지 않은 접근방법이라 생각, 2개일 경우는 T/F 로 3개이상은 카테고리배열만들것.
-  //TODO: isNavOpen을 isFirstOpen 등과 같이 변경사함을 더 잘 담는 변수명으로 변경
+  //민정 플젝이후 리팩: isNav를 개수만큼 만드는 건 좋지 않은 접근방법이라 생각, 2개일 경우는 T/F 로 3개이상은 카테고리배열만들것.
+  //민정 플젝이후 리팩: isNavOpen을 isFirstOpen 등과 같이 변경사함을 더 잘 담는 변수명으로 변경
   const handleNavOpen = () => {
     setIsNavOpen(!isNavOpen);
     // setIsNavSecondOpen(!isNavSecondOpen);
@@ -43,7 +43,7 @@ export default function MyPageForm({
     <div className={styles.container}>
       <div className={styles.profileContainer}>
         <div className={styles.flexHeader}>
-          {/* //TODO: 여기 컴포넌트(flexHeader 자리에) */}
+          {/* 민정 플젝이후 리팩: 여기 컴포넌트(flexHeader 자리에) */}
           <div className={styles.imgWrapper}>
             <FaUserCircle size="110" color="#c5c5c5" />
           </div>
@@ -74,10 +74,10 @@ export default function MyPageForm({
             </div>
           </div>
         </div>
-        {/* //TODO: 여기 컴포넌트2 */}
+        {/* 민정 플젝이후 리팩: 여기 컴포넌트2 */}
         <div className={styles.bannerBox}>
           <a className={styles.aBox}>
-            {/* //TODO: Link교체 */}
+            {/* 민정 플젝이후 리팩: Link교체 */}
             <div className={styles.banner}>
               <div className={styles.title}>
                 사회적 거리두기 단계별 운영방침 💪🏻
@@ -91,7 +91,7 @@ export default function MyPageForm({
           </a>
         </div>
       </div>
-      {/* //TODO: 여유있다면 Help페이지 참고 리팩 */}
+      {/* 민정 플젝이후 리팩:  Help페이지 참고 */}
       <div className={styles.listContainer}>
         <div className={styles.tabCategories}>
           <div
@@ -117,19 +117,19 @@ export default function MyPageForm({
         </div>
 
         <div className={styles.tabContent}>
-          {/* //TODO: 삼항연산자는 간단하지 않으면 코드이해도를 심하게 저해함.
+          {/* //민정 플젝이후 리팩: 삼항연산자는 간단하지 않으면 코드이해도를 심하게 저해함.
             삼항연산자가 2개 연달아 나오면 정신줄 놓게됨..제거하는 방향으로 리팩 */}
           {isNavOpen && apply?.length === 0 && (
             <div className={styles.clubEmptyBox}>
               <p className={styles.message}>클럽이 없습니다.</p>
               <button className={styles.moveBtn}>
-                <Link to="/club">멤버쉽 신청하러 가기</Link>
+                <Link to="/club">멤버십 신청하러 가기</Link>
               </button>
             </div>
           )}
           {isNavOpen && (
             <div className={styles.applyCardList}>
-              {/* <ApplyCardList /> //TODO: 컴포넌트 */}
+              {/* <ApplyCardList />//민정 플젝이후 리팩: 컴포넌트 */}
               {apply?.map((club: MainApplyResType) => (
                 <ApplyCard
                   key={club.title}

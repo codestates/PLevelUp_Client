@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import React, { ChangeEvent, FormEvent, MouseEventHandler } from 'react';
 import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
-import kakaoLoginBtnOfficial from '../../asset/kakao_login_medium_wide.png';
-import kakaoLoginBtn from '../../asset/kakao_login.png';
-import googleLoginBtn from '../../asset/google_login.png';
+import kakaoLoginBtn from '../../asset/btn-kakao.png';
+import googleLoginBtn from '../../asset/btn-google.png';
 import FindPasswordModal from '../../components/auth/FindPasswordModal';
 import { SERVER_HOST } from '../../config';
 
@@ -21,6 +20,7 @@ type LoginFormProps = {
   ) => void;
   onConfirm: (email: string) => void;
   onCancel: () => void;
+  tempPasswordError: string;
 };
 
 export default function LoginForm({
@@ -34,6 +34,7 @@ export default function LoginForm({
   onFindPasswordClick,
   onCancel,
   onConfirm,
+  tempPasswordError,
 }: LoginFormProps) {
   return (
     <div className={styles.loginWrapper}>
@@ -81,32 +82,25 @@ export default function LoginForm({
                 visible={modal}
                 onConfirm={onConfirm}
                 onCancel={onCancel}
+                tempPasswordError={tempPasswordError}
               />
             </div>
           </>
-
-          <img src={kakaoLoginBtnOfficial} />
-          {/* <img className={styles.socialBtn} src={googleLoginBtn} />
-        <img className={styles.socialBtn} src={kakaoLoginBtn} /> */}
-          <button className={styles.googleBtn} onClick={handleOAuthGoogle}>
-            구글로 시작하기
-          </button>
-          <button
-            className={styles.googleBtn}
-            name="kakao"
-            onClick={handleOAuth}
-          >
-            카카오로 시작하기
-          </button>
           <a href={`${SERVER_HOST}/api/main/auth/login/google`}>
-            구글로 시작하기
+            <img
+              className={styles.socialBtn}
+              src={googleLoginBtn}
+              alt="googleLoginBtn"
+            />
           </a>
-          <br />
           <a href={`${SERVER_HOST}/api/main/auth/login/kakao`}>
-            카카오로 시작하기
+            <img
+              className={styles.socialBtn}
+              src={kakaoLoginBtn}
+              alt="kakaoLoginBtn"
+            />
           </a>
         </form>
-        <div className={styles.noLoginLink}>혹시 구글 로그인이 안되시나요?</div>
       </div>
     </div>
   );
