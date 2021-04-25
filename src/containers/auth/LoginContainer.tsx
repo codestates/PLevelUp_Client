@@ -5,8 +5,6 @@ import {
   mainInitializeForm,
   mainInitializeAuth,
   mainLoginThunk,
-  mainLoginKakaoThunk,
-  mainLoginGoogleThunk,
   mainSendPasswordThunk,
   mainSendTemporaryPasswordUnload,
 } from '../../modules/auth';
@@ -46,13 +44,6 @@ export default withRouter(function LoginContainer({ history }) {
     data: mainUser.user?.data,
     userError: mainUser.user?.error,
   }));
-  const handleOAuth = () => {
-    dispatch(mainLoginKakaoThunk());
-  };
-
-  const handleOAuthGoogle = () => {
-    dispatch(mainLoginGoogleThunk());
-  };
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -156,8 +147,6 @@ export default withRouter(function LoginContainer({ history }) {
   return (
     <LoginForm
       form={form}
-      handleOAuth={handleOAuth}
-      handleOAuthGoogle={handleOAuthGoogle}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}

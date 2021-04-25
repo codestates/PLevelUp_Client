@@ -9,8 +9,6 @@ import { SERVER_HOST } from '../../config';
 
 type LoginFormProps = {
   form: MainSignUpReqType | MainLoginReqType;
-  handleOAuth: MouseEventHandler<HTMLButtonElement>;
-  handleOAuthGoogle: MouseEventHandler<HTMLButtonElement>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
@@ -25,8 +23,6 @@ type LoginFormProps = {
 
 export default function LoginForm({
   form,
-  handleOAuth,
-  handleOAuthGoogle,
   onChange,
   onSubmit,
   error,

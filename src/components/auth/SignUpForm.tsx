@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
-import React, { ChangeEvent, FormEvent, MouseEventHandler } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import kakaoLoginBtn from '../../asset/btn-kakao.png';
 import googleLoginBtn from '../../asset/btn-google.png';
-import FindPasswordModal from '../../components/auth/FindPasswordModal';
 import { SERVER_HOST } from '../../config';
 
 type SignUpFormProps = {
   form: MainSignUpReqType | MainLoginReqType;
-  handleOAuth: MouseEventHandler<HTMLButtonElement>;
-  handleOAuthGoogle: MouseEventHandler<HTMLButtonElement>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
@@ -18,8 +15,6 @@ type SignUpFormProps = {
 
 export default function SignUpForm({
   form,
-  handleOAuth,
-  handleOAuthGoogle,
   onChange,
   onSubmit,
   error,
