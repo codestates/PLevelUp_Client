@@ -34,11 +34,11 @@ export default withRouter(function LoginContainer({ history }) {
     emailError: mainAuthAsync.email.error,
   }));
 
-  useEffect(() => {
-    if (cookies.access_token) {
-      dispatch(mainIsLoginThunk());
-    }
-  }, [cookies.access_token]);
+  // useEffect(() => {
+  //   if (cookies.access_token) {
+  //     dispatch(mainIsLoginThunk());
+  //   }
+  // }, [cookies.access_token]);
 
   const { data: user, userError } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
@@ -74,6 +74,7 @@ export default withRouter(function LoginContainer({ history }) {
   // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
   useEffect(() => {
     dispatch(mainInitializeForm('login'));
+    dispatch(mainIsLoginThunk());
     return () => {
       dispatch(mainInitializeAuth());
     };
