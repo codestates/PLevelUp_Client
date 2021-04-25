@@ -53,16 +53,18 @@ export default function MyPageForm({
             </div>
 
             <div className={styles.menuItem}>
-              <div className={styles.passwordItem}>
-                <div className={styles.passwordIcon}>
-                  <MdBuild size="20" />
+              {user.type === 'local' && (
+                <div className={styles.passwordItem}>
+                  <div className={styles.passwordIcon}>
+                    <MdBuild size="20" />
+                  </div>
+                  <div>
+                    <Link className={styles.link} to="/mypage/changepassword">
+                      비밀번호 변경
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <Link className={styles.link} to="/mypage/changepassword">
-                    비밀번호 변경
-                  </Link>
-                </div>
-              </div>
+              )}
               <div className={styles.logOutItem}>
                 <div className={styles.logOutIcon}>
                   <BiDoorOpen size="20" />
