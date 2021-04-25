@@ -56,21 +56,16 @@ export default function Viewer({
 
   const {
     title,
-    summary,
     price,
     place,
     description,
     startDate,
     times,
     day,
-    Master: master,
     coverUrl,
-    createdAt,
-    updatedAt,
     isNew,
     isMostStart,
     isEnd,
-    currentUserNumber,
     limitUserNumber,
   } = club;
 
@@ -95,9 +90,9 @@ export default function Viewer({
           </span>
         </div>
         <div className={styles.placeTimeContainer}>
-          {place} | 매 주 {day}요일
+          {place} | 매 주 {day}요일 | 총 {times}회
           <br />
-          {`첫 모임일 ${createDate}(${club.day})`}
+          {`첫 모임일 ${createDate}(${club.day})`} | 최대 {limitUserNumber} 명
         </div>
         <div className={styles.monthlyPrice}>
           총 {price.toLocaleString('ko-KR')}원

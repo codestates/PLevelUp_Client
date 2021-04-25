@@ -87,7 +87,7 @@ export default withRouter(function SignUpContainer({ history }) {
   useEffect(() => {
     dispatch(mainInitializeForm('signUp'));
     return () => {
-      dispatch(mainInitializeAuth(''));
+      dispatch(mainInitializeAuth());
     };
   }, [dispatch]);
 

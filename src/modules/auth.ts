@@ -47,11 +47,6 @@ const [
 ] = createRequestActionTypes('main-auth/MAIN_LOGIN_GOOGLE');
 
 const [
-  MAIN_CHANGE_PASSWORD,
-  MAIN_CHANGE_PASSWORD_SUCCESS,
-  MAIN_CHANGE_PASSWORD_FAILURE,
-] = createRequestActionTypes('main-auth/MAIN_CHANGE_PASSWORD');
-const [
   MAIN_SEND_TEMPORARY_PASSWORD,
   MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS,
   MAIN_SEND_TEMPORARY_PASSWORD_FAILURE,
@@ -88,7 +83,7 @@ export const mainSendTemporaryPasswordAsync = createAsyncAction(
   MAIN_SEND_TEMPORARY_PASSWORD_FAILURE,
 )<string, MainSendPasswordResType, AxiosError>();
 
-export const mainInitializeAuth = createAction(MAIN_INITIALIZE_AUTH)<string>();
+export const mainInitializeAuth = createAction(MAIN_INITIALIZE_AUTH);
 
 const asyncActions = {
   mainSignUpAsync,
@@ -144,11 +139,6 @@ const initialState: AuthState = {
     email: '',
     password: '',
   },
-  changePassword: {
-    email: '',
-    password: '',
-    changePassword: '',
-  },
 };
 export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
   asyncInitialState,
@@ -201,31 +191,8 @@ export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
       ...state,
       auth: asyncState.error(action.payload),
     }),
-    [MAIN_CHANGE_PASSWORD]: state => ({
-      ...state,
-      auth: asyncState.load(),
-    }),
-    [MAIN_CHANGE_PASSWORD_SUCCESS]: (state, action) => ({
-      ...state,
-      auth: asyncState.success(action.payload),
-    }),
-    [MAIN_CHANGE_PASSWORD_FAILURE]: (state, action) => ({
-      ...state,
-      auth: asyncState.error(action.payload),
-    }),
-
-    [MAIN_INITIALIZE_AUTH]: (state, _) => ({
-      ...state,
+    [MAIN_INITIALIZE_AUTH]: _ => ({
       auth: asyncState.initial(),
-    }),
-    [MAIN_SEND_TEMPORARY_PASSWORD]: state => ({
-      ...state,
-    }),
-    [MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS]: state => ({
-      ...state,
-    }),
-    [MAIN_SEND_TEMPORARY_PASSWORD_FAILURE]: state => ({
-      ...state,
     }),
   },
 );
