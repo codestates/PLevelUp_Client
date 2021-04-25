@@ -21,6 +21,38 @@
       width: 300px;
       height: 56px;
     }
+    .socialBtnWrapper {
+      text-align: center;
+      display: flex;
+
+      .socialBtnKakao {
+        width: 100%;
+        height: 48px;
+        position: relative;
+        line-height: 48px;
+        display: inline-block;
+        background-color: #fff;
+        border: 1px solid #e4e4e4;
+        font-size: 14px;
+        color: #707070;
+        border-radius: 8px;
+      }
+      .socialBtnGoogle {
+        width: 48px;
+        height: 48px;
+        // margin-right: 10px;
+        margin-left: 25px;
+        position: relative;
+        line-height: 48px;
+        display: inline-block;
+        background-color: #fff;
+        border: 1px solid #e4e4e4;
+        font-size: 14px;
+        color: #707070;
+        border-radius: 3px;
+      }
+    }
+
     .googleBtn {
       @include btn-default('secondary');
       background-color: #da4453;
@@ -48,6 +80,16 @@
         }
         ::placeholder {
           font-size: 0.85rem;
+        }
+        .findInfoWrapper {
+          margin: 10px;
+          text-align: end;
+          .findLink {
+            color: rgb(123, 123, 123);
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
       }
       .loginBtn {
@@ -80,13 +122,24 @@
         font-size: 0.85rem;
         cursor: pointer;
       }
-      .findInfoWrapper {
-        margin: 10px;
-        .findLink {
-          color: rgb(123, 123, 123);
-          font-size: 0.85rem;
-          cursor: pointer;
-          text-decoration: underline;
+      .socialLoginWrapper {
+        .description {
+          display: flex;
+          flex-basis: 100%;
+          align-items: center;
+          color: rgba(0, 0, 0, 0.35);
+          font-size: 12px;
+          margin: 8px 0px;
+        }
+        .description::before,
+        .description::after {
+          content: '';
+          flex-grow: 1;
+          background: rgba(0, 0, 0, 0.35);
+          height: 1px;
+          font-size: 0px;
+          line-height: 0px;
+          margin: 0px 16px;
         }
       }
     }

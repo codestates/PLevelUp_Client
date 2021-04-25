@@ -4,6 +4,8 @@ import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import kakaoLoginBtn from '../../asset/btn-kakao.png';
 import googleLoginBtn from '../../asset/btn-google.png';
+import googleNoBack from '../../asset/googleNoBack.png';
+import kakaoNoBack from '../../asset/kakao_login.png';
 import FindPasswordModal from '../../components/auth/FindPasswordModal';
 import { SERVER_HOST } from '../../config';
 
@@ -54,23 +56,7 @@ export default function LoginForm({
               onChange={onChange}
               value={form.password}
             />
-          </div>
-          <button className={styles.loginBtn}>로그인</button>
-          {error && <div className={styles.errorMessage}>{error}</div>}
-
-          <>
-            <div className={styles.registerWrapper}>
-              <div>아직 프레벨업 멤버가 아니신가요?</div>
-              <div>
-                <Link className={styles.registerLink} to="/signup">
-                  프레벨업 가입하기
-                </Link>
-              </div>
-            </div>
-            <hr />
             <div className={styles.findInfoWrapper}>
-              {/* <span className={styles.findLink}>이메일 찾기</span>
-              <span>ㅣ</span> */}
               <span className={styles.findLink} onClick={onFindPasswordClick}>
                 비밀번호 찾기
               </span>
@@ -81,8 +67,46 @@ export default function LoginForm({
                 tempPasswordError={tempPasswordError}
               />
             </div>
+          </div>
+          <button className={styles.loginBtn}>로그인</button>
+          {error && <div className={styles.errorMessage}>{error}</div>}
+          <>
+            <div className={styles.registerWrapper}>
+              <div>아직 프레벨업 멤버가 아니신가요?</div>
+              <div>
+                <Link className={styles.registerLink} to="/signup">
+                  프레벨업 가입하기
+                </Link>
+              </div>
+            </div>
+            {/* <hr /> */}
+            <div className={styles.socialLoginWrapper}>
+              <div className={styles.description}> or </div>
+              {/* <span className={styles.description}>다른 방식으로 로그인</span> */}
+            </div>
           </>
-          <a href={`${SERVER_HOST}/api/main/auth/login/google`}>
+          <div className={styles.socialBtnWrapper}>
+            <div>
+              <a href={`${SERVER_HOST}/api/main/auth/login/kakao`}>
+                <img
+                  className={styles.socialBtnKakao}
+                  src={kakaoNoBack}
+                  alt="kakaoNoBack"
+                />
+              </a>
+            </div>
+            <div>
+              <a href={`${SERVER_HOST}/api/main/auth/login/google`}>
+                <img
+                  className={styles.socialBtnGoogle}
+                  src={googleNoBack}
+                  alt="googleNoBack"
+                />
+              </a>
+            </div>
+          </div>
+          {/* //TODO: 변경동의하면 주석 전부 제거할 것 */}
+          {/* <a href={`${SERVER_HOST}/api/main/auth/login/google`}>
             <img
               className={styles.socialBtn}
               src={googleLoginBtn}
@@ -95,7 +119,7 @@ export default function LoginForm({
               src={kakaoLoginBtn}
               alt="kakaoLoginBtn"
             />
-          </a>
+          </a> */}
         </form>
       </div>
     </div>
