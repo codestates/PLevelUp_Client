@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import {
   mainChangeField,
   mainInitializeForm,
@@ -8,11 +8,11 @@ import {
   mainLoginKakaoThunk,
   mainLoginGoogleThunk,
 } from '../../modules/auth';
-import Loading from '../../components/common/Loading';
 import { RootState } from '../../modules';
 import SignUpForm from '../../components/auth/SignUpForm';
 import { mainIsLoginThunk } from '../../modules/user';
 import { withRouter } from 'react-router-dom';
+import LoadingModal from 'components/common/LoadingModal';
 
 export default withRouter(function SignUpContainer({ history }) {
   const [error, setError] = useState('');
@@ -154,18 +154,15 @@ export default withRouter(function SignUpContainer({ history }) {
 
   return (
     <>
-      {loading ? (
-        <Loading />
-      ) : (
-        <SignUpForm
-          form={form}
-          handleOAuth={handleOAuth}
-          handleOAuthGoogle={handleOAuthGoogle}
-          onChange={onChange}
-          onSubmit={onSubmit}
-          error={error}
-        />
-      )}
+      <SignUpForm
+        form={form}
+        handleOAuth={handleOAuth}
+        handleOAuthGoogle={handleOAuthGoogle}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        error={error}
+      />
+      {loading && <LoadingModal isVisible={loading} />})
     </>
   );
 });
