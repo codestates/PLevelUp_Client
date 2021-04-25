@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 import { FaqDummyType } from '../../../asset/data/dummy';
 
-export default function ApplyFAQItem({ faq }: { faq: FaqDummyType }) {
+export default function ApplyFAQItem({ faq }: {
+  faq: {
+    id: number;
+    category?: string;
+    question: string;
+    answer: string | string[];
+  };
+}) {
   const [isToggle, setIsToggle] = useState(false);
 
   const onClick = () => {
@@ -14,7 +21,7 @@ export default function ApplyFAQItem({ faq }: { faq: FaqDummyType }) {
     <div className={styles.faqList} onClick={onClick}>
       <div className={styles.qnaItem}>
         <div className={styles.qnaQuestionFalse}>{faq.question}</div>
-        <img src={downArrow} className={styles.ArrowIcon} alt="downArrow"/>
+        <img src={downArrow} className={styles.ArrowIcon} alt="downArrow" />
       </div>
       {isToggle ? (
         <div className={styles.answerBox}>
