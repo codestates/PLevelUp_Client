@@ -38,7 +38,7 @@
         padding: 28px 0px 0px 70px;
 
         @include respond-to('small') {
-          padding: 8px 0px 0px;
+          padding: 0px;
           margin-left: 60px;
         }
 
@@ -46,7 +46,8 @@
           font-size: 32px;
           color: rgb(60, 59, 59);
           font-weight: 900;
-          margin-bottom: -23px;
+          margin-top: 20px;
+          margin-bottom: -20px;
 
           @include respond-to('small') {
             font-size: 22px;
@@ -58,13 +59,14 @@
         .menuItem {
           margin: 0px 0px 0px -22px;
           display: flex;
-          color: rgb(60, 59, 59);
+          flex-direction: row;
+          color: #666666;
           justify-content: space-between;
           width: 100%;
 
           @include respond-to('small') {
             font-size: 16px;
-            color: rgb(60, 59, 59);
+            color: #666666;
             font-weight: 500;
             height: 24px;
             margin-top: 10px;
@@ -78,27 +80,22 @@
             margin-top: 14px;
             text-align: center;
             height: 24px;
+            font-size: 15px;
 
             .passwordIcon {
-              margin-top: -14px;
-
               @include respond-to('small') {
                 height: 28px;
-                margin-top: -14px;
               }
             }
             .link {
               text-decoration: none;
-              color: rgb(123, 123, 123);
-              :active {
-                color: $primary;
-              }
+              color: #666666;
             }
 
             p {
               text-decoration: none;
               font-size: 14px;
-              color: rgb(123, 123, 123);
+              color: #666666;
             }
           }
           .logOutItem {
@@ -107,16 +104,11 @@
             cursor: pointer;
             margin-top: 14px;
             text-align: center;
-
-            .logOutIcon {
-              margin-top: -14px;
-            }
-
-            p {
-              text-decoration: none;
-              font-size: 14px;
-              color: rgb(73, 73, 73);
-            }
+            color: #666666;
+          }
+          .link {
+            text-decoration: none;
+            color: #666666;
           }
         }
       }
@@ -158,6 +150,13 @@
             font-size: 18px;
             line-height: 1;
             text-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px;
+            .link {
+              text-decoration: none;
+              color: white;
+              :active {
+                color: $primary;
+              }
+            }
           }
 
           .subTitle {
