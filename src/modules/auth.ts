@@ -59,6 +59,9 @@ const [
 
 const MAIN_INITIALIZE_AUTH = 'main-auth/MAIN_INITIALIZE_AUTH';
 
+const MAIN_SEND_TEMPORARY_PASSWORD_UNLOAD =
+  'main-auth/MAIN_SEND_TEMPORARY_PASSWORD_UNLOAD';
+
 export const mainSignUpAsync = createAsyncAction(
   MAIN_SIGN_UP,
   MAIN_SIGN_UP_SUCCESS,
@@ -90,6 +93,7 @@ export const mainSendTemporaryPasswordAsync = createAsyncAction(
 
 export const mainInitializeAuth = createAction(MAIN_INITIALIZE_AUTH)<string>();
 
+export const mainSendTemporaryPasswordUnload = createAction(MAIN_SEND_TEMPORARY_PASSWORD_UNLOAD)<any>();
 const asyncActions = {
   mainSignUpAsync,
   mainLoginAsync,
@@ -97,6 +101,7 @@ const asyncActions = {
   mainLoginGoogleAsync,
   mainSendTemporaryPasswordAsync,
   mainInitializeAuth,
+  mainSendTemporaryPasswordUnload,
 };
 
 type AuthAsyncAction = ActionType<typeof asyncActions>;
@@ -121,10 +126,12 @@ type AuthAction = ActionType<typeof actions>;
 
 type AuthAsyncState = {
   auth: AsyncState<MainLoginResType, Error>;
+  email: AsyncState<MainSendPasswordResType, Error>;
 };
 
 const asyncInitialState: AuthAsyncState = {
   auth: asyncState.initial(),
+  email: asyncState.initial(),
 };
 
 type AuthState = {
@@ -220,12 +227,19 @@ export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
     }),
     [MAIN_SEND_TEMPORARY_PASSWORD]: state => ({
       ...state,
+      email: asyncState.load(),
     }),
-    [MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS]: state => ({
+    [MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS]: (state, action) => ({
       ...state,
+      email: asyncState.success(action.payload),
     }),
-    [MAIN_SEND_TEMPORARY_PASSWORD_FAILURE]: state => ({
+    [MAIN_SEND_TEMPORARY_PASSWORD_FAILURE]: (state, action) => ({
       ...state,
+      email: asyncState.error(action.payload),
+    }),
+    [MAIN_SEND_TEMPORARY_PASSWORD_UNLOAD]: state => ({
+      ...state,
+      email: asyncState.initial(),
     }),
   },
 );

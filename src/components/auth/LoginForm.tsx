@@ -21,6 +21,7 @@ type LoginFormProps = {
   ) => void;
   onConfirm: (email: string) => void;
   onCancel: () => void;
+  tempPasswordError: string;
 };
 
 export default function LoginForm({
@@ -34,6 +35,7 @@ export default function LoginForm({
   onFindPasswordClick,
   onCancel,
   onConfirm,
+  tempPasswordError,
 }: LoginFormProps) {
   return (
     <div className={styles.loginWrapper}>
@@ -81,6 +83,7 @@ export default function LoginForm({
                 visible={modal}
                 onConfirm={onConfirm}
                 onCancel={onCancel}
+                tempPasswordError={tempPasswordError}
               />
             </div>
           </>

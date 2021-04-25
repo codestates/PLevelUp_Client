@@ -6,12 +6,14 @@ type FindPasswordModalType = {
   visible: boolean;
   onConfirm: (email: string) => void;
   onCancel: () => void;
+  tempPasswordError: string;
 };
 
 export default function FindPasswordModal({
   visible,
   onConfirm,
   onCancel,
+  tempPasswordError,
 }: FindPasswordModalType) {
   const [email, setEmail] = useState('');
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +41,9 @@ export default function FindPasswordModal({
           value={email}
           required
         />
+        {tempPasswordError && (
+          <div className={styles.errorMessage}>{tempPasswordError}</div>
+        )}
       </div>
     </AskModal>
   );

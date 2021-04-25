@@ -23,7 +23,6 @@ export default function Header({ user, onLogout }: HeaderProps) {
   };
 
   const handleMenuOpen = () => {
-    console.log(isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
     setIsMyPageOpen(false);
   };
