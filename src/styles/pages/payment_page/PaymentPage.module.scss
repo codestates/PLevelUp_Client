@@ -96,14 +96,8 @@ hr {
               display: flex;
               font-size: 15px;
               color: #1e1e25;
-              a {
-                color: #1778b5;
-                text-decoration: none;
-                background-color: transparent;
-                cursor: pointer;
-              }
-              a:hover {
-                color: $primary;
+              .location {
+                margin: 0px 8px 4px 0px;
               }
             }
           }
@@ -238,7 +232,12 @@ hr {
                 @include btn-default('primary');
                 display: block;
                 width: 100%;
-                //기능 수정 후 확인예정
+
+                :hover {
+                  background-color: $primary;
+                  text-decoration: none;
+                }
+
                 &.disabled {
                   opacity: 0.65;
                 }
@@ -343,21 +342,26 @@ hr {
 
                 .date {
                   letter-spacing: 0.02rem;
+                  margin-bottom: 10px;
                 }
+              }
+              span {
+                margin-right: 5px;
               }
             }
 
             .placeContainer {
               display: flex;
+              margin-top: -5px;
+
               .textBox {
                 font-size: 14px;
                 line-height: 1.43;
                 letter-spacing: -0.43px;
                 color: rgb(30, 30, 37);
-                .addressUrl {
-                  color: $primaryLight;
-                  text-decoration: underline;
-                }
+              }
+              span {
+                margin-right: 5px;
               }
             }
           }
@@ -497,13 +501,19 @@ hr {
             @include btn-default('primary');
             width: 100%;
             outline: none;
+
+            :hover {
+              background-color: $primary;
+              text-decoration: none;
+            }
+
             div {
               margin: 5px 0px 8px;
             }
-          }
-          .paymentBtn :disabled {
-            opacity: 0.65;
-            color: -internal-light-dark(rgba(16, 16, 16, 0.3), white);
+
+            &.disabled {
+              opacity: 0.65;
+            }
           }
         }
       }

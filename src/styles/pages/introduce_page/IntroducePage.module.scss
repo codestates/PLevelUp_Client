@@ -1,13 +1,46 @@
-@import '../../common/utils.scss';
 
+@import '../../common/basicMixin.scss';
+
+h1{
+ color:$primary;
+}
 .wrapper {
   text-align: center;
-  background-color: $primary;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(10px + 1.5vmin);
+
+  .bannerWrapper{
+    height:527px;
+
+  }
+
+  .introduceContainer{
+    position: relative;
+    max-width: 840px;
+
+    .satisfaction{
+      color: $primary;
+      font-size: 100px; 
+      font-weight: bold;
+      text-align: center;
+    }
+    .score{
+      font-size: 90px;
+    }
+
+    .emphasis{
+       font-weight: bold;
+       font-size: 30px;
+    }
+
+    .student{
+      font-size: 20px;
+    }
+
+  }
 }

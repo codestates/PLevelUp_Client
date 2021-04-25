@@ -2,8 +2,15 @@ import ApplyFAQItem from './ApplyFAQItem';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
 import { FaqDummyType } from '../../../asset/data/dummy';
 
-//faq area
-export default function ApplyFAQList({ faqList }: { faqList: FaqDummyType[] }) {
+
+export default function ApplyFAQList({ faqList }: {
+  faqList: {
+    id: number;
+    category?: string;
+    question: string;
+    answer: string | string[];
+  }[];
+}) {
   return (
     <div className={styles.faqWrapper}>
       <div className={styles.faqContainer}>
