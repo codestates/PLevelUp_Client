@@ -1,2 +1,2 @@
 # P' Level Up
-![introduce readme](https://user-images.githubusercontent.com/75575789/116008349-0ddac380-a64f-11eb-8043-cf81718025bd.png)
+![introduce](https://user-images.githubusercontent.com/75575789/116008386-3793ea80-a64f-11eb-8e03-907d79fe533e.png)
