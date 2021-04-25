@@ -9,8 +9,6 @@ import { SERVER_HOST } from '../../config';
 
 type LoginFormProps = {
   form: MainSignUpReqType | MainLoginReqType;
-  handleOAuth: MouseEventHandler<HTMLButtonElement>;
-  handleOAuthGoogle: MouseEventHandler<HTMLButtonElement>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
@@ -25,8 +23,6 @@ type LoginFormProps = {
 
 export default function LoginForm({
   form,
-  handleOAuth,
-  handleOAuthGoogle,
   onChange,
   onSubmit,
   error,
@@ -46,7 +42,7 @@ export default function LoginForm({
             <input
               className={styles.loginInput}
               name="email"
-              placeholder="이메일"
+              placeholder="이메일을 입력해주세요"
               onChange={onChange}
               value={form.email}
             />
@@ -54,7 +50,7 @@ export default function LoginForm({
               className={styles.loginInput}
               name="password"
               type="password"
-              placeholder="비밀번호"
+              placeholder="비밀번호를 입력해주세요"
               onChange={onChange}
               value={form.password}
             />

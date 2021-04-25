@@ -58,7 +58,7 @@ export default withRouter(function LoginForm({ history }) {
 
   useEffect(() => {
     if (authError) {
-      setError('로그인 실패');
+      setError('이메일 혹은 비밀번호가 일치하지 않습니다.');
       return;
     }
 
@@ -69,10 +69,6 @@ export default withRouter(function LoginForm({ history }) {
 
   // user 값이 잘 설정되었는지 확인
   useEffect(() => {
-    if (userError) {
-      setError('로그인 실패');
-    }
-
     if (user) {
       history.push('/master');
       try {

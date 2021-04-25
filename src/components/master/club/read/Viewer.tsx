@@ -1,7 +1,7 @@
 import styles from '../../../../styles/pages/master/read_page/ReadPage.module.scss';
 import { MasterClubReadResType } from '../../../../api/master/club';
 import { AxiosError } from 'axios';
-import { Mobile, PC } from '../../../../mediaQuery';
+import { Mobile, PC } from '../../../../lib/styles/MediaQuery';
 import React from 'react';
 import Badge from '../../../common/Badge';
 

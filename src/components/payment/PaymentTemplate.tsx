@@ -1,6 +1,6 @@
 import api from '../../api';
 import styles from '../../styles/pages/payment_page/PaymentPage.module.scss';
-import { Tablet, Desktop } from '../../mediaQuery';
+import { Tablet, Desktop } from '../../lib/styles/MediaQuery';
 import { IoIosCheckbox } from 'react-icons/io';
 import { IoLocationSharp } from 'react-icons/io5';
 import { AiTwotoneCalendar } from 'react-icons/ai';

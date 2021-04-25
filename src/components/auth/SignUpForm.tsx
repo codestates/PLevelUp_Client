@@ -1,16 +1,13 @@
 import { Link } from 'react-router-dom';
-import React, { ChangeEvent, FormEvent, MouseEventHandler } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import kakaoLoginBtn from '../../asset/btn-kakao.png';
 import googleLoginBtn from '../../asset/btn-google.png';
-import FindPasswordModal from '../../components/auth/FindPasswordModal';
 import { SERVER_HOST } from '../../config';
 
 type SignUpFormProps = {
   form: MainSignUpReqType | MainLoginReqType;
-  handleOAuth: MouseEventHandler<HTMLButtonElement>;
-  handleOAuthGoogle: MouseEventHandler<HTMLButtonElement>;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   error: string;
@@ -18,8 +15,6 @@ type SignUpFormProps = {
 
 export default function SignUpForm({
   form,
-  handleOAuth,
-  handleOAuthGoogle,
   onChange,
   onSubmit,
   error,
@@ -31,7 +26,9 @@ export default function SignUpForm({
         <hr className={styles.hr} />
         <form className={styles.loginForm} onSubmit={onSubmit}>
           <div className={styles.inputBox}>
-            <span className={styles.label}>이메일*</span>
+            <span className={styles.label}>
+              이메일<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="email"
@@ -41,7 +38,9 @@ export default function SignUpForm({
             />
           </div>
           <div className={styles.inputBox}>
-            <span className={styles.label}>이름*</span>
+            <span className={styles.label}>
+              이름<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="username"
@@ -51,7 +50,9 @@ export default function SignUpForm({
             />
           </div>
           <div className={styles.inputBox}>
-            <span className={styles.label}>비밀번호*</span>
+            <span className={styles.label}>
+              비밀번호<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="password"
@@ -62,7 +63,9 @@ export default function SignUpForm({
             />
           </div>
           <div className={styles.inputBox}>
-            <span className={styles.label}>비밀번호 확인*</span>
+            <span className={styles.label}>
+              비밀번호 확인<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="passwordConfirm"
