@@ -23,11 +23,13 @@ export default function Header({ user, onLogout }: HeaderProps) {
   };
 
   const handleMenuOpen = () => {
-    console.log(isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
     setIsMyPageOpen(false);
   };
-
+  const handleAllClose = () => {
+    setIsMenuOpen(false);
+    setIsMyPageOpen(false);
+  };
   const handleScroll = () => {
     if (window.scrollY > 82) {
       setIsHeaderShow(false);
@@ -40,7 +42,9 @@ export default function Header({ user, onLogout }: HeaderProps) {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -62,7 +66,7 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 onClick={handleMenuOpen}
               />
             </div>
-            <div className={styles.logo}>
+            <div className={styles.logo} onClick={handleAllClose}>
               <Link to="/">
                 <span
                   style={{
@@ -86,12 +90,12 @@ export default function Header({ user, onLogout }: HeaderProps) {
             </div>
           </div>
           <div className={styles.pcMenuList}>
-            <div className={styles.pcMenuItem}>
+            <div className={styles.pcMenuItem} onClick={handleAllClose}>
               <Link className={styles.link} to="/club">
                 모든 클럽 보기
               </Link>
             </div>
-            <div className={styles.pcMenuItem}>
+            <div className={styles.pcMenuItem} onClick={handleAllClose}>
               <Link className={styles.link} to="/introduce">
                 프로그램 소개
               </Link>
@@ -160,23 +164,34 @@ export default function Header({ user, onLogout }: HeaderProps) {
                     : `${styles.menuList}`
                 }
               >
-                <li>
-                  <Link className={styles.link} to="/club">
-                    모든 클럽 보기
-                  </Link>
-                </li>
+                <Link
+                  className={styles.link}
+                  to="/club"
+                  onClick={handleAllClose}
+                >
+                  <li>모든 클럽 보기</li>
+                </Link>
                 <hr />
-                <li>
-                  <Link className={styles.link} to="/introduce">
-                    프로그램 소개
-                  </Link>
-                </li>
+                <Link
+                  className={styles.link}
+                  onClick={handleAllClose}
+                  to="/introduce"
+                >
+                  <li>프로그램 소개</li>
+                </Link>
                 <hr />
-                <li>
-                  <Link className={styles.link} to="/help">
-                    자주 묻는 질문
-                  </Link>
-                </li>
+
+                <Link
+                  className={styles.link}
+                  onClick={handleAllClose}
+                  to="/help"
+                >
+                  <li>자주 묻는 질문</li>
+                </Link>
+                <div
+                  className={isMenuOpen ? `${styles.modalOpen}` : ''}
+                  onClick={handleAllClose}
+                />
               </ul>
 
               <ul
@@ -189,47 +204,78 @@ export default function Header({ user, onLogout }: HeaderProps) {
                 {user ? (
                   user.id ? (
                     <div>
-                      <li className={styles.dropDown}>
-                        <Link className={styles.link} to="/mypage">
-                          마이페이지
-                        </Link>
-                      </li>
+                      <Link
+                        className={styles.link}
+                        onClick={handleAllClose}
+                        to="/mypage"
+                      >
+                        <li className={styles.dropDown}>마이페이지</li>
+                      </Link>
                       <hr />
-                      <li className={styles.dropDown}>
-                        <Link className={styles.link} to="/payment/history">
-                          결제 내역
-                        </Link>
-                      </li>
+
+                      <Link
+                        className={styles.link}
+                        onClick={handleAllClose}
+                        to="/payment/history"
+                      >
+                        <li className={styles.dropDown}>결제 내역</li>
+                      </Link>
                       <hr />
                       <li className={styles.dropDown} onClick={onLogout}>
                         로그아웃
                       </li>
+                      <div
+                        className={isMyPageOpen ? `${styles.modalOpen}` : ''}
+                        onClick={handleAllClose}
+                      />
                     </div>
                   ) : (
                     <div>
-                      <li className={styles.dropDown} onClick={onLogout}>
-                        <Link className={styles.link} to="/master">
+                      <Link
+                        className={styles.link}
+                        onClick={handleAllClose}
+                        to="/master"
+                      >
+                        <li className={styles.dropDown} onClick={onLogout}>
                           내 클럽 보기
-                        </Link>
-                      </li>
+                        </li>
+                      </Link>
                       <li className={styles.dropDown} onClick={onLogout}>
                         로그아웃
                       </li>
+                      <div
+                        className={isMyPageOpen ? `${styles.modalOpen}` : ''}
+                        onClick={handleAllClose}
+                      />
                     </div>
                   )
                 ) : (
                   <div>
-                    <li className={styles.dropDown}>
-                      <Link className={styles.link} to="/login">
-                        일반 로그인
-                      </Link>
-                    </li>
+                    <Link
+                      className={styles.link}
+                      onClick={handleAllClose}
+                      to="/login"
+                    >
+                      <li className={styles.dropDown}>일반 로그인</li>
+                    </Link>
                     <hr />
                     <li className={styles.dropDown}>
-                      <Link className={styles.link} to="/master/login">
+                      <Link
+                        className={styles.link}
+                        onClick={handleAllClose}
+                        to="/master/login"
+                      >
                         클럽장 로그인
                       </Link>
                     </li>
+                    <div
+                      className={
+                        isMyPageOpen
+                          ? `${styles.modalOpen} ${styles.logout}`
+                          : ''
+                      }
+                      onClick={handleAllClose}
+                    />
                   </div>
                 )}
               </ul>

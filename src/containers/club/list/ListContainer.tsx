@@ -112,6 +112,10 @@ export default withRouter(function ListContainer({ location, match, history }) {
     );
   };
 
+  const onReset = () => {
+    handleSearch('', '', '', '', '');
+  };
+
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       if (!loading && clubs) {
@@ -174,6 +178,7 @@ export default withRouter(function ListContainer({ location, match, history }) {
         onDay={onDay}
         onFilter={onFilter}
         onLimitNumber={onLimitNumber}
+        onReset={onReset}
       />
       {error ? (
         <div ref={loader}>

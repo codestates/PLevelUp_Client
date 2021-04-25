@@ -4,21 +4,25 @@ import {
   MainPaymentHistoryResType,
 } from '../../api/main/payment';
 import PaymentCard from './PaymentCard';
+import Loading from '../common/Loading';
 import styles from '../../styles/pages/payment_page/PaymentHistoryPage.module.scss';
 import { IoIosArrowBack } from 'react-icons/io';
 
 export default function PaymentHistoryTemplate({
-  payment,
+  paymentList,
   error,
   loading,
 }: {
-  payment: MainPaymentHistoryResType;
+  paymentList: MainPaymentHistoryResType;
   error: AxiosError | null;
   loading: boolean;
 }) {
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className={styles.container}>
-      {loading && <div>로딩중..</div>}
       <div className={styles.historyHeader}>
         <div className={styles.wrapper}>
           <div className={styles.backBtn}>
@@ -36,15 +40,14 @@ export default function PaymentHistoryTemplate({
           <div className={styles.contentWrapper}>
             {!error ? (
               <div>
-                {payment &&
-                  payment.map((el: MainPaymentResType) => (
-                    <PaymentCard
-                      key={el.id}
-                      title={el.title}
-                      price={el.price}
-                      createdAt={el.createdAt}
-                    />
-                  ))}
+                {paymentList.map((el: MainPaymentResType) => (
+                  <PaymentCard
+                    key={el.id}
+                    title={el.title}
+                    price={el.price}
+                    createdAt={el.createdAt}
+                  />
+                ))}
               </div>
             ) : null}
           </div>

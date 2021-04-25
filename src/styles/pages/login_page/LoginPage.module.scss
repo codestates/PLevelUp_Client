@@ -113,6 +113,15 @@
     border-radius: 0.15rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
+  .errorMessage {
+    color: $error;
+    background-color: $errorBackgroud;
+    border-color: $errorBorder;
+    text-align: center;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    border: 1px solid transparent;
+  }
 }
 
 //masterLogin
