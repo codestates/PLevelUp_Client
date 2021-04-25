@@ -6,38 +6,15 @@ import introduce1 from '../banner/introduce1.jpeg';
 import introduce2 from '../banner/introduce2.jpeg';
 
 export const bannerData = [
-  {
-    id: 1,
-    url: landing1,
-  },
-  {
-    id: 2,
-    url: landing2,
-  },
-  {
-    id: 3,
-    url: landing3,
-  },
-  {
-    id: 4,
-    url: landing4,
-  },
+  { id: 1, url: landing1 },
+  { id: 2, url: landing2 },
+  { id: 3, url: landing3 },
+  { id: 4, url: landing4 },
 ];
 
 export const infoBanner = [
-  {
-    id: 1,
-    url: introduce1,
-  },
-  {
-    id: 2,
-    url: introduce2,
-  },
-  {
-    id: 5,
-    url:
-      'https://cdn.discordapp.com/attachments/828197199833202739/835749252361617447/2021-04-25_2.27.39.png',
-  },
+  { id: 1, url: introduce1 },
+  { id: 2, url: introduce2 },
 ];
 
 export type FaqDummyType = {
@@ -81,14 +58,14 @@ export const faqClubData: FaqDummyType[] = [
     category: '개발모임',
     question: '클럽장은 어떤 역할을 하나요?',
     answer:
-      '특정 기업 대표님, 교수님, 작가님 등 해당 분야 전문가분들이나 어떤 확고한 목표를 가지고 IT분야에 대해 공부하고자 하는 분들이 많이 클럽장으로 가입하십니다. 이렇게 오신 \'클럽장\'들은 해당 클럽의 커리큘럼을 직접 기획합니다. 같이 읽으면 좋은 책, 아티클, 영상/이미지 자료를 추천할 뿐만 아니라, 클럽이 어떤 식으로 운영되면 좋을지까지 같이 고민합니다. 나아가 모임 당일 양질의 대화가 이뤄질 수 있도록 토론 주제를 준비하고, 대화를 이끌고 있어요!',
+      "특정 기업 대표님, 교수님, 작가님 등 해당 분야 전문가분들이나 어떤 확고한 목표를 가지고 IT분야에 대해 공부하고자 하는 분들이 많이 클럽장으로 가입하십니다. 이렇게 오신 '클럽장'들은 해당 클럽의 커리큘럼을 직접 기획합니다. 같이 읽으면 좋은 책, 아티클, 영상/이미지 자료를 추천할 뿐만 아니라, 클럽이 어떤 식으로 운영되면 좋을지까지 같이 고민합니다. 나아가 모임 당일 양질의 대화가 이뤄질 수 있도록 토론 주제를 준비하고, 대화를 이끌고 있어요!",
   },
   {
     id: 6,
     category: '개발모임',
     question: '주제는 어떻게 선정되나요?',
     answer:
-      '\'클럽장\'님이 정해오셔서 클럽을 이끌어나갈 것 입니다. 첫 모임 이후에 클럽장님이 자체적으로 정한 커리큘럼에 따라, 세부주제가 바뀝니다. 클럽마다 조금씩 다 다를 수 있으며, 클럽 참가자들과 함께 조율해나갈수도 있습니다. ',
+      "'클럽장'님이 정해오셔서 클럽을 이끌어나갈 것 입니다. 첫 모임 이후에 클럽장님이 자체적으로 정한 커리큘럼에 따라, 세부주제가 바뀝니다. 클럽마다 조금씩 다 다를 수 있으며, 클럽 참가자들과 함께 조율해나갈수도 있습니다. ",
   },
 ];
 
@@ -97,22 +74,19 @@ export const faqApplyData: FaqDummyType[] = [
     id: 1,
     category: '신청',
     question: '클럽을 여러개 등록해도 되나요?',
-    answer:
-      '네 그렇습니다.',
+    answer: '네 그렇습니다.',
   },
   {
     id: 2,
     category: '신청',
     question: '마감된 클럽은 신청할 수 없나요?',
-    answer:
-      '신청할 수 없습니다.',
+    answer: '신청할 수 없습니다.',
   },
   {
     id: 3,
     category: '신청',
     question: '결제영수증은 어디서 확인할 수 있나요?',
-    answer:
-      '결제내역 페이지에서 확인 가능합니다.',
+    answer: '결제내역 페이지에서 확인 가능합니다.',
   },
 ];
 export const faqRefundData: FaqDummyType[] = [
@@ -120,22 +94,19 @@ export const faqRefundData: FaqDummyType[] = [
     id: 1,
     category: '환불/변경',
     question: '환불은 어떻게 하나요?',
-    answer:
-      'contact@p-levelup.com 으로 문의바랍니다.',
+    answer: 'contact@p-levelup.com 으로 문의바랍니다.',
   },
   {
     id: 2,
     category: '환불/변경',
     question: '클럽 변경이 가능한가요?',
-    answer:
-      ' 클럽 변경은 할 수 없습니다.',
+    answer: ' 클럽 변경은 할 수 없습니다.',
   },
   {
     id: 3,
     category: '환불/변경',
     question: '양도가 가능한가요?',
-    answer:
-      ' 양도는 불가능합니다.',
+    answer: ' 양도는 불가능합니다.',
   },
 ];
 

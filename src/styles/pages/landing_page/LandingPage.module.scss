@@ -17,7 +17,7 @@ $fontColorForTitle: rgb(255, 255, 255);
   .imgBox {
     position: relative;
     width: 100%;
-    min-height: 43vh;
+    min-height: 35vh;
     max-height: 300px;
     margin: 0 auto;
     text-align: center;
@@ -184,36 +184,32 @@ $fontColorForTitle: rgb(255, 255, 255);
 
 //클럽 모두 보러 가기 버튼
 
-.LinkWrapper{
+.LinkWrapper {
   margin: 20px;
 
-   .Link{
-
+  .Link {
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid $primary;
     background: rgb(255, 255, 255);
-    color:  $primary;
+    color: $primary;
     font-size: inherit;
     font-weight: 500;
-  
-    &:focus{
-      outline:none;
-  }
-      @include respond-to('not-mobile'){ 
-        width: 336px;
-        height: 48px;
-        padding: 0px;
-        margin: 10px auto 50px auto;
-  
-      }
-  
-      @include respond-to('small'){
-        width: 100%;
-        height: 56px;
-        
-      }
+
+    &:focus {
+      outline: none;
+    }
+    @include respond-to('not-mobile') {
+      width: 336px;
+      height: 48px;
+      padding: 0px;
+      margin: 10px auto 50px auto;
+    }
+
+    @include respond-to('small') {
+      width: 100%;
+      height: 56px;
+    }
   }
 }
-
