@@ -14,11 +14,13 @@ import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
 import LoginForm from '../../components/auth/LoginForm';
 import { mainIsLoginThunk } from '../../modules/user';
+import { useCookies } from 'react-cookie';
 
-export default withRouter(function LoginConatiner({ history }) {
+export default withRouter(function LoginContainer({ history }) {
   const [error, setError] = useState('');
   const [tempPasswordError, setTempPasswordError] = useState('');
 
+  const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
   const dispatch = useDispatch();
   const {
     form,
@@ -33,6 +35,10 @@ export default withRouter(function LoginConatiner({ history }) {
     email: mainAuthAsync.email.data,
     emailError: mainAuthAsync.email.error,
   }));
+
+  useEffect(() => {
+    dispatch(mainIsLoginThunk());
+  }, [cookies]);
 
   const { data: user, userError } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
@@ -76,7 +82,7 @@ export default withRouter(function LoginConatiner({ history }) {
   useEffect(() => {
     dispatch(mainInitializeForm('login'));
     return () => {
-      dispatch(mainInitializeAuth(''));
+      dispatch(mainInitializeAuth());
     };
   }, []);
 
@@ -131,7 +137,7 @@ export default withRouter(function LoginConatiner({ history }) {
     if (emailData) {
       alert('임시비밀번호가 정상발급 되었습니다.');
       setModal(false);
-      dispatch(mainSendTemporaryPasswordUnload(''));
+      dispatch(mainSendTemporaryPasswordUnload());
     }
     if (emailError) {
       if (emailError.response?.status === 401) {
@@ -141,7 +147,7 @@ export default withRouter(function LoginConatiner({ history }) {
           '알 수 없는 에러가 발생했습니다. 다시 한 번 시도해주세요.',
         );
       }
-      dispatch(mainSendTemporaryPasswordUnload(''));
+      dispatch(mainSendTemporaryPasswordUnload());
     }
   }, [emailData, emailError]);
   return (
