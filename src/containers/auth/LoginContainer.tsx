@@ -28,8 +28,10 @@ export default withRouter(function LoginContainer({ history }) {
   );
 
   useEffect(() => {
-    dispatch(mainIsLoginThunk());
-  }, [cookies]);
+    if (cookies.access_token) {
+      dispatch(mainIsLoginThunk());
+    }
+  }, [cookies.access_token]);
 
   const { data: user, userError } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
@@ -96,6 +98,7 @@ export default withRouter(function LoginContainer({ history }) {
   useEffect(() => {
     if (userError) {
       setError('로그인 실패');
+      return;
     }
 
     if (user) {
