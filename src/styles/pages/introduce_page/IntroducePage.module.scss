@@ -1,44 +1,24 @@
 @import '../../common/utils.scss';
 @import '../../common/basicMixin.scss';
 
-h1 {
-  color: $primary;
-}
 .wrapper {
-  text-align: center;
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 1.5vmin);
+  margin: 0px auto;
+  max-width: 1140px;
 
-  .bannerWrapper {
-    height: 527px;
-  }
+  .contentContainer {
+    max-width: 1080px;
+    margin-top: 50px;
 
-  .introduceContainer {
-    position: relative;
-    max-width: 840px;
-
-    .satisfaction {
-      color: $primary;
-      font-size: 100px;
-      font-weight: bold;
-      text-align: center;
-    }
-    .score {
-      font-size: 90px;
+    @include respond-to('small') {
+      width: 100vw;
+      padding: 0px 0px;
     }
 
-    .emphasis {
-      font-weight: bold;
-      font-size: 30px;
-    }
-
-    .student {
-      font-size: 20px;
+    .contentImg {
+      @include respond-to('small') {
+        width: 100vw;
+        padding: 0px 0px;
+      }
     }
   }
 }
