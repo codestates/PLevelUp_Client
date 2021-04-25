@@ -19,6 +19,11 @@ export const bannerData = [
     url:
       'https://image.trevari.co.kr/file/97906a40-5487-4a4b-bcc2-027055dbc4e4.career-pm%28PC%29.png',
   },
+  {
+    id: 5,
+    url:
+      'https://cdn.discordapp.com/attachments/828197199833202739/835749252361617447/2021-04-25_2.27.39.png',
+  },
 ];
 
 export type FaqDummyType = {

@@ -8,6 +8,7 @@ import {
   mainLoginKakaoThunk,
   mainLoginGoogleThunk,
   mainSendPasswordThunk,
+  mainSendTemporaryPasswordUnload,
 } from '../../modules/auth';
 import { RootState } from '../../modules';
 import { withRouter } from 'react-router-dom';
@@ -17,15 +18,23 @@ import { useCookies } from 'react-cookie';
 
 export default withRouter(function LoginContainer({ history }) {
   const [error, setError] = useState('');
+  const [tempPasswordError, setTempPasswordError] = useState('');
+
   const [cookies, setCookie, removeCookie] = useCookies(['access_token']);
   const dispatch = useDispatch();
-  const { form, data: auth, error: authError } = useSelector(
-    ({ mainAuth, mainAuthAsync }: RootState) => ({
-      form: mainAuth.login,
-      data: mainAuthAsync.auth.data,
-      error: mainAuthAsync.auth.error,
-    }),
-  );
+  const {
+    form,
+    data: auth,
+    error: authError,
+    email: emailData,
+    emailError,
+  } = useSelector(({ mainAuth, mainAuthAsync }: RootState) => ({
+    form: mainAuth.login,
+    data: mainAuthAsync.auth.data,
+    error: mainAuthAsync.auth.error,
+    email: mainAuthAsync.email.data,
+    emailError: mainAuthAsync.email.error,
+  }));
 
   useEffect(() => {
     if (cookies.access_token) {
@@ -125,10 +134,25 @@ export default withRouter(function LoginContainer({ history }) {
   };
 
   const onConfirm = (email: string) => {
-    setModal(false);
-    alert('임시 비밀번호가 발급되었습니다');
     onSendMail(email);
   };
+  useEffect(() => {
+    if (emailData) {
+      alert('임시비밀번호가 정상발급 되었습니다.');
+      setModal(false);
+      dispatch(mainSendTemporaryPasswordUnload());
+    }
+    if (emailError) {
+      if (emailError.response?.status === 401) {
+        setTempPasswordError('존재하지 않는 이메일입니다.');
+      } else {
+        setTempPasswordError(
+          '알 수 없는 에러가 발생했습니다. 다시 한 번 시도해주세요.',
+        );
+      }
+      dispatch(mainSendTemporaryPasswordUnload());
+    }
+  }, [emailData, emailError]);
   return (
     <LoginForm
       form={form}
@@ -137,6 +161,7 @@ export default withRouter(function LoginContainer({ history }) {
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}
+      tempPasswordError={tempPasswordError}
       modal={modal}
       onFindPasswordClick={onFindPasswordClick}
       onCancel={onCancel}
