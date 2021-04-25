@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { useEffect } from 'react';
 import { mainClubReadThunk } from '../../modules/club/read';
-import AlertMessage from '../../components/common/AlertMessage';
 import ErrorView from 'components/common/ErrorView';
 
 export default withRouter(function PaymentContainer({ match }) {
