@@ -48,6 +48,8 @@ function SamplePrevArrow(props: {
 export type bannerDataType = {
   id: number;
   url: string;
+  link: string;
+  title: string;
 };
 
 export default function SlickBanner({ data }: { data: bannerDataType[] }) {
@@ -81,7 +83,7 @@ export default function SlickBanner({ data }: { data: bannerDataType[] }) {
         {data.map((banner: bannerDataType) => {
           return (
             <div className={styles.imgBox} key={banner.id}>
-              <Link to="/list">
+              <Link to={`${banner.link}`}>
                 <img className={styles.img} src={banner.url} alt="bannerImg" />
               </Link>
             </div>

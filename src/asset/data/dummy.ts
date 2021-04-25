@@ -6,15 +6,25 @@ import introduce1 from '../banner/introduce1.jpeg';
 import introduce2 from '../banner/introduce2.jpeg';
 
 export const bannerData = [
-  { id: 1, url: landing1 },
-  { id: 2, url: landing2 },
-  { id: 3, url: landing3 },
-  { id: 4, url: landing4 },
+  {
+    id: 1,
+    url: landing1,
+    link: '/introduce',
+    title: '다함께 LevelUp 후기보러가기',
+  },
+  {
+    id: 2,
+    url: landing2,
+    link: '/club/76',
+    title: '개발이 처음이라 두려운 당신을 위해',
+  },
+  { id: 3, url: landing3, link: '/club/96', title: '인공지능의 미래' },
+  { id: 4, url: landing4, link: '/club', title: '4명이서 함께하는 개발 모임' },
 ];
 
 export const infoBanner = [
-  { id: 1, url: introduce1 },
-  { id: 2, url: introduce2 },
+  { id: 1, url: introduce1, link: '/club', title: '프레벨업 사용설명서' },
+  { id: 2, url: introduce2, link: '/club', title: '레벨업하러 가기' },
 ];
 
 export type FaqDummyType = {
