@@ -96,11 +96,6 @@ export default withRouter(function LoginContainer({ history }) {
 
   // user 값이 잘 설정되었는지 확인
   useEffect(() => {
-    if (userError) {
-      setError('로그인 실패');
-      return;
-    }
-
     if (user) {
       history.push('/');
       try {

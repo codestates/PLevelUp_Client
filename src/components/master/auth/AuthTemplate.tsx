@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import styles from '../../../styles/pages/login_page/LoginPage.module.scss';
 
 export default function AuthTemplate({
@@ -14,6 +14,7 @@ export default function AuthTemplate({
         <div className={styles.title}>
           {type === 'login' ? '로그인' : '회원가입'}
         </div>
+        <hr className={styles.hr} />
         {children}
       </div>
     </div>

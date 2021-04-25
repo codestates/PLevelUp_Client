@@ -26,7 +26,9 @@ export default function SignUpForm({
         <hr className={styles.hr} />
         <form className={styles.loginForm} onSubmit={onSubmit}>
           <div className={styles.inputBox}>
-            <span className={styles.label}>이메일*</span>
+            <span className={styles.label}>
+              이메일<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="email"
@@ -36,7 +38,9 @@ export default function SignUpForm({
             />
           </div>
           <div className={styles.inputBox}>
-            <span className={styles.label}>이름*</span>
+            <span className={styles.label}>
+              이름<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="username"
@@ -46,7 +50,9 @@ export default function SignUpForm({
             />
           </div>
           <div className={styles.inputBox}>
-            <span className={styles.label}>비밀번호*</span>
+            <span className={styles.label}>
+              비밀번호<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="password"
@@ -57,7 +63,9 @@ export default function SignUpForm({
             />
           </div>
           <div className={styles.inputBox}>
-            <span className={styles.label}>비밀번호 확인*</span>
+            <span className={styles.label}>
+              비밀번호 확인<span className={styles.required}>*</span>
+            </span>
             <input
               className={styles.loginInput}
               name="passwordConfirm"
