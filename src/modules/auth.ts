@@ -14,8 +14,6 @@ import {
   MainLoginResType,
   mainSignUp,
   MainSignUpReqType,
-  mainLoginKakao,
-  mainLoginGoogle,
   mainSendPassword,
   MainSendPasswordResType,
 } from '../api/main/auth';
@@ -33,18 +31,6 @@ const [
   MAIN_SIGN_UP_SUCCESS,
   MAIN_SIGN_UP_FAILURE,
 ] = createRequestActionTypes('main-auth/MAIN_SIGN_UP');
-
-const [
-  MAIN_LOGIN_KAKAO,
-  MAIN_LOGIN_KAKAO_SUCCESS,
-  MAIN_LOGIN_KAKAO_FAILURE,
-] = createRequestActionTypes('main-auth/MAIN_LOGIN_KAKAO');
-
-const [
-  MAIN_LOGIN_GOOGLE,
-  MAIN_LOGIN_GOOGLE_SUCCESS,
-  MAIN_LOGIN_GOOGLE_FAILURE,
-] = createRequestActionTypes('main-auth/MAIN_LOGIN_GOOGLE');
 
 const [
   MAIN_SEND_TEMPORARY_PASSWORD,
@@ -69,17 +55,6 @@ export const mainLoginAsync = createAsyncAction(
   MAIN_SIGN_UP_FAILURE,
 )<any, MainLoginResType, AxiosError>();
 
-export const mainLoginKakaoAsync = createAsyncAction(
-  MAIN_LOGIN_KAKAO,
-  MAIN_LOGIN_KAKAO_SUCCESS,
-  MAIN_LOGIN_KAKAO_FAILURE,
-)<any, MainLoginResType, AxiosError>();
-
-export const mainLoginGoogleAsync = createAsyncAction(
-  MAIN_LOGIN_GOOGLE,
-  MAIN_LOGIN_GOOGLE_SUCCESS,
-  MAIN_LOGIN_GOOGLE_FAILURE,
-)<any, MainLoginResType, AxiosError>();
 export const mainSendTemporaryPasswordAsync = createAsyncAction(
   MAIN_SEND_TEMPORARY_PASSWORD,
   MAIN_SEND_TEMPORARY_PASSWORD_SUCCESS,
@@ -94,8 +69,6 @@ export const mainSendTemporaryPasswordUnload = createAction(
 const asyncActions = {
   mainSignUpAsync,
   mainLoginAsync,
-  mainLoginKakaoAsync,
-  mainLoginGoogleAsync,
   mainSendTemporaryPasswordAsync,
   mainInitializeAuth,
   mainSendTemporaryPasswordUnload,
@@ -152,30 +125,6 @@ const initialState: AuthState = {
 export const mainAuthAsync = createReducer<AuthAsyncState, AuthAsyncAction>(
   asyncInitialState,
   {
-    [MAIN_LOGIN_KAKAO]: state => ({
-      ...state,
-      auth: asyncState.load(),
-    }),
-    [MAIN_LOGIN_KAKAO_SUCCESS]: (state, action) => ({
-      ...state,
-      auth: asyncState.success(action.payload),
-    }),
-    [MAIN_LOGIN_KAKAO_FAILURE]: (state, action) => ({
-      ...state,
-      auth: asyncState.error(action.payload),
-    }),
-    [MAIN_LOGIN_GOOGLE]: state => ({
-      ...state,
-      auth: asyncState.load(),
-    }),
-    [MAIN_LOGIN_GOOGLE_SUCCESS]: (state, action) => ({
-      ...state,
-      auth: asyncState.success(action.payload),
-    }),
-    [MAIN_LOGIN_GOOGLE_FAILURE]: (state, action) => ({
-      ...state,
-      auth: asyncState.error(action.payload),
-    }),
     [MAIN_LOGIN]: state => ({
       ...state,
       auth: asyncState.load(),
@@ -235,14 +184,6 @@ export const mainAuth = createReducer<AuthState, AuthAction>(initialState, {
 });
 
 export const mainLoginThunk = createAsyncThunk(mainLoginAsync, mainLogin);
-export const mainLoginKakaoThunk = createAsyncThunk(
-  mainLoginKakaoAsync,
-  mainLoginKakao,
-);
-export const mainLoginGoogleThunk = createAsyncThunk(
-  mainLoginGoogleAsync,
-  mainLoginGoogle,
-);
 export const mainSignUpThunk = createAsyncThunk(mainSignUpAsync, mainSignUp);
 export const mainSendPasswordThunk = createAsyncThunk(
   mainSendTemporaryPasswordAsync,

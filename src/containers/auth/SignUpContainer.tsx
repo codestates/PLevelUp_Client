@@ -5,8 +5,6 @@ import {
   mainInitializeForm,
   mainInitializeAuth,
   mainSignUpThunk,
-  mainLoginKakaoThunk,
-  mainLoginGoogleThunk,
 } from '../../modules/auth';
 import { RootState } from '../../modules';
 import SignUpForm from '../../components/auth/SignUpForm';
@@ -37,14 +35,6 @@ export default withRouter(function SignUpContainer({ history }) {
   );
 
   const loading = authLoading || userLoading;
-
-  const handleOAuth = () => {
-    dispatch(mainLoginKakaoThunk());
-  };
-
-  const handleOAuthGoogle = () => {
-    dispatch(mainLoginGoogleThunk());
-  };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -156,8 +146,6 @@ export default withRouter(function SignUpContainer({ history }) {
     <>
       <SignUpForm
         form={form}
-        handleOAuth={handleOAuth}
-        handleOAuthGoogle={handleOAuthGoogle}
         onChange={onChange}
         onSubmit={onSubmit}
         error={error}

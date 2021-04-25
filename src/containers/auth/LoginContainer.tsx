@@ -5,8 +5,6 @@ import {
   mainInitializeForm,
   mainInitializeAuth,
   mainLoginThunk,
-  mainLoginKakaoThunk,
-  mainLoginGoogleThunk,
   mainSendPasswordThunk,
   mainSendTemporaryPasswordUnload,
 } from '../../modules/auth';
@@ -36,23 +34,16 @@ export default withRouter(function LoginContainer({ history }) {
     emailError: mainAuthAsync.email.error,
   }));
 
-  useEffect(() => {
-    if (cookies.access_token) {
-      dispatch(mainIsLoginThunk());
-    }
-  }, [cookies.access_token]);
+  // useEffect(() => {
+  //   if (cookies.access_token) {
+  //     dispatch(mainIsLoginThunk());
+  //   }
+  // }, [cookies.access_token]);
 
   const { data: user, userError } = useSelector(({ mainUser }: RootState) => ({
     data: mainUser.user?.data,
     userError: mainUser.user?.error,
   }));
-  const handleOAuth = () => {
-    dispatch(mainLoginKakaoThunk());
-  };
-
-  const handleOAuthGoogle = () => {
-    dispatch(mainLoginGoogleThunk());
-  };
 
   // 인풋 변경 이벤트 핸들러
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +74,7 @@ export default withRouter(function LoginContainer({ history }) {
   // 컴포넌트가 처음 렌더링될 때 form 을 초기화 함
   useEffect(() => {
     dispatch(mainInitializeForm('login'));
+    dispatch(mainIsLoginThunk());
     return () => {
       dispatch(mainInitializeAuth());
     };
@@ -105,11 +97,6 @@ export default withRouter(function LoginContainer({ history }) {
 
   // user 값이 잘 설정되었는지 확인
   useEffect(() => {
-    if (userError) {
-      setError('로그인 실패');
-      return;
-    }
-
     if (user) {
       history.push('/');
       try {
@@ -156,8 +143,6 @@ export default withRouter(function LoginContainer({ history }) {
   return (
     <LoginForm
       form={form}
-      handleOAuth={handleOAuth}
-      handleOAuthGoogle={handleOAuthGoogle}
       onChange={onChange}
       onSubmit={onSubmit}
       error={error}

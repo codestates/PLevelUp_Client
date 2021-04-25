@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { Link } from 'react-router-dom';
 import { MainClubReadResType } from '../../../api/main/club';
 import styles from '../../../styles/pages/read_page/ReadPage.module.scss';
-import { Mobile, PC } from '../../../mediaQuery';
+import { Mobile, PC } from '../../../lib/styles/MediaQuery';
 import ApplyFAQList from '../../../components/club/read/ApplyFAQList';
 import { faqForReadPageData } from 'asset/data/dummy';
 import { FaHeart } from 'react-icons/fa';
