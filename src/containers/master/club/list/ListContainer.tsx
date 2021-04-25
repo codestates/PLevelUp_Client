@@ -38,7 +38,6 @@ export default withRouter(function ListContainer({ location, match }) {
         dispatch(masterClubUnloadList());
       }
       if (entries[0].isIntersecting && !loading) {
-        console.log('여기');
         if (lastPage >= page) {
           dispatch(masterListThunk({ page: page }));
           setPage(page + 1);
