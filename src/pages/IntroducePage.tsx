@@ -1,11 +1,12 @@
-import React from 'react';
-import styles from '../styles/pages/introduce_page/IntroducePage.module.scss';
+import IntroduceBannerContainer from '../containers/introduce/IntroduceBannerContainer';
+import IntroduceContainer from '../containers/introduce/IntroduceContainer';
 
 const IntroducePage = () => {
   return (
-    <div className={styles.wrapper}>
-      <h1> 프로그램 소개 페이지 </h1>
-    </div>
+    <>
+      <IntroduceBannerContainer />
+      <IntroduceContainer />
+    </>
   );
 };
 
