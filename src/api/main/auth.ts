@@ -73,6 +73,7 @@ export type MainIsLoginResType = {
   id: number;
   email: string;
   username: string;
+  type: string;
 };
 
 export type MainSendPasswordResType = {
