@@ -232,6 +232,7 @@ hr {
                 @include btn-default('primary');
                 display: block;
                 width: 100%;
+                outline: none;
 
                 :hover {
                   background-color: $primary;
