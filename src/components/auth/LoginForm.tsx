@@ -4,7 +4,7 @@ import { MainLoginReqType, MainSignUpReqType } from '../../api/main/auth';
 import styles from '../../styles/pages/login_page/LoginPage.module.scss';
 import kakaoLoginBtn from '../../asset/btn-kakao.png';
 import googleLoginBtn from '../../asset/btn-google.png';
-import googleNoBack from '../../asset/googleNoBack.png';
+import googleNoBack from '../../asset/googlenewBtn.png';
 import kakaoNoBack from '../../asset/kakao_login.png';
 import FindPasswordModal from '../../components/auth/FindPasswordModal';
 import { SERVER_HOST } from '../../config';
@@ -79,10 +79,8 @@ export default function LoginForm({
                 </Link>
               </div>
             </div>
-            {/* <hr /> */}
             <div className={styles.socialLoginWrapper}>
               <div className={styles.description}> or </div>
-              {/* <span className={styles.description}>다른 방식으로 로그인</span> */}
             </div>
           </>
           <div className={styles.socialBtnWrapper}>

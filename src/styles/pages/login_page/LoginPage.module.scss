@@ -123,18 +123,23 @@
         cursor: pointer;
       }
       .socialLoginWrapper {
+        width: 100%;
+        text-align: center;
         .description {
           display: flex;
+          width: 110%;
           flex-basis: 100%;
           align-items: center;
           color: rgba(0, 0, 0, 0.35);
           font-size: 12px;
           margin: 8px 0px;
+          margin-left: -5%;
         }
         .description::before,
         .description::after {
           content: '';
           flex-grow: 1;
+          width: 100%;
           background: rgba(0, 0, 0, 0.35);
           height: 1px;
           font-size: 0px;
@@ -156,6 +161,7 @@
 .modalContainer {
   .modalDescription {
     margin: 10px auto;
+    font-size: 0.8rem;
   }
   .modalInput {
     width: 100%;
