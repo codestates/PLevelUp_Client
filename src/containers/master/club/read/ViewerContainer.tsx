@@ -7,7 +7,6 @@ import {
 } from '../../../../modules/master/club/read';
 import { RootState } from '../../../../modules';
 import Viewer from '../../../../components/master/club/read/Viewer';
-import ReadActionButtons from '../../../../components/master/club/read/ReadActionButtons';
 import { masterEditSetOriginalClub } from '../../../../modules/master/club/edit';
 import { masterClubRemove } from '../../../../api/master/club';
 import ErrorView from '../../../../components/common/ErrorView';
@@ -64,9 +63,11 @@ export default withRouter(function ViewerContainer({ match, history }) {
       club={club}
       loading={loading}
       error={error}
-      actionButtons={
-        <ReadActionButtons onUpdate={onUpdate} onRemove={onRemove} />
-      }
+      onUpdate={onUpdate}
+      onRemove={onRemove}
+      // actionButtons={
+      //   <ReadActionButtons onUpdate={onUpdate} onRemove={onRemove} />
+      // }
     />
   );
 });

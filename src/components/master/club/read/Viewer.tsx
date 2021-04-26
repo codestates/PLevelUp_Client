@@ -2,22 +2,39 @@ import styles from '../../../../styles/pages/master/read_page/ReadPage.module.sc
 import { MasterClubReadResType } from '../../../../api/master/club';
 import { AxiosError } from 'axios';
 import { Mobile, PC } from '../../../../lib/styles/MediaQuery';
-import React from 'react';
+import React, { useState } from 'react';
 import Badge from '../../../common/Badge';
+import AskRemoveModal from './AskRemoveModal';
 
 type ViewerType = {
   club: MasterClubReadResType | null;
   error: AxiosError | null;
   loading: boolean;
-  actionButtons: JSX.Element;
+  onUpdate: () => void;
+  onRemove: () => void;
 };
 
 export default function Viewer({
   club,
   error,
   loading,
-  actionButtons,
+  onUpdate,
+  onRemove,
 }: ViewerType) {
+  const [modal, setModal] = useState(false);
+
+  const onRemoveClick = () => {
+    setModal(true);
+  };
+
+  const onCancel = () => {
+    setModal(false);
+  };
+
+  const onConfirm = () => {
+    setModal(false);
+    onRemove();
+  };
   // 에러 발생 시
   if (error) {
     if (error.response) {
@@ -45,9 +62,6 @@ export default function Viewer({
     }
     return <div className={styles.masterReadWrapper}>오류 발생.</div>;
   }
-
-  console.log(loading);
-  console.log(club);
 
   // 로딩 중이거나 아직 포스트 데이터가 없을 때
   if (loading || !club) {
@@ -100,7 +114,16 @@ export default function Viewer({
       </div>
       <div className={styles.floatingCardBtn}>
         <div className={styles.fixedAppBtnBox}>
-          <div className={styles.fixedAppBtn}>{actionButtons}</div>
+          <div className={styles.fixedAppBtn}>
+            <button className={styles.fixedAppBtn1} onClick={onUpdate}>
+              수정
+            </button>
+            <div className={styles.removeBtn}>
+              <button className={styles.fixedAppBtn2} onClick={onRemoveClick}>
+                삭제
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -133,9 +156,16 @@ export default function Viewer({
   );
 
   return (
-    <div className={styles.masterReadPage}>
-      <CardViewer />
-      <DescriptionViewer />
-    </div>
+    <>
+      <div className={styles.masterReadPage}>
+        <CardViewer />
+        <DescriptionViewer />
+      </div>
+      <AskRemoveModal
+        visible={modal}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+      />
+    </>
   );
 }
