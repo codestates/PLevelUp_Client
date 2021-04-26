@@ -15,7 +15,7 @@ export default withRouter(function MyPageContainer({ history }) {
 
   const { data: apply, error, loading } = useSelector(
     ({ mainApplyAsync }: RootState) => ({
-      data: mainApplyAsync.apply.data!,
+      data: mainApplyAsync.apply.data,
       error: mainApplyAsync.apply.error,
       loading: mainApplyAsync.apply.loading,
     }),
