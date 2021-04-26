@@ -95,11 +95,9 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           name="title"
         />
       </div>
-      {
-        errors.title !== '' && (
-          <div className={styles.editErrorMessage}>{errors.title}</div>
-        )
-      }
+      {errors.title !== '' && (
+        <div className={styles.editErrorMessage}>{errors.title}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>장소</span>
         <input
@@ -110,11 +108,9 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           name="place"
         />
       </div>
-      {
-        errors.place !== '' && (
-          <div className={styles.editErrorMessage}>{errors.place}</div>
-        )
-      }
+      {errors.place !== '' && (
+        <div className={styles.editErrorMessage}>{errors.place}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>금액</span>
         <input
@@ -128,11 +124,9 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           name="price"
         />
       </div>
-      {
-        errors.price !== '' && (
-          <div className={styles.editErrorMessage}>{errors.price}</div>
-        )
-      }
+      {errors.price !== '' && (
+        <div className={styles.editErrorMessage}>{errors.price}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>횟수</span>
         <input
@@ -146,11 +140,9 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           min="1"
         />
       </div>
-      {
-        errors.times !== '' && (
-          <div className={styles.editErrorMessage}>{errors.times}</div>
-        )
-      }
+      {errors.times !== '' && (
+        <div className={styles.editErrorMessage}>{errors.times}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>최대 인원</span>
         <input
@@ -164,11 +156,9 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           name="limitUserNumber"
         />
       </div>
-      {
-        errors.limitUserNumber !== '' && (
-          <div className={styles.editErrorMessage}>{errors.limitUserNumber}</div>
-        )
-      }
+      {errors.limitUserNumber !== '' && (
+        <div className={styles.editErrorMessage}>{errors.limitUserNumber}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>요약</span>
         <input
@@ -180,32 +170,24 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           name="summary"
         />
       </div>
-      {
-        errors.summary !== '' && (
-          <div className={styles.editErrorMessage}>{errors.summary}</div>
-        )
-      }
-      {
-        club.coverUrl ? (
-          <>
-            <div className={styles.editInputBlock}>
-              <span className={styles.editName}>커버 이미지</span>
-              {club.coverUrl && <img src={club.coverUrl} alt="coverImg" />}
-            </div>
-            <div className={styles.editInputBlock}>
-              <span className={styles.editName} />
-              <input
-                className={styles.editFile}
-                type="file"
-                accept="image/jpg,impge/png,image/jpeg,image/gif"
-                name="coverImg"
-                onChange={onChange}
-              />
-            </div>
-          </>
-        ) : (
+      {errors.summary !== '' && (
+        <div className={styles.editErrorMessage}>{errors.summary}</div>
+      )}
+      {club.coverUrl ? (
+        <>
           <div className={styles.editInputBlock}>
             <span className={styles.editName}>커버 이미지</span>
+            {club.coverUrl && (
+              <>
+                <div style={{ maxWidth: 400 }}>
+                  <img src={club.coverUrl} alt="coverImg" width={'100%'} />
+                </div>
+                <div />
+              </>
+            )}
+          </div>
+          <div className={styles.editInputBlock}>
+            <span className={styles.editName} />
             <input
               className={styles.editFile}
               type="file"
@@ -214,13 +196,22 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
               onChange={onChange}
             />
           </div>
-        )
-      }
-      {
-        errors.coverImg !== '' && (
-          <div className={styles.editErrorMessage}>{errors.coverImg}</div>
-        )
-      }
+        </>
+      ) : (
+        <div className={styles.editInputBlock}>
+          <span className={styles.editName}>커버 이미지</span>
+          <input
+            className={styles.editFile}
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            name="coverImg"
+            onChange={onChange}
+          />
+        </div>
+      )}
+      {errors.coverImg !== '' && (
+        <div className={styles.editErrorMessage}>{errors.coverImg}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName} style={{ float: 'left' }}>
           시작일
@@ -237,27 +228,21 @@ export default function Editor({ club, onChangeField, errors }: EditorType) {
           />
         </div>
       </div>
-      {
-        errors.startDate !== '' && (
-          <div className={styles.editErrorMessage}>{errors.startDate}</div>
-        )
-      }
+      {errors.startDate !== '' && (
+        <div className={styles.editErrorMessage}>{errors.startDate}</div>
+      )}
       <div className={styles.editInputBlock}>
         <span className={styles.editName}>설명</span>
         <div className={styles.editInput}>
           <div ref={descriptionQuillElement} />
         </div>
       </div>
-      {
-        errors.description !== '' && (
-          <div className={styles.editErrorMessage}>{errors.description}</div>
-        )
-      }
-      {
-        errors.server !== '' && (
-          <div className={styles.editErrorMessage}>{errors.server}</div>
-        )
-      }
-    </div >
+      {errors.description !== '' && (
+        <div className={styles.editErrorMessage}>{errors.description}</div>
+      )}
+      {errors.server !== '' && (
+        <div className={styles.editErrorMessage}>{errors.server}</div>
+      )}
+    </div>
   );
 }
