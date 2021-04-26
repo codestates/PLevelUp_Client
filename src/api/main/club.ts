@@ -93,6 +93,5 @@ export async function getBookmarkListAPI() {
   const response = await api.post<MainClubListReqType>(
     `/api/main/club/getbookmark`,
   );
-  console.log(response.data);
   return response.data;
 }

@@ -86,7 +86,6 @@ export const mainListAsync = createReducer<ListAsyncState, ListAsyncAction>(
       clubs: asyncState.load(),
     }),
     [GET_BOOKMARK_LIST_SUCCESS]: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         clubs: asyncState.success(action.payload),

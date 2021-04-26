@@ -93,6 +93,6 @@ export const mainSendPassword = async (email: string) => {
       email,
     },
   );
-  console.log(response);
+
   return response.data;
 };

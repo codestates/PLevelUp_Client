@@ -109,7 +109,6 @@ export default withRouter(function LoginContainer({ history }) {
 
   const onSendMail = (email: string) => {
     dispatch(mainSendPasswordThunk(email));
-    console.log(email + '로보냈습니다.');
   };
   const [modal, setModal] = useState(false);
   const onFindPasswordClick = () => {
