@@ -50,7 +50,6 @@ export const mainReadAsync = createReducer<ReadAsyncState, ReadAsyncAction>(
       club: asyncState.load(),
     }),
     [MAIN_CLUB_READ_SUCCESS]: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         club: asyncState.success(action.payload),

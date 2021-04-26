@@ -194,7 +194,6 @@ export default withRouter(function EditorContainer({ history }) {
         });
       }
       if (!limitUserNumber) {
-        console.log('anjwl?');
         setErrors(prevError => {
           return {
             ...prevError,
