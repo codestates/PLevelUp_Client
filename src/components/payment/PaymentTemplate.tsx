@@ -56,7 +56,7 @@ export default withRouter(function PaymentTemplate({
           .then(res => {
             if (res.data.status === 'paid') {
               alert('결제가 완료되었습니다.');
-              history.push('/mypage');
+              history.push('/payment/history');
             }
           })
           .catch(err => alert('결제에 실패했습니다. 다시 한 번 시도해주세요.'));
