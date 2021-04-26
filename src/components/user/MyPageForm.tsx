@@ -21,12 +21,11 @@ export default function MyPageForm({
 }: {
   user: MainIsLoginResType;
   onLogout: MouseEventHandler;
-  apply: MainApplyListResType | [];
+  apply: MainApplyListResType | [] | null;
   error: AxiosError | null;
   loading: boolean;
 }) {
   const { username } = user;
-
   const [isNavOpen, setIsNavOpen] = useState(true);
   // const [isNavSecondOpen, setIsNavSecondOpen] = useState(false);
   //민정 플젝이후 리팩: isNav를 개수만큼 만드는 건 좋지 않은 접근방법이라 생각, 2개일 경우는 T/F 로 3개이상은 카테고리배열만들것.
