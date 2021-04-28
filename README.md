@@ -1,7 +1,6 @@
 ![introduce](https://user-images.githubusercontent.com/75575789/116008386-3793ea80-a64f-11eb-8e03-907d79fe533e.png)  
  <h3 align="center">유명 개발자와 직접 만나 소통하며, 배울 수 있는 유료 클럽 플랫폼</h3> 
- <h1 align="center">[P' Level Up](https://p-levelup.com)</h1> 
- <center>sever 레포지토리는 [여기](https://github.com/bribrie) 서 확인하실 수 있습니다.</center>
+ <h1 align="center">P' Level Up</h1> 
 
 ---
 ## Tech Stack 
